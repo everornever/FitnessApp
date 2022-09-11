@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
+    // Important: First creation of Object!
+    @StateObject var savedWorkouts = SavedWorkouts()
+    
     @State private var isShowingProgressView = false
     @State private var isShowingWorkoutView = false
     
@@ -34,7 +37,6 @@ struct ContentView: View {
                     }
                     WeekView()
                 }
-                .border(.yellow)
 
                 VStack(alignment: .leading) {
                     Text("Weekly Stats")
@@ -44,7 +46,6 @@ struct ContentView: View {
                     
                     WeeklyStats()
                 }
-                .border(.yellow)
                 
                 VStack(alignment: .leading) {
                     
@@ -65,7 +66,6 @@ struct ContentView: View {
 
                     
                 }
-                .border(.yellow)
                 
                 Spacer()
             }
@@ -77,6 +77,7 @@ struct ContentView: View {
                     }
             )
         }
+        .environmentObject(savedWorkouts)
     }
 }
 

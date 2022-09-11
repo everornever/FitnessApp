@@ -14,6 +14,8 @@ struct Workout: Identifiable, Codable {
     let exercises: Int
     let date: String
     let duration: String
+//    let startTime: Date
+//    let endTime: Date
 }
 
 // Saved Workouts makes an array of Workouts with a UserDefault Get/Set attached

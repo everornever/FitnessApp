@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProgressView: View {
     
-    @ObservedObject var savedWorkouts = SavedWorkouts()
+    @EnvironmentObject var savedWorkouts: SavedWorkouts
     
     @State private var showingSheet = false
     @State private var pressedItem = 0
@@ -48,14 +48,11 @@ struct ProgressView: View {
             .sheet(isPresented: $showingSheet) {
                 WorkoutDetailView(date: "Passed Date")
             }
-            .onAppear{ // this needs to be added because the workoutView List modifier removes list backgrounds
-                UITableView.appearance().backgroundColor = .secondarySystemBackground
-            }
         }
     }
     
     func removeRows(at offsets: IndexSet) {
-        savedWorkouts.workoutArray.remove(atOffsets: offsets)   // not sure if this works correct ??
+        savedWorkouts.workoutArray.remove(atOffsets: offsets)
     }
 }
 
