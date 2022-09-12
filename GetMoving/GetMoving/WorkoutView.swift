@@ -18,18 +18,27 @@ struct WorkoutView: View {
     @State private var exercise = 1
     @State private var set = 0
     @State private var pauseTimer = false
-    @State private var endWorkoutAlert = false
     
+    // In Use
+    @State private var endWorkoutAlert = false
     @State private var isShowPopup: Bool = false
-    @State private var workoutTime = 0
+    
+    // Timer
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    // Dates
+    let currentDate = Date().formatted(date: .abbreviated, time: .omitted)
+    let currentStartTime = Date().formatted(date: .omitted, time: .shortened)
+    
+    //MARK: - BODY
     var body: some View {
         
         ZStack {
-            VStack(spacing: 0) {
+            VStack {
                 Text("00:00")
-                Spacer()
+//                    .onReceive(timer) { input in
+//                        currentDate = input
+//                    }
                 List {
                     Section {
                         HStack {
@@ -56,42 +65,37 @@ struct WorkoutView: View {
                         }
                     }
                 }
-                ZStack {                        // own view later
-                    Rectangle()
-                        .frame(maxWidth: .infinity, maxHeight: 200)
-                        .foregroundColor(.gray)
+                VStack {
+                    Text("00:00")
+                        .font(.title)
                     
-                    VStack {
-                        Text("00:00")
-                            .foregroundColor(.white)
-                            .font(.title)
-                        
-                        Text("Pause Timer")
-                            .foregroundColor(.secondary)
-                        
-                        
-                        HStack {
-                            Button {
-                                // Back one set
-                            } label: {
-                                Image(systemName: "arrowtriangle.left")
-                            }
-                            .buttonStyle(.bordered)
-                            
-                            Button("Pause") {}
-                                .buttonStyle(.borderedProminent)
-                                .controlSize(.large)
-                                .buttonBorderShape(.capsule)
-                            
-                            Button {
-                                // Back one set
-                            } label: {
-                                Image(systemName: "arrowtriangle.right")
-                            }
-                            .buttonStyle(.bordered)
+                    Text("Pause Timer")
+                        .foregroundColor(.secondary)
+                    
+                    
+                    HStack {
+                        Button {
+                            // Back one set
+                        } label: {
+                            Image(systemName: "arrowtriangle.left")
                         }
+                        .buttonStyle(.bordered)
+                        
+                        Button("Pause") {}
+                            .buttonStyle(.borderedProminent)
+                            .controlSize(.large)
+                            .buttonBorderShape(.capsule)
+                        
+                        Button {
+                            // Next set
+                        } label: {
+                            Image(systemName: "arrowtriangle.right")
+                        }
+                        .buttonStyle(.bordered)
                     }
                 }
+                Spacer()
+                Spacer()
             }
             .navigationBarTitle("Workout", displayMode: .inline)
             .navigationBarBackButtonHidden(true)
@@ -117,6 +121,7 @@ struct WorkoutView: View {
                 Text("Finish")
             })
             
+            // PopupView
             if self.isShowPopup {
                 GeometryReader { _ in
                     PopupView()
@@ -126,21 +131,19 @@ struct WorkoutView: View {
             }
         }
     }
-    
-    func saveWorkout() {
-        savedWorkouts.workoutArray.append(Workout(exercises: 6, date: "Saved", duration: "0:90"))
+    //MARK: - FUNCTIONS
+    func saveWorkout() {                                        // date has not to be a string
+        savedWorkouts.workoutArray.append(Workout(exercises: 6, date: "\(currentDate)", duration: "0:90"))
         withAnimation {
             isShowPopup = true
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
             self.presentationMode.wrappedValue.dismiss()
         }
-        
-        
     }
-    
 }
 
+//MARK: - Preview
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutView()
