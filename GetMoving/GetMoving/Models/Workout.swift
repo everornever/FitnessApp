@@ -36,11 +36,6 @@ class SavedWorkouts: ObservableObject {
                 return
             }
         }
-        
         workoutArray = []
-        workoutArray.append(Workout(exercises: 6, date: "20.10.22", duration: "Test!")) // This is only for testing!
-        workoutArray.append(Workout(exercises: 6, date: "20.10.22", duration: "Test!"))
-        workoutArray.append(Workout(exercises: 6, date: "20.10.22", duration: "Test!"))
-        workoutArray.append(Workout(exercises: 6, date: "20.10.22", duration: "Test!"))
     }
 }

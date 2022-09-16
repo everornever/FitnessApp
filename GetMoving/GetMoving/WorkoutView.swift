@@ -9,22 +9,25 @@ import SwiftUI
 
 struct WorkoutView: View {
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode> // ???????
+    // Dismissing View after cencel
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    // User Settings
     @ObservedObject var user = User()
     
+    // User Defaults Workouts
     @EnvironmentObject var savedWorkouts: SavedWorkouts
     
-    @State private var exercise = 1
-    @State private var set = 0
-    @State private var pauseTimer = false
-    
-    // In Use
+    // View toogles
     @State private var endWorkoutAlert = false
     @State private var isShowPopup: Bool = false
     
-    // Timer
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    // Workout Timer
+    @State private var workoutTime = 00*00*00
+    let workoutTimer = Timer.publish(every: 1,tolerance: 0.5, on: .main, in: .common).autoconnect()
+    
+    // Pause Timer
+    @State private var pauseTime = 90
     
     // Dates
     let currentDate = Date().formatted(date: .abbreviated, time: .omitted)
@@ -35,33 +38,35 @@ struct WorkoutView: View {
         
         ZStack {
             VStack {
-                Text("00:00")
-//                    .onReceive(timer) { input in
-//                        currentDate = input
-//                    }
+                Text("\(timeString(time: workoutTime))")
+                    .monospacedDigit()
+                    .onReceive(workoutTimer){ _ in
+                        if workoutTime < 7200 {
+                            workoutTime += 1
+                            print(workoutTime)
+                        } else {
+                            workoutTimer.upstream.connect().cancel()
+                        }
+                    }
                 List {
                     Section {
                         HStack {
                             Text("🏃‍♂️")
                             Text("Wormup")
                             Spacer()
-                            Image(systemName: "checkmark.circle")
-                                .foregroundColor(.green)
+                            Image(systemName: "circle")
                                 .font(.title3)
                         }
                     }
-                    ForEach(1..<7) { index in
+                    ForEach(1..<user.numberOfExercises + 1, id: \.self) { index in
                         HStack {
                             Image(systemName: "\(index).square")
                             Text("Exercise")
                             Spacer()
-                            Image(systemName: "checkmark.circle")
-                                .foregroundColor(.green)
-                                .font(.title3)
-                            Image(systemName: "circle")
-                                .font(.title3)
-                            Image(systemName: "circle")
-                                .font(.title3)
+                            ForEach(0..<user.numberOfSets, id: \.self) { _ in
+                                Image(systemName: "circle")
+                                    .font(.title3)
+                            }
                         }
                     }
                 }
@@ -81,10 +86,12 @@ struct WorkoutView: View {
                         }
                         .buttonStyle(.bordered)
                         
-                        Button("Pause") {}
-                            .buttonStyle(.borderedProminent)
-                            .controlSize(.large)
-                            .buttonBorderShape(.capsule)
+                        Button("Pause") {
+                            pauseTimerStart()
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .controlSize(.large)
+                        .buttonBorderShape(.capsule)
                         
                         Button {
                             // Next set
@@ -94,7 +101,6 @@ struct WorkoutView: View {
                         .buttonStyle(.bordered)
                     }
                 }
-                Spacer()
                 Spacer()
             }
             .navigationBarTitle("Workout", displayMode: .inline)
@@ -109,7 +115,8 @@ struct WorkoutView: View {
                 .alert("Cancel Workout", isPresented: $endWorkoutAlert) {
                     Button("Cancel", role: .cancel) {}
                     Button("Quit", role: .destructive) {
-                        self.presentationMode.wrappedValue.dismiss()
+                        workoutTimer.upstream.connect().cancel()
+                        presentationMode.wrappedValue.dismiss()
                     }
                 } message: {
                     Text("Are you shure you want to cancel your Workout?")
@@ -122,7 +129,7 @@ struct WorkoutView: View {
             })
             
             // PopupView
-            if self.isShowPopup {
+            if isShowPopup {
                 GeometryReader { _ in
                     PopupView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -132,14 +139,27 @@ struct WorkoutView: View {
         }
     }
     //MARK: - FUNCTIONS
-    func saveWorkout() {                                        // date has not to be a string
-        savedWorkouts.workoutArray.append(Workout(exercises: 6, date: "\(currentDate)", duration: "0:90"))
+    func saveWorkout() {
+        workoutTimer.upstream.connect().cancel()
+        savedWorkouts.workoutArray.append(Workout(exercises: 6, date: "\(currentDate)", duration: "\(timeString(time: workoutTime))"))
         withAnimation {
             isShowPopup = true
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-            self.presentationMode.wrappedValue.dismiss()
+            presentationMode.wrappedValue.dismiss()
         }
+    }
+    
+    //Convert the time into 24hr (24:00:00) format
+    func timeString(time: Int) -> String {
+        let hours   = Int(time) / 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+    }
+    
+    func pauseTimerStart() {
+        
     }
 }
 

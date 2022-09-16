@@ -9,11 +9,11 @@ import SwiftUI
 
 // User writes settings to Userdefaults with @AppStorage
 // Might be good to make new File
-// turn this into a dictionary!!!
+// turn this into a dictionary ??
 class User: ObservableObject {
     @AppStorage("name") var name = ""
     @AppStorage("weight") var weight = 00.00
-    @AppStorage("numberOfExercises") var numberOfExercises = 6 // Default Values has to be changed! Will overwrite changes ?
+    @AppStorage("numberOfExercises") var numberOfExercises = 6
     @AppStorage("numberOfSets") var numberOfSets = 3
     @AppStorage("pauseTimer") var pauseTimer = 1.50
 }

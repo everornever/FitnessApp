@@ -38,7 +38,6 @@ struct WeekView: View {
                             .font(.caption2)
                     }
                     .frame(width: 40, height: 80)
-                    .lineLimit(1)
                     .background(.green.opacity(0.1))
                     .cornerRadius(40)
                 } else {
@@ -51,13 +50,14 @@ struct WeekView: View {
                             .font(.caption2)
                     }
                     .frame(width: 40, height: 80)
-                    .lineLimit(1)
                     .background(.regularMaterial)
                     .cornerRadius(40)
                 }
                 
             }
         }
+        .monospacedDigit()
+        .lineLimit(1)
         .padding()
     }
 }
