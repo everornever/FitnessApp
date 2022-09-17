@@ -28,6 +28,8 @@ struct WorkoutView: View {
     
     // Pause Timer
     @State private var pauseTime = 90
+//    var pauseTimerRunning = false
+    let pauseTimer = Timer()
     
     // Dates
     let currentDate = Date().formatted(date: .abbreviated, time: .omitted)
@@ -38,7 +40,7 @@ struct WorkoutView: View {
         
         ZStack {
             VStack {
-                Text("\(timeString(time: workoutTime))")
+                Text("\(timeString(time: workoutTime).hours)")
                     .monospacedDigit()
                     .onReceive(workoutTimer){ _ in
                         if workoutTime < 7200 {
@@ -71,7 +73,7 @@ struct WorkoutView: View {
                     }
                 }
                 VStack {
-                    Text("00:00")
+                    Text("\(timeString(time: pauseTime).minutes)")
                         .font(.title)
                     
                     Text("Pause Timer")
@@ -150,16 +152,35 @@ struct WorkoutView: View {
         }
     }
     
-    //Convert the time into 24hr (24:00:00) format
-    func timeString(time: Int) -> String {
+    // Convert the time into 24hr (24:00:00) format
+    // hours returns 00:00:00
+    // minutes returns 00:00
+    func timeString(time: Int) -> (hours: String, minutes: String) {
         let hours   = Int(time) / 3600
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
-        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+        return (String(format:"%02i:%02i:%02i", hours, minutes, seconds), String(format:"%02i:%02i", minutes, seconds))
     }
     
     func pauseTimerStart() {
-        
+        if pauseTimerRunning {
+            pauseTimerStop()
+        } else {
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true)  { _ in
+                if pauseTime > 0 {
+                    pauseTime -= 1
+                    print(pauseTime)
+                } else {
+                    pauseTimerStop()
+                }
+            }
+        }
+    }
+    
+    func pauseTimerStop() {
+        pauseTimer.invalidate()
+//        pauseTimerRunning = false
+        pauseTime = 90 // back to start time
     }
 }
 

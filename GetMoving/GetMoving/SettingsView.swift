@@ -24,8 +24,8 @@ struct SettingsView: View {
     
     @FocusState private var inputIsFocused: Bool
     
-    @State private var reminder = Date.now
-    @State private var notificationSetting = false // Needs to be in UserDefaults
+//    @State private var reminder = Date.now
+//    @State private var notificationSetting = false // Needs to be in UserDefaults
     
     let timers = [ 1.00, 1.50, 2.00, 2.50, 3.00]
     
@@ -59,15 +59,15 @@ struct SettingsView: View {
                 Stepper("Sets: \(user.numberOfSets)", value: $user.numberOfSets, in: 1...12)
             }
             
-            Section("Notifications") {
-                Toggle(isOn: $notificationSetting) {
-                    Text("Workout Reminder")
-                }
-                
-                DatePicker("Workout Days:", selection: $reminder, displayedComponents: .date)
-                
-                DatePicker("Workout Time:", selection: $reminder, displayedComponents: .hourAndMinute)
-            }
+//            Section("Notifications") {
+//                Toggle(isOn: $notificationSetting) {
+//                    Text("Workout Reminder")
+//                }
+//
+//                DatePicker("Workout Days:", selection: $reminder, displayedComponents: .date)
+//
+//                DatePicker("Workout Time:", selection: $reminder, displayedComponents: .hourAndMinute)
+//            }
             
             Section(header: Text("About")) {
                 VStack(alignment: .leading, spacing: 5) {
