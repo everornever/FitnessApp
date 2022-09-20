@@ -28,8 +28,7 @@ struct WorkoutView: View {
     
     // Pause Timer
     @State private var pauseTime = 90
-//    var pauseTimerRunning = false
-    let pauseTimer = Timer()
+    @State private var pauseTimerRunning = false
     
     // Dates
     let currentDate = Date().formatted(date: .abbreviated, time: .omitted)
@@ -163,23 +162,17 @@ struct WorkoutView: View {
     }
     
     func pauseTimerStart() {
+        
         if pauseTimerRunning {
             pauseTimerStop()
         } else {
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true)  { _ in
-                if pauseTime > 0 {
-                    pauseTime -= 1
-                    print(pauseTime)
-                } else {
-                    pauseTimerStop()
-                }
-            }
+            // start timer
+
         }
     }
     
     func pauseTimerStop() {
-        pauseTimer.invalidate()
-//        pauseTimerRunning = false
+        pauseTimerRunning.toggle()
         pauseTime = 90 // back to start time
     }
 }
