@@ -23,32 +23,22 @@ struct WorkoutView: View {
     @State private var isShowPopup: Bool = false
     
     // Workout Timer
-    @State private var workoutTime = 00*00*00
-    let workoutTimer = Timer.publish(every: 1,tolerance: 0.5, on: .main, in: .common).autoconnect()
+    @StateObject var workoutStopwatch = StopwatchFunctions()
     
     // Pause Timer
-    @State private var pauseTime = 90
-    @State private var pauseTimerRunning = false
+
     
     // Dates
-    let currentDate = Date().formatted(date: .abbreviated, time: .omitted)
+    let currentDate = Date()
     let currentStartTime = Date().formatted(date: .omitted, time: .shortened)
     
     //MARK: - BODY
     var body: some View {
-        
         ZStack {
             VStack {
-                Text("\(timeString(time: workoutTime).hours)")
+                Text(timeString(time: self.workoutStopwatch.elapsedTime).hours)
                     .monospacedDigit()
-                    .onReceive(workoutTimer){ _ in
-                        if workoutTime < 7200 {
-                            workoutTime += 1
-                            print(workoutTime)
-                        } else {
-                            workoutTimer.upstream.connect().cancel()
-                        }
-                    }
+
                 List {
                     Section {
                         HStack {
@@ -72,7 +62,7 @@ struct WorkoutView: View {
                     }
                 }
                 VStack {
-                    Text("\(timeString(time: pauseTime).minutes)")
+                    Text("01:30")
                         .font(.title)
                     
                     Text("Pause Timer")
@@ -88,7 +78,6 @@ struct WorkoutView: View {
                         .buttonStyle(.bordered)
                         
                         Button("Pause") {
-                            pauseTimerStart()
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
@@ -116,7 +105,7 @@ struct WorkoutView: View {
                 .alert("Cancel Workout", isPresented: $endWorkoutAlert) {
                     Button("Cancel", role: .cancel) {}
                     Button("Quit", role: .destructive) {
-                        workoutTimer.upstream.connect().cancel()
+                        self.workoutStopwatch.isRunning.toggle()
                         presentationMode.wrappedValue.dismiss()
                     }
                 } message: {
@@ -138,11 +127,13 @@ struct WorkoutView: View {
                 }
             }
         }
+        .onAppear {
+            self.workoutStopwatch.isRunning.toggle()
+        }
     }
     //MARK: - FUNCTIONS
     func saveWorkout() {
-        workoutTimer.upstream.connect().cancel()
-        savedWorkouts.workoutArray.append(Workout(exercises: 6, date: "\(currentDate)", duration: "\(timeString(time: workoutTime))"))
+        savedWorkouts.workoutArray.append(Workout(exercises: 6, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
         withAnimation {
             isShowPopup = true
         }
@@ -151,30 +142,17 @@ struct WorkoutView: View {
         }
     }
     
+    // make extension!!
     // Convert the time into 24hr (24:00:00) format
     // hours returns 00:00:00
     // minutes returns 00:00
-    func timeString(time: Int) -> (hours: String, minutes: String) {
+    func timeString(time: Double) -> (hours: String, minutes: String) {
         let hours   = Int(time) / 3600
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
         return (String(format:"%02i:%02i:%02i", hours, minutes, seconds), String(format:"%02i:%02i", minutes, seconds))
     }
     
-    func pauseTimerStart() {
-        
-        if pauseTimerRunning {
-            pauseTimerStop()
-        } else {
-            // start timer
-
-        }
-    }
-    
-    func pauseTimerStop() {
-        pauseTimerRunning.toggle()
-        pauseTime = 90 // back to start time
-    }
 }
 
 //MARK: - Preview

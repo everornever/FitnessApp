@@ -7,30 +7,25 @@
 
 import SwiftUI
 
-struct weekDay: Identifiable {
+struct CurrentWeekDay: Identifiable {
     let id = UUID()
     let name: String
-    let date: String
+    let date: Date
     let done: Bool
 }
 
 struct WeekView: View {
     
-    let days = [
-        weekDay(name: "Mon", date: "08", done: false),
-        weekDay(name: "Tue", date: "09", done: true),
-        weekDay(name: "Wed", date: "10", done: false),
-        weekDay(name: "Thu", date: "11", done: false),
-        weekDay(name: "Fri", date: "12", done: false),
-        weekDay(name: "Sat", date: "13", done: false),
-        weekDay(name: "San", date: "14", done: false)]
+    @EnvironmentObject var savedWorkouts: SavedWorkouts
+    
+    let currentWeek: [CurrentWeekDay]
     
     var body: some View {
         HStack(spacing: 10) {
             ForEach(days) { days in
                 if(days.done) {
                     VStack {
-                        Text(days.date)
+                        Text(days.date.formatted.("EEEE"))
                             .font(.caption)
                             .padding(.bottom)
                         
@@ -60,6 +55,28 @@ struct WeekView: View {
         .lineLimit(1)
         .padding()
     }
+    
+    func CreateWeek() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        
+        let calendar = Calendar.current
+        let dayOfWeek = calendar.firstWeekday
+        let days = calendar.range(of: .weekday, in: .weekOfYear, for: dayOfWeek)!
+            .compactMap { calendar.date(byAdding: .day, value: $0 - dayOfWeek, to: dayOfWeek) }
+            .filter { !calendar.isDateInWeekend($0) }
+        
+        
+    }
+    
+    func CheckInCurrentWeek() {
+        ForEach(days) { weekDays in
+            if (savedWorkouts.workoutArray.contains(where: {$0.date == Date.now})) {
+                
+            }
+        }
+    }
+    
 }
 
 struct WeekView_Previews: PreviewProvider {

@@ -31,9 +31,9 @@ struct ProgressView: View {
                 ForEach(savedWorkouts.workoutArray) { entry in
                     HStack {
                         Image(systemName: "clock")
-                        Text(entry.duration)
+                        Text(timeString(time: entry.duration).minutes)
                         Spacer()
-                        Text(entry.date)
+                        Text(entry.date.formatted(date: .abbreviated, time: .omitted))
                     }
                 }
                 .onDelete(perform: removeRows)
@@ -46,7 +46,7 @@ struct ProgressView: View {
                 EditButton()
             }
             .sheet(isPresented: $showingSheet) {
-                WorkoutDetailView(date: "Passed Date")
+                ProgressDetailView(date: "Passed Date")
             }
         }
     }
@@ -54,27 +54,29 @@ struct ProgressView: View {
     func removeRows(at offsets: IndexSet) {
         savedWorkouts.workoutArray.remove(atOffsets: offsets)
     }
-}
-
-// New View, might be good in new File!
-struct WorkoutDetailView: View {
     
-    // for the SheetView Dismiss
-    @Environment(\.dismiss) var dismiss
-    
-    let date: String
-    
-    var body: some View {
-        Text("Workout from: \(date)")
-        Button("Dismiss") {
-            dismiss()
-        }
+    // make extension!!
+    // Convert the time into 24hr (24:00:00) format
+    // hours returns 00:00:00
+    // minutes returns 00:00
+    func timeString(time: Double) -> (hours: String, minutes: String, seconds: String) {
+        let hours   = Int(time) / 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return (String(format:"%02i:%02i:%02i", hours, minutes, seconds),
+                String(format:"%02i:%02i", hours, minutes),
+                String(format:"%02i:%02i", minutes, seconds))
     }
 }
 
+
+// MARK: - Preview
 struct ProgressView_Previews: PreviewProvider {
+    
+    static let myEnvObject = SavedWorkouts()
     
     static var previews: some View {
         ProgressView()
+            .environmentObject(myEnvObject)
     }
 }
