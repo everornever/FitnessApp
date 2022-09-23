@@ -7,41 +7,38 @@
 
 import SwiftUI
 
-struct CurrentWeekDay: Identifiable {
-    let id = UUID()
-    let name: String
-    let date: Date
-    let done: Bool
-}
-
 struct WeekView: View {
     
     @EnvironmentObject var savedWorkouts: SavedWorkouts
     
-    let currentWeek: [CurrentWeekDay]
+    let weekDates = CurrentWeek().getcurrentDates()
+    let weekNumbers = CurrentWeek().getStringDates()
+    let dayNames = CurrentWeek().getCurrentNames()
+    
     
     var body: some View {
         HStack(spacing: 10) {
-            ForEach(days) { days in
-                if(days.done) {
+            ForEach(0..<7) { index in
+                if(temp(index: index)) {
                     VStack {
-                        Text(days.date.formatted.("EEEE"))
+                        Text(weekNumbers[index])
                             .font(.caption)
                             .padding(.bottom)
                         
-                        Text(days.name)
+                        Text(dayNames[index])
                             .font(.caption2)
                     }
                     .frame(width: 40, height: 80)
                     .background(.green.opacity(0.1))
                     .cornerRadius(40)
-                } else {
+                }
+                else {
                     VStack {
-                        Text(days.date)
+                        Text(weekNumbers[index])
                             .font(.caption)
                             .padding(.bottom)
                         
-                        Text(days.name)
+                        Text(dayNames[index])
                             .font(.caption2)
                     }
                     .frame(width: 40, height: 80)
@@ -54,33 +51,33 @@ struct WeekView: View {
         .monospacedDigit()
         .lineLimit(1)
         .padding()
-    }
+        
+    } // end Of Body
     
-    func CreateWeek() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE"
+    func temp(index: Int) -> Bool {
+        let tempi = savedWorkouts.workoutArray.suffix(7)
+        var nooo = false
         
-        let calendar = Calendar.current
-        let dayOfWeek = calendar.firstWeekday
-        let days = calendar.range(of: .weekday, in: .weekOfYear, for: dayOfWeek)!
-            .compactMap { calendar.date(byAdding: .day, value: $0 - dayOfWeek, to: dayOfWeek) }
-            .filter { !calendar.isDateInWeekend($0) }
-        
-        
-    }
-    
-    func CheckInCurrentWeek() {
-        ForEach(days) { weekDays in
-            if (savedWorkouts.workoutArray.contains(where: {$0.date == Date.now})) {
-                
+        for i in tempi {
+            if CurrentWeek().CheckDateInCurrentWeek(paasedDate: i.date) {
+                nooo = true
             }
         }
+        
+        return nooo
+        
+        
     }
     
-}
+} // end of View
+
 
 struct WeekView_Previews: PreviewProvider {
+    
+    static let myEnvObject = SavedWorkouts()
+    
     static var previews: some View {
         WeekView()
+            .environmentObject(myEnvObject)
     }
 }
