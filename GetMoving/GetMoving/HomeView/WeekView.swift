@@ -11,64 +11,36 @@ struct WeekView: View {
     
     @EnvironmentObject var savedWorkouts: SavedWorkouts
     
-    let weekDates = CurrentWeek().getcurrentDates()
-    let weekNumbers = CurrentWeek().getStringDates()
     let dayNames = CurrentWeek().getCurrentNames()
+    let dayDates = CurrentWeek().getStringDates()
+    let locale = Locale.current
     
     
     var body: some View {
-        HStack(spacing: 10) {
+        HStack {
             ForEach(0..<7) { index in
-                if(temp(index: index)) {
-                    VStack {
-                        Text(weekNumbers[index])
-                            .font(.caption)
-                            .padding(.bottom)
-                        
-                        Text(dayNames[index])
-                            .font(.caption2)
-                    }
-                    .frame(width: 40, height: 80)
-                    .background(.green.opacity(0.1))
-                    .cornerRadius(40)
+                VStack {
+                    Text(dayDates[index])
+                        .font(.caption)
+                        .padding(.bottom)
+                    
+                    Text(dayNames[index])
+                        .font(.caption2)
                 }
-                else {
-                    VStack {
-                        Text(weekNumbers[index])
-                            .font(.caption)
-                            .padding(.bottom)
-                        
-                        Text(dayNames[index])
-                            .font(.caption2)
-                    }
-                    .frame(width: 40, height: 80)
-                    .background(.regularMaterial)
-                    .cornerRadius(40)
+                .frame(width: 40, height: 80)
+                .background(.regularMaterial)
+                .cornerRadius(40)
+                
+                if (index < 6) {
+                    Spacer()
                 }
                 
             }
         }
         .monospacedDigit()
         .lineLimit(1)
-        .padding()
         
     } // end Of Body
-    
-    func temp(index: Int) -> Bool {
-        let tempi = savedWorkouts.workoutArray.suffix(7)
-        var nooo = false
-        
-        for i in tempi {
-            if CurrentWeek().CheckDateInCurrentWeek(paasedDate: i.date) {
-                nooo = true
-            }
-        }
-        
-        return nooo
-        
-        
-    }
-    
 } // end of View
 
 

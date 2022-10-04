@@ -24,14 +24,11 @@ struct SettingsView: View {
     
     @FocusState private var inputIsFocused: Bool
     
-//    @State private var reminder = Date.now
-//    @State private var notificationSetting = false // Needs to be in UserDefaults
-    
     let timers = [ 1.00, 1.50, 2.00, 2.50, 3.00]
     
     var body: some View {
         Form {
-            Section("Your Name") {
+            Section("Dein Name") {
                 HStack {
                     Image(systemName: "person")
                     TextField("Name", text: $user.name) {
@@ -50,30 +47,20 @@ struct SettingsView: View {
                 }
                 .pickerStyle(.segmented)
             } header: {
-                Text("Pause timer length in minutes")
+                Text("Pause Timer in Minuten")
             }
             
-            Section("Configure your Workout") {
-                Stepper("Exercises: \(user.numberOfExercises)", value: $user.numberOfExercises, in: 1...12)
+            Section("Konfiguriere dein Workout") {
+                Stepper("Übungen: \(user.numberOfExercises)", value: $user.numberOfExercises, in: 1...12)
                 
                 Stepper("Sets: \(user.numberOfSets)", value: $user.numberOfSets, in: 1...12)
             }
             
-//            Section("Notifications") {
-//                Toggle(isOn: $notificationSetting) {
-//                    Text("Workout Reminder")
-//                }
-//
-//                DatePicker("Workout Days:", selection: $reminder, displayedComponents: .date)
-//
-//                DatePicker("Workout Time:", selection: $reminder, displayedComponents: .hourAndMinute)
-//            }
-            
-            Section(header: Text("About")) {
+            Section(header: Text("Über uns")) {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("GetMoving v0.1")
                         .font(.headline)
-                    Text("Designed with 🤍 in Potsdam")
+                    Text("Designed mit 🤍 in Potsdam")
                         .font(.footnote)
                 }.padding(.vertical, 5)
             }
