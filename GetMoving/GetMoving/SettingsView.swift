@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 // User writes settings to Userdefaults with @AppStorage
 // Might be good to make new File
@@ -24,6 +25,8 @@ struct SettingsView: View {
     
     @FocusState private var inputIsFocused: Bool
     
+    // Pause Timer
+    @State private var allowNotification = false
     let timers = [ 1.00, 1.50, 2.00, 2.50, 3.00]
     
     var body: some View {
@@ -46,14 +49,19 @@ struct SettingsView: View {
                     }
                 }
                 .pickerStyle(.segmented)
+                
+                Button("Fuck Notification") {
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                        if success {
+                            print("All set!")
+                        } else if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+                
             } header: {
                 Text("Pause Timer in Minuten")
-            }
-            
-            Section("Konfiguriere dein Workout") {
-                Stepper("Übungen: \(user.numberOfExercises)", value: $user.numberOfExercises, in: 1...12)
-                
-                Stepper("Sets: \(user.numberOfSets)", value: $user.numberOfSets, in: 1...12)
             }
             
             Section(header: Text("Über uns")) {

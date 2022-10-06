@@ -1,22 +1,24 @@
 //
-//  StopwatchFunctions.swift
+//  PauseFunctions.swift
 //  GetMoving
 //
-//  Created by Leon Kling on 22.09.22.
+//  Created by Leon Kling on 06.10.22.
 //
-// Stopwatch copyed. Not my design. Comments be my to explain class
-// code from: https://medium.com/@pwilko/how-not-to-create-stopwatch-in-swift-e0b7ff98880f
 
-import Combine
 import Foundation
+import Combine
 
-class StopwatchFunctions: ObservableObject {
+class PauseFunctions: ObservableObject {
+    
+    // User Settings
+    let user = User()
     
     private var startTime: Date?
+    private var accumulatedTime: TimeInterval = 0
     private var timer: Cancellable?
     
     /// can only be read outside of class. the final value to puplish the paased time to a UI interface
-    @Published private(set) var elapsedTime: TimeInterval = 0
+    @Published private(set) var timeLeft: TimeInterval = 90
     
     /// no need to call functions. we start and stop the stopwatch by manipulating isRunning. functions are private
     @Published var isRunning = false {
@@ -34,7 +36,7 @@ class StopwatchFunctions: ObservableObject {
     private func start() -> Void {
         self.timer?.cancel()
         self.timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect().sink { _ in
-            self.elapsedTime = self.getElapsedTime()
+            self.timeLeft = 90 + self.getElapsedTime()
         }
         self.startTime = Date()
     }
@@ -50,7 +52,8 @@ class StopwatchFunctions: ObservableObject {
     
     /// will set everything to zero. can be called outside of class
     func reset() -> Void {
-        self.elapsedTime = 0
+        self.accumulatedTime = 0
+        self.timeLeft = 90
         self.startTime = nil
         self.isRunning = false
     }
@@ -59,7 +62,7 @@ class StopwatchFunctions: ObservableObject {
     ///                we use the unary minus operator to change that to a positive value
     /// - Returns:     the timeinterval between startTime and now. with nil-coalescing. plus the already passed time
     private func getElapsedTime() -> TimeInterval {
-        return -(self.startTime?.timeIntervalSinceNow ?? 0)
+        return self.startTime?.timeIntervalSinceNow ?? 0
     }
     
 }

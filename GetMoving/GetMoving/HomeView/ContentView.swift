@@ -64,10 +64,11 @@ struct ContentView: View {
                     Button { isShowingWorkoutView = true } label: {
                         Text("Starte Workout")
                             .frame(maxWidth: .infinity)
+                            
                             .padding(10)
                     }
                     .foregroundStyle(.green)
-                    .tint(.green.opacity(0.1))
+                    .tint(.green.opacity(0.2))
                     .buttonStyle(.borderedProminent)
                     .controlSize(.large)
                     .padding(.top, 20)
