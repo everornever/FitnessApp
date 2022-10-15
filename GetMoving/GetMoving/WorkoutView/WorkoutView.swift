@@ -33,9 +33,10 @@ struct WorkoutView: View {
     let currentDate = Date()
     
     // Workout status
-    @State private var numberOfExercises = 1
-    @State private var exerciseIndex = 0
-    @State private var setIndex = 0
+    @State var numberOfExercises = 1
+    @State var exerciseIndex = 0
+    @State var numberOfSets = [0]
+    @State var setIndex = 0
     
     //MARK: - BODY
     var body: some View {
@@ -44,40 +45,36 @@ struct WorkoutView: View {
                 Text(timeString(time: workoutStopwatch.elapsedTime).hours)
                     .monospacedDigit()
                 
+                // MARK: - Exercise List
                 List {
-                    ForEach(0..<numberOfExercises, id: \.self) { current in
+                    ForEach(0..<numberOfExercises, id: \.self) { index in
                         HStack {
-                            if (current == exerciseIndex) {
+                            if(exerciseIndex == index) {
                                 Image(systemName: "arrowtriangle.right.fill")
                                     .foregroundColor(.yellow)
                             }
-                            Text("\(current + 1). Übung")
+                            
+                            Text("Übung")
+                            
                             Spacer()
-                            if (setIndex<8){
-                                ForEach(0..<setIndex, id: \.self) { index in
+                            
+                            ForEach(0..<numberOfSets[index], id: \.self) { _ in
+                                Image(systemName: "circlebadge.fill")
+                                    .foregroundColor(.green)
+                                    .font(.title2)
                                     
-                                    Image(systemName: "checkmark.circle")
-                                        .font(.title3)
-                                        .foregroundColor(.green)
-                                    
-                                }
-                            } else {
-                                ForEach(0..<8, id: \.self) { index in
-                                    
-                                    Image(systemName: "checkmark.circle")
-                                        .font(.title3)
-                                        .foregroundColor(.green)
-                                    
-                                }
                             }
+                            
                         }
                         .animation(.linear, value: exerciseIndex)
                     }
+                    
                 }
-                //MARK: - Pause Button
+                // MARK: - Pause Button
                 VStack {
                     Text(timeString(time: pauseStopwatch.timeLeft).minutes)
                         .font(.title)
+                        .monospacedDigit()
                     
                     Text("Pause Timer")
                         .foregroundColor(.secondary)
@@ -86,10 +83,12 @@ struct WorkoutView: View {
                     HStack {
                         Button {
                             // Back one set
-                            if(setIndex > 0) {
-                                setIndex -= 1
-                            } else {
-                                setIndex = 3
+                            if(numberOfSets[exerciseIndex] > 1) {
+                                numberOfSets[exerciseIndex] -= 1
+                            }
+                            else {
+                                numberOfExercises -= 1
+                                numberOfSets.remove(at: exerciseIndex)
                                 exerciseIndex -= 1
                             }
                             
@@ -103,9 +102,9 @@ struct WorkoutView: View {
                             pauseStopwatch.reset()
                             pauseStopwatch.isRunning.toggle()
                             scheduleNotification()
-                            
-                            setIndex += 1
-                            
+                            if numberOfSets[exerciseIndex]<8 {
+                                numberOfSets[exerciseIndex] += 1
+                            }
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
@@ -113,13 +112,9 @@ struct WorkoutView: View {
                         
                         Button {
                             // Next Exercise
-                            if (setIndex < 1) {
-                                // nichts
-                            } else {
-                                numberOfExercises += 1
-                                exerciseIndex += 1
-                                setIndex = 0
-                            }
+                            numberOfSets.append(0)
+                            numberOfExercises += 1
+                            exerciseIndex += 1
                             
                         } label: {
                             Image(systemName: "arrowtriangle.right")
@@ -129,7 +124,7 @@ struct WorkoutView: View {
                 }
                 Spacer()
             }
-            //MARK: - Navigation Bar
+            // MARK: - Navigation Bar
             .navigationBarTitle("Workout", displayMode: .inline)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems( leading:
@@ -165,12 +160,13 @@ struct WorkoutView: View {
             }
         }
         .onAppear {
-            self.workoutStopwatch.isRunning.toggle()
+            workoutStopwatch.isRunning.toggle()
         }
     }
-    //MARK: - FUNCTIONS
+    // MARK: - FUNCTIONS
     func saveWorkout() {
-        self.workoutStopwatch.isRunning.toggle()
+        workoutStopwatch.isRunning.toggle()
+        pauseStopwatch.isRunning.toggle()
         savedWorkouts.workoutArray.append(Workout(exercises: 6, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
         withAnimation {
             isShowPopup = true
@@ -213,7 +209,7 @@ struct WorkoutView: View {
     
 }
 
-//MARK: - Preview
+// MARK: - Preview
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutView()
@@ -221,21 +217,4 @@ struct WorkoutView_Previews: PreviewProvider {
 }
 
 
-/*
- ForEach(0..<user.setIndex, id: \.self) { index in
-     if (current < exerciseIndex) {
-         Image(systemName: "circle.fill")
-             .font(.title3)
-             .foregroundColor(.green)
-     }
-     if (current == exerciseIndex) {
-         Image(systemName: setIndex <= index ? "circle" : "circle.fill")
-             .font(.title3)
-             .foregroundColor(setIndex <= index ? .gray : .green)
-     }
-     if (current > exerciseIndex) {
-         Image(systemName: "circle")
-             .font(.title3)
-             .foregroundColor(.gray)
-     }
- */
+

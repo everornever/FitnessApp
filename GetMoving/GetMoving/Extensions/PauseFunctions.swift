@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import AVFoundation
 
 class PauseFunctions: ObservableObject {
     
@@ -16,6 +17,8 @@ class PauseFunctions: ObservableObject {
     private var startTime: Date?
     private var accumulatedTime: TimeInterval = 0
     private var timer: Cancellable?
+    
+    private let systemSoundID: SystemSoundID = 1117
     
     /// can only be read outside of class. the final value to puplish the paased time to a UI interface
     @Published private(set) var timeLeft: TimeInterval = 90
@@ -36,7 +39,13 @@ class PauseFunctions: ObservableObject {
     private func start() -> Void {
         self.timer?.cancel()
         self.timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect().sink { _ in
-            self.timeLeft = 90 + self.getElapsedTime()
+            if (self.timeLeft > 0) {
+                self.timeLeft = 90 + self.getElapsedTime()
+            }
+            else {
+                self.stop()
+                self.reset()
+            }
         }
         self.startTime = Date()
     }
@@ -52,6 +61,7 @@ class PauseFunctions: ObservableObject {
     
     /// will set everything to zero. can be called outside of class
     func reset() -> Void {
+        AudioServicesPlaySystemSound(systemSoundID)
         self.accumulatedTime = 0
         self.timeLeft = 90
         self.startTime = nil
