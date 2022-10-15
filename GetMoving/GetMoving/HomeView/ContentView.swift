@@ -17,55 +17,64 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
+            
             VStack(spacing: 0) {
-                VStack {
+                
+                VStack(alignment: .leading) { // Section: Activity
                     HStack {
-                        Text("Activity")
+                        
+                        Text("Aktivität")
                             .font(.headline)
                             .bold()
-                            .padding()
                         
                         Spacer()
                         
                         NavigationLink(destination: ProgressView(), isActive: $isShowingProgressView) { EmptyView() }
-                        Button("See All") { isShowingProgressView = true }
-                            .foregroundStyle(.secondary)
-                            .buttonStyle(.bordered)
-                            .buttonBorderShape(.capsule)
-                            .controlSize(.small)
-                            .padding(.trailing)
+                        
+                        Button("Verlauf") { isShowingProgressView = true }
+                        
                     }
                     WeekView()
                 }
-
-                VStack(alignment: .leading) {
-                    Text("Weekly Stats")
-                        .font(.headline)
-                        .bold()
-                        .padding()
-                    
-                    WeeklyStats()
-                }
+                .padding()
                 
-                VStack(alignment: .leading) {
+                
+                VStack(alignment: .leading) { // Section: Current Stats
                     
-                    Text("Workout")
+                    Text("Aktuelle Werte")
                         .font(.headline)
                         .bold()
-                        .padding()
+                    
+                    CurrentStats()
+                    
+                }
+                .padding()
+                
+                
+                VStack(alignment: .leading) { // Section: Streak
+                    
+                    Text("Streak")
+                        .font(.headline)
+                        .bold()
+                    
+                    StreakView()
                     
                     NavigationLink(destination: WorkoutView(), isActive: $isShowingWorkoutView) { EmptyView() }
                     
-                    Button("Start Workout") { isShowingWorkoutView = true }
-                        .foregroundStyle(.green)
-                        .tint(.green.opacity(0.1))
-                        .buttonStyle(.borderedProminent)
-                        .buttonBorderShape(.capsule)
-                        .controlSize(.large)
-                        .frame(maxWidth: .infinity)
-
+                    Button { isShowingWorkoutView = true } label: {
+                        Text("Starte Workout")
+                            .frame(maxWidth: .infinity)
+                            
+                            .padding(10)
+                    }
+                    .foregroundStyle(.green)
+                    .tint(.green.opacity(0.2))
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .padding(.top, 20)
                     
                 }
+                .padding()
                 
                 Spacer()
             }
@@ -73,7 +82,7 @@ struct ContentView: View {
             .navigationBarItems(
                 trailing:
                     NavigationLink(destination: SettingsView()) {
-                        Text("Settings")
+                        Text("Einstellungen")
                     }
             )
         }
@@ -81,6 +90,7 @@ struct ContentView: View {
     }
 }
 
+// MARK: - Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

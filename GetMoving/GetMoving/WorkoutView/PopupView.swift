@@ -14,7 +14,9 @@ struct PopupView: View {
                 .foregroundColor(.green)
                 .font(.system(size: 60))
                 .padding()
-            Text("Workout Saved")
+            Text("Workout")
+                .font(.title)
+            Text("gespeichert")
                 .font(.title)
         }
         .padding(50)

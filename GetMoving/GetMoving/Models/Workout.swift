@@ -12,8 +12,8 @@ import Foundation
 struct Workout: Identifiable, Codable {
     var id = UUID()
     let exercises: Int
-    let date: String     // might be DateInterval ??
-    let duration: String // might be DateInterval ??
+    let date: Date
+    let duration: TimeInterval
 }
 
 // Saved Workouts makes an array of Workouts with a UserDefault Get/Set attached
