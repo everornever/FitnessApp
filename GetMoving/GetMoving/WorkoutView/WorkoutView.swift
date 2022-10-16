@@ -36,13 +36,12 @@ struct WorkoutView: View {
     @State var numberOfExercises = 1
     @State var exerciseIndex = 0
     @State var numberOfSets = [0]
-    @State var setIndex = 0
     
     //MARK: - BODY
     var body: some View {
         ZStack {
             VStack {
-                Text(timeString(time: workoutStopwatch.elapsedTime).hours)
+                Text(workoutStopwatch.elapsedTime.timeString().hours)
                     .monospacedDigit()
                 
                 // MARK: - Exercise List
@@ -54,7 +53,7 @@ struct WorkoutView: View {
                                     .foregroundColor(.yellow)
                             }
                             
-                            Text("Übung")
+                            Text(" \(index+1). Übung")
                             
                             Spacer()
                             
@@ -62,27 +61,24 @@ struct WorkoutView: View {
                                 Image(systemName: "circlebadge.fill")
                                     .foregroundColor(.green)
                                     .font(.title2)
-                                    
                             }
-                            
                         }
                         .animation(.linear, value: exerciseIndex)
                     }
-                    
                 }
+                
                 // MARK: - Pause Button
                 VStack {
-                    Text(timeString(time: pauseStopwatch.timeLeft).minutes)
+                    Text(pauseStopwatch.timeLeft.timeString().seconds)
                         .font(.title)
                         .monospacedDigit()
                     
                     Text("Pause Timer")
                         .foregroundColor(.secondary)
                     
-                    
                     HStack {
+                        // Back Button
                         Button {
-                            // Back one set
                             if(numberOfSets[exerciseIndex] > 1) {
                                 numberOfSets[exerciseIndex] -= 1
                             }
@@ -91,13 +87,12 @@ struct WorkoutView: View {
                                 numberOfSets.remove(at: exerciseIndex)
                                 exerciseIndex -= 1
                             }
-                            
-                            
                         } label: {
                             Image(systemName: "arrowtriangle.left")
                         }
                         .buttonStyle(.bordered)
                         
+                        // Pause Button
                         Button("Pause") {
                             pauseStopwatch.reset()
                             pauseStopwatch.isRunning.toggle()
@@ -110,18 +105,18 @@ struct WorkoutView: View {
                         .controlSize(.large)
                         .buttonBorderShape(.capsule)
                         
+                        // Next exercise
                         Button {
-                            // Next Exercise
                             numberOfSets.append(0)
                             numberOfExercises += 1
                             exerciseIndex += 1
-                            
                         } label: {
                             Image(systemName: "arrowtriangle.right")
                         }
                         .buttonStyle(.bordered)
                     }
                 }
+                
                 Spacer()
             }
             // MARK: - Navigation Bar
@@ -137,7 +132,7 @@ struct WorkoutView: View {
                 .alert("Workout abbrechen", isPresented: $endWorkoutAlert) {
                     Button("Zurück", role: .cancel) {}
                     Button("Abbrechen", role: .destructive) {
-                        self.workoutStopwatch.isRunning.toggle()
+                        workoutStopwatch.isRunning.toggle()
                         presentationMode.wrappedValue.dismiss()
                     }
                 } message: {
@@ -164,27 +159,24 @@ struct WorkoutView: View {
         }
     }
     // MARK: - FUNCTIONS
+    
     func saveWorkout() {
+        // stop timers
         workoutStopwatch.isRunning.toggle()
         pauseStopwatch.isRunning.toggle()
+        
+        // save workout stats
         savedWorkouts.workoutArray.append(Workout(exercises: 6, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
+        
+        // show popup
         withAnimation {
             isShowPopup = true
         }
+        
+        // dissmiss View after a few seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
             presentationMode.wrappedValue.dismiss()
         }
-    }
-    
-    // make extension!!
-    // Convert the time into 24hr (24:00:00) format
-    // hours returns 00:00:00
-    // minutes returns 00:00
-    func timeString(time: Double) -> (hours: String, minutes: String) {
-        let hours   = Int(time) / 3600
-        let minutes = Int(time) / 60 % 60
-        let seconds = Int(time) % 60
-        return (String(format:"%02i:%02i:%02i", hours, minutes, seconds), String(format:"%02i:%02i", minutes, seconds))
     }
     
     func scheduleNotification() {
@@ -193,17 +185,15 @@ struct WorkoutView: View {
         center.removeAllPendingNotificationRequests()
         
         let content = UNMutableNotificationContent()
-        content.title = "Pause is over"
-        content.subtitle = "Get back to work!"
+        content.title = "Pause ist vorbei"
+        content.subtitle = "zurück an die Arbeit!"
         content.sound = UNNotificationSound.default
         
-        // show this notification five seconds from now
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: user.pauseTimer, repeats: false)
         
         // choose a random identifier
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
-        // add our notification request
         center.add(request)
     }
     

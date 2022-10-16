@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CurrentStats: View {
+struct CurrentStatsView: View {
     var body: some View {
         
         HStack {
@@ -25,6 +25,6 @@ struct CurrentStats: View {
 
 struct WeeklyStats_Previews: PreviewProvider {
     static var previews: some View {
-        CurrentStats()
+        CurrentStatsView()
     }
 }
