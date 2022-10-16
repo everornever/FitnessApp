@@ -17,12 +17,10 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            
             VStack(spacing: 0) {
-                
-                VStack(alignment: .leading) { // Section: Activity
+                // MARK: - WeekView
+                VStack(alignment: .leading) {
                     HStack {
-                        
                         Text("Aktivität")
                             .font(.headline)
                             .bold()
@@ -30,7 +28,6 @@ struct ContentView: View {
                         Spacer()
                         
                         NavigationLink(destination: ProgressView(), isActive: $isShowingProgressView) { EmptyView() }
-                        
                         Button("Verlauf") { isShowingProgressView = true }
                         
                     }
@@ -38,20 +35,20 @@ struct ContentView: View {
                 }
                 .padding()
                 
-                
-                VStack(alignment: .leading) { // Section: Current Stats
+                // MARK: - Stats
+                VStack(alignment: .leading) {
                     
                     Text("Aktuelle Werte")
                         .font(.headline)
                         .bold()
                     
-                    CurrentStats()
+                    CurrentStatsView()
                     
                 }
                 .padding()
                 
-                
-                VStack(alignment: .leading) { // Section: Streak
+                // MARK: - Streak
+                VStack(alignment: .leading) {
                     
                     Text("Streak")
                         .font(.headline)
@@ -60,7 +57,6 @@ struct ContentView: View {
                     StreakView()
                     
                     NavigationLink(destination: WorkoutView(), isActive: $isShowingWorkoutView) { EmptyView() }
-                    
                     Button { isShowingWorkoutView = true } label: {
                         Text("Starte Workout")
                             .frame(maxWidth: .infinity)
@@ -75,9 +71,9 @@ struct ContentView: View {
                     
                 }
                 .padding()
-                
+
                 Spacer()
-            }
+            } // End Main VStack
             .navigationBarTitle("Home")
             .navigationBarItems(
                 trailing:

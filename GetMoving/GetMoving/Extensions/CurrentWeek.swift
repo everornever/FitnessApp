@@ -4,7 +4,6 @@
 //
 //  Created by Leon Kling on 23.09.22.
 //
-// TODO: setWeek has optional parametrs, should get checked
 
 import Foundation
 
@@ -17,10 +16,10 @@ class CurrentWeek {
     /// - Returns: (2022-09-25 22:00:00 +0000, 2022-09-28 22:00:00 +0000)
     private func setWeekParameter() -> (Date?, Date?) {
         
-        let lastSunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date))
+        let lastSunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)) ?? Date()
         
         // will add one day to last Sunday to get current Monday
-        let thisMonday = calendar.date(byAdding: .day, value: 1, to: lastSunday!)
+        let thisMonday = calendar.date(byAdding: .day, value: 1, to: lastSunday) ?? Date()
         
         // will get the upcomming Sunday this week
 //         let thisSunday = calendar.date(byAdding: .day, value: 7, to: lastSunday!)

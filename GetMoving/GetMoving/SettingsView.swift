@@ -8,65 +8,54 @@
 import SwiftUI
 import UserNotifications
 
-// User writes settings to Userdefaults with @AppStorage
-// Might be good to make new File
-// turn this into a dictionary ??
-class User: ObservableObject {
-    @AppStorage("name") var name = ""
-    @AppStorage("weight") var weight = 00.00
-    @AppStorage("numberOfExercises") var numberOfExercises = 6
-    @AppStorage("numberOfSets") var numberOfSets = 3
-    @AppStorage("pauseTimer") var pauseTimer = 1.50
-}
-
 struct SettingsView: View {
     
     @StateObject var user = User()
     
+    // Keyboard
     @FocusState private var inputIsFocused: Bool
     
     // Pause Timer
     @State private var allowNotification = false
-    let timers = [ 1.00, 1.50, 2.00, 2.50, 3.00]
+    let timers = [ 60.0, 90.0, 120.0, 150.0, 180.0]
+    
+    // App Version
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "No version"
     
     var body: some View {
         Form {
             Section("Dein Name") {
                 HStack {
                     Image(systemName: "person")
-                    TextField("Name", text: $user.name) {
-                        UserDefaults.standard.set(user.name, forKey: "name")
-                    }
+                    TextField("Name", text: $user.name)
                     .keyboardType(.default)
                     .focused($inputIsFocused)
                 }
             }
             
-            Section {
+            Section("Pause Timer in Minuten") {
                 Picker("Pause Timer Length", selection: $user.pauseTimer) {
                     ForEach(timers, id: \.self) {
-                        Text($0.formatted())
+                        Text(($0 / 60.0).formatted())
                     }
                 }
                 .pickerStyle(.segmented)
                 
-                Button("Fuck Notification") {
-                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-                        if success {
-                            print("All set!")
-                        } else if let error = error {
-                            print(error.localizedDescription)
-                        }
-                    }
-                }
+//                Button("Fuck Notification") { // Needs to be in onboarding
+//                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+//                        if success {
+//                            print("All set!")
+//                        } else if let error = error {
+//                            print(error.localizedDescription)
+//                        }
+//                    }
+//                }
                 
-            } header: {
-                Text("Pause Timer in Minuten")
             }
             
-            Section(header: Text("Über uns")) {
+            Section("Über uns") {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("GetMoving v0.1")
+                    Text("GetMoving \(appVersion)")
                         .font(.headline)
                     Text("Designed mit 🤍 in Potsdam")
                         .font(.footnote)
@@ -86,6 +75,8 @@ struct SettingsView: View {
     }
 }
 
+
+// MARK: - Preview
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()

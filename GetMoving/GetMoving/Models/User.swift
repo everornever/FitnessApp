@@ -6,3 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
+
+class User: ObservableObject {
+    @AppStorage("name") var name = ""
+    @AppStorage("pauseTimer") var pauseTimer = 90.0
+}

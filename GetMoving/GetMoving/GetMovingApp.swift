@@ -3,7 +3,6 @@
 //  GetMoving
 //
 //  Created by Leon Kling on 25.08.22.
-//
 
 import SwiftUI
 

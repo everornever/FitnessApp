@@ -8,16 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		3502947C28D4832B00C37C92 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3502947B28D4832B00C37C92 /* User.swift */; };
-		35094FD428DC8FBB0006BB4F /* ProgressDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35094FD328DC8FBB0006BB4F /* ProgressDetailView.swift */; };
 		350B03AE28CE52E900738A7E /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B03AD28CE52E900738A7E /* PopupView.swift */; };
 		351D639D28EC88500020835F /* StreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351D639C28EC88500020835F /* StreakView.swift */; };
 		3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3520CB7928DDACA300F85F62 /* CurrentWeek.swift */; };
 		352137E128CA13750045A453 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352137E028CA13750045A453 /* WeekView.swift */; };
+		352C47C828FC5781001EC887 /* TimeStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C47C728FC5781001EC887 /* TimeStringExtension.swift */; };
 		3538982728DC83C900983E1A /* StopwatchFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538982628DC83C900983E1A /* StopwatchFunctions.swift */; };
 		3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3539485428C74AD600EDF0E2 /* WorkoutView.swift */; };
 		356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AA81E28BA363000F9ABC2 /* ProgressView.swift */; };
 		35C1575128EEEF1F00C7B641 /* PauseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1575028EEEF1F00C7B641 /* PauseFunctions.swift */; };
-		35D13D0728CB71F50033D155 /* CurrentStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D13D0628CB71F50033D155 /* CurrentStats.swift */; };
+		35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D13D0628CB71F50033D155 /* CurrentStatsView.swift */; };
 		35D7B67F28B7858D000AFDC1 /* GetMovingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D7B67E28B7858D000AFDC1 /* GetMovingApp.swift */; };
 		35D7B68128B7858D000AFDC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D7B68028B7858D000AFDC1 /* ContentView.swift */; };
 		35D7B68328B78590000AFDC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35D7B68228B78590000AFDC1 /* Assets.xcassets */; };
@@ -28,16 +28,16 @@
 
 /* Begin PBXFileReference section */
 		3502947B28D4832B00C37C92 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		35094FD328DC8FBB0006BB4F /* ProgressDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDetailView.swift; sourceTree = "<group>"; };
 		350B03AD28CE52E900738A7E /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		351D639C28EC88500020835F /* StreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakView.swift; sourceTree = "<group>"; };
 		3520CB7928DDACA300F85F62 /* CurrentWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeek.swift; sourceTree = "<group>"; };
 		352137E028CA13750045A453 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
+		352C47C728FC5781001EC887 /* TimeStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStringExtension.swift; sourceTree = "<group>"; };
 		3538982628DC83C900983E1A /* StopwatchFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchFunctions.swift; sourceTree = "<group>"; };
 		3539485428C74AD600EDF0E2 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		356AA81E28BA363000F9ABC2 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		35C1575028EEEF1F00C7B641 /* PauseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseFunctions.swift; sourceTree = "<group>"; };
-		35D13D0628CB71F50033D155 /* CurrentStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStats.swift; sourceTree = "<group>"; };
+		35D13D0628CB71F50033D155 /* CurrentStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStatsView.swift; sourceTree = "<group>"; };
 		35D7B67B28B7858D000AFDC1 /* GetMoving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetMoving.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35D7B67E28B7858D000AFDC1 /* GetMovingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMovingApp.swift; sourceTree = "<group>"; };
 		35D7B68028B7858D000AFDC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				356AA81E28BA363000F9ABC2 /* ProgressView.swift */,
-				35094FD328DC8FBB0006BB4F /* ProgressDetailView.swift */,
 			);
 			path = ProgressView;
 			sourceTree = "<group>";
@@ -90,7 +89,7 @@
 			children = (
 				35D7B68028B7858D000AFDC1 /* ContentView.swift */,
 				352137E028CA13750045A453 /* WeekView.swift */,
-				35D13D0628CB71F50033D155 /* CurrentStats.swift */,
+				35D13D0628CB71F50033D155 /* CurrentStatsView.swift */,
 				351D639C28EC88500020835F /* StreakView.swift */,
 			);
 			path = HomeView;
@@ -102,6 +101,7 @@
 				3520CB7928DDACA300F85F62 /* CurrentWeek.swift */,
 				3538982628DC83C900983E1A /* StopwatchFunctions.swift */,
 				35C1575028EEEF1F00C7B641 /* PauseFunctions.swift */,
+				352C47C728FC5781001EC887 /* TimeStringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -218,14 +218,14 @@
 			files = (
 				3538982728DC83C900983E1A /* StopwatchFunctions.swift in Sources */,
 				350B03AE28CE52E900738A7E /* PopupView.swift in Sources */,
-				35094FD428DC8FBB0006BB4F /* ProgressDetailView.swift in Sources */,
 				35D7B68D28B785BB000AFDC1 /* SettingsView.swift in Sources */,
 				356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */,
 				35D7B68128B7858D000AFDC1 /* ContentView.swift in Sources */,
 				352137E128CA13750045A453 /* WeekView.swift in Sources */,
 				3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */,
-				35D13D0728CB71F50033D155 /* CurrentStats.swift in Sources */,
+				35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */,
 				35FE2A5928BE156200291982 /* Workout.swift in Sources */,
+				352C47C828FC5781001EC887 /* TimeStringExtension.swift in Sources */,
 				351D639D28EC88500020835F /* StreakView.swift in Sources */,
 				35C1575128EEEF1F00C7B641 /* PauseFunctions.swift in Sources */,
 				3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */,
@@ -372,7 +372,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "0.0.2-Alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = "BETA-CODE.GetMoving";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -405,7 +405,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "0.0.2-Alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = "BETA-CODE.GetMoving";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
