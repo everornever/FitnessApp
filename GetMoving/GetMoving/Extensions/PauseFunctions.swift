@@ -19,7 +19,7 @@ class PauseFunctions: ObservableObject {
     private var accumulatedTime: TimeInterval = 0
     private var timer: Cancellable?
     
-    private let systemSoundID: SystemSoundID = 1117
+    private let systemSoundID: SystemSoundID = 1031
     
     /// can only be read outside of class. the final value to puplish the paased time to a UI interface
     @Published private(set) var timeLeft: TimeInterval = User().pauseTimer
@@ -44,6 +44,7 @@ class PauseFunctions: ObservableObject {
                 self.timeLeft = self.user.pauseTimer + self.getElapsedTime()
             }
             else {
+                self.playSound()
                 self.stop()
                 self.reset()
             }
@@ -62,7 +63,6 @@ class PauseFunctions: ObservableObject {
     
     /// will set everything to zero. can be called outside of class
     func reset() -> Void {
-        AudioServicesPlaySystemSound(systemSoundID)
         self.accumulatedTime = 0
         self.timeLeft = user.pauseTimer
         self.startTime = nil
@@ -74,6 +74,10 @@ class PauseFunctions: ObservableObject {
     /// - Returns:     the timeinterval between startTime and now. with nil-coalescing. plus the already passed time
     private func getElapsedTime() -> TimeInterval {
         return self.startTime?.timeIntervalSinceNow ?? 0
+    }
+    
+    func playSound() {
+        AudioServicesPlaySystemSound(systemSoundID)
     }
     
 }

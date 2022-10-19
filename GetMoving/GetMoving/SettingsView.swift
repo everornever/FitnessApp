@@ -17,7 +17,7 @@ struct SettingsView: View {
     
     // Pause Timer
     @State private var allowNotification = false
-    let timers = [ 60.0, 90.0, 120.0, 150.0, 180.0]
+    
     
     // App Version
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "No version"
@@ -31,26 +31,6 @@ struct SettingsView: View {
                     .keyboardType(.default)
                     .focused($inputIsFocused)
                 }
-            }
-            
-            Section("Pause Timer in Minuten") {
-                Picker("Pause Timer Length", selection: $user.pauseTimer) {
-                    ForEach(timers, id: \.self) {
-                        Text(($0 / 60.0).formatted())
-                    }
-                }
-                .pickerStyle(.segmented)
-                
-//                Button("Fuck Notification") { // Needs to be in onboarding
-//                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-//                        if success {
-//                            print("All set!")
-//                        } else if let error = error {
-//                            print(error.localizedDescription)
-//                        }
-//                    }
-//                }
-                
             }
             
             Section("Über uns") {

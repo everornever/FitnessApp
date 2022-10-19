@@ -47,24 +47,25 @@ struct ContentView: View {
                 }
                 .padding()
                 
-                // MARK: - Streak
+                // MARK: - Workout Settings
                 VStack(alignment: .leading) {
                     
-                    Text("Streak")
+                    Text("Workout")
                         .font(.headline)
                         .bold()
                     
-                    StreakView()
+                    WorkoutSettingsView()
                     
                     NavigationLink(destination: WorkoutView(), isActive: $isShowingWorkoutView) { EmptyView() }
                     Button { isShowingWorkoutView = true } label: {
-                        Text("Starte Workout")
+                        Text("**Starte Workout**")
                             .frame(maxWidth: .infinity)
-                            
+                            .foregroundStyle(.black)
+                            .font(.title2)
                             .padding(10)
                     }
                     .foregroundStyle(.green)
-                    .tint(.green.opacity(0.2))
+                    .tint(Color("FirstColor"))
                     .buttonStyle(.borderedProminent)
                     .controlSize(.large)
                     .padding(.top, 20)
@@ -72,7 +73,6 @@ struct ContentView: View {
                 }
                 .padding()
 
-                Spacer()
             } // End Main VStack
             .navigationBarTitle("Home")
             .navigationBarItems(

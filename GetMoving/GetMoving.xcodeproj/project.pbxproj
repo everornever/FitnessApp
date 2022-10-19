@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3502947C28D4832B00C37C92 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3502947B28D4832B00C37C92 /* User.swift */; };
 		350B03AE28CE52E900738A7E /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B03AD28CE52E900738A7E /* PopupView.swift */; };
-		351D639D28EC88500020835F /* StreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351D639C28EC88500020835F /* StreakView.swift */; };
+		351D639D28EC88500020835F /* WorkoutSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351D639C28EC88500020835F /* WorkoutSettingsView.swift */; };
 		3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3520CB7928DDACA300F85F62 /* CurrentWeek.swift */; };
 		352137E128CA13750045A453 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352137E028CA13750045A453 /* WeekView.swift */; };
 		352C47C828FC5781001EC887 /* TimeStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C47C728FC5781001EC887 /* TimeStringExtension.swift */; };
@@ -23,13 +23,15 @@
 		35D7B68328B78590000AFDC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35D7B68228B78590000AFDC1 /* Assets.xcassets */; };
 		35D7B68628B78590000AFDC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35D7B68528B78590000AFDC1 /* Preview Assets.xcassets */; };
 		35D7B68D28B785BB000AFDC1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D7B68C28B785BB000AFDC1 /* SettingsView.swift */; };
+		35FCF61F28FFF9D7001C2281 /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FCF61E28FFF9D7001C2281 /* WeightView.swift */; };
+		35FCF62129000888001C2281 /* TargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FCF62029000888001C2281 /* TargetView.swift */; };
 		35FE2A5928BE156200291982 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FE2A5828BE156200291982 /* Workout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3502947B28D4832B00C37C92 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		350B03AD28CE52E900738A7E /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
-		351D639C28EC88500020835F /* StreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakView.swift; sourceTree = "<group>"; };
+		351D639C28EC88500020835F /* WorkoutSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSettingsView.swift; sourceTree = "<group>"; };
 		3520CB7928DDACA300F85F62 /* CurrentWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeek.swift; sourceTree = "<group>"; };
 		352137E028CA13750045A453 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
 		352C47C728FC5781001EC887 /* TimeStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStringExtension.swift; sourceTree = "<group>"; };
@@ -44,6 +46,8 @@
 		35D7B68228B78590000AFDC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35D7B68528B78590000AFDC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		35D7B68C28B785BB000AFDC1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		35FCF61E28FFF9D7001C2281 /* WeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
+		35FCF62029000888001C2281 /* TargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetView.swift; sourceTree = "<group>"; };
 		35FE2A5828BE156200291982 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +94,9 @@
 				35D7B68028B7858D000AFDC1 /* ContentView.swift */,
 				352137E028CA13750045A453 /* WeekView.swift */,
 				35D13D0628CB71F50033D155 /* CurrentStatsView.swift */,
-				351D639C28EC88500020835F /* StreakView.swift */,
+				35FCF61E28FFF9D7001C2281 /* WeightView.swift */,
+				35FCF62029000888001C2281 /* TargetView.swift */,
+				351D639C28EC88500020835F /* WorkoutSettingsView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -224,12 +230,14 @@
 				352137E128CA13750045A453 /* WeekView.swift in Sources */,
 				3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */,
 				35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */,
+				35FCF62129000888001C2281 /* TargetView.swift in Sources */,
 				35FE2A5928BE156200291982 /* Workout.swift in Sources */,
 				352C47C828FC5781001EC887 /* TimeStringExtension.swift in Sources */,
-				351D639D28EC88500020835F /* StreakView.swift in Sources */,
+				351D639D28EC88500020835F /* WorkoutSettingsView.swift in Sources */,
 				35C1575128EEEF1F00C7B641 /* PauseFunctions.swift in Sources */,
 				3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */,
 				3502947C28D4832B00C37C92 /* User.swift in Sources */,
+				35FCF61F28FFF9D7001C2281 /* WeightView.swift in Sources */,
 				35D7B67F28B7858D000AFDC1 /* GetMovingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
