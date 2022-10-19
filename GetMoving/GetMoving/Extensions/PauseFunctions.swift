@@ -8,11 +8,12 @@
 import Foundation
 import Combine
 import AVFoundation
+import SwiftUI
 
 class PauseFunctions: ObservableObject {
     
     // User Settings
-    let user = User()
+    @ObservedObject var user = User()
     
     private var startTime: Date?
     private var accumulatedTime: TimeInterval = 0
@@ -21,7 +22,7 @@ class PauseFunctions: ObservableObject {
     private let systemSoundID: SystemSoundID = 1117
     
     /// can only be read outside of class. the final value to puplish the paased time to a UI interface
-    @Published private(set) var timeLeft: TimeInterval = 90
+    @Published private(set) var timeLeft: TimeInterval = User().pauseTimer
     
     /// no need to call functions. we start and stop the stopwatch by manipulating isRunning. functions are private
     @Published var isRunning = false {
@@ -40,7 +41,7 @@ class PauseFunctions: ObservableObject {
         self.timer?.cancel()
         self.timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect().sink { _ in
             if (self.timeLeft > 0) {
-                self.timeLeft = 90 + self.getElapsedTime()
+                self.timeLeft = self.user.pauseTimer + self.getElapsedTime()
             }
             else {
                 self.stop()
@@ -63,7 +64,7 @@ class PauseFunctions: ObservableObject {
     func reset() -> Void {
         AudioServicesPlaySystemSound(systemSoundID)
         self.accumulatedTime = 0
-        self.timeLeft = 90
+        self.timeLeft = user.pauseTimer
         self.startTime = nil
         self.isRunning = false
     }
