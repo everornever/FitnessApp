@@ -22,7 +22,7 @@ struct ProgressView: View {
                     .foregroundColor(.secondary)
                     .font(.title2)
             }
-            .navigationTitle("Workouts")
+            .navigationTitle("Verlaufen?")
         } else {
             List {
                 ForEach(savedWorkouts.workoutArray) { entry in
@@ -35,7 +35,7 @@ struct ProgressView: View {
                 }
                 .onDelete(perform: removeRows)
             }
-            .navigationTitle("Workouts")
+            .navigationTitle("Verlaufen?")
             .toolbar {
                 EditButton()
             }

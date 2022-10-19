@@ -78,7 +78,9 @@ struct ContentView: View {
             .navigationBarItems(
                 trailing:
                     NavigationLink(destination: SettingsView()) {
-                        Text("Einstellungen")
+                        Image(systemName: "gear")
+                            .font(.title3)
+                            .tint(.black)
                     }
             )
         }

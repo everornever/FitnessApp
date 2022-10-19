@@ -38,6 +38,11 @@ struct WorkoutView: View {
     @State var exerciseIndex = 0
     @State var numberOfSets = [0]
     
+    @State var wormUp = false
+    @State var coolDown = false
+    
+    @State var showingNotes = false
+    
     // Sound
     let systemSoundID: SystemSoundID = 1050
     
@@ -52,8 +57,8 @@ struct WorkoutView: View {
                 
                 // MARK: - Exercise List
                 List {
-                    
                     ForEach((0..<numberOfExercises).reversed(), id: \.self) { index in
+                        
                         HStack {
                             if(exerciseIndex == index) {
                                 Image(systemName: "arrowtriangle.right.fill")
@@ -65,27 +70,65 @@ struct WorkoutView: View {
                             
                             Spacer()
                             
-                            ForEach(0..<numberOfSets[index], id: \.self) { _ in
-                                Image(systemName: "circlebadge.fill")
+                            if(numberOfSets[index] < 5) {
+                                ForEach(0..<numberOfSets[index], id: \.self) { _ in
+                                    
+                                    Image(systemName: "circlebadge.fill")
+                                        .foregroundColor(Color("FirstColor"))
+                                        .font(.title3)
+                                    
+                                }
+                            } else {
+                                Image(systemName: "\(numberOfSets[index]).circle")
                                     .foregroundColor(Color("FirstColor"))
                                     .font(.title)
                             }
+                            
                         }
+                        
                     }
                 }
                 .cornerRadius(30)
                 .padding(20)
                 
+                // MARK: - Notizen
+                Button {
+                    
+                } label: {
+                    Image(systemName: "note.text")
+                        .frame(maxWidth: 350)
+                        .foregroundColor(.black)
+                        .font(.title2)
+                        
+                }
+                .padding(20)
+                .background(Color("SecondColor"))
+                .cornerRadius(20)
+                .padding(.bottom)
+                .sheet(isPresented: $showingNotes) {
+                    Text("This is the expandable bottom sheet.")
+                }
+                
+                
                 // MARK: - Pause Button
                 VStack {
-                    Text(pauseStopwatch.timeLeft.timeString().seconds)
-                        .font(.title)
-                        .fontWeight(.semibold)
-                        .monospacedDigit()
+                    HStack {
+                        Text(pauseStopwatch.timeLeft.timeString().seconds)
+                            .font(.title)
+                            .fontWeight(.semibold)
+                            .monospacedDigit()
+                        
+                        Button {
+                            pauseStopwatch.reset()
+                        } label: {
+                            Image(systemName: "gobackward")
+                                .tint(Color.gray)
+                        }
+                    }
                     
                     Text("Pause Timer")
                         .foregroundColor(.secondary)
-        
+                    
                     
                     HStack(spacing: 40) {
                         // Back Button
@@ -103,7 +146,7 @@ struct WorkoutView: View {
                                 .font(.title)
                                 .foregroundStyle(.black)
                         }
-
+                        
                         
                         // Pause Button
                         Button {
@@ -111,8 +154,10 @@ struct WorkoutView: View {
                             pauseStopwatch.isRunning.toggle()
                             AudioServicesPlaySystemSound(systemSoundID)
                             scheduleNotification()
-                            if numberOfSets[exerciseIndex]<7 {
+                            
+                            if numberOfSets[exerciseIndex]<8 {
                                 numberOfSets[exerciseIndex] += 1
+                                
                             }
                         }  label: {
                             Image(systemName: "pause.fill")
