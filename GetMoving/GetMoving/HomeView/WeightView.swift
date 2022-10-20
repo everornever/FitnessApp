@@ -13,9 +13,6 @@ struct WeightView: View {
     
     @ObservedObject var user = User()
     
-    // Keyboard
-    @FocusState private var inputIsFocused: Bool
-    
     var body: some View {
         VStack {
             Rectangle()
@@ -36,7 +33,6 @@ struct WeightView: View {
                         .textFieldStyle(.roundedBorder)
                         .keyboardType(.decimalPad)
                         .frame(width: 150)
-                        .focused($inputIsFocused)
                     
                     Text("KG")
                         .fontWeight(.bold)
@@ -44,7 +40,6 @@ struct WeightView: View {
                 }
                 
                 Button("Save") {
-                    inputIsFocused = false
                     dismiss()
                 }
                 .buttonStyle(.borderedProminent)

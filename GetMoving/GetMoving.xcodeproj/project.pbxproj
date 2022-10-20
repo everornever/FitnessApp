@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		3502947C28D4832B00C37C92 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3502947B28D4832B00C37C92 /* User.swift */; };
 		350B03AE28CE52E900738A7E /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B03AD28CE52E900738A7E /* PopupView.swift */; };
-		351D639D28EC88500020835F /* WorkoutSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351D639C28EC88500020835F /* WorkoutSettingsView.swift */; };
 		3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3520CB7928DDACA300F85F62 /* CurrentWeek.swift */; };
 		352137E128CA13750045A453 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352137E028CA13750045A453 /* WeekView.swift */; };
 		352C47C828FC5781001EC887 /* TimeStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C47C728FC5781001EC887 /* TimeStringExtension.swift */; };
+		3535B1A229016F6900BF16EE /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3535B1A129016F6900BF16EE /* ExerciseListView.swift */; };
 		3538982728DC83C900983E1A /* StopwatchFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538982628DC83C900983E1A /* StopwatchFunctions.swift */; };
 		3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3539485428C74AD600EDF0E2 /* WorkoutView.swift */; };
+		353C0F502901BB2D00A12930 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C0F4F2901BB2D00A12930 /* Exercise.swift */; };
 		356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AA81E28BA363000F9ABC2 /* ProgressView.swift */; };
 		35C1575128EEEF1F00C7B641 /* PauseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1575028EEEF1F00C7B641 /* PauseFunctions.swift */; };
 		35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D13D0628CB71F50033D155 /* CurrentStatsView.swift */; };
@@ -31,12 +32,13 @@
 /* Begin PBXFileReference section */
 		3502947B28D4832B00C37C92 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		350B03AD28CE52E900738A7E /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
-		351D639C28EC88500020835F /* WorkoutSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSettingsView.swift; sourceTree = "<group>"; };
 		3520CB7928DDACA300F85F62 /* CurrentWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeek.swift; sourceTree = "<group>"; };
 		352137E028CA13750045A453 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
 		352C47C728FC5781001EC887 /* TimeStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStringExtension.swift; sourceTree = "<group>"; };
+		3535B1A129016F6900BF16EE /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
 		3538982628DC83C900983E1A /* StopwatchFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchFunctions.swift; sourceTree = "<group>"; };
 		3539485428C74AD600EDF0E2 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		353C0F4F2901BB2D00A12930 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		356AA81E28BA363000F9ABC2 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		35C1575028EEEF1F00C7B641 /* PauseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseFunctions.swift; sourceTree = "<group>"; };
 		35D13D0628CB71F50033D155 /* CurrentStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStatsView.swift; sourceTree = "<group>"; };
@@ -62,19 +64,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		35094FD228DC8F920006BB4F /* ProgressView */ = {
-			isa = PBXGroup;
-			children = (
-				356AA81E28BA363000F9ABC2 /* ProgressView.swift */,
-			);
-			path = ProgressView;
-			sourceTree = "<group>";
-		};
 		350B03AA28CE4E0200738A7E /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				3502947B28D4832B00C37C92 /* User.swift */,
 				35FE2A5828BE156200291982 /* Workout.swift */,
+				353C0F4F2901BB2D00A12930 /* Exercise.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -83,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				3539485428C74AD600EDF0E2 /* WorkoutView.swift */,
+				3535B1A129016F6900BF16EE /* ExerciseListView.swift */,
 				350B03AD28CE52E900738A7E /* PopupView.swift */,
 			);
 			path = WorkoutView;
@@ -96,7 +92,6 @@
 				35D13D0628CB71F50033D155 /* CurrentStatsView.swift */,
 				35FCF61E28FFF9D7001C2281 /* WeightView.swift */,
 				35FCF62029000888001C2281 /* TargetView.swift */,
-				351D639C28EC88500020835F /* WorkoutSettingsView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -133,7 +128,7 @@
 			children = (
 				35D7B67E28B7858D000AFDC1 /* GetMovingApp.swift */,
 				35D7B68C28B785BB000AFDC1 /* SettingsView.swift */,
-				35094FD228DC8F920006BB4F /* ProgressView */,
+				356AA81E28BA363000F9ABC2 /* ProgressView.swift */,
 				3538982528DC839700983E1A /* HomeView */,
 				3538982428DC838B00983E1A /* WorkoutView */,
 				350B03AA28CE4E0200738A7E /* Models */,
@@ -227,18 +222,19 @@
 				35D7B68D28B785BB000AFDC1 /* SettingsView.swift in Sources */,
 				356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */,
 				35D7B68128B7858D000AFDC1 /* ContentView.swift in Sources */,
+				3535B1A229016F6900BF16EE /* ExerciseListView.swift in Sources */,
 				352137E128CA13750045A453 /* WeekView.swift in Sources */,
 				3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */,
 				35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */,
 				35FCF62129000888001C2281 /* TargetView.swift in Sources */,
 				35FE2A5928BE156200291982 /* Workout.swift in Sources */,
 				352C47C828FC5781001EC887 /* TimeStringExtension.swift in Sources */,
-				351D639D28EC88500020835F /* WorkoutSettingsView.swift in Sources */,
 				35C1575128EEEF1F00C7B641 /* PauseFunctions.swift in Sources */,
 				3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */,
 				3502947C28D4832B00C37C92 /* User.swift in Sources */,
 				35FCF61F28FFF9D7001C2281 /* WeightView.swift in Sources */,
 				35D7B67F28B7858D000AFDC1 /* GetMovingApp.swift in Sources */,
+				353C0F502901BB2D00A12930 /* Exercise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +360,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GetMoving/Preview Content\"";
@@ -397,6 +394,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GetMoving/Preview Content\"";

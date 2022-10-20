@@ -93,21 +93,21 @@ struct WorkoutView: View {
                 
                 // MARK: - Notizen
                 Button {
-                    
+                    showingNotes = true
                 } label: {
-                    Image(systemName: "note.text")
-                        .frame(maxWidth: 350)
-                        .foregroundColor(.black)
-                        .font(.title2)
-                        
+                    Image(systemName: "list.bullet.clipboard")
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.black)
+                        .font(.title)
+                        .padding()
                 }
-                .padding(20)
                 .background(Color("SecondColor"))
                 .cornerRadius(20)
                 .padding(.bottom)
                 .sheet(isPresented: $showingNotes) {
-                    Text("This is the expandable bottom sheet.")
+                    ExerciseListView()
                 }
+                .padding([.leading, .trailing], 20)
                 
                 
                 // MARK: - Pause Button

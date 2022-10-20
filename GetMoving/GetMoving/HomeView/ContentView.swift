@@ -47,14 +47,8 @@ struct ContentView: View {
                 }
                 .padding()
                 
-                // MARK: - Workout Settings
+                // MARK: - Workout Buttton
                 VStack(alignment: .leading) {
-                    
-                    Text("Workout")
-                        .font(.headline)
-                        .bold()
-                    
-                    WorkoutSettingsView()
                     
                     NavigationLink(destination: WorkoutView(), isActive: $isShowingWorkoutView) { EmptyView() }
                     Button { isShowingWorkoutView = true } label: {

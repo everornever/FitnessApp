@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class User: ObservableObject {
+    
     // User Metric
     @AppStorage("name") var name = ""
     @AppStorage("weight") var weight = 70.0
@@ -20,6 +21,7 @@ class User: ObservableObject {
     
     // Streak
     @AppStorage("target") var target = 1
+    
     
 
 }
