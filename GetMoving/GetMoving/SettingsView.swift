@@ -33,7 +33,7 @@ struct SettingsView: View {
                 }
             }
             
-            Section("Pause Timer in Minuten") {
+            Section("Workout") {
                 Picker("Pause Timer Length", selection: $user.pauseTimer) {
                     ForEach(timers, id: \.self) {
                         Text(($0 / 60.0).formatted())
@@ -41,16 +41,13 @@ struct SettingsView: View {
                 }
                 .pickerStyle(.segmented)
                 
-//                Button("Fuck Notification") { // Needs to be in onboarding
-//                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-//                        if success {
-//                            print("All set!")
-//                        } else if let error = error {
-//                            print(error.localizedDescription)
-//                        }
-//                    }
-//                }
+                Toggle("Mit Warmup", isOn: $user.includeWormup)
                 
+                Toggle("Mit Dehnen", isOn: $user.includeStreching)
+            }
+            
+            Section("Mitteilungen") {
+                Toggle("Protein Shake", isOn: $user.includeWormup)
             }
             
             Section("Über uns") {

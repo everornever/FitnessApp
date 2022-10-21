@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UserNotifications
+import AVFoundation
 
 struct WorkoutView: View {
     
@@ -37,83 +38,148 @@ struct WorkoutView: View {
     @State var exerciseIndex = 0
     @State var numberOfSets = [0]
     
+    @State var wormUp = false
+    @State var coolDown = false
+    
+    @State var showingNotes = false
+    
+    // Sound
+    let systemSoundID: SystemSoundID = 1050
+    
     //MARK: - BODY
     var body: some View {
         ZStack {
             VStack {
                 Text(workoutStopwatch.elapsedTime.timeString().hours)
                     .monospacedDigit()
+                    .font(.title2)
+                    .fontWeight(.bold)
                 
                 // MARK: - Exercise List
                 List {
-                    ForEach(0..<numberOfExercises, id: \.self) { index in
+                    ForEach((0..<numberOfExercises).reversed(), id: \.self) { index in
+                        
                         HStack {
                             if(exerciseIndex == index) {
                                 Image(systemName: "arrowtriangle.right.fill")
-                                    .foregroundColor(.yellow)
+                                    .foregroundColor(Color("FirstColor"))
                             }
                             
                             Text(" \(index+1). Übung")
+                                .font(.title3)
                             
                             Spacer()
                             
-                            ForEach(0..<numberOfSets[index], id: \.self) { _ in
-                                Image(systemName: "circlebadge.fill")
-                                    .foregroundColor(.green)
-                                    .font(.title2)
+                            if(numberOfSets[index] < 5) {
+                                ForEach(0..<numberOfSets[index], id: \.self) { _ in
+                                    
+                                    Image(systemName: "circlebadge.fill")
+                                        .foregroundColor(Color("FirstColor"))
+                                        .font(.title3)
+                                    
+                                }
+                            } else {
+                                Image(systemName: "\(numberOfSets[index]).circle")
+                                    .foregroundColor(Color("FirstColor"))
+                                    .font(.title)
                             }
+                            
                         }
-                        .animation(.linear, value: exerciseIndex)
+                        
                     }
                 }
+                .cornerRadius(30)
+                .padding(20)
+                
+                // MARK: - Notizen
+                Button {
+                    showingNotes = true
+                } label: {
+                    Image(systemName: "list.bullet.clipboard")
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.black)
+                        .font(.title)
+                        .padding()
+                }
+                .background(Color("SecondColor"))
+                .cornerRadius(20)
+                .padding(.bottom)
+                .sheet(isPresented: $showingNotes) {
+                    ExerciseListView()
+                }
+                .padding([.leading, .trailing], 20)
+                
                 
                 // MARK: - Pause Button
                 VStack {
-                    Text(pauseStopwatch.timeLeft.timeString().seconds)
-                        .font(.title)
-                        .monospacedDigit()
+                    HStack {
+                        Text(pauseStopwatch.timeLeft.timeString().seconds)
+                            .font(.title)
+                            .fontWeight(.semibold)
+                            .monospacedDigit()
+                        
+                        Button {
+                            pauseStopwatch.reset()
+                        } label: {
+                            Image(systemName: "gobackward")
+                                .tint(Color.gray)
+                        }
+                    }
                     
                     Text("Pause Timer")
                         .foregroundColor(.secondary)
                     
-                    HStack {
+                    
+                    HStack(spacing: 40) {
                         // Back Button
                         Button {
-                            if(numberOfSets[exerciseIndex] > 1) {
+                            if(numberOfSets[exerciseIndex] > 0) {
                                 numberOfSets[exerciseIndex] -= 1
                             }
-                            else {
+                            if((numberOfExercises != 1) && (numberOfSets[exerciseIndex] == 0)) {
                                 numberOfExercises -= 1
                                 numberOfSets.remove(at: exerciseIndex)
                                 exerciseIndex -= 1
                             }
                         } label: {
-                            Image(systemName: "arrowtriangle.left")
+                            Image(systemName: "backward.end.fill")
+                                .font(.title)
+                                .foregroundStyle(.black)
                         }
-                        .buttonStyle(.bordered)
+                        
                         
                         // Pause Button
-                        Button("Pause") {
+                        Button {
                             pauseStopwatch.reset()
                             pauseStopwatch.isRunning.toggle()
+                            AudioServicesPlaySystemSound(systemSoundID)
                             scheduleNotification()
+                            
                             if numberOfSets[exerciseIndex]<8 {
                                 numberOfSets[exerciseIndex] += 1
+                                
                             }
+                        }  label: {
+                            Image(systemName: "pause.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(.black)
+                                .padding(30)
                         }
+                        .tint(Color("FirstColor"))
                         .buttonStyle(.borderedProminent)
-                        .controlSize(.large)
-                        .buttonBorderShape(.capsule)
                         
                         // Next exercise
                         Button {
-                            numberOfSets.append(0)
-                            numberOfExercises += 1
-                            exerciseIndex += 1
+                            if(numberOfSets[exerciseIndex] != 0) {
+                                numberOfSets.append(0)
+                                numberOfExercises += 1
+                                exerciseIndex += 1
+                            }
                         } label: {
-                            Image(systemName: "arrowtriangle.right")
+                            Image(systemName: "forward.end.fill")
+                                .font(.title)
+                                .foregroundStyle(.black)
                         }
-                        .buttonStyle(.bordered)
                     }
                 }
                 
@@ -132,6 +198,7 @@ struct WorkoutView: View {
                 .alert("Workout abbrechen", isPresented: $endWorkoutAlert) {
                     Button("Zurück", role: .cancel) {}
                     Button("Abbrechen", role: .destructive) {
+                        pauseStopwatch.reset()
                         workoutStopwatch.isRunning.toggle()
                         presentationMode.wrappedValue.dismiss()
                     }
@@ -143,6 +210,7 @@ struct WorkoutView: View {
                 saveWorkout()
             } label: {
                 Text("Beenden")
+                    .tint(.black)
             })
             
             // PopupView
