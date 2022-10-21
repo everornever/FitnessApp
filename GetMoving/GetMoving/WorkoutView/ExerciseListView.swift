@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ItemView: View {
     
-    @Binding var stepper: Double
+    @State var stepper: Double
     @State var name: String
     @State var kilo: Double
     
@@ -19,7 +19,7 @@ struct ItemView: View {
             Divider()
             HStack {
                 Image(systemName: "dumbbell.fill")
-                Text("\(kilo) KG")
+                Text("\(kilo.formatted()) KG")
                     .fontWeight(.bold)
                     .font(.title2)
                 Spacer()
@@ -44,7 +44,7 @@ struct ExerciseListView: View {
             List {
                 ForEach(exercises.savedExercises) { index in
                     Section {
-                        ItemView(stepper: $exercises.savedExercises[0].kilo, name: index.name, kilo: index.kilo)
+                        ItemView(stepper: exercises.savedExercises[0].kilo, name: index.name, kilo: index.kilo)
                     }
                 }
                 .onDelete(perform: removeRows)
