@@ -48,6 +48,15 @@ struct SettingsView: View {
             
             Section {
                 Toggle("🚫 Protein Shake", isOn: $user.includeWormup)
+                Button("Fuck Notification") {
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                        if success {
+                            print("All set!")
+                        } else if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
             } header: {
                 Text("Mitteilungen")
             } footer: {

@@ -93,12 +93,14 @@ class PauseFunctions: ObservableObject {
         
         // adds notification
         center.add(request)
+        print("added Notification")
     }
     
     // cancels pending notification
     func cancelPendingNotification() {
         center.removePendingNotificationRequests(withIdentifiers: [id])
         center.removeAllDeliveredNotifications()
+        print("cancel Notification")
     }
     
 }
