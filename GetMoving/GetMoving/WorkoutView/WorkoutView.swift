@@ -37,13 +37,11 @@ struct WorkoutView: View {
     @State var numberOfExercises = 1
     @State var exerciseIndex = 0
     @State var numberOfSets = [0]
-    
-    @State var wormUp = false
-    @State var coolDown = false
-    
+
+    // Workout Notes
     @State var showingNotes = false
     
-    // Sound
+    // Timer Sound
     let systemSoundID: SystemSoundID = 1050
     
     //MARK: - BODY
@@ -119,7 +117,7 @@ struct WorkoutView: View {
                             .monospacedDigit()
                         
                         Button {
-                            pauseStopwatch.reset()
+                            pauseStopwatch.stop()
                         } label: {
                             Image(systemName: "gobackward")
                                 .tint(Color.gray)
@@ -150,15 +148,7 @@ struct WorkoutView: View {
                         
                         // Pause Button
                         Button {
-                            pauseStopwatch.reset()
-                            pauseStopwatch.isRunning.toggle()
-                            AudioServicesPlaySystemSound(systemSoundID)
-                            scheduleNotification()
-                            
-                            if numberOfSets[exerciseIndex]<8 {
-                                numberOfSets[exerciseIndex] += 1
-                                
-                            }
+                            pauseButtonAction()
                         }  label: {
                             Image(systemName: "pause.fill")
                                 .font(.largeTitle)
@@ -198,7 +188,7 @@ struct WorkoutView: View {
                 .alert("Workout abbrechen", isPresented: $endWorkoutAlert) {
                     Button("Zurück", role: .cancel) {}
                     Button("Abbrechen", role: .destructive) {
-                        pauseStopwatch.reset()
+                        pauseStopwatch.stop()
                         workoutStopwatch.isRunning.toggle()
                         presentationMode.wrappedValue.dismiss()
                     }
@@ -226,12 +216,28 @@ struct WorkoutView: View {
             workoutStopwatch.isRunning.toggle()
         }
     }
+    
     // MARK: - FUNCTIONS
+    func pauseButtonAction() {
+        
+        // Play Sound for activation
+        AudioServicesPlaySystemSound(systemSoundID)
+        
+        // Stop Pause Timer, reset and start again
+        pauseStopwatch.stop()
+        pauseStopwatch.start()
+        
+        // Add Set
+        if numberOfSets[exerciseIndex]<8 {
+            numberOfSets[exerciseIndex] += 1
+            
+        }
+    }
     
     func saveWorkout() {
         // stop timers
         workoutStopwatch.isRunning.toggle()
-        pauseStopwatch.isRunning.toggle()
+        pauseStopwatch.stop()
         
         // save workout stats
         savedWorkouts.workoutArray.append(Workout(exercises: 6, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
@@ -245,24 +251,6 @@ struct WorkoutView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
             presentationMode.wrappedValue.dismiss()
         }
-    }
-    
-    func scheduleNotification() {
-        let center = UNUserNotificationCenter.current()
-        center.removeAllDeliveredNotifications()
-        center.removeAllPendingNotificationRequests()
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Pause ist vorbei"
-        content.subtitle = "zurück an die Arbeit!"
-        content.sound = UNNotificationSound.default
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: user.pauseTimer, repeats: false)
-        
-        // choose a random identifier
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
-        center.add(request)
     }
     
 }

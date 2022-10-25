@@ -33,21 +33,25 @@ struct SettingsView: View {
                 }
             }
             
-            Section("Workout") {
+            Section {
                 Picker("Pause Timer Length", selection: $user.pauseTimer) {
                     ForEach(timers, id: \.self) {
                         Text(($0 / 60.0).formatted())
                     }
-                }
+                } 
                 .pickerStyle(.segmented)
-                
-                Toggle("Mit Warmup", isOn: $user.includeWormup)
-                
-                Toggle("Mit Dehnen", isOn: $user.includeStreching)
+            } header: {
+                Text("Pausen Zeit in Minuten")
+            } footer: {
+                Text("Stelle ein wie viel Minuten du zwischen zwei Satzen Pause machen willst.")
             }
             
-            Section("Mitteilungen") {
-                Toggle("Protein Shake", isOn: $user.includeWormup)
+            Section {
+                Toggle("🚫 Protein Shake", isOn: $user.includeWormup)
+            } header: {
+                Text("Mitteilungen")
+            } footer: {
+                Text("Eine Erinnerung 30 Minuten nach dem Training")
             }
             
             Section("Über uns") {
