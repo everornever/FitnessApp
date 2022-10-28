@@ -11,6 +11,7 @@ struct WeekView: View {
     
     let dayNames = CurrentWeek().getCurrentNames()
     let dayDates = CurrentWeek().getStringDates()
+    let workoutDone = CurrentWeek().getworkoutdays()
     
     var body: some View {
         HStack {
@@ -24,7 +25,7 @@ struct WeekView: View {
                         .font(.caption2)
                 }
                 .frame(width: 40, height: 80)
-                .background(.regularMaterial)
+                .background(workoutDone[index] ? Color("FirstColor") : Color.secondary.opacity(0.1))
                 .cornerRadius(40)
                 
                 if (index < 6) {

@@ -6,11 +6,61 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct Day {
+    let date: Date
+    let name: String
+    let workoutDone: Bool
+}
 
 class CurrentWeek {
     
+    // Calender
     private let date = Date()
     private var calendar = Calendar.current
+    
+    // User Defaults Workouts
+    @ObservedObject var savedWorkouts = SavedWorkouts()
+    
+    
+    // MARK: - Main Function
+    func getCurrentWeek() -> [Day] {
+        
+        var week: [Day]
+        
+        for index in 0...6 {
+            week.append(Day(date: getDate(atIndex: index), name: getName(atIndex: index), workoutDone: getworkout(atIndex: index)))
+        }
+        
+        return week
+    }
+    
+    
+    private func getDate(atIndex: Int) -> Date {
+        
+        print("Get Dates Methode:")
+        
+        // Initial Values
+        let lastSunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date))!
+        let thisMonday = calendar.date(byAdding: .day, value: 1, to: lastSunday)!
+        let thisSunday = calendar.date(byAdding: .day, value: 7, to: lastSunday)!
+        
+        print("lastSunday:", lastSunday)
+        print("thisMonday:", thisMonday)
+        print("thisSunday:", thisSunday)
+        
+        /// maps out every day starting Monday with its date until next Sunday
+        let dates = calendar.range(of: .weekday, in: .weekOfYear, for: thisMonday)!.compactMap { calendar.date(byAdding: .day, value: $0, to: thisMonday) }
+        print("Date Array:", dates)
+        
+        // TODO: enum case for index, give out date for index
+    }
+    
+    
+    
+    
+    
     
     /// - Description: sets start and end day for current week
     /// - Returns: (2022-09-25 22:00:00 +0000, 2022-09-28 22:00:00 +0000)
@@ -87,6 +137,27 @@ class CurrentWeek {
         } else {
             return false
         }
+    }
+    
+    func getworkoutdays() -> [Bool] {
+        
+        let dates = getcurrentDates()
+        
+        let lastworkouts = savedWorkouts.workoutArray.suffix(14)
+        
+        print(lastworkouts)
+        
+        let filtered = lastworkouts.filter { workout in
+            return workout.date > setWeekParameter().0!
+        }
+        
+        print(filtered)
+        
+        
+        
+        
+        
+        return [false,false,false,false,true,true,false]
     }
     
 }

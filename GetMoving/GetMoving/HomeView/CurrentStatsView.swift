@@ -62,7 +62,7 @@ struct CardViewScore: View {
     
     var body: some View {
         VStack {
-            Text("Comming Soon...")
+            Text("...")
                 .fontWeight(.bold)
 
         }
