@@ -11,22 +11,18 @@ import AVFoundation
 import SwiftUI
 import UserNotifications
 
-class PauseFunctions: ObservableObject {
+class PauseTimerFunctions: ObservableObject {
     
     // MARK: - Values
     
     // User Settings
     @ObservedObject var user = User()
     
-    // Timer Sound
-    private let systemSoundID: SystemSoundID = 1031
-    
     // Notification
     private let id = UUID().uuidString
     private let center = UNUserNotificationCenter.current()
     private let content = UNMutableNotificationContent()
 
-    
     // Timer
     private var startTime: Date?
     private var accumulatedTime: TimeInterval = 0
@@ -50,7 +46,6 @@ class PauseFunctions: ObservableObject {
                 self.timeLeft = self.user.pauseTimer + self.getElapsedTime()
             }
             else {
-                self.playSound()
                 self.stop()
             }
         }
@@ -73,13 +68,7 @@ class PauseFunctions: ObservableObject {
         return self.startTime?.timeIntervalSinceNow ?? 0
     }
     
-    // plays Timer Sound
-    func playSound() {
-        AudioServicesPlaySystemSound(systemSoundID)
-    }
-    
-    // will make and plan a Notification
-    func createNotification() {
+    private func createNotification() {
         // Content
         content.title = "Pause ist vorbei"
         content.subtitle = "zurück an die Arbeit!"
@@ -93,14 +82,11 @@ class PauseFunctions: ObservableObject {
         
         // adds notification
         center.add(request)
-        print("added Notification")
     }
     
-    // cancels pending notification
-    func cancelPendingNotification() {
+    private func cancelPendingNotification() {
         center.removePendingNotificationRequests(withIdentifiers: [id])
-        center.removeAllDeliveredNotifications()
-        print("cancel Notification")
+        // center.removeAllDeliveredNotifications()
     }
     
 }

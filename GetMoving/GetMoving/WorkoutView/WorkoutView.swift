@@ -28,7 +28,7 @@ struct WorkoutView: View {
     @StateObject var workoutStopwatch = StopwatchFunctions()
     
     // Pause Timer
-    @StateObject var pauseStopwatch = PauseFunctions()
+    @StateObject var pauseStopwatch = PauseTimerFunctions()
     
     // Dates
     let currentDate = Date()
