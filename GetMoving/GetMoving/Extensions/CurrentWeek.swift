@@ -23,7 +23,6 @@ class CurrentWeek {
     // User Defaults Workouts
     @ObservedObject var savedWorkouts = SavedWorkouts()
     
-    
     // MARK: - Main Function
     func getCurrentWeek() -> [Day] {
         
@@ -55,6 +54,8 @@ class CurrentWeek {
         print("Date Array:", dates)
         
         // TODO: enum case for index, give out date for index
+        
+        return dates[atIndex]
     }
     
     
