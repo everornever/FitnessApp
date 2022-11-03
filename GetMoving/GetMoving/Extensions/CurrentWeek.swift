@@ -44,14 +44,14 @@ class CurrentWeek {
         // Initial Values
         let lastSunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date))!
         let thisMonday = calendar.date(byAdding: .day, value: 1, to: lastSunday)!
-        let thisSunday = calendar.date(byAdding: .day, value: 7, to: lastSunday)!
+        let thisSunday = calendar.date(byAdding: .day, value: 6, to: thisMonday)!
         
         print("lastSunday:", lastSunday)
         print("thisMonday:", thisMonday)
         print("thisSunday:", thisSunday)
         
         /// maps out every day starting Monday with its date until next Sunday
-        let dates = calendar.range(of: .weekday, in: .weekOfYear, for: thisMonday)!.compactMap { calendar.date(byAdding: .day, value: $0, to: thisMonday) }
+        let dates = calendar.range(of: .weekday, in: .weekOfYear, for: thisSunday)!.compactMap { calendar.date(byAdding: .day, value: $0, to: lastSunday) }
         print("Date Array:", dates)
         
         print("Returned:", dates[atIndex])
@@ -81,12 +81,9 @@ class CurrentWeek {
     }
     
     private func getworkout(atIndex: Int) -> Bool {
+        
+        // TODO: check for savedWorkouts
      
         return false
     }
-    
-    
-    
-
-    
 }

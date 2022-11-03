@@ -9,23 +9,21 @@ import SwiftUI
 
 struct WeekView: View {
     
-    let dayNames = CurrentWeek().getCurrentNames()
-    let dayDates = CurrentWeek().getStringDates()
-    let workoutDone = CurrentWeek().getworkoutdays()
+    let week = CurrentWeek().getCurrentWeek()
     
     var body: some View {
         HStack {
             ForEach(0..<7) { index in
                 VStack {
-                    Text(dayDates[index])
+                    Text(week[index].stringDate)
                         .font(.caption)
                         .padding(.bottom)
                     
-                    Text(dayNames[index])
+                    Text(week[index].dayName)
                         .font(.caption2)
                 }
                 .frame(width: 40, height: 80)
-                .background(workoutDone[index] ? Color("FirstColor") : Color.secondary.opacity(0.1))
+                .background(week[index].workoutDone ? Color("FirstColor") : Color.secondary.opacity(0.1))
                 .cornerRadius(40)
                 
                 if (index < 6) {
