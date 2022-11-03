@@ -81,9 +81,22 @@ class CurrentWeek {
     }
     
     private func getworkout(atIndex: Int) -> Bool {
+     
+        let lastWorkouts = savedWorkouts.workoutArray
+        
+        let currentDate = getDate(atIndex: atIndex)
+        
+        var done = false
         
         // TODO: check for savedWorkouts
-     
-        return false
+        
+        for (index, value) in lastWorkouts.enumerated() {
+            if (value.date.formatted(date: .abbreviated, time: .omitted) == currentDate.formatted(date: .abbreviated, time: .omitted)) {
+                done = true
+                break
+            }
+        }
+        
+        return done
     }
 }
