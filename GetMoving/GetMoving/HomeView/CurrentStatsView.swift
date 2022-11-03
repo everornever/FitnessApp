@@ -35,6 +35,8 @@ struct CardViewTarget: View {
     
     let userInput: Int
     
+    let week = CurrentWeek().getCurrentWeek()
+    
     var body: some View {
         VStack {
             Text("Wochen Ziel")
@@ -46,7 +48,7 @@ struct CardViewTarget: View {
                 Circle()
                     .frame(width: 70)
                     .foregroundStyle(Color("FirstColor"))
-                Text("0 / \(userInput)")
+                Text("\(checkTarget()) / \(userInput)")
                     .fontWeight(.bold)
                     .font(.title2)
             }
@@ -55,6 +57,19 @@ struct CardViewTarget: View {
         .background(.white)
         .cornerRadius(20)
 
+    }
+    
+    func checkTarget() -> Int {
+        
+        var workoutsDone = 0
+        
+        for ( _ , value) in week.enumerated() {
+            if ( value.workoutDone) {
+                workoutsDone += 1
+            }
+        }
+        
+        return workoutsDone
     }
 }
 
