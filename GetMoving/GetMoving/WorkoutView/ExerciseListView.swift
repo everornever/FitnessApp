@@ -7,63 +7,73 @@
 
 import SwiftUI
 
-struct ItemView: View {
-    
-    @State var stepper: Double
-    @State var name: String
-    @State var kilo: Double
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(name)
-            Divider()
-            HStack {
-                Image(systemName: "dumbbell.fill")
-                Text("\(kilo.formatted()) KG")
-                    .fontWeight(.bold)
-                    .font(.title2)
-                Spacer()
-                Stepper("", value: $stepper, step: 0.5)
-            }
-        }
-    }
-}
-
 struct ExerciseListView: View {
     
     @StateObject var exercises = SavedExercises()
     
+    // MARK: - Body
     var body: some View {
-        VStack {
-            Rectangle()
-                .frame(width: 50, height: 5)
-                .cornerRadius(20)
-                .foregroundStyle(.secondary)
-                .padding()
-            
+        NavigationView {
             List {
-                ForEach(exercises.savedExercises) { index in
+                ForEach(exercises.savedExercises.indices, id: \.self) { index in
                     Section {
-                        ItemView(stepper: exercises.savedExercises[0].kilo, name: index.name, kilo: index.kilo)
+                        HStack {
+                            TextField("Name", text: $exercises.savedExercises[index].name)
+                                .lineLimit(1)
+                            Spacer()
+                            Text("\(exercises.savedExercises[index].kilo.formatted()) KG")
+                                .fontWeight(.bold)
+                                .padding(.trailing)
+                            Button("+") { addWeight(index: index) }
+                                .buttonStyle(.borderedProminent)
+                            Button("-") { subtractWeight(index: index) }
+                                .buttonStyle(.borderedProminent)
+                        }
+                        .padding(3)
                     }
                 }
                 .onDelete(perform: removeRows)
+                .onMove(perform: move)
                 
-                Section {
-                    Button("Add Exercise") {
-                        
-                    }
+                HStack {
+                    Image(systemName: "plus.circle")
+                        .foregroundColor(.accentColor)
+                    Button("Ubung hinzufugen") { addExersice() }
                 }
+                    
+            }
+            .navigationBarTitle("Notizen", displayMode: .inline)
+            .toolbar {
+                EditButton()
             }
         }
-        
     }
+    
+    // MARK: - Functions
     
     func removeRows(at offsets: IndexSet) {
         exercises.savedExercises.remove(atOffsets: offsets)
     }
+    
+    func move(from source: IndexSet, to destination: Int) {
+        exercises.savedExercises.move(fromOffsets: source, toOffset: destination)
+    }
+    
+    func addExersice() {
+        exercises.savedExercises.append(Exercise(name: "???", kilo: 10.0))
+    }
+    
+    func addWeight(index: Int) {
+        exercises.savedExercises[index].kilo += 2.5
+    }
+    
+    func subtractWeight(index: Int) {
+        exercises.savedExercises[index].kilo -= 2.5
+    }
+    
 }
 
+// MARK: - Preview
 struct ExerciseListView_Previews: PreviewProvider {
     static var previews: some View {
         ExerciseListView()
