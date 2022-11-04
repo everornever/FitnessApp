@@ -24,16 +24,8 @@ struct SettingsView: View {
     
     var body: some View {
         Form {
-            Section("Dein Name") {
-                HStack {
-                    Image(systemName: "person")
-                    TextField("Name", text: $user.name)
-                    .keyboardType(.default)
-                    .focused($inputIsFocused)
-                }
-            }
-            
             Section {
+                Text("Pausen Timer")
                 Picker("Pause Timer Length", selection: $user.pauseTimer) {
                     ForEach(timers, id: \.self) {
                         Text(($0 / 60.0).formatted())
@@ -41,31 +33,14 @@ struct SettingsView: View {
                 } 
                 .pickerStyle(.segmented)
             } header: {
-                Text("Pausen Zeit in Minuten")
+                Text("Workout Einstellungen")
             } footer: {
-                Text("Stelle ein wie viel Minuten du zwischen zwei Satzen Pause machen willst.")
-            }
-            
-            Section {
-                Toggle("🚫 Protein Shake", isOn: $user.includeWormup)
-                Button("Fuck Notification") {
-                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-                        if success {
-                            print("All set!")
-                        } else if let error = error {
-                            print(error.localizedDescription)
-                        }
-                    }
-                }
-            } header: {
-                Text("Mitteilungen")
-            } footer: {
-                Text("Eine Erinnerung 30 Minuten nach dem Training")
+                Text("Stelle ein wie viel Minuten du zwischen zwei Sätzen Pause machen willst.")
             }
             
             Section("Über uns") {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("GetMoving \(appVersion)")
+                    Text("FitnessApp \(appVersion) Alpha")
                         .font(.headline)
                     Text("Designed mit 🤍 in Potsdam")
                         .font(.footnote)
@@ -92,3 +67,16 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView()
     }
 }
+
+
+/*
+ Button("Fuck Notification") {
+     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+         if success {
+             print("All set!")
+         } else if let error = error {
+             print(error.localizedDescription)
+         }
+     }
+ }
+ */
