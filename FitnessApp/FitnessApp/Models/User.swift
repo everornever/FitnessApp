@@ -11,7 +11,6 @@ import SwiftUI
 class User: ObservableObject {
     
     // User Metric
-    @AppStorage("name") var name = ""
     @AppStorage("weight") var weight = 70.0
     
     // Workout Settings

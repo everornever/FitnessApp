@@ -39,7 +39,6 @@
 		3538982628DC83C900983E1A /* StopwatchFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchFunctions.swift; sourceTree = "<group>"; };
 		3539485428C74AD600EDF0E2 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		353C0F4F2901BB2D00A12930 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
-		3541C6882915301F0045A5C0 /* Fitnessential-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fitnessential-Info.plist"; sourceTree = "<group>"; };
 		356AA81E28BA363000F9ABC2 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTimerFunctions.swift; sourceTree = "<group>"; };
 		35D13D0628CB71F50033D155 /* CurrentStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStatsView.swift; sourceTree = "<group>"; };
@@ -111,7 +110,6 @@
 		35D7B67228B7858D000AFDC1 = {
 			isa = PBXGroup;
 			children = (
-				3541C6882915301F0045A5C0 /* Fitnessential-Info.plist */,
 				35D7B67D28B7858D000AFDC1 /* FitnessApp */,
 				35D7B67C28B7858D000AFDC1 /* Products */,
 			);
