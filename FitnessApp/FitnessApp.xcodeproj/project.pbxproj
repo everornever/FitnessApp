@@ -19,7 +19,7 @@
 		356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AA81E28BA363000F9ABC2 /* ProgressView.swift */; };
 		35C1575128EEEF1F00C7B641 /* PauseTimerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */; };
 		35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D13D0628CB71F50033D155 /* CurrentStatsView.swift */; };
-		35D7B67F28B7858D000AFDC1 /* GetMovingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D7B67E28B7858D000AFDC1 /* GetMovingApp.swift */; };
+		35D7B67F28B7858D000AFDC1 /* FitnessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D7B67E28B7858D000AFDC1 /* FitnessApp.swift */; };
 		35D7B68128B7858D000AFDC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D7B68028B7858D000AFDC1 /* ContentView.swift */; };
 		35D7B68328B78590000AFDC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35D7B68228B78590000AFDC1 /* Assets.xcassets */; };
 		35D7B68628B78590000AFDC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35D7B68528B78590000AFDC1 /* Preview Assets.xcassets */; };
@@ -39,11 +39,12 @@
 		3538982628DC83C900983E1A /* StopwatchFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchFunctions.swift; sourceTree = "<group>"; };
 		3539485428C74AD600EDF0E2 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		353C0F4F2901BB2D00A12930 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		3541C6882915301F0045A5C0 /* Fitnessential-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fitnessential-Info.plist"; sourceTree = "<group>"; };
 		356AA81E28BA363000F9ABC2 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTimerFunctions.swift; sourceTree = "<group>"; };
 		35D13D0628CB71F50033D155 /* CurrentStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStatsView.swift; sourceTree = "<group>"; };
-		35D7B67B28B7858D000AFDC1 /* GetMoving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetMoving.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		35D7B67E28B7858D000AFDC1 /* GetMovingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMovingApp.swift; sourceTree = "<group>"; };
+		35D7B67B28B7858D000AFDC1 /* Fitnessential.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitnessential.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		35D7B67E28B7858D000AFDC1 /* FitnessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessApp.swift; sourceTree = "<group>"; };
 		35D7B68028B7858D000AFDC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		35D7B68228B78590000AFDC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35D7B68528B78590000AFDC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -110,7 +111,8 @@
 		35D7B67228B7858D000AFDC1 = {
 			isa = PBXGroup;
 			children = (
-				35D7B67D28B7858D000AFDC1 /* GetMoving */,
+				3541C6882915301F0045A5C0 /* Fitnessential-Info.plist */,
+				35D7B67D28B7858D000AFDC1 /* FitnessApp */,
 				35D7B67C28B7858D000AFDC1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,15 +120,15 @@
 		35D7B67C28B7858D000AFDC1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				35D7B67B28B7858D000AFDC1 /* GetMoving.app */,
+				35D7B67B28B7858D000AFDC1 /* Fitnessential.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		35D7B67D28B7858D000AFDC1 /* GetMoving */ = {
+		35D7B67D28B7858D000AFDC1 /* FitnessApp */ = {
 			isa = PBXGroup;
 			children = (
-				35D7B67E28B7858D000AFDC1 /* GetMovingApp.swift */,
+				35D7B67E28B7858D000AFDC1 /* FitnessApp.swift */,
 				35D7B68C28B785BB000AFDC1 /* SettingsView.swift */,
 				356AA81E28BA363000F9ABC2 /* ProgressView.swift */,
 				3538982528DC839700983E1A /* HomeView */,
@@ -136,7 +138,7 @@
 				35D7B68228B78590000AFDC1 /* Assets.xcassets */,
 				35D7B68428B78590000AFDC1 /* Preview Content */,
 			);
-			path = GetMoving;
+			path = FitnessApp;
 			sourceTree = "<group>";
 		};
 		35D7B68428B78590000AFDC1 /* Preview Content */ = {
@@ -150,9 +152,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		35D7B67A28B7858D000AFDC1 /* GetMoving */ = {
+		35D7B67A28B7858D000AFDC1 /* Fitnessential */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 35D7B68928B78590000AFDC1 /* Build configuration list for PBXNativeTarget "GetMoving" */;
+			buildConfigurationList = 35D7B68928B78590000AFDC1 /* Build configuration list for PBXNativeTarget "Fitnessential" */;
 			buildPhases = (
 				35D7B67728B7858D000AFDC1 /* Sources */,
 				35D7B67828B7858D000AFDC1 /* Frameworks */,
@@ -162,9 +164,9 @@
 			);
 			dependencies = (
 			);
-			name = GetMoving;
+			name = Fitnessential;
 			productName = GetMoving;
-			productReference = 35D7B67B28B7858D000AFDC1 /* GetMoving.app */;
+			productReference = 35D7B67B28B7858D000AFDC1 /* Fitnessential.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -182,7 +184,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 35D7B67628B7858D000AFDC1 /* Build configuration list for PBXProject "GetMoving" */;
+			buildConfigurationList = 35D7B67628B7858D000AFDC1 /* Build configuration list for PBXProject "FitnessApp" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -195,7 +197,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				35D7B67A28B7858D000AFDC1 /* GetMoving */,
+				35D7B67A28B7858D000AFDC1 /* Fitnessential */,
 			);
 		};
 /* End PBXProject section */
@@ -233,7 +235,7 @@
 				3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */,
 				3502947C28D4832B00C37C92 /* User.swift in Sources */,
 				35FCF61F28FFF9D7001C2281 /* WeightView.swift in Sources */,
-				35D7B67F28B7858D000AFDC1 /* GetMovingApp.swift in Sources */,
+				35D7B67F28B7858D000AFDC1 /* FitnessApp.swift in Sources */,
 				353C0F502901BB2D00A12930 /* Exercise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,11 +364,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"GetMoving/Preview Content\"";
-				DEVELOPMENT_TEAM = W963ZS4M7H;
+				CURRENT_PROJECT_VERSION = 0.0.2;
+				DEVELOPMENT_ASSET_PATHS = "\"FitnessApp/Preview Content\"";
+				DEVELOPMENT_TEAM = B6ULY2T7X7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fitnessential-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Fitnessential;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -378,8 +382,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "0.0.2-Alpha";
-				PRODUCT_BUNDLE_IDENTIFIER = "BETA-CODE.GetMoving";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 0.0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "BETA-CODE.Fitnessential";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -397,11 +402,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"GetMoving/Preview Content\"";
-				DEVELOPMENT_TEAM = W963ZS4M7H;
+				CURRENT_PROJECT_VERSION = 0.0.2;
+				DEVELOPMENT_ASSET_PATHS = "\"FitnessApp/Preview Content\"";
+				DEVELOPMENT_TEAM = B6ULY2T7X7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fitnessential-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Fitnessential;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -413,8 +420,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "0.0.2-Alpha";
-				PRODUCT_BUNDLE_IDENTIFIER = "BETA-CODE.GetMoving";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 0.0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "BETA-CODE.Fitnessential";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -428,7 +436,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		35D7B67628B7858D000AFDC1 /* Build configuration list for PBXProject "GetMoving" */ = {
+		35D7B67628B7858D000AFDC1 /* Build configuration list for PBXProject "FitnessApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				35D7B68728B78590000AFDC1 /* Debug */,
@@ -437,7 +445,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		35D7B68928B78590000AFDC1 /* Build configuration list for PBXNativeTarget "GetMoving" */ = {
+		35D7B68928B78590000AFDC1 /* Build configuration list for PBXNativeTarget "Fitnessential" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				35D7B68A28B78590000AFDC1 /* Debug */,

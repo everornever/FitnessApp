@@ -7,7 +7,7 @@
 import SwiftUI
 
 @main
-struct GetMovingApp: App {
+struct FitnessApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
