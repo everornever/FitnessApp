@@ -17,18 +17,17 @@ struct Workout: Identifiable, Codable {
 }
 
 // Saved Workouts makes an array of Workouts with a UserDefault Get/Set attached
-// @puplish will anounce changes
 class SavedWorkouts: ObservableObject {
     @Published var workoutArray = [Workout]() {
         didSet {
             if let encoded = try? JSONEncoder().encode(workoutArray) {
-                UserDefaults.standard.set(encoded, forKey: "WorkoutArray")
+                UserDefaults.standard.set(encoded, forKey: "SavedWorkouts")
             }
         }
     }
     
     init() {
-        if let savedItems = UserDefaults.standard.data(forKey: "WorkoutArray") {
+        if let savedItems = UserDefaults.standard.data(forKey: "SavedWorkouts") {
             if let decodedItems = try? JSONDecoder().decode([Workout].self, from: savedItems) {
                 workoutArray = decodedItems
                 return

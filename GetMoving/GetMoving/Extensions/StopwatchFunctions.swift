@@ -4,8 +4,6 @@
 //
 //  Created by Leon Kling on 22.09.22.
 //
-// Stopwatch copyed. Not my design. Comments be my to explain class
-// code from: https://medium.com/@pwilko/how-not-to-create-stopwatch-in-swift-e0b7ff98880f
 
 import Combine
 import Foundation
@@ -15,7 +13,7 @@ class StopwatchFunctions: ObservableObject {
     private var startTime: Date?
     private var timer: Cancellable?
     
-    /// can only be read outside of class. the final value to puplish the paased time to a UI interface
+    /// the final value to puplish the paased time to a UI interface
     @Published private(set) var elapsedTime: TimeInterval = 0
     
     /// no need to call functions. we start and stop the stopwatch by manipulating isRunning. functions are private

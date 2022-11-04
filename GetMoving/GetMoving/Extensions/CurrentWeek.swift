@@ -4,90 +4,85 @@
 //
 //  Created by Leon Kling on 23.09.22.
 //
-// TODO: setWeek has optional parametrs, should get checked
 
 import Foundation
+import SwiftUI
+
+struct Day {
+    let date: Date
+    let stringDate: String
+    let dayName: String
+    let workoutDone: Bool
+}
 
 class CurrentWeek {
     
+    // Calender
     private let date = Date()
     private var calendar = Calendar.current
     
-    /// - Description: sets start and end day for current week
-    /// - Returns: (2022-09-25 22:00:00 +0000, 2022-09-28 22:00:00 +0000)
-    private func setWeekParameter() -> (Date?, Date?) {
-        
-        let lastSunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date))
-        
-        // will add one day to last Sunday to get current Monday
-        let thisMonday = calendar.date(byAdding: .day, value: 1, to: lastSunday!)
-        
-        // will get the upcomming Sunday this week
-//         let thisSunday = calendar.date(byAdding: .day, value: 7, to: lastSunday!)
-        
-        return (lastSunday, thisMonday)
-    }
+    // User Defaults Workouts
+    @ObservedObject var savedWorkouts = SavedWorkouts()
     
-    /// - Description: returns array with every current week day with date and time
-    /// - Returns: [2022-09-26 22:00:00, 2022-09-27 22:00:00, ... ]
-    private func getcurrentDates() -> [Date] {
+    // MARK: - Main Function
+    func getCurrentWeek() -> [Day] {
         
-        let lastSunday = setWeekParameter().0
-        let Monday = setWeekParameter().1
+        var week = [Day]()
         
-        // maps out every day starting Monday with its date until next Sunday
-        let dates = calendar.range(of: .weekday, in: .weekOfYear, for: Monday!)!
-            .compactMap { calendar.date(byAdding: .day, value: $0, to: lastSunday!) }
+        for index in 0...6 {
+            week.append(Day(date: getDate(atIndex: index),stringDate: getStringDate(atIndex: index), dayName: getName(atIndex: index), workoutDone: getworkout(atIndex: index)))
+        }
         
-        return dates
+        return week
     }
     
     
-    // MARK: - Puplic Functions
+    private func getDate(atIndex: Int) -> Date {
+        
+        // Initial Values
+        let monday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date))!
+        let lastSunday = calendar.date(byAdding: .day, value: -1, to: monday)!
+        let sunday = calendar.date(byAdding: .day, value: 6, to: monday)!
+        
+        /// maps out every day starting Monday with its date until next Sunday
+        let dates = calendar.range(of: .weekday, in: .weekOfYear, for: sunday)!.compactMap { calendar.date(byAdding: .day, value: $0, to: lastSunday) }
+        
+        return dates[atIndex]
+    }
     
-    
-    /// - Description: Array of Strings with short Week Names from current calender / or hard coded
-    /// - Returns: ["Mo","Di",...]
-    func getCurrentNames() -> [String] {
-//        calendar.locale = NSLocale(localeIdentifier: "de_DE") as Locale
-//        return calendar.shortWeekdaySymbols
+    private func getName(atIndex: Int) -> String {
+        
         let shortWeekDays = ["Mo","Di","Mi","Do","Fr","Sa","So"]
-        return shortWeekDays
+        
+        return shortWeekDays[atIndex]
     }
     
-    /// - Description: Array with short day date as a string
-    /// - Returns: ["03","04",...]
-    func getStringDates() -> [String] {
+    private func getStringDate(atIndex: Int) -> String {
         
-        let dates = getcurrentDates()
+        let date = getDate(atIndex: atIndex)
         
         // formats dates to double diget format (03,04,..)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd"
-        
-        // array with all weekday dates as string
-        var weekdays = [String]()
-        for i in dates.indices {
-            weekdays.append(dateFormatter.string(from: dates[i]))
-        }
-        
-        return weekdays
+
+        return dateFormatter.string(from: date)
     }
     
-    /// - Description: checks if passed in date is in current week
-    /// - Returns: Bool
-    func CheckDateInCurrentWeek(paasedDate: Date) -> Bool {
+    private func getworkout(atIndex: Int) -> Bool {
+     
+        let lastWorkouts = savedWorkouts.workoutArray
         
-        let firstDay = setWeekParameter().0!
-        let lastDay = setWeekParameter().1!
+        let currentDate = getDate(atIndex: atIndex)
         
-        let range = firstDay...lastDay
+        var done = false
         
-        if range.contains(paasedDate) {
-            return true
-        } else {
-            return false
+        for ( _ , value) in lastWorkouts.enumerated() {
+            if (value.date.formatted(date: .abbreviated, time: .omitted) == currentDate.formatted(date: .abbreviated, time: .omitted)) {
+                done = true
+                break
+            }
         }
+        
+        return done
     }
-    
 }

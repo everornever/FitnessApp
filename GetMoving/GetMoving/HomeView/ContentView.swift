@@ -17,12 +17,10 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            
             VStack(spacing: 0) {
-                
-                VStack(alignment: .leading) { // Section: Activity
+                // MARK: - WeekView
+                VStack(alignment: .leading) {
                     HStack {
-                        
                         Text("Aktivität")
                             .font(.headline)
                             .bold()
@@ -30,7 +28,6 @@ struct ContentView: View {
                         Spacer()
                         
                         NavigationLink(destination: ProgressView(), isActive: $isShowingProgressView) { EmptyView() }
-                        
                         Button("Verlauf") { isShowingProgressView = true }
                         
                     }
@@ -38,51 +35,46 @@ struct ContentView: View {
                 }
                 .padding()
                 
-                
-                VStack(alignment: .leading) { // Section: Current Stats
+                // MARK: - Stats
+                VStack(alignment: .leading) {
                     
                     Text("Aktuelle Werte")
                         .font(.headline)
                         .bold()
                     
-                    CurrentStats()
+                    CurrentStatsView()
                     
                 }
                 .padding()
                 
-                
-                VStack(alignment: .leading) { // Section: Streak
-                    
-                    Text("Streak")
-                        .font(.headline)
-                        .bold()
-                    
-                    StreakView()
+                // MARK: - Workout Buttton
+                VStack(alignment: .leading) {
                     
                     NavigationLink(destination: WorkoutView(), isActive: $isShowingWorkoutView) { EmptyView() }
-                    
                     Button { isShowingWorkoutView = true } label: {
-                        Text("Starte Workout")
+                        Text("**Starte Workout**")
                             .frame(maxWidth: .infinity)
-                            
+                            .foregroundStyle(.black)
+                            .font(.title2)
                             .padding(10)
                     }
                     .foregroundStyle(.green)
-                    .tint(.green.opacity(0.2))
+                    .tint(Color("FirstColor"))
                     .buttonStyle(.borderedProminent)
                     .controlSize(.large)
                     .padding(.top, 20)
                     
                 }
                 .padding()
-                
-                Spacer()
-            }
+
+            } // End Main VStack
             .navigationBarTitle("Home")
             .navigationBarItems(
                 trailing:
                     NavigationLink(destination: SettingsView()) {
-                        Text("Einstellungen")
+                        Image(systemName: "gear")
+                            .font(.title3)
+                            .tint(.black)
                     }
             )
         }

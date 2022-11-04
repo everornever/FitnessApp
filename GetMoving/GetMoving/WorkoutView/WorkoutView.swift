@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UserNotifications
+import AVFoundation
 
 struct WorkoutView: View {
     
@@ -27,7 +28,7 @@ struct WorkoutView: View {
     @StateObject var workoutStopwatch = StopwatchFunctions()
     
     // Pause Timer
-    @StateObject var pauseStopwatch = PauseFunctions()
+    @StateObject var pauseStopwatch = PauseTimerFunctions()
     
     // Dates
     let currentDate = Date()
@@ -36,92 +37,142 @@ struct WorkoutView: View {
     @State var numberOfExercises = 1
     @State var exerciseIndex = 0
     @State var numberOfSets = [0]
-    @State var setIndex = 0
+
+    // Workout Notes
+    @State var showingNotes = false
+    
+    // Timer Sound
+    let systemSoundID: SystemSoundID = 1050
     
     //MARK: - BODY
     var body: some View {
         ZStack {
             VStack {
-                Text(timeString(time: workoutStopwatch.elapsedTime).hours)
+                Text(workoutStopwatch.elapsedTime.timeString().hours)
                     .monospacedDigit()
+                    .font(.title2)
+                    .fontWeight(.bold)
                 
                 // MARK: - Exercise List
                 List {
-                    ForEach(0..<numberOfExercises, id: \.self) { index in
+                    ForEach((0..<numberOfExercises).reversed(), id: \.self) { index in
+                        
                         HStack {
                             if(exerciseIndex == index) {
                                 Image(systemName: "arrowtriangle.right.fill")
-                                    .foregroundColor(.yellow)
+                                    .foregroundColor(Color("FirstColor"))
                             }
                             
-                            Text("Übung")
+                            Text(" \(index+1). Übung")
+                                .font(.title3)
                             
                             Spacer()
                             
-                            ForEach(0..<numberOfSets[index], id: \.self) { _ in
-                                Image(systemName: "circlebadge.fill")
-                                    .foregroundColor(.green)
-                                    .font(.title2)
+                            if(numberOfSets[index] < 5) {
+                                ForEach(0..<numberOfSets[index], id: \.self) { _ in
                                     
+                                    Image(systemName: "circlebadge.fill")
+                                        .foregroundColor(Color("FirstColor"))
+                                        .font(.title3)
+                                    
+                                }
+                            } else {
+                                Image(systemName: "\(numberOfSets[index]).circle")
+                                    .foregroundColor(Color("FirstColor"))
+                                    .font(.title)
                             }
                             
                         }
-                        .animation(.linear, value: exerciseIndex)
+                        
                     }
-                    
                 }
+                .cornerRadius(30)
+                .padding(20)
+                
+                // MARK: - Notizen
+                Button {
+                    showingNotes = true
+                } label: {
+                    Image(systemName: "list.bullet.clipboard")
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.black)
+                        .font(.title)
+                        .padding()
+                }
+                .background(Color("SecondColor"))
+                .cornerRadius(20)
+                .padding(.bottom)
+                .sheet(isPresented: $showingNotes) {
+                    ExerciseListView()
+                }
+                .padding([.leading, .trailing], 20)
+                
+                
                 // MARK: - Pause Button
                 VStack {
-                    Text(timeString(time: pauseStopwatch.timeLeft).minutes)
-                        .font(.title)
-                        .monospacedDigit()
+                    HStack {
+                        Text(pauseStopwatch.timeLeft.timeString().seconds)
+                            .font(.title)
+                            .fontWeight(.semibold)
+                            .monospacedDigit()
+                        
+                        Button {
+                            pauseStopwatch.stop()
+                        } label: {
+                            Image(systemName: "gobackward")
+                                .tint(Color.gray)
+                        }
+                    }
                     
                     Text("Pause Timer")
                         .foregroundColor(.secondary)
                     
                     
-                    HStack {
+                    HStack(spacing: 40) {
+                        // Back Button
                         Button {
-                            // Back one set
-                            if(numberOfSets[exerciseIndex] > 1) {
+                            if(numberOfSets[exerciseIndex] > 0) {
                                 numberOfSets[exerciseIndex] -= 1
                             }
-                            else {
+                            if((numberOfExercises != 1) && (numberOfSets[exerciseIndex] == 0)) {
                                 numberOfExercises -= 1
                                 numberOfSets.remove(at: exerciseIndex)
                                 exerciseIndex -= 1
                             }
-                            
-                            
                         } label: {
-                            Image(systemName: "arrowtriangle.left")
+                            Image(systemName: "backward.end.fill")
+                                .font(.title)
+                                .foregroundStyle(.black)
                         }
-                        .buttonStyle(.bordered)
                         
-                        Button("Pause") {
-                            pauseStopwatch.reset()
-                            pauseStopwatch.isRunning.toggle()
-                            scheduleNotification()
-                            if numberOfSets[exerciseIndex]<8 {
-                                numberOfSets[exerciseIndex] += 1
-                            }
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .controlSize(.large)
-                        .buttonBorderShape(.capsule)
                         
+                        // Pause Button
                         Button {
-                            // Next Exercise
-                            numberOfSets.append(0)
-                            numberOfExercises += 1
-                            exerciseIndex += 1
-                            
-                        } label: {
-                            Image(systemName: "arrowtriangle.right")
+                            pauseButtonAction()
+                        }  label: {
+                            Image(systemName: "pause.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(.black)
+                                .padding(30)
                         }
-                        .buttonStyle(.bordered)
+                        .tint(Color("FirstColor"))
+                        .buttonStyle(.borderedProminent)
+                        
+                        // Next exercise
+                        Button {
+                            if(numberOfSets[exerciseIndex] != 0) {
+                                numberOfSets.append(0)
+                                numberOfExercises += 1
+                                exerciseIndex += 1
+                            }
+                        } label: {
+                            Image(systemName: "forward.end.fill")
+                                .font(.title)
+                                .foregroundStyle(.black)
+                        }
                     }
                 }
+                
                 Spacer()
             }
             // MARK: - Navigation Bar
@@ -137,7 +188,8 @@ struct WorkoutView: View {
                 .alert("Workout abbrechen", isPresented: $endWorkoutAlert) {
                     Button("Zurück", role: .cancel) {}
                     Button("Abbrechen", role: .destructive) {
-                        self.workoutStopwatch.isRunning.toggle()
+                        pauseStopwatch.stop()
+                        workoutStopwatch.isRunning.toggle()
                         presentationMode.wrappedValue.dismiss()
                     }
                 } message: {
@@ -148,6 +200,7 @@ struct WorkoutView: View {
                 saveWorkout()
             } label: {
                 Text("Beenden")
+                    .tint(.black)
             })
             
             // PopupView
@@ -163,48 +216,41 @@ struct WorkoutView: View {
             workoutStopwatch.isRunning.toggle()
         }
     }
+    
     // MARK: - FUNCTIONS
+    func pauseButtonAction() {
+        
+        // Play Sound for activation
+        AudioServicesPlaySystemSound(systemSoundID)
+        
+        // Stop Pause Timer, reset and start again
+        pauseStopwatch.stop()
+        pauseStopwatch.start()
+        
+        // Add Set
+        if numberOfSets[exerciseIndex]<8 {
+            numberOfSets[exerciseIndex] += 1
+            
+        }
+    }
+    
     func saveWorkout() {
+        // stop timers
         workoutStopwatch.isRunning.toggle()
-        pauseStopwatch.isRunning.toggle()
+        pauseStopwatch.stop()
+        
+        // save workout stats
         savedWorkouts.workoutArray.append(Workout(exercises: 6, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
+        
+        // show popup
         withAnimation {
             isShowPopup = true
         }
+        
+        // dissmiss View after a few seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
             presentationMode.wrappedValue.dismiss()
         }
-    }
-    
-    // make extension!!
-    // Convert the time into 24hr (24:00:00) format
-    // hours returns 00:00:00
-    // minutes returns 00:00
-    func timeString(time: Double) -> (hours: String, minutes: String) {
-        let hours   = Int(time) / 3600
-        let minutes = Int(time) / 60 % 60
-        let seconds = Int(time) % 60
-        return (String(format:"%02i:%02i:%02i", hours, minutes, seconds), String(format:"%02i:%02i", minutes, seconds))
-    }
-    
-    func scheduleNotification() {
-        let center = UNUserNotificationCenter.current()
-        center.removeAllDeliveredNotifications()
-        center.removeAllPendingNotificationRequests()
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Pause is over"
-        content.subtitle = "Get back to work!"
-        content.sound = UNNotificationSound.default
-        
-        // show this notification five seconds from now
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        
-        // choose a random identifier
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
-        // add our notification request
-        center.add(request)
     }
     
 }

@@ -9,26 +9,21 @@ import SwiftUI
 
 struct WeekView: View {
     
-    @EnvironmentObject var savedWorkouts: SavedWorkouts
-    
-    let dayNames = CurrentWeek().getCurrentNames()
-    let dayDates = CurrentWeek().getStringDates()
-    let locale = Locale.current
-    
+    let week = CurrentWeek().getCurrentWeek()
     
     var body: some View {
         HStack {
             ForEach(0..<7) { index in
                 VStack {
-                    Text(dayDates[index])
+                    Text(week[index].stringDate)
                         .font(.caption)
                         .padding(.bottom)
                     
-                    Text(dayNames[index])
+                    Text(week[index].dayName)
                         .font(.caption2)
                 }
                 .frame(width: 40, height: 80)
-                .background(.regularMaterial)
+                .background(week[index].workoutDone ? Color("FirstColor") : Color.secondary.opacity(0.1))
                 .cornerRadius(40)
                 
                 if (index < 6) {
@@ -40,16 +35,12 @@ struct WeekView: View {
         .monospacedDigit()
         .lineLimit(1)
         
-    } // end Of Body
-} // end of View
+    }
+}
 
-
+// MARK: - Preview
 struct WeekView_Previews: PreviewProvider {
-    
-    static let myEnvObject = SavedWorkouts()
-    
     static var previews: some View {
         WeekView()
-            .environmentObject(myEnvObject)
     }
 }
