@@ -21,6 +21,10 @@ class User: ObservableObject {
     // Streak
     @AppStorage("target") var target = 1
     
+    // App Version
+    @AppStorage("firstStart") var firstStart = true
+    @AppStorage("lastVersion") var lastVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+    
     
 
 }
