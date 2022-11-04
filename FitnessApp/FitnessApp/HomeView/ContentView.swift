@@ -9,11 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     
-    // Important: First creation of Object!
+    // Important: StateObject = First creation of Object!
     @StateObject var savedWorkouts = SavedWorkouts()
+    @StateObject var user = User()
     
     @State private var isShowingProgressView = false
     @State private var isShowingWorkoutView = false
+    @State private var isShowingUpdateView = false
+    
+    let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
     
     var body: some View {
         NavigationView {
@@ -78,7 +82,19 @@ struct ContentView: View {
                     }
             )
         }
+        .onAppear(perform: checkForUpdates)
         .environmentObject(savedWorkouts)
+        .fullScreenCover(isPresented: $user.firstStart, content: { Onboarding(showOnboarding: $user.firstStart) })
+        .sheet(isPresented: $isShowingUpdateView) { UpdateView() }
+    }
+    
+    func checkForUpdates() {
+        print("Last Version:", user.lastVersion)
+        print("Current Version:" ,appVersion)
+        
+        if(user.lastVersion != appVersion) {
+            isShowingUpdateView = true
+        }
     }
 }
 
