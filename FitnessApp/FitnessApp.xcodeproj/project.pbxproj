@@ -17,6 +17,11 @@
 		3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3539485428C74AD600EDF0E2 /* WorkoutView.swift */; };
 		353C0F502901BB2D00A12930 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C0F4F2901BB2D00A12930 /* Exercise.swift */; };
 		356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AA81E28BA363000F9ABC2 /* ProgressView.swift */; };
+		357A6D8D291BE7A800EB6E53 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D8C291BE7A800EB6E53 /* Colors.swift */; };
+		357A6D90291C0C6E00EB6E53 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D8F291C0C6E00EB6E53 /* FirstView.swift */; };
+		357A6D92291C0CA700EB6E53 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D91291C0CA700EB6E53 /* SecondView.swift */; };
+		357A6D94291C0CBF00EB6E53 /* ThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D93291C0CBF00EB6E53 /* ThirdView.swift */; };
+		357A6D96291C16CE00EB6E53 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D95291C16CE00EB6E53 /* MainButton.swift */; };
 		3583A7162915440500743013 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A7152915440500743013 /* Onboarding.swift */; };
 		3583A718291544F200743013 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A717291544F200743013 /* UpdateView.swift */; };
 		35C1575128EEEF1F00C7B641 /* PauseTimerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */; };
@@ -42,6 +47,11 @@
 		3539485428C74AD600EDF0E2 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		353C0F4F2901BB2D00A12930 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		356AA81E28BA363000F9ABC2 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		357A6D8C291BE7A800EB6E53 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		357A6D8F291C0C6E00EB6E53 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
+		357A6D91291C0CA700EB6E53 /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
+		357A6D93291C0CBF00EB6E53 /* ThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdView.swift; sourceTree = "<group>"; };
+		357A6D95291C16CE00EB6E53 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		3583A7152915440500743013 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		3583A717291544F200743013 /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
 		35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTimerFunctions.swift; sourceTree = "<group>"; };
@@ -78,17 +88,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		3538982428DC838B00983E1A /* WorkoutView */ = {
+		3538982428DC838B00983E1A /* Workout */ = {
 			isa = PBXGroup;
 			children = (
 				3539485428C74AD600EDF0E2 /* WorkoutView.swift */,
 				3535B1A129016F6900BF16EE /* ExerciseListView.swift */,
 				350B03AD28CE52E900738A7E /* PopupView.swift */,
 			);
-			path = WorkoutView;
+			path = Workout;
 			sourceTree = "<group>";
 		};
-		3538982528DC839700983E1A /* HomeView */ = {
+		3538982528DC839700983E1A /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
 				35D7B68028B7858D000AFDC1 /* ContentView.swift */,
@@ -97,7 +107,27 @@
 				35FCF61E28FFF9D7001C2281 /* WeightView.swift */,
 				35FCF62029000888001C2281 /* TargetView.swift */,
 			);
-			path = HomeView;
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		357A6D8E291C0C3700EB6E53 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				3583A7152915440500743013 /* Onboarding.swift */,
+				357A6D8F291C0C6E00EB6E53 /* FirstView.swift */,
+				357A6D91291C0CA700EB6E53 /* SecondView.swift */,
+				357A6D93291C0CBF00EB6E53 /* ThirdView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		357A6D97291C16DA00EB6E53 /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				357A6D8C291BE7A800EB6E53 /* Colors.swift */,
+				357A6D95291C16CE00EB6E53 /* MainButton.swift */,
+			);
+			path = "UI Elements";
 			sourceTree = "<group>";
 		};
 		35CD6D1828D8828200200E4E /* Extensions */ = {
@@ -107,6 +137,7 @@
 				3538982628DC83C900983E1A /* StopwatchFunctions.swift */,
 				35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */,
 				352C47C728FC5781001EC887 /* TimeStringExtension.swift */,
+				357A6D97291C16DA00EB6E53 /* UI Elements */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -130,13 +161,13 @@
 		35D7B67D28B7858D000AFDC1 /* FitnessApp */ = {
 			isa = PBXGroup;
 			children = (
-				3583A7152915440500743013 /* Onboarding.swift */,
 				3583A717291544F200743013 /* UpdateView.swift */,
 				35D7B67E28B7858D000AFDC1 /* FitnessApp.swift */,
 				35D7B68C28B785BB000AFDC1 /* SettingsView.swift */,
 				356AA81E28BA363000F9ABC2 /* ProgressView.swift */,
-				3538982528DC839700983E1A /* HomeView */,
-				3538982428DC838B00983E1A /* WorkoutView */,
+				357A6D8E291C0C3700EB6E53 /* Onboarding */,
+				3538982528DC839700983E1A /* Dashboard */,
+				3538982428DC838B00983E1A /* Workout */,
 				350B03AA28CE4E0200738A7E /* Models */,
 				35CD6D1828D8828200200E4E /* Extensions */,
 				35D7B68228B78590000AFDC1 /* Assets.xcassets */,
@@ -227,20 +258,25 @@
 				350B03AE28CE52E900738A7E /* PopupView.swift in Sources */,
 				35D7B68D28B785BB000AFDC1 /* SettingsView.swift in Sources */,
 				356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */,
+				357A6D96291C16CE00EB6E53 /* MainButton.swift in Sources */,
 				35D7B68128B7858D000AFDC1 /* ContentView.swift in Sources */,
 				3535B1A229016F6900BF16EE /* ExerciseListView.swift in Sources */,
 				3583A7162915440500743013 /* Onboarding.swift in Sources */,
 				352137E128CA13750045A453 /* WeekView.swift in Sources */,
 				3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */,
+				357A6D90291C0C6E00EB6E53 /* FirstView.swift in Sources */,
 				35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */,
+				357A6D8D291BE7A800EB6E53 /* Colors.swift in Sources */,
 				35FCF62129000888001C2281 /* TargetView.swift in Sources */,
 				35FE2A5928BE156200291982 /* Workout.swift in Sources */,
 				352C47C828FC5781001EC887 /* TimeStringExtension.swift in Sources */,
 				35C1575128EEEF1F00C7B641 /* PauseTimerFunctions.swift in Sources */,
+				357A6D94291C0CBF00EB6E53 /* ThirdView.swift in Sources */,
 				3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */,
 				3502947C28D4832B00C37C92 /* User.swift in Sources */,
 				35FCF61F28FFF9D7001C2281 /* WeightView.swift in Sources */,
 				3583A718291544F200743013 /* UpdateView.swift in Sources */,
+				357A6D92291C0CA700EB6E53 /* SecondView.swift in Sources */,
 				35D7B67F28B7858D000AFDC1 /* FitnessApp.swift in Sources */,
 				353C0F502901BB2D00A12930 /* Exercise.swift in Sources */,
 			);
