@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FirstView: View {
     
-    @Binding var tabSelection: Int
+    @Binding var currentView: Int
     
     var body: some View {
         ZStack {
@@ -34,7 +34,7 @@ struct FirstView: View {
                 Spacer()
                 
                 MainButton(text: "Let’s Begin", icon: "arrow.right") {
-                    self.tabSelection = 1
+                    self.currentView = 1
                 }
             }
             .padding(30)
@@ -45,6 +45,6 @@ struct FirstView: View {
 
 struct FirstView_Previews: PreviewProvider {
     static var previews: some View {
-        FirstView(tabSelection: .constant(1))
+        FirstView(currentView: .constant(1))
     }
 }

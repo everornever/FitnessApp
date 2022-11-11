@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ThirdView: View {
     
-    // Tab View Selection
-    @Binding var tabSelection: Int
-    
+    // View Selection
+    @Binding var currentView: Int
+
     @ObservedObject var user = User()
     
+    // Keyboard Focus
     @FocusState private var focusedField: Field?
     
     enum Field {
@@ -22,12 +23,14 @@ struct ThirdView: View {
         case weight
     }
     
+    // User Metrics
     @State private var age: Int = 0
     @State private var height: Double = 0
     @State private var weight: Double = 0
     @State private var target: Int = 3
     
-    let formatter: NumberFormatter = {
+    // Formatter for user input
+    let doubleFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 2
@@ -36,7 +39,7 @@ struct ThirdView: View {
         return formatter
     }()
     
-    let formatter2: NumberFormatter = {
+    let intFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .none
         formatter.maximumIntegerDigits = 2
@@ -44,6 +47,7 @@ struct ThirdView: View {
         return formatter
     }()
     
+    // MARK: - Body
     var body: some View {
         ZStack {
             Color.DS_Primary_RV
@@ -57,12 +61,13 @@ struct ThirdView: View {
                 
                 Spacer()
                 
+                // MARK: - List
                 VStack(spacing: 25) {
                     // Age
                     HStack {
                         Text("Age")
                         Spacer()
-                        TextField("90", value: $age, formatter: formatter2)
+                        TextField("90", value: $age, formatter: intFormatter)
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
                             .font(.title3.bold())
@@ -102,7 +107,7 @@ struct ThirdView: View {
                     HStack {
                         Text("Height")
                         Spacer()
-                        TextField("1,80", value: $height, formatter: formatter)
+                        TextField("1,80", value: $height, formatter: doubleFormatter)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
                             .font(.title3.bold())
@@ -120,7 +125,7 @@ struct ThirdView: View {
                     HStack {
                         Text("Weight")
                         Spacer()
-                        TextField("80", value: $weight, formatter: formatter)
+                        TextField("80", value: $weight, formatter: doubleFormatter)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
                             .font(.title3.bold())
@@ -170,7 +175,7 @@ struct ThirdView: View {
                 MainButton(text: "Save", icon: "arrow.right") {
                     if ( isValidReply() ) {
                         
-                        self.tabSelection = 3
+                        self.currentView = 3
                         
                         // Save user Data
                         user.age = age
@@ -216,7 +221,7 @@ struct ThirdView: View {
 
 struct ThirdView_Previews: PreviewProvider {
     static var previews: some View {
-        ThirdView(tabSelection: .constant(3))
+        ThirdView(currentView: .constant(3))
     }
 }
 

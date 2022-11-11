@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SecondView: View {
     
-    @Binding var tabSelection: Int
+    @Binding var currentView: Int
     
     var body: some View {
         ZStack {
@@ -41,7 +41,7 @@ struct SecondView: View {
                     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
                         if success {
                             print("Notification Set")
-                            self.tabSelection = 2
+                            self.currentView = 2
                         } else if let error = error {
                             print(error.localizedDescription)
                         }
@@ -57,6 +57,6 @@ struct SecondView: View {
 
 struct SecondView_Previews: PreviewProvider {
     static var previews: some View {
-        SecondView(tabSelection: .constant(2))
+        SecondView(currentView: .constant(2))
     }
 }

@@ -10,8 +10,9 @@ import SwiftUI
 struct FourthView: View {
     
     @Binding var showOnboarding: Bool
-
     
+    @ObservedObject var user = User()
+
     var body: some View {
         ZStack {
             Color.DS_Accent
@@ -38,8 +39,12 @@ struct FourthView: View {
                 TextView(titel: "Thank you!", bodyText: "Thank you for trying the Fitness App. We hope that you like it. This app is still under development. We will be happy if you give us feedback.", color: false)
                 
                 MainButton(text: "OK, Got it!") {
+                    
+                    // hide onboarding
                     showOnboarding.toggle()
-                    //user.firstStart = false
+                    
+                    // dont show onboarding again
+                    user.firstStart = false
                 }
             }
             .padding(30)

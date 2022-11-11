@@ -11,20 +11,20 @@ struct Onboarding: View {
     
     @Binding var showOnboarding: Bool
     
-    @State private var currentTab = 0
+    @State private var currentView = 0
     
     var body: some View {
         NavigationView {
             
-            switch currentTab {
+            switch currentView {
             case 1:
-                SecondView(tabSelection: $currentTab)
+                SecondView(currentView: $currentView)
             case 2:
-                ThirdView(tabSelection: $currentTab)
+                ThirdView(currentView: $currentView)
             case 3:
                 FourthView(showOnboarding: $showOnboarding)
             default:
-                FirstView(tabSelection: $currentTab)
+                FirstView(currentView: $currentView)
             }
             
         }
