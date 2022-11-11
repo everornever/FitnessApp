@@ -14,17 +14,23 @@ struct Onboarding: View {
     @State private var currentTab = 0
     
     var body: some View {
-        TabView(selection: $currentTab,
-        content:  {
-            FirstView(tabSelection: $currentTab)
-                                .tag(0)
-            SecondView(tabSelection: $currentTab)
-                                .tag(1)
-            ThirdView(showOnboarding: $showOnboarding)
-                                .tag(2)
-                        })
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        .edgesIgnoringSafeArea(.all)
+        NavigationView {
+            
+            switch currentTab {
+            case 1:
+                SecondView(tabSelection: $currentTab)
+            case 2:
+                ThirdView(tabSelection: $currentTab)
+            case 3:
+                FourthView(showOnboarding: $showOnboarding)
+            default:
+                FirstView(tabSelection: $currentTab)
+            }
+            
+        }
+        .navigationBarBackButtonHidden(true)
+
+        
     }
 }
 

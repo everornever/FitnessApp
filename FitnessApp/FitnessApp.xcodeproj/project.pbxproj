@@ -11,6 +11,8 @@
 		350B03AE28CE52E900738A7E /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B03AD28CE52E900738A7E /* PopupView.swift */; };
 		3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3520CB7928DDACA300F85F62 /* CurrentWeek.swift */; };
 		352137E128CA13750045A453 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352137E028CA13750045A453 /* WeekView.swift */; };
+		3521AEF8291E93C6005A1B47 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3521AEF7291E93C6005A1B47 /* TextView.swift */; };
+		3526DD2F291D3C3300B76DD3 /* FourthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526DD2E291D3C3300B76DD3 /* FourthView.swift */; };
 		352C47C828FC5781001EC887 /* TimeStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C47C728FC5781001EC887 /* TimeStringExtension.swift */; };
 		3535B1A229016F6900BF16EE /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3535B1A129016F6900BF16EE /* ExerciseListView.swift */; };
 		3538982728DC83C900983E1A /* StopwatchFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538982628DC83C900983E1A /* StopwatchFunctions.swift */; };
@@ -41,6 +43,8 @@
 		350B03AD28CE52E900738A7E /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		3520CB7928DDACA300F85F62 /* CurrentWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeek.swift; sourceTree = "<group>"; };
 		352137E028CA13750045A453 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
+		3521AEF7291E93C6005A1B47 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		3526DD2E291D3C3300B76DD3 /* FourthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthView.swift; sourceTree = "<group>"; };
 		352C47C728FC5781001EC887 /* TimeStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStringExtension.swift; sourceTree = "<group>"; };
 		3535B1A129016F6900BF16EE /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
 		3538982628DC83C900983E1A /* StopwatchFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchFunctions.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 				357A6D8F291C0C6E00EB6E53 /* FirstView.swift */,
 				357A6D91291C0CA700EB6E53 /* SecondView.swift */,
 				357A6D93291C0CBF00EB6E53 /* ThirdView.swift */,
+				3526DD2E291D3C3300B76DD3 /* FourthView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 			children = (
 				357A6D8C291BE7A800EB6E53 /* Colors.swift */,
 				357A6D95291C16CE00EB6E53 /* MainButton.swift */,
+				3521AEF7291E93C6005A1B47 /* TextView.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -268,6 +274,7 @@
 				35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */,
 				357A6D8D291BE7A800EB6E53 /* Colors.swift in Sources */,
 				35FCF62129000888001C2281 /* TargetView.swift in Sources */,
+				3526DD2F291D3C3300B76DD3 /* FourthView.swift in Sources */,
 				35FE2A5928BE156200291982 /* Workout.swift in Sources */,
 				352C47C828FC5781001EC887 /* TimeStringExtension.swift in Sources */,
 				35C1575128EEEF1F00C7B641 /* PauseTimerFunctions.swift in Sources */,
@@ -277,6 +284,7 @@
 				35FCF61F28FFF9D7001C2281 /* WeightView.swift in Sources */,
 				3583A718291544F200743013 /* UpdateView.swift in Sources */,
 				357A6D92291C0CA700EB6E53 /* SecondView.swift in Sources */,
+				3521AEF8291E93C6005A1B47 /* TextView.swift in Sources */,
 				35D7B67F28B7858D000AFDC1 /* FitnessApp.swift in Sources */,
 				353C0F502901BB2D00A12930 /* Exercise.swift in Sources */,
 			);

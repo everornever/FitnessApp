@@ -34,7 +34,7 @@ struct FirstView: View {
                 Spacer()
                 
                 MainButton(text: "Let’s Begin", icon: "arrow.right") {
-                    //self.tabSelection = 1
+                    self.tabSelection = 1
                 }
             }
             .padding(30)

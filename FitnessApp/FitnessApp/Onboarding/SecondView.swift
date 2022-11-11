@@ -12,37 +12,48 @@ struct SecondView: View {
     @Binding var tabSelection: Int
     
     var body: some View {
-        VStack {
-            Rectangle()
-                .foregroundColor(.gray)
-                .frame(width: 400, height: 400)
-                .padding()
+        ZStack {
+            Color.DS_Accent
+                .ignoresSafeArea()
             
-            Text("Mitteilungen")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.bottom)
-            
-            Text("Wir brauchen deine Erlaubnis, das wir dir Mitteilungen senden dürfen. Diese brauchen wir um dir z.b. zu zeigen das dein Pausen Timer abgelaufen ist.")
-                .fontWeight(.light)
-                .padding()
-            
-            Button("Erlaube Mitteilungen") {
-                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-                    if success {
-                        print("All set!")
-                        self.tabSelection = 2
-                    } else if let error = error {
-                        print(error.localizedDescription)
+            VStack(alignment: .leading) {
+                Text("Fitness App")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .padding(.bottom)
+                
+                Spacer()
+                
+                Image(systemName: "bell.and.waves.left.and.right")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: .infinity)
+                    .font(.largeTitle.weight(.thin))
+                    .padding()
+
+                
+                Spacer()
+                
+                TextView(titel: "Notifications", bodyText: "Allow us to send you notifications. These are important for your break timer or other features. We do not send messages that you do not want.", color: false)
+                
+                MainButton(text: "Allow", icon: "arrow.right") {
+                    
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                        if success {
+                            print("Notification Set")
+                            self.tabSelection = 2
+                        } else if let error = error {
+                            print(error.localizedDescription)
+                        }
                     }
                 }
             }
-            .buttonStyle(.borderedProminent)
-            
-            Spacer()
+            .padding(30)
+            .preferredColorScheme(.light)
         }
     }
 }
+
 
 struct SecondView_Previews: PreviewProvider {
     static var previews: some View {

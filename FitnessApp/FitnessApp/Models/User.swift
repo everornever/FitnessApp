@@ -11,7 +11,9 @@ import SwiftUI
 class User: ObservableObject {
     
     // User Metric
-    @AppStorage("weight") var weight = 70.0
+    @AppStorage("weight") var weight = 0.0
+    @AppStorage("weight") var height = 0.0
+    @AppStorage("weight") var age = 0
     
     // Workout Settings
     @AppStorage("pauseTimer") var pauseTimer = 90.0
@@ -19,7 +21,7 @@ class User: ObservableObject {
     @AppStorage("includeStreching") var includeStreching = false
     
     // Streak
-    @AppStorage("target") var target = 1
+    @AppStorage("target") var target = 0
     
     // App Version
     @AppStorage("firstStart") var firstStart = true

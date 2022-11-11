@@ -25,7 +25,7 @@ struct MainButton: View {
                         .font(.headline)
                 }
             }
-            .frame(minWidth: 300)
+            .frame(maxWidth: 300)
             .padding(20)
             .foregroundColor(Color.DS_Primary_RV)
             .background(Color.DS_Primary)

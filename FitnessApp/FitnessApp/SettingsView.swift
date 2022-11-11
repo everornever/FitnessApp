@@ -48,14 +48,6 @@ struct SettingsView: View {
             }
         }
         .navigationBarTitle("Settings", displayMode: .inline)
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("Done") {
-                    inputIsFocused = false
-                }
-            }
-        }
         
     }
 }

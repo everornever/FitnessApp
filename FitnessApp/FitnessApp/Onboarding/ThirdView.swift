@@ -9,38 +9,216 @@ import SwiftUI
 
 struct ThirdView: View {
     
+    // Tab View Selection
+    @Binding var tabSelection: Int
+    
     @ObservedObject var user = User()
-    @Binding var showOnboarding: Bool
-    let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+    
+    @FocusState private var focusedField: Field?
+    
+    enum Field {
+        case age
+        case height
+        case weight
+    }
+    
+    @State private var age: Int = 0
+    @State private var height: Double = 0
+    @State private var weight: Double = 0
+    @State private var target: Int = 3
+    
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        formatter.zeroSymbol  = ""
+        return formatter
+    }()
+    
+    let formatter2: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        formatter.maximumIntegerDigits = 2
+        formatter.zeroSymbol  = ""
+        return formatter
+    }()
     
     var body: some View {
-        VStack {
-            Rectangle()
-                .foregroundColor(.gray)
-                .frame(width: 400, height: 400)
-                .padding()
+        ZStack {
+            Color.DS_Primary_RV
+                .ignoresSafeArea()
             
-            Text("Danke")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.bottom)
-            
-            Text("Danke das du **FitnessApp** ausprobierst. Wir hoffen es wird dir gefallen.")
-                .fontWeight(.light)
-                .padding()
-            
-            Button("Fertig") {
-            showOnboarding.toggle()
+            VStack(alignment: .leading) {
+                Text("Fitness App")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .padding(.bottom)
+                
+                Spacer()
+                
+                VStack(spacing: 25) {
+                    // Age
+                    HStack {
+                        Text("Age")
+                        Spacer()
+                        TextField("90", value: $age, formatter: formatter2)
+                            .keyboardType(.numberPad)
+                            .multilineTextAlignment(.trailing)
+                            .font(.title3.bold())
+                            .focused($focusedField, equals: .age)
+                            .toolbar {
+                                ToolbarItemGroup(placement: .keyboard) {
+                                    Spacer()
+                                    
+                                    if (focusedField == .age) {
+                                        
+                                        Button("Next") {
+                                            focusedField = .height
+                                        }
+                                    }
+                                    else if( focusedField == .height) {
+                                        Button("Next") {
+                                            focusedField = .weight
+                                        }
+                                    }
+                                    else {
+                                        Button("Done") {
+                                            focusedField = .none
+                                        }
+                                    }
+                                }
+                            }
+
+                        
+                    }
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(.white, lineWidth: 3)
+                    )
+                    
+                    // Height
+                    HStack {
+                        Text("Height")
+                        Spacer()
+                        TextField("1,80", value: $height, formatter: formatter)
+                            .keyboardType(.decimalPad)
+                            .multilineTextAlignment(.trailing)
+                            .font(.title3.bold())
+                            .focused($focusedField, equals: .height)
+                        
+                        
+                    }
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(.white, lineWidth: 3)
+                    )
+                    
+                    // Weight
+                    HStack {
+                        Text("Weight")
+                        Spacer()
+                        TextField("80", value: $weight, formatter: formatter)
+                            .keyboardType(.decimalPad)
+                            .multilineTextAlignment(.trailing)
+                            .font(.title3.bold())
+                            .focused($focusedField, equals: .weight)
+                        
+                    }
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(.white, lineWidth: 3)
+                    )
+                    
+                    // Target
+                    HStack {
+                        Text("Weekly Target")
+                        Spacer()
+                        Text("\(target)")
+                            .font(.title3.bold())
+                        Spacer()
+                        Button("-") { subtracTarget() }
+                            .buttonStyle(.borderedProminent)
+                            .tint(Color.DS_Primary)
+                            .foregroundColor(Color.DS_Primary_RV)
+                        Button("+") { addTarget() }
+                            .buttonStyle(.borderedProminent)
+                            .tint(Color.DS_Primary)
+                            .foregroundColor(Color.DS_Primary_RV)
+                        
+                    }
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(.white, lineWidth: 3)
+                    )
+                    
+                    Text("How many times do you want to go to the Gym in a week ?")
+                        .font(.caption2)
+                        .foregroundStyle(Color.DS_Light)
+                        .padding(.top, -10)
+                }
+
+                
+                Spacer()
+                
+                TextView(titel: "Your Stats", bodyText: "Give us some information about yourself to make it easier for you to get started.", color: true)
+                
+                MainButton(text: "Save", icon: "arrow.right") {
+                    if ( isValidReply() ) {
+                        
+                        self.tabSelection = 3
+                        
+                        // Save user Data
+                        user.age = age
+                        user.height = height
+                        user.weight = weight
+                        user.target = target
+                        
+                    }
+                    else {
+                        // User Feedback
+                        print("Not Valid")
+                    }
+                    
+                }
             }
-            .buttonStyle(.borderedProminent)
-            
-            Spacer()
+            .padding(30)
+            .preferredColorScheme(.dark)
+
+        }
+    }
+    
+    private func addTarget() {
+        if (target < 7) {
+            target += 1
+        }
+    }
+    
+    private func subtracTarget() {
+        if (target > 1) {
+            target -= 1
+        }
+    }
+    
+    private func isValidReply() -> Bool {
+        if (Double(age).isZero && height.isZero && weight.isZero) {
+            return false
+        }
+        else {
+            return true
         }
     }
 }
 
 struct ThirdView_Previews: PreviewProvider {
     static var previews: some View {
-        ThirdView( showOnboarding: .constant(false))
+        ThirdView(tabSelection: .constant(3))
     }
 }
+
+
+
