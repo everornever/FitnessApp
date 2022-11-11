@@ -47,6 +47,10 @@ struct WorkoutView: View {
     //MARK: - BODY
     var body: some View {
         ZStack {
+            
+            Color.DS_Background
+                .ignoresSafeArea()
+            
             VStack {
                 Text(workoutStopwatch.elapsedTime.timeString().hours)
                     .monospacedDigit()
@@ -60,10 +64,12 @@ struct WorkoutView: View {
                         HStack {
                             if(exerciseIndex == index) {
                                 Image(systemName: "arrowtriangle.right.fill")
-                                    .foregroundColor(Color("FirstColor"))
+                                    .foregroundColor(Color.DS_Accent)
                             }
                             
-                            Text(" \(index+1). Übung")
+                            Image(systemName: "\(index+1).circle")
+                            
+                            Text("Übung")
                                 .font(.title3)
                             
                             Spacer()
@@ -72,13 +78,13 @@ struct WorkoutView: View {
                                 ForEach(0..<numberOfSets[index], id: \.self) { _ in
                                     
                                     Image(systemName: "circlebadge.fill")
-                                        .foregroundColor(Color("FirstColor"))
+                                        .foregroundColor(Color.DS_Accent)
                                         .font(.title3)
                                     
                                 }
                             } else {
                                 Image(systemName: "\(numberOfSets[index]).circle")
-                                    .foregroundColor(Color("FirstColor"))
+                                    .foregroundColor(Color.DS_Accent)
                                     .font(.title)
                             }
                             
@@ -86,26 +92,17 @@ struct WorkoutView: View {
                         
                     }
                 }
+//                .background(.pink)
+//                .scrollContentBackground(.hidden)
                 .cornerRadius(30)
                 .padding(20)
                 
                 // MARK: - Notizen
-                Button {
-                    showingNotes = true
-                } label: {
-                    Image(systemName: "list.bullet.clipboard")
-                        .frame(maxWidth: .infinity)
-                        .foregroundStyle(.black)
-                        .font(.title)
-                        .padding()
-                }
-                .background(Color("SecondColor"))
-                .cornerRadius(20)
-                .padding(.bottom)
+                MainButton(text: "", icon: "list.bullet.clipboard") { showingNotes = true }
+                .padding([.leading, .trailing], 20)
                 .sheet(isPresented: $showingNotes) {
                     ExerciseListView()
                 }
-                .padding([.leading, .trailing], 20)
                 
                 
                 // MARK: - Pause Button
@@ -120,12 +117,9 @@ struct WorkoutView: View {
                             pauseStopwatch.stop()
                         } label: {
                             Image(systemName: "gobackward")
-                                .tint(Color.gray)
+                                .tint(Color.DS_Light)
                         }
                     }
-                    
-                    Text("Pause Timer")
-                        .foregroundColor(.secondary)
                     
                     
                     HStack(spacing: 40) {
@@ -142,7 +136,7 @@ struct WorkoutView: View {
                         } label: {
                             Image(systemName: "backward.end.fill")
                                 .font(.title)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color.DS_Primary)
                         }
                         
                         
@@ -155,7 +149,7 @@ struct WorkoutView: View {
                                 .foregroundColor(.black)
                                 .padding(30)
                         }
-                        .tint(Color("FirstColor"))
+                        .tint(Color.DS_Accent)
                         .buttonStyle(.borderedProminent)
                         
                         // Next exercise
@@ -168,7 +162,7 @@ struct WorkoutView: View {
                         } label: {
                             Image(systemName: "forward.end.fill")
                                 .font(.title)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color.DS_Primary)
                         }
                     }
                 }
@@ -187,6 +181,7 @@ struct WorkoutView: View {
             }
                 .alert("Workout abbrechen", isPresented: $endWorkoutAlert) {
                     Button("Zurück", role: .cancel) {}
+                        .tint(Color.DS_Accent)
                     Button("Abbrechen", role: .destructive) {
                         pauseStopwatch.stop()
                         workoutStopwatch.isRunning.toggle()
@@ -200,7 +195,7 @@ struct WorkoutView: View {
                 saveWorkout()
             } label: {
                 Text("Beenden")
-                    .tint(.black)
+                    .tint(Color.DS_Primary)
             })
             
             // PopupView

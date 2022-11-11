@@ -21,66 +21,87 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
-                // MARK: - WeekView
-                VStack(alignment: .leading) {
+            ZStack {
+                
+                Color.DS_Background
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 0) {
+                    
+                    // MARK: - Titel
                     HStack {
-                        Text("Aktivität")
-                            .font(.headline)
-                            .bold()
+                        Text("Dashboard")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                        
+                        Spacer()
+                        NavigationLink(destination: SettingsView()) {
+                            Image(systemName: "gear")
+                                .font(.title)
+                                .tint(Color.DS_Primary)
+                        }
+                    }
+                    .padding()
+                    
+                    
+                    
+                    // MARK: - WeekView
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("Aktivität")
+                                .font(.title3)
+                                .bold()
+                            
+                            Spacer()
+                            
+                            NavigationLink(destination: ProgressView(), isActive: $isShowingProgressView) { EmptyView() }
+                            Button("Verlauf") { isShowingProgressView = true }
+                                .tint(Color.DS_Light)
+                                .font(.body.weight(.medium))
+                        }
+                        
+                        WeekView()
+                        
+                    }
+                    .padding()
+                    
+                    Spacer()
+                    
+                    VStack {
+                        // MARK: - Stats
+                        
+                        CurrentStatsView()
+                            .padding(.bottom)
+                        
+                        // MARK: - Workout Buttton
+                        HStack(spacing: -10) {
+                            
+                            NavigationLink(destination: WorkoutView(), isActive: $isShowingWorkoutView) { EmptyView() }
+                            MainButton(text: "Starte Workout",icon: "arrow.right") { isShowingWorkoutView = true }
+                            
+                            Text("\(savedWorkouts.workoutArray.count)")
+                                .fontWeight(.bold)
+                                .padding(20)
+                                
+                                
+                        }
+                        .background(Color.DS_Background)
+                        .cornerRadius(20)
+                        .padding([.leading,.trailing])
+                        
+                        
                         
                         Spacer()
                         
-                        NavigationLink(destination: ProgressView(), isActive: $isShowingProgressView) { EmptyView() }
-                        Button("Verlauf") { isShowingProgressView = true }
-                        
                     }
-                    WeekView()
-                }
-                .padding()
-                
-                // MARK: - Stats
-                VStack(alignment: .leading) {
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.DS_Overlay)
+                    .cornerRadius(40)
                     
-                    Text("Aktuelle Werte")
-                        .font(.headline)
-                        .bold()
                     
-                    CurrentStatsView()
-                    
-                }
-                .padding()
-                
-                // MARK: - Workout Buttton
-                VStack(alignment: .leading) {
-                    
-                    NavigationLink(destination: WorkoutView(), isActive: $isShowingWorkoutView) { EmptyView() }
-                    Button { isShowingWorkoutView = true } label: {
-                        Text("**Starte Workout**")
-                            .frame(maxWidth: .infinity)
-                            .foregroundStyle(.black)
-                            .font(.title2)
-                            .padding(10)
-                    }
-                    .foregroundStyle(.green)
-                    .tint(Color("FirstColor"))
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-                    .padding(.top, 20)
-                    
-                }
-                .padding()
-
-            } // End Main VStack
-            .navigationBarTitle("Home")
-            .navigationBarItems(
-                trailing:
-                    NavigationLink(destination: SettingsView()) {
-                        Image(systemName: "gear")
-                            .font(.title3)
-                            .tint(.black)
-                    }
-            )
+                } // End Main VStack
+            }.ignoresSafeArea(.all, edges: .bottom)
         }
         .onAppear(perform: checkForUpdates)
         .environmentObject(savedWorkouts)

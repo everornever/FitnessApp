@@ -13,21 +13,33 @@ struct CardViewWeight: View {
     
     var body: some View {
         VStack {
-            Text("Gewicht")
-                .fontWeight(.bold)
-            ZStack{
-                Circle()
-                    .frame(width: 90)
-                    .foregroundStyle(Color("SecondColor"))
-                Text("\(userInput.formatted()) KG")
-                    .fontWeight(.bold)
-                    .font(.title2)
+            HStack {
+                Image(systemName: "scalemass.fill")
+                    .padding(10)
+                    .background(Color.DS_Overlay)
+                    .cornerRadius(40)
+                
+                Spacer()
+                
+                Text("\(userInput.formatted())")
+                    .font(.title.weight(.bold))
+                
+                Text("Kg")
+                    .font(.headline)
+                    .fontWeight(.light)
+                    .padding(.leading, -5)
+                    .padding(.top)
             }
-        }
-        .frame(maxWidth: .infinity,minHeight: 150)
-        .background(.white)
-        .cornerRadius(20)
+            .padding()
+            
+            
+            Spacer()
 
+        }
+        .frame(maxWidth: .infinity ,maxHeight: .infinity)
+        .background(Color.DS_Background)
+        .cornerRadius(20)
+        
     }
 }
 
@@ -39,24 +51,29 @@ struct CardViewTarget: View {
     
     var body: some View {
         VStack {
-            Text("Wochen Ziel")
-                .fontWeight(.bold)
-            ZStack{
-                Circle()
-                    .frame(width: 90)
-                    .foregroundStyle(Color("FirstColor").opacity(0.3))
-                Circle()
-                    .frame(width: 70)
-                    .foregroundStyle(Color("FirstColor"))
+            HStack {
+                Image(systemName: "target")
+                    .padding(10)
+                    .background(Color.DS_Overlay)
+                    .cornerRadius(40)
+                
+                Spacer()
+                
                 Text("\(checkTarget()) / \(userInput)")
-                    .fontWeight(.bold)
-                    .font(.title2)
-            }
-        }
-        .frame(maxWidth: .infinity,minHeight: 150)
-        .background(.white)
-        .cornerRadius(20)
+                    .font(.title.weight(.bold))
+                
 
+            }
+            .padding()
+            
+            
+            Spacer()
+
+        }
+        .frame(maxWidth: .infinity ,maxHeight: .infinity)
+        .background(Color.DS_Background)
+        .cornerRadius(20)
+        
     }
     
     func checkTarget() -> Int {
@@ -77,17 +94,17 @@ struct CardViewScore: View {
     
     var body: some View {
         VStack {
-            Text("...")
-                .fontWeight(.bold)
 
+            
         }
-        .frame(maxWidth: .infinity,minHeight: 150)
-        .background(.white)
+        .frame(maxWidth: .infinity ,maxHeight: .infinity)
+        .background(Color.DS_Background)
         .cornerRadius(20)
-
+        
     }
 }
 
+// MARK: - main View
 struct CurrentStatsView: View {
     
     @ObservedObject var user = User()
@@ -97,9 +114,14 @@ struct CurrentStatsView: View {
     
     var body: some View {
         
-        VStack(spacing: 10) {
-            CardViewScore()
+        VStack(alignment: .leading) {
+            
+            Text("Aktuelle Werte")
+                .font(.title3)
+                .bold()
+            
             HStack {
+                
                 CardViewWeight(userInput: user.weight)
                     .onTapGesture {
                         isShowingWeightView.toggle()
@@ -107,6 +129,9 @@ struct CurrentStatsView: View {
                     .sheet(isPresented: $isShowingWeightView) {
                         WeightView()
                     }
+                
+                Spacer(minLength: 20)
+                
                 CardViewTarget(userInput: user.target)
                     .onTapGesture {
                         isShowingTargetView.toggle()
@@ -114,18 +139,28 @@ struct CurrentStatsView: View {
                     .sheet(isPresented: $isShowingTargetView) {
                         TargetView()
                     }
+                
             }
+            
+            Text("Aktuelle Streak")
+                .font(.title3)
+                .bold()
+                .padding(.top)
+            
+            CardViewScore()
         }
         .padding(10)
-        .background(.regularMaterial)
+        .background(Color.DS_Overlay)
         .cornerRadius(20)
         
     }
 }
 
+// MARK: - PreView
 struct WeeklyStats_Previews: PreviewProvider {
     static var previews: some View {
         CurrentStatsView()
+            .frame(height: 500)
     }
 }
 

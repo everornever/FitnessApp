@@ -44,7 +44,7 @@ struct FourthView: View {
                     showOnboarding.toggle()
                     
                     // dont show onboarding again
-                    user.firstStart = false
+//                    user.firstStart = false
                 }
             }
             .padding(30)
