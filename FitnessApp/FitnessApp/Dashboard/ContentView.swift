@@ -104,14 +104,14 @@ struct ContentView: View {
         .onAppear(perform: checkForUpdates)
         .environmentObject(savedWorkouts)
         .fullScreenCover(isPresented: $user.firstStart, content: { Onboarding(showOnboarding: $user.firstStart) })
-        .sheet(isPresented: $isShowingUpdateView) { UpdateView() }
+        .sheet(isPresented: $isShowingUpdateView) { UpdateView(isPresented: $isShowingUpdateView) }
     }
     
     func checkForUpdates() {
         print("Last Version:", user.lastVersion)
         print("Current Version:" ,appVersion)
         
-        if(user.lastVersion != appVersion) {
+        if(user.lastVersion != appVersion && !user.firstStart ) {
             isShowingUpdateView = true
         }
     }
