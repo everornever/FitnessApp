@@ -22,18 +22,18 @@ struct TargetView: View {
                 .foregroundStyle(.secondary)
                 .padding()
             Spacer()
-            Text("Trainingsziel")
+            Text("Training goal")
                 .fontWeight(.bold)
                 .font(.largeTitle)
             VStack {
                 
                 ZStack {
                     Circle()
-                        .foregroundColor(Color("FirstColor"))
+                        .foregroundColor(Color.DS_Accent)
                         .frame(width: 250)
                         .overlay(
                             Circle()
-                                .stroke(Color("FirstColor"))
+                                .stroke(Color.DS_Accent)
                                 .scaleEffect(animationAmount)
                                 .opacity(2 - animationAmount)
                                 .animation(
@@ -49,12 +49,12 @@ struct TargetView: View {
                     Text("\(user.target)")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(.DS_Primary)
                 }
                 
                 Spacer()
                 
-                Stepper("Wie oft willst du Trainieren pro Woche?",value: $user.target,  in: 1...7)
+                Stepper("How often do you want to train per week?",value: $user.target,  in: 1...7)
                     .padding()
                     .background(.thinMaterial)
                     .cornerRadius(20)

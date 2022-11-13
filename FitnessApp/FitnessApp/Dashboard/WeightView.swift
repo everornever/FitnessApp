@@ -22,7 +22,7 @@ struct WeightView: View {
                 .padding()
             Spacer()
             VStack {
-                Text("Was ist dein Gewicht ?")
+                Text("What is your weight ?")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding()
@@ -43,6 +43,7 @@ struct WeightView: View {
                     dismiss()
                 }
                 .buttonStyle(.borderedProminent)
+                .foregroundColor(Color.DS_Primary_RV)
             }
             Spacer()
         }

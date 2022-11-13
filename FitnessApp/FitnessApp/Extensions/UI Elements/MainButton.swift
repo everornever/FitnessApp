@@ -9,16 +9,19 @@ import SwiftUI
 
 struct MainButton: View {
     
-    var text: String
+    var text: String?
     var icon: String?
+    var tint: Color?
     var clicked: (() -> Void) /// use closure for callback
     
     var body: some View {
         Button(action: clicked) { /// call the closure here
             HStack {
-                Text(text) /// your text
-                    .font(.headline)
-                    .fontWeight(.bold)
+                if(text != nil) {
+                    Text(text!) /// your text
+                        .font(.headline)
+                        .fontWeight(.bold)
+                }
                 
                 if(icon != nil) {
                     Image(systemName: icon!)
@@ -27,8 +30,8 @@ struct MainButton: View {
             }
             .frame(maxWidth: .infinity)
             .padding(20)
-            .foregroundColor(Color.DS_Primary_RV)
-            .background(Color.DS_Primary)
+            .foregroundColor((tint != nil) ? Color.DS_Primary : Color.DS_Primary_RV)
+            .background((tint != nil) ? tint : Color.DS_Primary)
             .cornerRadius(20)
         }
     }

@@ -126,11 +126,12 @@ struct WorkoutView: View {
                 .padding(20)
                 
                 // MARK: - Notizen
-                MainButton(text: "", icon: "list.bullet.clipboard") { showingNotes = true }
+                MainButton(text: "", icon: "list.bullet.clipboard", tint: Color.DS_Background) { showingNotes = true }
                     .padding([.leading, .trailing], 20)
                     .sheet(isPresented: $showingNotes) {
                         ExerciseListView(isPresented: $showingNotes)
                     }
+
                 
                 
                 // MARK: - Pause Button
@@ -261,7 +262,7 @@ struct WorkoutView: View {
         pauseStopwatch.stop()
         
         // save workout stats
-        savedWorkouts.workoutArray.append(Workout(exercises: 6, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
+        savedWorkouts.workoutArray.append(Workout(exercises: numberOfExercises, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
         
         // show popup
         withAnimation {
