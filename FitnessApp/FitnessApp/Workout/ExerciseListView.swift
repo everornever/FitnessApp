@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ExerciseListView: View {
     
-    @StateObject var exercises = SavedExercises()
+    @StateObject private var exercises = SavedExercises()
+    
+    @Binding var isPresented: Bool
     
     // MARK: - Body
     var body: some View {
@@ -36,15 +38,15 @@ struct ExerciseListView: View {
                 .onMove(perform: move)
                 
                 HStack {
-                    Image(systemName: "plus.circle")
+                    Image(systemName: "plus.circle.fill")
                         .foregroundColor(.accentColor)
-                    Button("Ubung hinzufugen") { addExersice() }
+                    Button("Add exercise") { addExersice() }
                 }
                     
             }
-            .navigationBarTitle("Notizen", displayMode: .inline)
+            .navigationBarTitle("Notes", displayMode: .inline)
             .toolbar {
-                EditButton()
+                Button("Done") { isPresented = false }
             }
         }
     }
@@ -76,6 +78,6 @@ struct ExerciseListView: View {
 // MARK: - Preview
 struct ExerciseListView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseListView()
+        ExerciseListView(isPresented: .constant(true))
     }
 }

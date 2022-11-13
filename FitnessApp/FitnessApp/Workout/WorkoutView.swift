@@ -37,16 +37,23 @@ struct WorkoutView: View {
     @State var numberOfExercises = 1
     @State var exerciseIndex = 0
     @State var numberOfSets = [0]
-
+    
     // Workout Notes
     @State var showingNotes = false
     
     // Timer Sound
     let systemSoundID: SystemSoundID = 1050
     
+    // Warm Up
+    @State private var warmUp = false
+    
     //MARK: - BODY
     var body: some View {
         ZStack {
+            
+            Color.DS_Overlay
+                .ignoresSafeArea()
+            
             VStack {
                 Text(workoutStopwatch.elapsedTime.timeString().hours)
                     .monospacedDigit()
@@ -55,57 +62,76 @@ struct WorkoutView: View {
                 
                 // MARK: - Exercise List
                 List {
-                    ForEach((0..<numberOfExercises).reversed(), id: \.self) { index in
-                        
+                    Section("Press to add Warm Up") {
                         HStack {
-                            if(exerciseIndex == index) {
-                                Image(systemName: "arrowtriangle.right.fill")
-                                    .foregroundColor(Color("FirstColor"))
-                            }
-                            
-                            Text(" \(index+1). Übung")
+                            Image(systemName: "figure.run.circle")
                                 .font(.title3)
+                            
+                            Text("Warm Up")
                             
                             Spacer()
                             
-                            if(numberOfSets[index] < 5) {
-                                ForEach(0..<numberOfSets[index], id: \.self) { _ in
-                                    
-                                    Image(systemName: "circlebadge.fill")
-                                        .foregroundColor(Color("FirstColor"))
-                                        .font(.title3)
-                                    
+                            if (warmUp) {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(Color.DS_Accent)
+                                    .font(.title3)
+                            }
+                            else {
+                                Image(systemName: "circlebadge")
+                                    .foregroundColor(Color.primary)
+                                    .font(.title2)
+                            }
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            warmUp = true
+                        }
+                    }
+                    
+                    Section("Press Pause Button to add Set") {
+                        ForEach((0..<numberOfExercises).reversed(), id: \.self) { index in
+                            
+                            HStack {
+                                if(exerciseIndex == index) {
+                                    Image(systemName: "arrowtriangle.right.fill")
+                                        .foregroundColor(Color.DS_Accent)
                                 }
-                            } else {
-                                Image(systemName: "\(numberOfSets[index]).circle")
-                                    .foregroundColor(Color("FirstColor"))
-                                    .font(.title)
+                                
+                                Text("\(index+1). Exercise")
+                                
+                                Spacer()
+                                
+                                if(numberOfSets[index] < 5) {
+                                    ForEach(0..<numberOfSets[index], id: \.self) { _ in
+                                        
+                                        Image(systemName: "circlebadge.fill")
+                                            .foregroundColor(Color.DS_Accent)
+                                            .font(.title)
+                                        
+                                    }
+                                } else {
+                                    Image(systemName: "\(numberOfSets[index]).circle")
+                                        .foregroundColor(Color.DS_Accent)
+                                        .font(.title)
+                                }
+                                
                             }
                             
                         }
-                        
                     }
                 }
+                //                .background(.pink)
+                //                .scrollContentBackground(.hidden)
                 .cornerRadius(30)
                 .padding(20)
                 
                 // MARK: - Notizen
-                Button {
-                    showingNotes = true
-                } label: {
-                    Image(systemName: "list.bullet.clipboard")
-                        .frame(maxWidth: .infinity)
-                        .foregroundStyle(.black)
-                        .font(.title)
-                        .padding()
-                }
-                .background(Color("SecondColor"))
-                .cornerRadius(20)
-                .padding(.bottom)
-                .sheet(isPresented: $showingNotes) {
-                    ExerciseListView()
-                }
-                .padding([.leading, .trailing], 20)
+                MainButton(text: "", icon: "list.bullet.clipboard", tint: Color.DS_Background) { showingNotes = true }
+                    .padding([.leading, .trailing], 20)
+                    .sheet(isPresented: $showingNotes) {
+                        ExerciseListView(isPresented: $showingNotes)
+                    }
+
                 
                 
                 // MARK: - Pause Button
@@ -120,12 +146,9 @@ struct WorkoutView: View {
                             pauseStopwatch.stop()
                         } label: {
                             Image(systemName: "gobackward")
-                                .tint(Color.gray)
+                                .tint(Color.DS_Light)
                         }
                     }
-                    
-                    Text("Pause Timer")
-                        .foregroundColor(.secondary)
                     
                     
                     HStack(spacing: 40) {
@@ -142,7 +165,7 @@ struct WorkoutView: View {
                         } label: {
                             Image(systemName: "backward.end.fill")
                                 .font(.title)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color.DS_Primary)
                         }
                         
                         
@@ -155,7 +178,7 @@ struct WorkoutView: View {
                                 .foregroundColor(.black)
                                 .padding(30)
                         }
-                        .tint(Color("FirstColor"))
+                        .tint(Color.DS_Accent)
                         .buttonStyle(.borderedProminent)
                         
                         // Next exercise
@@ -168,7 +191,7 @@ struct WorkoutView: View {
                         } label: {
                             Image(systemName: "forward.end.fill")
                                 .font(.title)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color.DS_Primary)
                         }
                     }
                 }
@@ -185,22 +208,21 @@ struct WorkoutView: View {
                 Image(systemName: "xmark")
                     .tint(Color.red)
             }
-                .alert("Workout abbrechen", isPresented: $endWorkoutAlert) {
-                    Button("Zurück", role: .cancel) {}
-                    Button("Abbrechen", role: .destructive) {
+                .alert("Quit Workout", isPresented: $endWorkoutAlert) {
+                    Button("Resume", role: .cancel) {}
+                    Button("Quit", role: .destructive) {
                         pauseStopwatch.stop()
                         workoutStopwatch.isRunning.toggle()
                         presentationMode.wrappedValue.dismiss()
                     }
                 } message: {
-                    Text("Bist du sicher du willst dein Workout abbrechen?")
+                    Text("Are you sure you want to quit your current workout?")
                 })
             .navigationBarItems( trailing:
                                     Button {
                 saveWorkout()
             } label: {
-                Text("Beenden")
-                    .tint(.black)
+                Text("Done")
             })
             
             // PopupView
@@ -240,7 +262,7 @@ struct WorkoutView: View {
         pauseStopwatch.stop()
         
         // save workout stats
-        savedWorkouts.workoutArray.append(Workout(exercises: 6, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
+        savedWorkouts.workoutArray.append(Workout(exercises: numberOfExercises, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
         
         // show popup
         withAnimation {

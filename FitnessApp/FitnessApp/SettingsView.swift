@@ -25,37 +25,27 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section {
-                Text("Pausen Timer")
+                Text("Break Timer")
                 Picker("Pause Timer Length", selection: $user.pauseTimer) {
                     ForEach(timers, id: \.self) {
                         Text(($0 / 60.0).formatted())
                     }
                 } 
                 .pickerStyle(.segmented)
-            } header: {
-                Text("Workout Einstellungen")
             } footer: {
-                Text("Stelle ein wie viel Minuten du zwischen zwei Sätzen Pause machen willst.")
+                Text("Set how many minutes you want to rest between sets")
             }
             
-            Section("Über uns") {
+            Section("About us") {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("FitnessApp \(appVersion) Alpha")
                         .font(.headline)
-                    Text("Designed mit 🤍 in Potsdam")
+                    Text("Designed with 🤍 in Potsdam")
                         .font(.footnote)
                 }.padding(.vertical, 5)
             }
         }
         .navigationBarTitle("Settings", displayMode: .inline)
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("Done") {
-                    inputIsFocused = false
-                }
-            }
-        }
         
     }
 }

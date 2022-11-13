@@ -29,6 +29,6 @@ class SavedExercises: ObservableObject {
                 return
             }
         }
-        savedExercises = [Exercise(name: "Bankdrücken", kilo: 20.0),Exercise(name: "Kreuzheben", kilo: 20.0), Exercise(name: "Squats", kilo: 20.0)]
+        savedExercises = [Exercise(name: "Bench Press", kilo: 20.0),Exercise(name: "Deadlift", kilo: 20.0), Exercise(name: "Squats", kilo: 20.0)]
     }
 }
