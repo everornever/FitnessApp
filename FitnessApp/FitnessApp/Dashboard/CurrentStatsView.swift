@@ -116,7 +116,7 @@ struct CurrentStatsView: View {
         
         VStack(alignment: .leading) {
             
-            Text("Aktuelle Werte")
+            Text("Current Stats")
                 .font(.title3)
                 .bold()
             
@@ -142,7 +142,7 @@ struct CurrentStatsView: View {
                 
             }
             
-            Text("Aktuelle Streak")
+            Text("Streak")
                 .font(.title3)
                 .bold()
                 .padding(.top)

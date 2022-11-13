@@ -17,12 +17,12 @@ struct ProgressView: View {
                 Image(systemName: "eyes")
                     .foregroundColor(.secondary)
                     .font(.title)
-                Text("Noch keine Workouts")
+                Text("No workouts yet")
                     .padding()
                     .foregroundColor(.secondary)
                     .font(.title2)
             }
-            .navigationTitle("Verlauf")
+            .navigationTitle("Progress")
         } else {
             List {
                 ForEach(savedWorkouts.workoutArray) { entry in
@@ -35,7 +35,7 @@ struct ProgressView: View {
                 }
                 .onDelete(perform: removeRows)
             }
-            .navigationTitle("Verlauf")
+            .navigationTitle("Progress")
             .toolbar {
                 EditButton()
             }

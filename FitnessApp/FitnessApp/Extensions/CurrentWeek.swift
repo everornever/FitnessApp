@@ -52,7 +52,7 @@ class CurrentWeek {
     
     private func getName(atIndex: Int) -> String {
         
-        let shortWeekDays = ["Mo","Di","Mi","Do","Fr","Sa","So"]
+        let shortWeekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"]
         
         return shortWeekDays[atIndex]
     }

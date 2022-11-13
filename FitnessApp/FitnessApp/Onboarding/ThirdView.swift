@@ -161,7 +161,7 @@ struct ThirdView: View {
                             .stroke(.white, lineWidth: 3)
                     )
                     
-                    Text("How many times do you want to go to the Gym in a week ?")
+                    Text("How many times a week do you want to go to the Gym?")
                         .font(.caption2)
                         .foregroundStyle(Color.DS_Light)
                         .padding(.top, -10)

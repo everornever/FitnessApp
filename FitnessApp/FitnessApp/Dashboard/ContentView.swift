@@ -48,14 +48,14 @@ struct ContentView: View {
                     // MARK: - WeekView
                     VStack(alignment: .leading) {
                         HStack {
-                            Text("Aktivität")
+                            Text("Activity")
                                 .font(.title3)
                                 .bold()
                             
                             Spacer()
                             
                             NavigationLink(destination: ProgressView(), isActive: $isShowingProgressView) { EmptyView() }
-                            Button("Verlauf") { isShowingProgressView = true }
+                            Button("See all") { isShowingProgressView = true }
                                 .tint(Color.DS_Light)
                                 .font(.body.weight(.medium))
                         }
@@ -64,8 +64,6 @@ struct ContentView: View {
                         
                     }
                     .padding()
-                    
-                    Spacer()
                     
                     VStack {
                         // MARK: - Stats
@@ -77,7 +75,7 @@ struct ContentView: View {
                         HStack(spacing: -10) {
                             
                             NavigationLink(destination: WorkoutView(), isActive: $isShowingWorkoutView) { EmptyView() }
-                            MainButton(text: "Starte Workout",icon: "arrow.right") { isShowingWorkoutView = true }
+                            MainButton(text: "Start Workout",icon: "arrow.right") { isShowingWorkoutView = true }
                             
                             Text("\(savedWorkouts.workoutArray.count)")
                                 .fontWeight(.bold)
@@ -91,7 +89,7 @@ struct ContentView: View {
                         
                         
                         
-                        Spacer()
+                        Spacer(minLength: 30)
                         
                     }
                     .frame(maxWidth: .infinity)
