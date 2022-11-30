@@ -1,37 +1,25 @@
 //
 //  ProgressView.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 27.08.22.
+//  Fitness App
 //
 
 import SwiftUI
 
 struct ProgressView: View {
     
+    // Saved Workouts
     @EnvironmentObject var savedWorkouts: SavedWorkouts
     
+    // MARK: - Body
     var body: some View {
+        
         if(savedWorkouts.workoutArray.isEmpty) {
-            VStack {
-                Image(systemName: "eyes")
-                    .foregroundColor(.secondary)
-                    .font(.title)
-                Text("No workouts yet")
-                    .padding()
-                    .foregroundColor(.secondary)
-                    .font(.title2)
-            }
-            .navigationTitle("Progress")
+            EmptyListView()
+                .navigationTitle("Progress")
         } else {
             List {
                 ForEach(savedWorkouts.workoutArray) { entry in
-                    HStack {
-                        Image(systemName: "clock")
-                        Text(entry.duration.timeString().minutes)
-                        Spacer()
-                        Text(entry.date.formatted(date: .abbreviated, time: .omitted))
-                    }
+                    ProgressRow(date: entry.date.formatted(date: .abbreviated, time: .omitted), exercises: entry.exercises, time: entry.duration.timeString().minutes)
                 }
                 .onDelete(perform: removeRows)
             }
@@ -39,6 +27,7 @@ struct ProgressView: View {
             .toolbar {
                 EditButton()
             }
+
         }
     }
     // MARK: - Functions
@@ -46,17 +35,33 @@ struct ProgressView: View {
     func removeRows(at offsets: IndexSet) {
         savedWorkouts.workoutArray.remove(atOffsets: offsets)
     }
-
+        
 }
+
+// MARK: - Empty List View
+struct EmptyListView: View {
+    var body: some View {
+        VStack {
+            Image(systemName: "eyes")
+                .foregroundColor(Color.DS_Light)
+                .font(.title)
+            Text("No workouts yet")
+                .padding()
+                .foregroundColor(Color.DS_Light)
+                .font(.title2)
+        }
+    }
+}
+
 
 
 // MARK: - Preview
 struct ProgressView_Previews: PreviewProvider {
     
-    static let myEnvObject = SavedWorkouts()
+    static let previewObject = SavedWorkouts()
     
     static var previews: some View {
         ProgressView()
-            .environmentObject(myEnvObject)
+            .environmentObject(previewObject)
     }
 }

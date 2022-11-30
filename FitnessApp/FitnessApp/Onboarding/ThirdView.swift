@@ -2,8 +2,6 @@
 //  ThirdView.swift
 //  Fitnessential
 //
-//  Created by Leon Kling on 09.11.22.
-//
 
 import SwiftUI
 
@@ -12,11 +10,13 @@ struct ThirdView: View {
     // View Selection
     @Binding var currentView: Int
 
+    // User Info
     @ObservedObject var user = User()
     
     // Keyboard Focus
     @FocusState private var focusedField: Field?
     
+    // Keyboard Toolbar
     enum Field {
         case age
         case height
@@ -25,11 +25,11 @@ struct ThirdView: View {
     
     // User Metrics
     @State private var age: Int = 0
-    @State private var height: Double = 0
+    @State private var height: Int = 0
     @State private var weight: Double = 0
     @State private var target: Int = 3
     
-    // Formatter for user input
+    // Double Formatter for user input
     let doubleFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -39,6 +39,7 @@ struct ThirdView: View {
         return formatter
     }()
     
+    // Int Formatter for user input
     let intFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .none
@@ -51,7 +52,7 @@ struct ThirdView: View {
     var body: some View {
         ZStack {
             Color.DS_Primary_RV
-                .ignoresSafeArea()
+                .ignoresSafeArea(.keyboard)
             
             VStack(alignment: .leading) {
                 Text("Fitness App")
@@ -107,8 +108,8 @@ struct ThirdView: View {
                     HStack {
                         Text("Height")
                         Spacer()
-                        TextField("1,80", value: $height, formatter: doubleFormatter)
-                            .keyboardType(.decimalPad)
+                        TextField("180", value: $height, formatter: intFormatter)
+                            .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
                             .font(.title3.bold())
                             .focused($focusedField, equals: .height)
@@ -125,7 +126,7 @@ struct ThirdView: View {
                     HStack {
                         Text("Weight")
                         Spacer()
-                        TextField("80", value: $weight, formatter: doubleFormatter)
+                        TextField("80,00", value: $weight, formatter: doubleFormatter)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
                             .font(.title3.bold())
@@ -193,6 +194,7 @@ struct ThirdView: View {
             }
             .padding(30)
             .preferredColorScheme(.dark)
+            .ignoresSafeArea(.keyboard)
 
         }
     }
@@ -210,7 +212,7 @@ struct ThirdView: View {
     }
     
     private func isValidReply() -> Bool {
-        if (Double(age).isZero && height.isZero && weight.isZero) {
+        if (Double(age).isZero && Double(height).isZero && weight.isZero) {
             return false
         }
         else {

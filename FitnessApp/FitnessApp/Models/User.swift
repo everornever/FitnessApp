@@ -12,7 +12,7 @@ class User: ObservableObject {
     
     // User Metric
     @AppStorage("weight") var weight = 0.0
-    @AppStorage("weight") var height = 0.0
+    @AppStorage("weight") var height = 0
     @AppStorage("weight") var age = 0
     
     // Workout Settings

@@ -1,8 +1,6 @@
 //
 //  WeekView.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 08.09.22.
+//  Fitness App
 //
 
 import SwiftUI
@@ -32,7 +30,6 @@ struct WeekView: View {
                         Rectangle()
                             .frame(width: 10, height: 10)
                             .cornerRadius(20)
-                        .padding(.bottom)
                     }
                 }
                 

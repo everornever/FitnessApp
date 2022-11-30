@@ -1,19 +1,14 @@
 //
 //  SettingsView.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 25.08.22.
+//  Fitness App
 //
 
 import SwiftUI
-import UserNotifications
 
 struct SettingsView: View {
     
+    // User info
     @StateObject var user = User()
-    
-    // Keyboard
-    @FocusState private var inputIsFocused: Bool
     
     // Pause Timer
     @State private var allowNotification = false
@@ -22,6 +17,7 @@ struct SettingsView: View {
     // App Version
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "No version"
     
+    // MARK: - Body
     var body: some View {
         Form {
             Section {
@@ -38,7 +34,7 @@ struct SettingsView: View {
             
             Section("About us") {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("FitnessApp \(appVersion) Alpha")
+                    Text("Fitness App \(appVersion)")
                         .font(.headline)
                     Text("Designed with 🤍 in Potsdam")
                         .font(.footnote)

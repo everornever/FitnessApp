@@ -1,8 +1,6 @@
 //
 //  Workout.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 30.08.22.
+//  Fitness App
 //
 
 import Foundation
@@ -14,6 +12,7 @@ struct Workout: Identifiable, Codable {
     let exercises: Int
     let date: Date
     let duration: TimeInterval
+    
 }
 
 // Saved Workouts makes an array of Workouts with a UserDefault Get/Set attached

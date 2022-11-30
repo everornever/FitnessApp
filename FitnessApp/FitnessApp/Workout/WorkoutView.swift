@@ -122,6 +122,7 @@ struct WorkoutView: View {
                 }
                 //                .background(.pink)
                 //                .scrollContentBackground(.hidden)
+                .scrollIndicators(.hidden)
                 .cornerRadius(30)
                 .padding(20)
                 

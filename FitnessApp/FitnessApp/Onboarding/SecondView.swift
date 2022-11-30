@@ -1,9 +1,8 @@
 //
 //  SecondView.swift
-//  Fitnessential
+//  Fitness App
 //
-//  Created by Leon Kling on 09.11.22.
-//
+
 
 import SwiftUI
 
@@ -44,6 +43,7 @@ struct SecondView: View {
                             self.currentView = 2
                         } else if let error = error {
                             print(error.localizedDescription)
+                            // Needs to be dealed with
                         }
                     }
                 }
