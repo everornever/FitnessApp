@@ -31,6 +31,7 @@
 		3583A7162915440500743013 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A7152915440500743013 /* Onboarding.swift */; };
 		3583A718291544F200743013 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A717291544F200743013 /* UpdateView.swift */; };
 		35C1575128EEEF1F00C7B641 /* PauseTimerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */; };
+		35C22BFC2938F9DE0096BC38 /* SoundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C22BFB2938F9DE0096BC38 /* SoundListView.swift */; };
 		35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D13D0628CB71F50033D155 /* CurrentStatsView.swift */; };
 		35D7B67F28B7858D000AFDC1 /* FitnessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D7B67E28B7858D000AFDC1 /* FitnessApp.swift */; };
 		35D7B68128B7858D000AFDC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D7B68028B7858D000AFDC1 /* ContentView.swift */; };
@@ -67,6 +68,7 @@
 		3583A7152915440500743013 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		3583A717291544F200743013 /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
 		35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTimerFunctions.swift; sourceTree = "<group>"; };
+		35C22BFB2938F9DE0096BC38 /* SoundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundListView.swift; sourceTree = "<group>"; };
 		35D13D0628CB71F50033D155 /* CurrentStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStatsView.swift; sourceTree = "<group>"; };
 		35D7B67B28B7858D000AFDC1 /* Fitnessential.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitnessential.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35D7B67E28B7858D000AFDC1 /* FitnessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessApp.swift; sourceTree = "<group>"; };
@@ -167,6 +169,15 @@
 			path = "UI Elements";
 			sourceTree = "<group>";
 		};
+		35C22BFA2938F9CB0096BC38 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				35D7B68C28B785BB000AFDC1 /* SettingsView.swift */,
+				35C22BFB2938F9DE0096BC38 /* SoundListView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		35CD6D1828D8828200200E4E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,7 +208,7 @@
 			children = (
 				3583A717291544F200743013 /* UpdateView.swift */,
 				35D7B67E28B7858D000AFDC1 /* FitnessApp.swift */,
-				35D7B68C28B785BB000AFDC1 /* SettingsView.swift */,
+				35C22BFA2938F9CB0096BC38 /* Settings */,
 				350374332937762800DF4306 /* Progress */,
 				357A6D8E291C0C3700EB6E53 /* Onboarding */,
 				3538982528DC839700983E1A /* Dashboard */,
@@ -303,6 +314,7 @@
 				3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */,
 				357A6D90291C0C6E00EB6E53 /* FirstView.swift in Sources */,
 				35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */,
+				35C22BFC2938F9DE0096BC38 /* SoundListView.swift in Sources */,
 				357A6D8D291BE7A800EB6E53 /* Colors.swift in Sources */,
 				35FCF62129000888001C2281 /* TargetView.swift in Sources */,
 				3526DD2F291D3C3300B76DD3 /* FourthView.swift in Sources */,

@@ -10,9 +10,17 @@ struct ProgressRow: View {
     let date: String
     let exercises: Int
     let time: String
+    let day: String
     
     var body: some View {
         HStack {
+            Text("\(day)")
+                .font(.title3)
+                .bold()
+                .frame(width: 50, height: 50)
+                .background(Color.DS_Light.opacity(0.2))
+                .cornerRadius(40)
+            
             VStack(alignment: .leading, spacing: 5) {
                 HStack {
                     Text("\(exercises)")
@@ -43,6 +51,6 @@ struct ProgressRow: View {
 
 struct ProgressRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressRow(date: "10. Nov 2022", exercises: 6, time: "00:10")
+        ProgressRow(date: "10. Nov 2022", exercises: 6, time: "00:10", day: Date.now.formatted(.dateTime.weekday(.short)))
     }
 }

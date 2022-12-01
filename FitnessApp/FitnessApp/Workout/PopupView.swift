@@ -1,8 +1,6 @@
 //
 //  PopupView.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 11.09.22.
+//  Fitness App
 //
 
 import SwiftUI
@@ -11,7 +9,7 @@ struct PopupView: View {
     var body: some View {
         VStack {
             Image(systemName: "checkmark")
-                .foregroundColor(.green)
+                .foregroundColor(Color.DS_Accent)
                 .font(.system(size: 60))
                 .padding()
             Text("Workout")

@@ -1,8 +1,6 @@
 //
 //  ExerciseListView.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 20.10.22.
+//  Fitness App
 //
 
 import SwiftUI
@@ -28,8 +26,10 @@ struct ExerciseListView: View {
                                 .padding(.trailing)
                             Button("+") { addWeight(index: index) }
                                 .buttonStyle(.borderedProminent)
+                                .foregroundColor(Color.DS_Primary_RV)
                             Button("-") { subtractWeight(index: index) }
                                 .buttonStyle(.borderedProminent)
+                                .foregroundColor(Color.DS_Primary_RV)
                         }
                         .padding(3)
                     }

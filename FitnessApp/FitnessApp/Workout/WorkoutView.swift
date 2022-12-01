@@ -1,8 +1,6 @@
 //
 //  WorkoutView.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 06.09.22.
+//  Fitness App
 //
 
 import SwiftUI
@@ -44,8 +42,9 @@ struct WorkoutView: View {
     // Timer Sound
     let systemSoundID: SystemSoundID = 1050
     
-    // Warm Up
+    // Warm Up / Strechning
     @State private var warmUp = false
+    @State private var stretching = false
     
     //MARK: - BODY
     var body: some View {
@@ -62,29 +61,33 @@ struct WorkoutView: View {
                 
                 // MARK: - Exercise List
                 List {
-                    Section("Press to add Warm Up") {
-                        HStack {
-                            Image(systemName: "figure.run.circle")
-                                .font(.title3)
-                            
-                            Text("Warm Up")
-                            
-                            Spacer()
-                            
-                            if (warmUp) {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(Color.DS_Accent)
+                    
+                    if (user.includeStreching) {
+                        Section("Press to Check") {
+                            HStack {
+                                Image(systemName: "figure.strengthtraining.functional")
                                     .font(.title3)
+                                
+                                Text("Stretching")
+                                
+                                Spacer()
+                                
+                                if (stretching) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(Color.DS_Accent)
+                                        .font(.title3)
+                                }
+                                else {
+                                    Image(systemName: "circlebadge")
+                                        .foregroundColor(Color.primary)
+                                        .font(.title2)
+                                }
                             }
-                            else {
-                                Image(systemName: "circlebadge")
-                                    .foregroundColor(Color.primary)
-                                    .font(.title2)
+                            .listRowBackground(Color.DS_Overlay)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                stretching.toggle()
                             }
-                        }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            warmUp = true
                         }
                     }
                     
@@ -116,25 +119,47 @@ struct WorkoutView: View {
                                 }
                                 
                             }
+                            .listRowBackground(Color.DS_Overlay)
                             
                         }
                     }
+                    
+                    if (user.includeWarmup) {
+                        Section("Press to Check") {
+                            HStack {
+                                Image(systemName: "figure.run")
+                                    .font(.title3)
+                                
+                                Text("Warm Up")
+                                
+                                Spacer()
+                                
+                                if (warmUp) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(Color.DS_Accent)
+                                        .font(.title3)
+                                }
+                                else {
+                                    Image(systemName: "circlebadge")
+                                        .foregroundColor(Color.primary)
+                                        .font(.title2)
+                                }
+                            }
+                            .listRowBackground(Color.DS_Overlay)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                warmUp.toggle()
+                            }
+                        }
+                    }
+                    
                 }
-                //                .background(.pink)
-                //                .scrollContentBackground(.hidden)
+                .background(Color.DS_Background)
+                .scrollContentBackground(.hidden)
                 .scrollIndicators(.hidden)
                 .cornerRadius(30)
-                .padding(20)
-                
-                // MARK: - Notizen
-                MainButton(text: "", icon: "list.bullet.clipboard", tint: Color.DS_Background) { showingNotes = true }
-                    .padding([.leading, .trailing], 20)
-                    .sheet(isPresented: $showingNotes) {
-                        ExerciseListView(isPresented: $showingNotes)
-                    }
+                .padding([.leading, .trailing], 20)
 
-                
-                
                 // MARK: - Pause Button
                 VStack {
                     HStack {
@@ -196,8 +221,17 @@ struct WorkoutView: View {
                         }
                     }
                 }
+                .padding(.bottom)
                 
                 Spacer()
+                
+                // MARK: - Notizen
+                MainButton(text: "", icon: "list.bullet.clipboard", tint: Color.DS_Background) { showingNotes = true }
+                    .padding([.leading, .trailing], 20)
+                    .sheet(isPresented: $showingNotes) {
+                        ExerciseListView(isPresented: $showingNotes)
+                    }
+            
             }
             // MARK: - Navigation Bar
             .navigationBarTitle("Workout", displayMode: .inline)

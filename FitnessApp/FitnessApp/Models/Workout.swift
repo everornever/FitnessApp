@@ -5,7 +5,6 @@
 
 import Foundation
 
-// Workout defines the propertys of one workout instance
 // Codable for the JASON encoder, Identifiable for the UUID Property
 struct Workout: Identifiable, Codable {
     var id = UUID()

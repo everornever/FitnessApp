@@ -11,7 +11,7 @@ struct CurrentStatsView: View {
     @ObservedObject var user = User()
     
     // Sheet Views
-    @State private var isShowingWeightView = false
+    //@State private var isShowingWeightView = false
     @State private var isShowingTargetView = false
     
     var body: some View {
@@ -24,23 +24,23 @@ struct CurrentStatsView: View {
             
             HStack {
                 
-                CardViewWeight(userInput: user.weight)
-                    .onTapGesture {
-                        isShowingWeightView.toggle()
-                    }
-                    .sheet(isPresented: $isShowingWeightView) {
-                        WeightView()
-                    }
+                CardViewWeight()
+//                    .onTapGesture {
+//                        isShowingWeightView.toggle()
+//                    }
+//                    .sheet(isPresented: $isShowingWeightView) {
+//                        WeightView()
+//                    }
                 
                 Spacer(minLength: 20)
                 
-                CardViewTarget(userInput: user.target)
+                CardViewTarget()
                     .onTapGesture {
                         isShowingTargetView.toggle()
                     }
                     .sheet(isPresented: $isShowingTargetView) {
                         TargetView()
-                            .presentationDragIndicator(.visible)
+                            .background(Color.DS_Overlay)
                     }
                 
             }

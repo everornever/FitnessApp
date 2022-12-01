@@ -61,18 +61,9 @@ struct ContentView: View {
                     VStack(spacing: -10) {
                         CurrentStatsView()
                         
-                        HStack(spacing: -10) { // Workout Button
-                            
-                            NavigationLink(destination: WorkoutView()) {
-                                MainLable(text: "Start Workout",icon: "arrow.right")
-                            }
-                            
-                            Text("\(savedWorkouts.workoutArray.count)")
-                                .fontWeight(.bold)
-                                .padding(20)
+                        NavigationLink(destination: WorkoutView()) {
+                            MainLable(text: "Start Workout",icon: "arrow.right")
                         }
-                        .background(Color.DS_Background)
-                        .cornerRadius(20)
                         .padding()
                         
                         Spacer(minLength: 30)
@@ -86,10 +77,9 @@ struct ContentView: View {
                 } // End Main VStack
             }.ignoresSafeArea(.all, edges: .bottom)
         }
-        //.navigationDestination(isPresented: $isShowingWorkoutView) { WorkoutView() }
         .onAppear(perform: checkForUpdates)
         .environmentObject(savedWorkouts)
-        //.fullScreenCover(isPresented: $user.firstStart, content: { Onboarding(showOnboarding: $user.firstStart) })
+        .fullScreenCover(isPresented: $user.firstStart, content: { Onboarding(showOnboarding: $user.firstStart) })
         .sheet(isPresented: $isShowingUpdateView) { UpdateView(isPresented: $isShowingUpdateView) }
     }
     

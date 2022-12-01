@@ -18,8 +18,8 @@ struct ProgressView: View {
                 .navigationTitle("Progress")
         } else {
             List {
-                ForEach(savedWorkouts.workoutArray) { entry in
-                    ProgressRow(date: entry.date.formatted(date: .abbreviated, time: .omitted), exercises: entry.exercises, time: entry.duration.timeString().minutes)
+                ForEach(savedWorkouts.workoutArray.reversed()) { entry in
+                    ProgressRow(date: entry.date.formatted(date: .abbreviated, time: .omitted), exercises: entry.exercises, time: entry.duration.timeString().minutes, day: entry.date.formatted(.dateTime.weekday(.short)))
                 }
                 .onDelete(perform: removeRows)
             }
