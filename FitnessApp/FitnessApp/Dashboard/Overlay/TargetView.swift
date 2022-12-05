@@ -31,26 +31,50 @@ struct TargetView: View {
                     .bold()
                 Spacer()
                 Button { dismiss() } label: {
-                    Image(systemName: "xmark")
-                        .padding(10)
-                        .foregroundColor(Color.DS_Primary)
-                        .background(Color.DS_Background)
-                        .cornerRadius(40)
+                    XLable(tint: Color.DS_Primary, back: Color.DSBackground)
                 }
             }
             .padding(.top)
             
-            Chart {
-                ForEach(savedWorkouts.workoutArray) { shape in
+            VStack(alignment: .leading) {
+                Text("Your workouts in the last 6 Weeks")
+                    .font(.caption2)
+                    .foregroundColor(Color.DS_Light)
+                    .padding(.top)
+                
+                Chart(savedWorkouts.sortedAfterWeeks()) { shape in
+                    
+                    RuleMark(y: .value("Goal", user.target))
+                        .foregroundStyle(Color.DS_SecondAccent)
+                        .lineStyle(StrokeStyle(lineWidth: 4, dash: [8]))
+                        .annotation(alignment: .leading) {
+                            Text("Target")
+                                .font(.caption2)
+                                .foregroundColor(Color.DS_Light)
+                        }
+                    
                     BarMark(
-                        x: .value("Calender Week", calendar.component(.weekOfYear, from: shape.date)),
-                        y: .value("Amount of Workouts", 5)
+                        x: .value("Calender Week", shape.weekNumber),
+                        y: .value("Amount of Workouts", shape.workouts.count)
                     )
                     .foregroundStyle(Color.DS_Accent)
+                    
                 }
+                .chartXAxisLabel() {
+                    Text("Calender Week")
+                }
+                .chartXScale(domain: getWeekNumberValues().lastSixWeeks...getWeekNumberValues().currentWeek)
+//                .chartXAxis {
+//                    AxisMarks(values: getWeekNumberValues().lastArray) { _ in
+//                        AxisGridLine()
+//                        AxisValueLabel(centered: true)
+//                    }
+//                }
+
+                .frame(height: 300)
             }
             .padding()
-            .background(Color.DS_Background)
+            .background(Color.DSBackground)
             .cornerRadius(20)
             
             HStack { // Weekly Target
@@ -75,38 +99,40 @@ struct TargetView: View {
                 }
             }
             .padding()
-            .background(Color.DS_Background)
+            .background(Color.DSBackground)
             .cornerRadius(10)
             
-            HStack { // Total Workouts
-                VStack(alignment: .leading) {
-                    Text("Total workouts")
-                        .font(.subheadline)
-                        .foregroundColor(.DS_Light)
-                    Text("\(savedWorkouts.workoutArray.count)")
-                        .font(.title2)
-                        .bold()
+            HStack {
+                HStack { // Total Workouts
+                    VStack(alignment: .leading) {
+                        Text("Total workouts")
+                            .font(.subheadline)
+                            .foregroundColor(.DS_Light)
+                        Text("\(savedWorkouts.workoutArray.count)")
+                            .font(.title2)
+                            .bold()
+                    }
+                    Spacer()
                 }
-                Spacer()
-            }
-            .padding()
-            .background(Color.DS_Background)
-            .cornerRadius(10)
-            
-            HStack { // Longest Workout
-                VStack(alignment: .leading) {
-                    Text("Longest Workout")
-                        .font(.subheadline)
-                        .foregroundColor(.DS_Light)
-                    Text(longestWorkout())
-                        .font(.title2)
-                        .bold()
+                .padding()
+                .background(Color.DSBackground)
+                .cornerRadius(10)
+                
+                HStack { // Longest Workout
+                    VStack(alignment: .leading) {
+                        Text("Longest Workout")
+                            .font(.subheadline)
+                            .foregroundColor(.DS_Light)
+                        Text(longestWorkout())
+                            .font(.title2)
+                            .bold()
+                    }
+                    Spacer()
                 }
-                Spacer()
+                .padding()
+                .background(Color.DSBackground)
+                .cornerRadius(10)
             }
-            .padding()
-            .background(Color.DS_Background)
-            .cornerRadius(10)
             
             
             Spacer()
@@ -126,7 +152,7 @@ struct TargetView: View {
         return workoutsDone
     }
     
-   func addTarget() {
+    func addTarget() {
         if (user.target < 7) {
             user.target += 1
         }
@@ -143,17 +169,29 @@ struct TargetView: View {
         
         return max?.timeString().hours ?? "00:00"
     }
+    
+    func getWeekNumberValues() -> (lastSixWeeks: Int, currentWeek: Int, lastArray: [Int]) {
+        
+        // Current week number minus 6 weeks
+        let lastSixWeeks = (savedWorkouts.sortedAfterWeeks().last?.weekNumber ?? 7) - 6
+        
+        // Array of last
+        let lastArry = savedWorkouts.sortedAfterWeeks().map { $0.weekNumber }
+        
+        // Current week number + 1 for fornt puffer
+        let currentWeek = (savedWorkouts.sortedAfterWeeks().last?.weekNumber ?? 51) + 1
+        
+        return (lastSixWeeks, currentWeek, lastArry)
+    }
 }
 
 struct TargetView_Previews: PreviewProvider {
+    
+    static let previewObject = SavedWorkouts()
+    
     static var previews: some View {
-        let example = SavedWorkouts()
         
-        example.workoutArray = [Workout(id: UUID(),exercises: 6, date: Date.now, duration: 3600),
-                                Workout(id: UUID(),exercises: 6, date: Date.now.addingTimeInterval(-86400), duration: 3000),
-                                Workout(id: UUID(),exercises: 6, date: Date.now.addingTimeInterval(-166400), duration: 4000)]
-        
-        return TargetView().environmentObject(example)
+        TargetView().environmentObject(previewObject)
     }
 }
 

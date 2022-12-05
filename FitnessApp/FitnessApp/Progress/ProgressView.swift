@@ -22,8 +22,11 @@ struct ProgressView: View {
                     ProgressRow(date: entry.date.formatted(date: .abbreviated, time: .omitted), exercises: entry.exercises, time: entry.duration.timeString().minutes, day: entry.date.formatted(.dateTime.weekday(.short)))
                 }
                 .onDelete(perform: removeRows)
+                .listRowBackground(Color.DSOverlay)
             }
             .navigationTitle("Progress")
+            .background(Color.DSBackground)
+            .scrollContentBackground(.hidden)
             .toolbar {
                 EditButton()
             }

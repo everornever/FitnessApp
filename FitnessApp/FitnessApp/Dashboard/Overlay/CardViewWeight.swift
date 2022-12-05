@@ -34,7 +34,7 @@ struct CardViewWeight: View {
             
         }
         .frame(maxWidth: .infinity ,maxHeight: .infinity)
-        .background(Color.DS_Background)
+        .background(Color.DSOverlay)
         .cornerRadius(20)
         
     }

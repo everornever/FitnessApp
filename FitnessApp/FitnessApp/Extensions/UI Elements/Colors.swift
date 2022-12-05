@@ -15,8 +15,8 @@ extension Color {
     static let DS_SecondAccent = Color("SecondAccent")
     
     // Backgrounds
-    static let DS_Background = Color("Background")
-    static let DS_Overlay = Color("Overlay")
+    static let DSOverlay = Color("DSOverlay")
+    static let DSBackground = Color("DSBackground")
     
     // Text and Buttons
     static let DS_Light = Color("Light")

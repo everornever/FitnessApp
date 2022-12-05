@@ -23,3 +23,12 @@ extension Double {
     }
 }
 
+extension Date {
+    
+    func getWeekNumber() -> Int {
+        let calender = Calendar.current
+        let weekNumber = calender.component(.weekOfYear, from: Date(primitivePlottable: self)!)
+        return weekNumber
+    }
+}
+

@@ -40,7 +40,7 @@ struct CurrentStatsView: View {
                     }
                     .sheet(isPresented: $isShowingTargetView) {
                         TargetView()
-                            .background(Color.DS_Overlay)
+                            .background(Color.DSOverlay)
                     }
                 
             }
@@ -52,7 +52,7 @@ struct CurrentStatsView: View {
             CardViewScore()
         }
         .padding(20)
-        .background(Color.DS_Overlay)
+        .background(Color.DSBackground)
         .cornerRadius(10)
         
     }

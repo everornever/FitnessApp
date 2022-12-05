@@ -33,17 +33,20 @@ struct SettingsView: View {
                     }
                     
                     Toggle("Include warm up", isOn: $user.includeWarmup)
+                        .tint(Color.DS_Accent)
                     
                     Toggle("Include stretching", isOn: $user.includeStreching)
+                        .tint(Color.DS_Accent)
 
                 }
-                .headerProminence(.increased)
+                .listRowBackground(Color.DSOverlay)
                 
                 Section("Notification") {
                     NavigationLink(destination: SoundListView()) {
                         Text("Pause timer sounds")
                     }
                 }
+                .listRowBackground(Color.DSOverlay)
                 
                 Section("About us") {
                     VStack(alignment: .leading, spacing: 5) {
@@ -53,7 +56,10 @@ struct SettingsView: View {
                             .font(.footnote)
                     }.padding(.vertical, 5)
                 }
+                .listRowBackground(Color.DSOverlay)
             }
+            .background(Color.DSBackground)
+            .scrollContentBackground(.hidden)
             .navigationBarTitle("Settings", displayMode: .inline)
         }
         
@@ -67,4 +73,3 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView()
     }
 }
-

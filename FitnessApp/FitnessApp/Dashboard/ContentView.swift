@@ -20,7 +20,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.DS_Background
+                Color.DSOverlay
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) { // Main VStack
@@ -70,7 +70,7 @@ struct ContentView: View {
                         
                     }
                     .frame(maxWidth: .infinity)
-                    .background(Color.DS_Overlay)
+                    .background(Color.DSBackground)
                     .cornerRadius(40)
                     
                     

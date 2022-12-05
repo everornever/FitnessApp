@@ -50,7 +50,7 @@ struct WorkoutView: View {
     var body: some View {
         ZStack {
             
-            Color.DS_Overlay
+            Color.DSBackground
                 .ignoresSafeArea()
             
             VStack {
@@ -83,7 +83,7 @@ struct WorkoutView: View {
                                         .font(.title2)
                                 }
                             }
-                            .listRowBackground(Color.DS_Overlay)
+                            .listRowBackground(Color.DSBackground)
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 stretching.toggle()
@@ -119,7 +119,7 @@ struct WorkoutView: View {
                                 }
                                 
                             }
-                            .listRowBackground(Color.DS_Overlay)
+                            .listRowBackground(Color.DSBackground)
                             
                         }
                     }
@@ -145,7 +145,7 @@ struct WorkoutView: View {
                                         .font(.title2)
                                 }
                             }
-                            .listRowBackground(Color.DS_Overlay)
+                            .listRowBackground(Color.DSBackground)
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 warmUp.toggle()
@@ -154,7 +154,7 @@ struct WorkoutView: View {
                     }
                     
                 }
-                .background(Color.DS_Background)
+                .background(Color.DSOverlay)
                 .scrollContentBackground(.hidden)
                 .scrollIndicators(.hidden)
                 .cornerRadius(30)
@@ -226,7 +226,7 @@ struct WorkoutView: View {
                 Spacer()
                 
                 // MARK: - Notizen
-                MainButton(text: "", icon: "list.bullet.clipboard", tint: Color.DS_Background) { showingNotes = true }
+                MainButton(text: "", icon: "list.bullet.clipboard", tint: Color.DSOverlay) { showingNotes = true }
                     .padding([.leading, .trailing], 20)
                     .sheet(isPresented: $showingNotes) {
                         ExerciseListView(isPresented: $showingNotes)
@@ -240,11 +240,11 @@ struct WorkoutView: View {
                                     Button {
                 endWorkoutAlert = true
             } label: {
-                Image(systemName: "xmark")
-                    .tint(Color.red)
+                XLable(tint: Color.red, back: Color.DSOverlay)
             }
                 .alert("Quit Workout", isPresented: $endWorkoutAlert) {
                     Button("Resume", role: .cancel) {}
+                        .tint(Color.DS_Accent)
                     Button("Quit", role: .destructive) {
                         pauseStopwatch.stop()
                         workoutStopwatch.isRunning.toggle()
@@ -258,6 +258,7 @@ struct WorkoutView: View {
                 saveWorkout()
             } label: {
                 Text("Done")
+                    .bold()
             })
             
             // PopupView

@@ -30,6 +30,7 @@
 		357A6D96291C16CE00EB6E53 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D95291C16CE00EB6E53 /* MainButton.swift */; };
 		3583A7162915440500743013 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A7152915440500743013 /* Onboarding.swift */; };
 		3583A718291544F200743013 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A717291544F200743013 /* UpdateView.swift */; };
+		35859CE4293E1819000D502B /* XLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35859CE3293E1819000D502B /* XLable.swift */; };
 		35C1575128EEEF1F00C7B641 /* PauseTimerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */; };
 		35C22BFC2938F9DE0096BC38 /* SoundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C22BFB2938F9DE0096BC38 /* SoundListView.swift */; };
 		35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D13D0628CB71F50033D155 /* CurrentStatsView.swift */; };
@@ -67,6 +68,7 @@
 		357A6D95291C16CE00EB6E53 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		3583A7152915440500743013 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		3583A717291544F200743013 /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
+		35859CE3293E1819000D502B /* XLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLable.swift; sourceTree = "<group>"; };
 		35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTimerFunctions.swift; sourceTree = "<group>"; };
 		35C22BFB2938F9DE0096BC38 /* SoundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundListView.swift; sourceTree = "<group>"; };
 		35D13D0628CB71F50033D155 /* CurrentStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStatsView.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				357A6D8C291BE7A800EB6E53 /* Colors.swift */,
 				357A6D95291C16CE00EB6E53 /* MainButton.swift */,
 				3521AEF7291E93C6005A1B47 /* TextView.swift */,
+				35859CE3293E1819000D502B /* XLable.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				350374382937F0CB00DF4306 /* CardViewTarget.swift in Sources */,
 				3535B1A229016F6900BF16EE /* ExerciseListView.swift in Sources */,
 				3583A7162915440500743013 /* Onboarding.swift in Sources */,
+				35859CE4293E1819000D502B /* XLable.swift in Sources */,
 				3503743C2937FFE800DF4306 /* CardViewScore.swift in Sources */,
 				352137E128CA13750045A453 /* WeekView.swift in Sources */,
 				3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */,

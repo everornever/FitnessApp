@@ -37,7 +37,7 @@ struct CardViewTarget: View {
                     VStack {
                         ZStack(alignment: .bottom) {
                             RoundedRectangle(cornerRadius: 20)
-                                .foregroundColor(Color.DS_Overlay)
+                                .foregroundColor(Color.DSBackground)
                                 .frame(width: 6)
                             
                             if (week == 5) {
@@ -73,7 +73,7 @@ struct CardViewTarget: View {
             .padding(.bottom, 10)
         }
         .frame(maxWidth: .infinity ,maxHeight: .infinity)
-        .background(Color.DS_Background)
+        .background(Color.DSOverlay)
         .cornerRadius(10)
         
     }

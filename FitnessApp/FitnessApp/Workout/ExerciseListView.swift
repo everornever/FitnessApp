@@ -45,6 +45,8 @@ struct ExerciseListView: View {
                     
             }
             .navigationBarTitle("Notes", displayMode: .inline)
+            .background(Color.DSOverlay)
+            .scrollContentBackground(.hidden)
             .toolbar {
                 Button("Done") { isPresented = false }
             }
@@ -66,11 +68,15 @@ struct ExerciseListView: View {
     }
     
     func addWeight(index: Int) {
-        exercises.savedExercises[index].kilo += 2.5
+        if (exercises.savedExercises[index].kilo < 500) {
+            exercises.savedExercises[index].kilo += 2.5
+        }
     }
     
     func subtractWeight(index: Int) {
-        exercises.savedExercises[index].kilo -= 2.5
+        if (exercises.savedExercises[index].kilo > 0) {
+            exercises.savedExercises[index].kilo -= 2.5
+        }
     }
     
 }

@@ -12,6 +12,8 @@ struct SoundListView: View {
                 Text("Sound 1")
             }
         }
+        .background(Color.DSOverlay)
+        .scrollContentBackground(.hidden)
     }
 }
 
