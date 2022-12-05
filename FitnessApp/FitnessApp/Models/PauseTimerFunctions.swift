@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import AVFoundation
 import SwiftUI
 import UserNotifications
 
@@ -72,7 +71,7 @@ class PauseTimerFunctions: ObservableObject {
         // Content
         content.title = "Pause ist vorbei"
         content.subtitle = "zurück an die Arbeit!"
-        content.sound = UNNotificationSound.default
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "Bell.mp3"))
         
         // trigger
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: user.pauseTimer, repeats: false)

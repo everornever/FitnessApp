@@ -30,7 +30,7 @@ struct ThirdView: View {
     @State private var target: Int = 3
     
     // Double Formatter for user input
-    let doubleFormatter: NumberFormatter = {
+    let weightFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 2
@@ -40,10 +40,19 @@ struct ThirdView: View {
     }()
     
     // Int Formatter for user input
-    let intFormatter: NumberFormatter = {
+    let ageFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .none
         formatter.maximumIntegerDigits = 2
+        formatter.zeroSymbol  = ""
+        return formatter
+    }()
+    
+    // Int Formatter for user input
+    let heightFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        formatter.maximumIntegerDigits = 3
         formatter.zeroSymbol  = ""
         return formatter
     }()
@@ -68,7 +77,7 @@ struct ThirdView: View {
                     HStack {
                         Text("Age")
                         Spacer()
-                        TextField("90", value: $age, formatter: intFormatter)
+                        TextField("90", value: $age, formatter: ageFormatter)
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
                             .font(.title3.bold())
@@ -108,7 +117,7 @@ struct ThirdView: View {
                     HStack {
                         Text("Height")
                         Spacer()
-                        TextField("180", value: $height, formatter: intFormatter)
+                        TextField("180", value: $height, formatter: heightFormatter)
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
                             .font(.title3.bold())
@@ -126,7 +135,7 @@ struct ThirdView: View {
                     HStack {
                         Text("Weight")
                         Spacer()
-                        TextField("80,00", value: $weight, formatter: doubleFormatter)
+                        TextField("80,00", value: $weight, formatter: weightFormatter)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
                             .font(.title3.bold())
