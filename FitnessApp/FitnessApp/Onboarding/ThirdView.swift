@@ -60,7 +60,7 @@ struct ThirdView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            Color.DS_Primary_RV
+            Color.DSPrimary_RV
                 .ignoresSafeArea(.keyboard)
             
             VStack(alignment: .leading) {
@@ -157,12 +157,12 @@ struct ThirdView: View {
                         Spacer()
                         Button("-") { subtracTarget() }
                             .buttonStyle(.borderedProminent)
-                            .tint(Color.DS_Primary)
-                            .foregroundColor(Color.DS_Primary_RV)
+                            .tint(Color.DSPrimary)
+                            .foregroundColor(Color.DSPrimary_RV)
                         Button("+") { addTarget() }
                             .buttonStyle(.borderedProminent)
-                            .tint(Color.DS_Primary)
-                            .foregroundColor(Color.DS_Primary_RV)
+                            .tint(Color.DSPrimary)
+                            .foregroundColor(Color.DSPrimary_RV)
                         
                     }
                     .padding()
@@ -173,7 +173,7 @@ struct ThirdView: View {
                     
                     Text("How many times a week do you want to go to the Gym?")
                         .font(.caption2)
-                        .foregroundStyle(Color.DS_Light)
+                        .foregroundStyle(Color.DSLight)
                         .padding(.top, -10)
                 }
 

@@ -18,7 +18,7 @@ struct ProgressRow: View {
                 .font(.title3)
                 .bold()
                 .frame(width: 50, height: 50)
-                .background(Color.DS_Light.opacity(0.2))
+                .background(Color.DSLight.opacity(0.2))
                 .cornerRadius(40)
             
             VStack(alignment: .leading, spacing: 5) {
@@ -30,7 +30,7 @@ struct ProgressRow: View {
                         .font(.headline)
                 }
                 Text(date)
-                    .foregroundColor(Color.DS_Light)
+                    .foregroundColor(Color.DSLight)
             }
             .padding(.leading)
             
@@ -42,7 +42,7 @@ struct ProgressRow: View {
                         .font(.title2)
                         .bold()
                     Text("min")
-                        .foregroundColor(Color.DS_Light)
+                        .foregroundColor(Color.DSLight)
                 }
             }
         }

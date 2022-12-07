@@ -26,13 +26,14 @@ struct ExerciseListView: View {
                                 .padding(.trailing)
                             Button("+") { addWeight(index: index) }
                                 .buttonStyle(.borderedProminent)
-                                .foregroundColor(Color.DS_Primary_RV)
+                                .foregroundColor(Color.DSPrimary_RV)
                             Button("-") { subtractWeight(index: index) }
                                 .buttonStyle(.borderedProminent)
-                                .foregroundColor(Color.DS_Primary_RV)
+                                .foregroundColor(Color.DSPrimary_RV)
                         }
                         .padding(3)
                     }
+                    .listRowBackground(Color.DSSecondaryBackground)
                 }
                 .onDelete(perform: removeRows)
                 .onMove(perform: move)
@@ -42,13 +43,16 @@ struct ExerciseListView: View {
                         .foregroundColor(.accentColor)
                     Button("Add exercise") { addExersice() }
                 }
+                .listRowBackground(Color.DSSecondaryBackground)
                     
             }
             .navigationBarTitle("Notes", displayMode: .inline)
-            .background(Color.DSOverlay)
+            .background(Color.DSSecondaryOverlay)
             .scrollContentBackground(.hidden)
             .toolbar {
-                Button("Done") { isPresented = false }
+                Button { isPresented = false } label: {
+                    RoundButton(tint: Color.DSPrimary, back: Color.DSOverlay, cancel: true)
+                }
             }
         }
     }

@@ -46,11 +46,11 @@ struct EmptyListView: View {
     var body: some View {
         VStack {
             Image(systemName: "eyes")
-                .foregroundColor(Color.DS_Light)
+                .foregroundColor(Color.DSLight)
                 .font(.title)
             Text("No workouts yet")
                 .padding()
-                .foregroundColor(Color.DS_Light)
+                .foregroundColor(Color.DSLight)
                 .font(.title2)
         }
     }

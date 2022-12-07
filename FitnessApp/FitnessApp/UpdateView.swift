@@ -1,8 +1,6 @@
 //
 //  UpdateView.swift
-//  Fitnessential
-//
-//  Created by Leon Kling on 04.11.22.
+//  Fitness App
 //
 
 import SwiftUI
@@ -22,57 +20,18 @@ struct UpdateView: View {
             .font(.largeTitle.weight(.bold))
             
             
-            HStack {
-                Image(systemName: "lanyardcard.fill")
-                    .font(.title)
-                    .frame(width: 40)
-                    .padding()
+            VStack(alignment: .leading) {
+                FeatureRow(image: "photo.circle.fill", title: "New App Icon", text: "A new App icon was added")
+        
+                FeatureRow(image: "list.bullet.circle", title: "Progress View", text: "The progress view was updated to show more info")
+        
+                FeatureRow(image: "bell.badge.circle", title: "New Sounds", text: "You can now change the pause timer sound")
                 
-                VStack(alignment: .leading) {
-                    Text("Dark Mode")
-                        .font(.title3.weight(.bold))
-                    
-                    Text("Support for dark mode was added with a updated Color concept ")
-                        .font(.body)
-                        .foregroundColor(Color.DS_Light)
-                }
-            }
-            .padding()
-            
-            HStack {
-                Image(systemName: "filemenu.and.selection")
-                    .font(.title)
-                    .frame(width: 40)
-                    .padding()
+                FeatureRow(image: "gearshape.circle", title: "Workout Settings", text: "More settings ware added, like include stretching or warmup")
                 
-                VStack(alignment: .leading) {
-                    Text("New Dashboard")
-                        .font(.title3.weight(.bold))
-                    
-                    Text("Updated design conzept. Some features are unfinished and still in progress")
-                        .font(.body)
-                        .foregroundColor(Color.DS_Light)
-                }
-            }
-            .padding()
-            
-            HStack {
-                Image(systemName: "figure.run.circle")
-                    .font(.title)
-                    .frame(width: 40)
-                    .padding()
+                FeatureRow(image: "ant.circle", title: "Lots of Bug fixes", text: "Most notable are notification fixes and design changes")
                 
-                VStack(alignment: .leading) {
-                    Text("Warm up")
-                        .font(.title3.weight(.bold))
-                    
-                    Text("You can now add a warm up inside your workout. This not affect any Set progress")
-                        .font(.body)
-                        .foregroundColor(Color.DS_Light)
-                }
             }
-            .padding()
-            
             Spacer()
             
             MainButton(text: "OK") {
@@ -88,5 +47,33 @@ struct UpdateView: View {
 struct UpdateView_Previews: PreviewProvider {
     static var previews: some View {
         UpdateView(isPresented: .constant(true))
+    }
+}
+
+struct FeatureRow: View {
+    
+    let image: String
+    let title: String
+    let text: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: image)
+                .font(.largeTitle)
+                .frame(width: 30)
+                .padding()
+            
+            VStack(alignment: .leading) {
+                Text(title)
+                    .font(.title3)
+                    .bold()
+                
+                Text(text)
+                    .font(.body)
+                    .foregroundColor(Color.DSLight)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .padding()
     }
 }

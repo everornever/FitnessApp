@@ -36,7 +36,7 @@ struct ContentView: View {
                         NavigationLink(destination: SettingsView()) {
                             Image(systemName: "gear")
                                 .font(.title)
-                                .tint(Color.DS_Primary)
+                                .tint(Color.DSPrimary)
                         }
                     }
                     .padding()
@@ -51,7 +51,7 @@ struct ContentView: View {
                             Spacer()
                             
                             NavigationLink("See all", destination: ProgressView())
-                                .tint(Color.DS_Light)
+                                .tint(Color.DSLight)
                         }
                         WeekView()
                     }

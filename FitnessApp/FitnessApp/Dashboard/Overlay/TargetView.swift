@@ -31,7 +31,7 @@ struct TargetView: View {
                     .bold()
                 Spacer()
                 Button { dismiss() } label: {
-                    XLable(tint: Color.DS_Primary, back: Color.DSBackground)
+                    RoundButton(tint: Color.DSPrimary, back: Color.DSBackground, cancel: true)
                 }
             }
             .padding(.top)
@@ -39,31 +39,34 @@ struct TargetView: View {
             VStack(alignment: .leading) {
                 Text("Your workouts in the last 6 Weeks")
                     .font(.caption2)
-                    .foregroundColor(Color.DS_Light)
+                    .foregroundColor(Color.DSLight)
                     .padding(.top)
                 
-                Chart(savedWorkouts.sortedAfterWeeks()) { shape in
+                Chart(savedWorkouts.workoutArray) { shape in
+                    
+                    // x = last 6 weeks number
+                    // check if workout for weeknumber was done ? if yes .count else 0
                     
                     RuleMark(y: .value("Goal", user.target))
-                        .foregroundStyle(Color.DS_SecondAccent)
+                        .foregroundStyle(Color.DSSecondaryAccent)
                         .lineStyle(StrokeStyle(lineWidth: 4, dash: [8]))
                         .annotation(alignment: .leading) {
                             Text("Target")
                                 .font(.caption2)
-                                .foregroundColor(Color.DS_Light)
+                                .foregroundColor(Color.DSLight)
                         }
                     
                     BarMark(
-                        x: .value("Calender Week", shape.weekNumber),
-                        y: .value("Amount of Workouts", shape.workouts.count)
+                        x: .value("Calender Week", shape.date, unit: .weekOfYear),
+                        y: .value("Amount of Workouts", shape.exercises)
                     )
-                    .foregroundStyle(Color.DS_Accent)
+                    .foregroundStyle(Color.DSAccent)
                     
                 }
                 .chartXAxisLabel() {
                     Text("Calender Week")
                 }
-                .chartXScale(domain: getWeekNumberValues().lastSixWeeks...getWeekNumberValues().currentWeek)
+//                .chartXScale(domain: getWeekNumberValues().lastSixWeeks...getWeekNumberValues().currentWeek)
 //                .chartXAxis {
 //                    AxisMarks(values: getWeekNumberValues().lastArray) { _ in
 //                        AxisGridLine()
@@ -81,7 +84,7 @@ struct TargetView: View {
                 VStack(alignment: .leading) {
                     Text("Weekly Target")
                         .font(.subheadline)
-                        .foregroundColor(.DS_Light)
+                        .foregroundColor(.DSLight)
                     Text("\(user.target)")
                         .font(.title2)
                         .bold()
@@ -90,12 +93,12 @@ struct TargetView: View {
                 HStack {
                     Button("-") { subtracTarget() }
                         .buttonStyle(.borderedProminent)
-                        .tint(Color.DS_Primary)
-                        .foregroundColor(Color.DS_Primary_RV)
+                        .tint(Color.DSPrimary)
+                        .foregroundColor(Color.DSPrimary_RV)
                     Button("+") { addTarget() }
                         .buttonStyle(.borderedProminent)
-                        .tint(Color.DS_Primary)
-                        .foregroundColor(Color.DS_Primary_RV)
+                        .tint(Color.DSPrimary)
+                        .foregroundColor(Color.DSPrimary_RV)
                 }
             }
             .padding()
@@ -107,7 +110,7 @@ struct TargetView: View {
                     VStack(alignment: .leading) {
                         Text("Total workouts")
                             .font(.subheadline)
-                            .foregroundColor(.DS_Light)
+                            .foregroundColor(.DSLight)
                         Text("\(savedWorkouts.workoutArray.count)")
                             .font(.title2)
                             .bold()
@@ -122,7 +125,7 @@ struct TargetView: View {
                     VStack(alignment: .leading) {
                         Text("Longest Workout")
                             .font(.subheadline)
-                            .foregroundColor(.DS_Light)
+                            .foregroundColor(.DSLight)
                         Text(longestWorkout())
                             .font(.title2)
                             .bold()

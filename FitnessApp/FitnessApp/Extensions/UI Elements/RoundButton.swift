@@ -1,19 +1,18 @@
 //
 //  XLable.swift
-//  Fitnessential
-//
-//  Created by Leon Kling on 05.12.22.
+//  Fitness App
 //
 
 import SwiftUI
 
-struct XLable: View {
+struct RoundButton: View {
     
     let tint: Color
     let back: Color
+    let cancel: Bool
     
     var body: some View {
-        Image(systemName: "xmark")
+        Image(systemName: cancel ? "xmark" : "checkmark")
             .padding(10)
             .bold()
             .foregroundColor(tint)
@@ -22,8 +21,8 @@ struct XLable: View {
     }
 }
 
-struct XLable_Previews: PreviewProvider {
+struct RoundButton_Previews: PreviewProvider {
     static var previews: some View {
-        XLable(tint: Color.red, back: Color.DSOverlay)
+        RoundButton(tint: Color.red, back: Color.DSOverlay, cancel: false)
     }
 }

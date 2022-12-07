@@ -22,8 +22,8 @@ struct WeekView: View {
                             .font(.caption2)
                     }
                     .frame(width: 40, height: 80)
-                    .foregroundColor(week[index].workoutDone ? Color.black : Color.DS_Primary)
-                    .background(week[index].workoutDone ? Color.DS_Accent : Color.DS_Primary_RV)
+                    .foregroundColor(week[index].workoutDone ? Color.black : Color.DSPrimary)
+                    .background(week[index].workoutDone ? Color.DSAccent : Color.DSPrimary_RV)
                     .cornerRadius(40)
                     
                     if(Calendar.current.isDateInToday(week[index].date)) {
