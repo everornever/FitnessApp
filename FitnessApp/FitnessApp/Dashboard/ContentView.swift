@@ -1,8 +1,6 @@
 //
 //  ContentView.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 25.08.22.
+//  Fitness App
 //
 
 import SwiftUI
@@ -13,20 +11,19 @@ struct ContentView: View {
     @StateObject var savedWorkouts = SavedWorkouts()
     @StateObject var user = User()
     
-    @State private var isShowingProgressView = false
+    // Views
     @State private var isShowingWorkoutView = false
     @State private var isShowingUpdateView = false
     
     let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
-                
-                Color.DS_Background
+                Color.DSOverlay
                     .ignoresSafeArea()
                 
-                VStack(spacing: 0) {
+                VStack(spacing: 0) { // Main VStack
                     
                     // MARK: - Titel
                     HStack {
@@ -35,18 +32,17 @@ struct ContentView: View {
                             .fontWeight(.bold)
                         
                         Spacer()
+                        
                         NavigationLink(destination: SettingsView()) {
                             Image(systemName: "gear")
                                 .font(.title)
-                                .tint(Color.DS_Primary)
+                                .tint(Color.DSPrimary)
                         }
                     }
                     .padding()
                     
-                    
-                    
                     // MARK: - WeekView
-                    VStack(alignment: .leading) {
+                    VStack {
                         HStack {
                             Text("Activity")
                                 .font(.title3)
@@ -54,47 +50,27 @@ struct ContentView: View {
                             
                             Spacer()
                             
-                            NavigationLink(destination: ProgressView(), isActive: $isShowingProgressView) { EmptyView() }
-                            Button("See all") { isShowingProgressView = true }
-                                .tint(Color.DS_Light)
-                                .font(.body.weight(.medium))
+                            NavigationLink("See all", destination: ProgressView())
+                                .tint(Color.DSLight)
                         }
-                        
                         WeekView()
-                        
                     }
                     .padding()
                     
-                    VStack {
-                        // MARK: - Stats
-                        
+                    // MARK: - Overlay
+                    VStack(spacing: -10) {
                         CurrentStatsView()
-                            .padding(.bottom)
                         
-                        // MARK: - Workout Buttton
-                        HStack(spacing: -10) {
-                            
-                            NavigationLink(destination: WorkoutView(), isActive: $isShowingWorkoutView) { EmptyView() }
-                            MainButton(text: "Start Workout",icon: "arrow.right") { isShowingWorkoutView = true }
-                            
-                            Text("\(savedWorkouts.workoutArray.count)")
-                                .fontWeight(.bold)
-                                .padding(20)
-                                
-                                
+                        NavigationLink(destination: WorkoutView()) {
+                            MainLable(text: "Start Workout",icon: "arrow.right")
                         }
-                        .background(Color.DS_Background)
-                        .cornerRadius(20)
-                        .padding([.leading,.trailing])
-                        
-                        
+                        .padding()
                         
                         Spacer(minLength: 30)
                         
                     }
                     .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.DS_Overlay)
+                    .background(Color.DSBackground)
                     .cornerRadius(40)
                     
                     

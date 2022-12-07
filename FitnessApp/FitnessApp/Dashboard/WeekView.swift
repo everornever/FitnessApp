@@ -1,8 +1,6 @@
 //
 //  WeekView.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 08.09.22.
+//  Fitness App
 //
 
 import SwiftUI
@@ -24,15 +22,14 @@ struct WeekView: View {
                             .font(.caption2)
                     }
                     .frame(width: 40, height: 80)
-                    .foregroundColor(week[index].workoutDone ? Color.black : Color.DS_Primary)
-                    .background(week[index].workoutDone ? Color.DS_Accent : Color.DS_Primary_RV)
+                    .foregroundColor(week[index].workoutDone ? Color.black : Color.DSPrimary)
+                    .background(week[index].workoutDone ? Color.DSAccent : Color.DSPrimary_RV)
                     .cornerRadius(40)
                     
                     if(Calendar.current.isDateInToday(week[index].date)) {
                         Rectangle()
                             .frame(width: 10, height: 10)
                             .cornerRadius(20)
-                        .padding(.bottom)
                     }
                 }
                 

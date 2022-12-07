@@ -43,7 +43,7 @@ struct WeightView: View {
                     dismiss()
                 }
                 .buttonStyle(.borderedProminent)
-                .foregroundColor(Color.DS_Primary_RV)
+                .foregroundColor(Color.DSPrimary_RV)
             }
             Spacer()
         }

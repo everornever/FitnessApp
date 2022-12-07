@@ -1,9 +1,8 @@
 //
 //  FirstView.swift
-//  Fitnessential
+//  Fitness App
 //
-//  Created by Leon Kling on 09.11.22.
-//
+
 
 import SwiftUI
 

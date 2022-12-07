@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension Double {
     
@@ -19,6 +20,27 @@ extension Double {
         return (String(format:"%02i:%02i:%02i", hours, minutes, seconds),
                 String(format:"%02i:%02i", hours, minutes),
                 String(format:"%02i:%02i", minutes, seconds))
+    }
+}
+
+extension Date {
+    
+    func getWeekNumber() -> Int {
+        let calendar = Calendar.current
+        let weekNumber = calendar.component(.weekOfYear, from: Date(primitivePlottable: self)!)
+        return weekNumber
+    }
+}
+
+extension Binding {
+    func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
+        Binding(
+            get: { self.wrappedValue },
+            set: { newValue in
+                self.wrappedValue = newValue
+                handler(newValue)
+            }
+        )
     }
 }
 

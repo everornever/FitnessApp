@@ -1,8 +1,6 @@
 //
 //  Onboarding.swift
-//  Fitnessential
-//
-//  Created by Leon Kling on 04.11.22.
+//  Fitness App
 //
 
 import SwiftUI
@@ -14,7 +12,7 @@ struct Onboarding: View {
     @State private var currentView = 0
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             
             switch currentView {
             case 1:

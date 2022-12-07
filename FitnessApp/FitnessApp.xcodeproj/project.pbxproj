@@ -8,16 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		3502947C28D4832B00C37C92 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3502947B28D4832B00C37C92 /* User.swift */; };
+		350374352937B11B00DF4306 /* ProgressRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350374342937B11B00DF4306 /* ProgressRow.swift */; };
+		350374382937F0CB00DF4306 /* CardViewTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350374372937F0CB00DF4306 /* CardViewTarget.swift */; };
+		3503743A2937F11100DF4306 /* CardViewWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350374392937F11100DF4306 /* CardViewWeight.swift */; };
+		3503743C2937FFE800DF4306 /* CardViewScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3503743B2937FFE800DF4306 /* CardViewScore.swift */; };
 		350B03AE28CE52E900738A7E /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B03AD28CE52E900738A7E /* PopupView.swift */; };
+		35143A3E293E3527001004D7 /* Attention.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 35143A3D293E3527001004D7 /* Attention.m4r */; };
+		35143A45293E59A5001004D7 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35143A44293E59A5001004D7 /* AudioPlayer.swift */; };
 		3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3520CB7928DDACA300F85F62 /* CurrentWeek.swift */; };
 		352137E128CA13750045A453 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352137E028CA13750045A453 /* WeekView.swift */; };
 		3521AEF8291E93C6005A1B47 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3521AEF7291E93C6005A1B47 /* TextView.swift */; };
 		3526DD2F291D3C3300B76DD3 /* FourthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526DD2E291D3C3300B76DD3 /* FourthView.swift */; };
-		352C47C828FC5781001EC887 /* TimeStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C47C728FC5781001EC887 /* TimeStringExtension.swift */; };
+		352C47C828FC5781001EC887 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C47C728FC5781001EC887 /* Extensions.swift */; };
 		3535B1A229016F6900BF16EE /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3535B1A129016F6900BF16EE /* ExerciseListView.swift */; };
 		3538982728DC83C900983E1A /* StopwatchFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538982628DC83C900983E1A /* StopwatchFunctions.swift */; };
 		3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3539485428C74AD600EDF0E2 /* WorkoutView.swift */; };
 		353C0F502901BB2D00A12930 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C0F4F2901BB2D00A12930 /* Exercise.swift */; };
+		3567C96D2940A208002FB477 /* Bell-One.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 3567C96B2940A208002FB477 /* Bell-One.m4r */; };
+		3567C96E2940A208002FB477 /* NewSet.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 3567C96C2940A208002FB477 /* NewSet.m4r */; };
 		356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AA81E28BA363000F9ABC2 /* ProgressView.swift */; };
 		357A6D8D291BE7A800EB6E53 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D8C291BE7A800EB6E53 /* Colors.swift */; };
 		357A6D90291C0C6E00EB6E53 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D8F291C0C6E00EB6E53 /* FirstView.swift */; };
@@ -26,7 +34,9 @@
 		357A6D96291C16CE00EB6E53 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D95291C16CE00EB6E53 /* MainButton.swift */; };
 		3583A7162915440500743013 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A7152915440500743013 /* Onboarding.swift */; };
 		3583A718291544F200743013 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A717291544F200743013 /* UpdateView.swift */; };
+		35859CE4293E1819000D502B /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35859CE3293E1819000D502B /* RoundButton.swift */; };
 		35C1575128EEEF1F00C7B641 /* PauseTimerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */; };
+		35C22BFC2938F9DE0096BC38 /* SoundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C22BFB2938F9DE0096BC38 /* SoundListView.swift */; };
 		35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D13D0628CB71F50033D155 /* CurrentStatsView.swift */; };
 		35D7B67F28B7858D000AFDC1 /* FitnessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D7B67E28B7858D000AFDC1 /* FitnessApp.swift */; };
 		35D7B68128B7858D000AFDC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D7B68028B7858D000AFDC1 /* ContentView.swift */; };
@@ -40,16 +50,24 @@
 
 /* Begin PBXFileReference section */
 		3502947B28D4832B00C37C92 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		350374342937B11B00DF4306 /* ProgressRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRow.swift; sourceTree = "<group>"; };
+		350374372937F0CB00DF4306 /* CardViewTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewTarget.swift; sourceTree = "<group>"; };
+		350374392937F11100DF4306 /* CardViewWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewWeight.swift; sourceTree = "<group>"; };
+		3503743B2937FFE800DF4306 /* CardViewScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewScore.swift; sourceTree = "<group>"; };
 		350B03AD28CE52E900738A7E /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		35143A3D293E3527001004D7 /* Attention.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attention.m4r; sourceTree = "<group>"; };
+		35143A44293E59A5001004D7 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		3520CB7928DDACA300F85F62 /* CurrentWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeek.swift; sourceTree = "<group>"; };
 		352137E028CA13750045A453 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
 		3521AEF7291E93C6005A1B47 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		3526DD2E291D3C3300B76DD3 /* FourthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthView.swift; sourceTree = "<group>"; };
-		352C47C728FC5781001EC887 /* TimeStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStringExtension.swift; sourceTree = "<group>"; };
+		352C47C728FC5781001EC887 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3535B1A129016F6900BF16EE /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
 		3538982628DC83C900983E1A /* StopwatchFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchFunctions.swift; sourceTree = "<group>"; };
 		3539485428C74AD600EDF0E2 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		353C0F4F2901BB2D00A12930 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		3567C96B2940A208002FB477 /* Bell-One.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bell-One.m4r"; sourceTree = "<group>"; };
+		3567C96C2940A208002FB477 /* NewSet.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewSet.m4r; sourceTree = "<group>"; };
 		356AA81E28BA363000F9ABC2 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		357A6D8C291BE7A800EB6E53 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		357A6D8F291C0C6E00EB6E53 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
@@ -58,9 +76,11 @@
 		357A6D95291C16CE00EB6E53 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		3583A7152915440500743013 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		3583A717291544F200743013 /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
+		35859CE3293E1819000D502B /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTimerFunctions.swift; sourceTree = "<group>"; };
+		35C22BFB2938F9DE0096BC38 /* SoundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundListView.swift; sourceTree = "<group>"; };
 		35D13D0628CB71F50033D155 /* CurrentStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStatsView.swift; sourceTree = "<group>"; };
-		35D7B67B28B7858D000AFDC1 /* Fitnessential.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitnessential.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		35D7B67B28B7858D000AFDC1 /* Fitness App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fitness App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35D7B67E28B7858D000AFDC1 /* FitnessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessApp.swift; sourceTree = "<group>"; };
 		35D7B68028B7858D000AFDC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		35D7B68228B78590000AFDC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,14 +102,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		350374332937762800DF4306 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				356AA81E28BA363000F9ABC2 /* ProgressView.swift */,
+				350374342937B11B00DF4306 /* ProgressRow.swift */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		350374362937CDD700DF4306 /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				35D13D0628CB71F50033D155 /* CurrentStatsView.swift */,
+				350374372937F0CB00DF4306 /* CardViewTarget.swift */,
+				35FCF62029000888001C2281 /* TargetView.swift */,
+				350374392937F11100DF4306 /* CardViewWeight.swift */,
+				35FCF61E28FFF9D7001C2281 /* WeightView.swift */,
+				3503743B2937FFE800DF4306 /* CardViewScore.swift */,
+			);
+			path = Overlay;
+			sourceTree = "<group>";
+		};
 		350B03AA28CE4E0200738A7E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				35143A44293E59A5001004D7 /* AudioPlayer.swift */,
 				3502947B28D4832B00C37C92 /* User.swift */,
 				35FE2A5828BE156200291982 /* Workout.swift */,
 				353C0F4F2901BB2D00A12930 /* Exercise.swift */,
+				3520CB7928DDACA300F85F62 /* CurrentWeek.swift */,
+				3538982628DC83C900983E1A /* StopwatchFunctions.swift */,
+				35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		35143A3F293E3537001004D7 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				35143A3D293E3527001004D7 /* Attention.m4r */,
+				3567C96B2940A208002FB477 /* Bell-One.m4r */,
+				3567C96C2940A208002FB477 /* NewSet.m4r */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		3538982428DC838B00983E1A /* Workout */ = {
@@ -107,9 +163,7 @@
 			children = (
 				35D7B68028B7858D000AFDC1 /* ContentView.swift */,
 				352137E028CA13750045A453 /* WeekView.swift */,
-				35D13D0628CB71F50033D155 /* CurrentStatsView.swift */,
-				35FCF61E28FFF9D7001C2281 /* WeightView.swift */,
-				35FCF62029000888001C2281 /* TargetView.swift */,
+				350374362937CDD700DF4306 /* Overlay */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -132,17 +186,24 @@
 				357A6D8C291BE7A800EB6E53 /* Colors.swift */,
 				357A6D95291C16CE00EB6E53 /* MainButton.swift */,
 				3521AEF7291E93C6005A1B47 /* TextView.swift */,
+				35859CE3293E1819000D502B /* RoundButton.swift */,
 			);
 			path = "UI Elements";
+			sourceTree = "<group>";
+		};
+		35C22BFA2938F9CB0096BC38 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				35D7B68C28B785BB000AFDC1 /* SettingsView.swift */,
+				35C22BFB2938F9DE0096BC38 /* SoundListView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		35CD6D1828D8828200200E4E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3520CB7928DDACA300F85F62 /* CurrentWeek.swift */,
-				3538982628DC83C900983E1A /* StopwatchFunctions.swift */,
-				35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */,
-				352C47C728FC5781001EC887 /* TimeStringExtension.swift */,
+				352C47C728FC5781001EC887 /* Extensions.swift */,
 				357A6D97291C16DA00EB6E53 /* UI Elements */,
 			);
 			path = Extensions;
@@ -159,7 +220,7 @@
 		35D7B67C28B7858D000AFDC1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				35D7B67B28B7858D000AFDC1 /* Fitnessential.app */,
+				35D7B67B28B7858D000AFDC1 /* Fitness App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,14 +230,15 @@
 			children = (
 				3583A717291544F200743013 /* UpdateView.swift */,
 				35D7B67E28B7858D000AFDC1 /* FitnessApp.swift */,
-				35D7B68C28B785BB000AFDC1 /* SettingsView.swift */,
-				356AA81E28BA363000F9ABC2 /* ProgressView.swift */,
 				357A6D8E291C0C3700EB6E53 /* Onboarding */,
+				35C22BFA2938F9CB0096BC38 /* Settings */,
+				350374332937762800DF4306 /* Progress */,
 				3538982528DC839700983E1A /* Dashboard */,
 				3538982428DC838B00983E1A /* Workout */,
 				350B03AA28CE4E0200738A7E /* Models */,
 				35CD6D1828D8828200200E4E /* Extensions */,
 				35D7B68228B78590000AFDC1 /* Assets.xcassets */,
+				35143A3F293E3537001004D7 /* Sounds */,
 				35D7B68428B78590000AFDC1 /* Preview Content */,
 			);
 			path = FitnessApp;
@@ -193,9 +255,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		35D7B67A28B7858D000AFDC1 /* Fitnessential */ = {
+		35D7B67A28B7858D000AFDC1 /* Fitness App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 35D7B68928B78590000AFDC1 /* Build configuration list for PBXNativeTarget "Fitnessential" */;
+			buildConfigurationList = 35D7B68928B78590000AFDC1 /* Build configuration list for PBXNativeTarget "Fitness App" */;
 			buildPhases = (
 				35D7B67728B7858D000AFDC1 /* Sources */,
 				35D7B67828B7858D000AFDC1 /* Frameworks */,
@@ -205,9 +267,9 @@
 			);
 			dependencies = (
 			);
-			name = Fitnessential;
+			name = "Fitness App";
 			productName = GetMoving;
-			productReference = 35D7B67B28B7858D000AFDC1 /* Fitnessential.app */;
+			productReference = 35D7B67B28B7858D000AFDC1 /* Fitness App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -238,7 +300,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				35D7B67A28B7858D000AFDC1 /* Fitnessential */,
+				35D7B67A28B7858D000AFDC1 /* Fitness App */,
 			);
 		};
 /* End PBXProject section */
@@ -250,6 +312,9 @@
 			files = (
 				35D7B68628B78590000AFDC1 /* Preview Assets.xcassets in Resources */,
 				35D7B68328B78590000AFDC1 /* Assets.xcassets in Resources */,
+				35143A3E293E3527001004D7 /* Attention.m4r in Resources */,
+				3567C96E2940A208002FB477 /* NewSet.m4r in Resources */,
+				3567C96D2940A208002FB477 /* Bell-One.m4r in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,23 +329,30 @@
 				350B03AE28CE52E900738A7E /* PopupView.swift in Sources */,
 				35D7B68D28B785BB000AFDC1 /* SettingsView.swift in Sources */,
 				356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */,
+				3503743A2937F11100DF4306 /* CardViewWeight.swift in Sources */,
 				357A6D96291C16CE00EB6E53 /* MainButton.swift in Sources */,
 				35D7B68128B7858D000AFDC1 /* ContentView.swift in Sources */,
+				350374382937F0CB00DF4306 /* CardViewTarget.swift in Sources */,
 				3535B1A229016F6900BF16EE /* ExerciseListView.swift in Sources */,
 				3583A7162915440500743013 /* Onboarding.swift in Sources */,
+				35859CE4293E1819000D502B /* RoundButton.swift in Sources */,
+				3503743C2937FFE800DF4306 /* CardViewScore.swift in Sources */,
 				352137E128CA13750045A453 /* WeekView.swift in Sources */,
 				3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */,
 				357A6D90291C0C6E00EB6E53 /* FirstView.swift in Sources */,
 				35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */,
+				35C22BFC2938F9DE0096BC38 /* SoundListView.swift in Sources */,
 				357A6D8D291BE7A800EB6E53 /* Colors.swift in Sources */,
 				35FCF62129000888001C2281 /* TargetView.swift in Sources */,
 				3526DD2F291D3C3300B76DD3 /* FourthView.swift in Sources */,
 				35FE2A5928BE156200291982 /* Workout.swift in Sources */,
-				352C47C828FC5781001EC887 /* TimeStringExtension.swift in Sources */,
+				352C47C828FC5781001EC887 /* Extensions.swift in Sources */,
+				350374352937B11B00DF4306 /* ProgressRow.swift in Sources */,
 				35C1575128EEEF1F00C7B641 /* PauseTimerFunctions.swift in Sources */,
 				357A6D94291C0CBF00EB6E53 /* ThirdView.swift in Sources */,
 				3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */,
 				3502947C28D4832B00C37C92 /* User.swift in Sources */,
+				35143A45293E59A5001004D7 /* AudioPlayer.swift in Sources */,
 				35FCF61F28FFF9D7001C2281 /* WeightView.swift in Sources */,
 				3583A718291544F200743013 /* UpdateView.swift in Sources */,
 				357A6D92291C0CA700EB6E53 /* SecondView.swift in Sources */,
@@ -414,26 +486,26 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0.0.5;
+				CURRENT_PROJECT_VERSION = 0.0.6;
 				DEVELOPMENT_ASSET_PATHS = "\"FitnessApp/Preview Content\"";
 				DEVELOPMENT_TEAM = B6ULY2T7X7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fitnessential-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Fitnessential;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fitness App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.0.5;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "BETA-CODE.Fitnessential";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -452,26 +524,26 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0.0.5;
+				CURRENT_PROJECT_VERSION = 0.0.6;
 				DEVELOPMENT_ASSET_PATHS = "\"FitnessApp/Preview Content\"";
 				DEVELOPMENT_TEAM = B6ULY2T7X7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fitnessential-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Fitnessential;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fitness App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.0.5;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "BETA-CODE.Fitnessential";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -495,7 +567,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		35D7B68928B78590000AFDC1 /* Build configuration list for PBXNativeTarget "Fitnessential" */ = {
+		35D7B68928B78590000AFDC1 /* Build configuration list for PBXNativeTarget "Fitness App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				35D7B68A28B78590000AFDC1 /* Debug */,

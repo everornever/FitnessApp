@@ -1,9 +1,8 @@
 //
 //  FourthView.swift
-//  Fitnessential
+//  Fitness App
 //
-//  Created by Leon Kling on 10.11.22.
-//
+
 
 import SwiftUI
 
@@ -15,7 +14,7 @@ struct FourthView: View {
 
     var body: some View {
         ZStack {
-            Color.DS_Accent
+            Color.DSAccent
                 .ignoresSafeArea()
             
             VStack(alignment: .leading) {
