@@ -30,10 +30,36 @@ struct MainButton: View {
             }
             .frame(maxWidth: .infinity)
             .padding(20)
-            .foregroundColor((tint != nil) ? Color.DS_Primary : Color.DS_Primary_RV)
-            .background((tint != nil) ? tint : Color.DS_Primary)
+            .foregroundColor((tint != nil) ? Color.DSPrimary : Color.DSPrimary_RV)
+            .background((tint != nil) ? tint : Color.DSPrimary)
             .cornerRadius(20)
         }
+    }
+}
+
+struct MainLable: View {
+    var text: String?
+    var icon: String?
+    var tint: Color?
+    
+    var body: some View {
+        HStack {
+            if(text != nil) {
+                Text(text!) /// your text
+                    .font(.headline)
+                    .fontWeight(.bold)
+            }
+            
+            if(icon != nil) {
+                Image(systemName: icon!)
+                    .font(.headline)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(20)
+        .foregroundColor((tint != nil) ? Color.DSPrimary : Color.DSPrimary_RV)
+        .background((tint != nil) ? tint : Color.DSPrimary)
+        .cornerRadius(20)
     }
 }
 

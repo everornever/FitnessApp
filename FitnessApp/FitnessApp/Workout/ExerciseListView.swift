@@ -1,8 +1,6 @@
 //
 //  ExerciseListView.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 20.10.22.
+//  Fitness App
 //
 
 import SwiftUI
@@ -28,11 +26,14 @@ struct ExerciseListView: View {
                                 .padding(.trailing)
                             Button("+") { addWeight(index: index) }
                                 .buttonStyle(.borderedProminent)
+                                .foregroundColor(Color.DSPrimary_RV)
                             Button("-") { subtractWeight(index: index) }
                                 .buttonStyle(.borderedProminent)
+                                .foregroundColor(Color.DSPrimary_RV)
                         }
                         .padding(3)
                     }
+                    .listRowBackground(Color.DSSecondaryBackground)
                 }
                 .onDelete(perform: removeRows)
                 .onMove(perform: move)
@@ -42,11 +43,16 @@ struct ExerciseListView: View {
                         .foregroundColor(.accentColor)
                     Button("Add exercise") { addExersice() }
                 }
+                .listRowBackground(Color.DSSecondaryBackground)
                     
             }
             .navigationBarTitle("Notes", displayMode: .inline)
+            .background(Color.DSSecondaryOverlay)
+            .scrollContentBackground(.hidden)
             .toolbar {
-                Button("Done") { isPresented = false }
+                Button { isPresented = false } label: {
+                    RoundButton(tint: Color.DSPrimary, back: Color.DSOverlay, cancel: true)
+                }
             }
         }
     }
@@ -66,11 +72,15 @@ struct ExerciseListView: View {
     }
     
     func addWeight(index: Int) {
-        exercises.savedExercises[index].kilo += 2.5
+        if (exercises.savedExercises[index].kilo < 500) {
+            exercises.savedExercises[index].kilo += 2.5
+        }
     }
     
     func subtractWeight(index: Int) {
-        exercises.savedExercises[index].kilo -= 2.5
+        if (exercises.savedExercises[index].kilo > 0) {
+            exercises.savedExercises[index].kilo -= 2.5
+        }
     }
     
 }

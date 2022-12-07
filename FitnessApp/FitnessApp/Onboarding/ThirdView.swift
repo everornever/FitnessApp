@@ -2,8 +2,6 @@
 //  ThirdView.swift
 //  Fitnessential
 //
-//  Created by Leon Kling on 09.11.22.
-//
 
 import SwiftUI
 
@@ -12,11 +10,13 @@ struct ThirdView: View {
     // View Selection
     @Binding var currentView: Int
 
+    // User Info
     @ObservedObject var user = User()
     
     // Keyboard Focus
     @FocusState private var focusedField: Field?
     
+    // Keyboard Toolbar
     enum Field {
         case age
         case height
@@ -25,12 +25,12 @@ struct ThirdView: View {
     
     // User Metrics
     @State private var age: Int = 0
-    @State private var height: Double = 0
+    @State private var height: Int = 0
     @State private var weight: Double = 0
     @State private var target: Int = 3
     
-    // Formatter for user input
-    let doubleFormatter: NumberFormatter = {
+    // Double Formatter for user input
+    let weightFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 2
@@ -39,7 +39,8 @@ struct ThirdView: View {
         return formatter
     }()
     
-    let intFormatter: NumberFormatter = {
+    // Int Formatter for user input
+    let ageFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .none
         formatter.maximumIntegerDigits = 2
@@ -47,11 +48,20 @@ struct ThirdView: View {
         return formatter
     }()
     
+    // Int Formatter for user input
+    let heightFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        formatter.maximumIntegerDigits = 3
+        formatter.zeroSymbol  = ""
+        return formatter
+    }()
+    
     // MARK: - Body
     var body: some View {
         ZStack {
-            Color.DS_Primary_RV
-                .ignoresSafeArea()
+            Color.DSPrimary_RV
+                .ignoresSafeArea(.keyboard)
             
             VStack(alignment: .leading) {
                 Text("Fitness App")
@@ -67,7 +77,7 @@ struct ThirdView: View {
                     HStack {
                         Text("Age")
                         Spacer()
-                        TextField("90", value: $age, formatter: intFormatter)
+                        TextField("90", value: $age, formatter: ageFormatter)
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
                             .font(.title3.bold())
@@ -107,8 +117,8 @@ struct ThirdView: View {
                     HStack {
                         Text("Height")
                         Spacer()
-                        TextField("1,80", value: $height, formatter: doubleFormatter)
-                            .keyboardType(.decimalPad)
+                        TextField("180", value: $height, formatter: heightFormatter)
+                            .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
                             .font(.title3.bold())
                             .focused($focusedField, equals: .height)
@@ -125,7 +135,7 @@ struct ThirdView: View {
                     HStack {
                         Text("Weight")
                         Spacer()
-                        TextField("80", value: $weight, formatter: doubleFormatter)
+                        TextField("80,00", value: $weight, formatter: weightFormatter)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
                             .font(.title3.bold())
@@ -147,12 +157,12 @@ struct ThirdView: View {
                         Spacer()
                         Button("-") { subtracTarget() }
                             .buttonStyle(.borderedProminent)
-                            .tint(Color.DS_Primary)
-                            .foregroundColor(Color.DS_Primary_RV)
+                            .tint(Color.DSPrimary)
+                            .foregroundColor(Color.DSPrimary_RV)
                         Button("+") { addTarget() }
                             .buttonStyle(.borderedProminent)
-                            .tint(Color.DS_Primary)
-                            .foregroundColor(Color.DS_Primary_RV)
+                            .tint(Color.DSPrimary)
+                            .foregroundColor(Color.DSPrimary_RV)
                         
                     }
                     .padding()
@@ -163,7 +173,7 @@ struct ThirdView: View {
                     
                     Text("How many times a week do you want to go to the Gym?")
                         .font(.caption2)
-                        .foregroundStyle(Color.DS_Light)
+                        .foregroundStyle(Color.DSLight)
                         .padding(.top, -10)
                 }
 
@@ -193,6 +203,7 @@ struct ThirdView: View {
             }
             .padding(30)
             .preferredColorScheme(.dark)
+            .ignoresSafeArea(.keyboard)
 
         }
     }
@@ -210,7 +221,7 @@ struct ThirdView: View {
     }
     
     private func isValidReply() -> Bool {
-        if (Double(age).isZero && height.isZero && weight.isZero) {
+        if (Double(age).isZero && Double(height).isZero && weight.isZero) {
             return false
         }
         else {

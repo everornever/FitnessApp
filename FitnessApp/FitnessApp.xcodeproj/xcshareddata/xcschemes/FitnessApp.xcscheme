@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "35D7B67A28B7858D000AFDC1"
-               BuildableName = "Fitnessential.app"
-               BlueprintName = "Fitnessential"
+               BuildableName = "Fitness App.app"
+               BlueprintName = "Fitness App"
                ReferencedContainer = "container:FitnessApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "35D7B67A28B7858D000AFDC1"
-            BuildableName = "Fitnessential.app"
-            BlueprintName = "Fitnessential"
+            BuildableName = "Fitness App.app"
+            BlueprintName = "Fitness App"
             ReferencedContainer = "container:FitnessApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "35D7B67A28B7858D000AFDC1"
-            BuildableName = "Fitnessential.app"
-            BlueprintName = "Fitnessential"
+            BuildableName = "Fitness App.app"
+            BlueprintName = "Fitness App"
             ReferencedContainer = "container:FitnessApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

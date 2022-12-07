@@ -1,8 +1,6 @@
 //
 //  CurrentWeek.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 23.09.22.
+//  Fitness App
 //
 
 import Foundation
@@ -17,8 +15,7 @@ struct Day {
 
 class CurrentWeek {
     
-    // Calender
-    private let date = Date()
+    // This should automatically take the right calendar for the user's locale
     private var calendar = Calendar.current
     
     // User Defaults Workouts
@@ -29,32 +26,37 @@ class CurrentWeek {
         
         var week = [Day]()
         
-        for index in 0...6 {
+        for index in 0..<7 {
             week.append(Day(date: getDate(atIndex: index),stringDate: getStringDate(atIndex: index), dayName: getName(atIndex: index), workoutDone: getworkout(atIndex: index)))
         }
         
         return week
     }
     
-    
     private func getDate(atIndex: Int) -> Date {
         
-        // Initial Values
-        let monday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date))!
-        let lastSunday = calendar.date(byAdding: .day, value: -1, to: monday)!
-        let sunday = calendar.date(byAdding: .day, value: 6, to: monday)!
+        let startOfCurrentWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
         
-        /// maps out every day starting Monday with its date until next Sunday
-        let dates = calendar.range(of: .weekday, in: .weekOfYear, for: sunday)!.compactMap { calendar.date(byAdding: .day, value: $0, to: lastSunday) }
+        var weekDates: [Date] = []
         
-        return dates[atIndex]
+        for i in 0..<7 {
+            weekDates.append(calendar.date(byAdding: .day, value: i, to: startOfCurrentWeek!)!)
+        }
+        
+        return weekDates[atIndex]
     }
     
     private func getName(atIndex: Int) -> String {
         
-        let shortWeekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"]
+        let shortWeekDaysEU = ["Mo","Tu","We","Th","Fr","Sa","Su"]
+        let shortWeekDaysUS = ["Su","Mo","Tu","We","Th","Fr","Sa"]
         
-        return shortWeekDays[atIndex]
+        if calendar.firstWeekday == 1 {
+            // Sunday is first weekday
+            return shortWeekDaysUS[atIndex]
+        } else {
+            return shortWeekDaysEU[atIndex]
+        }
     }
     
     private func getStringDate(atIndex: Int) -> String {

@@ -23,7 +23,7 @@ struct TextView: View {
             
             Rectangle()
                 .frame(width: 120, height: 5)
-                .foregroundColor(color ? Color.DS_Accent : Color.DS_Primary_RV)
+                .foregroundColor(color ? Color.DSAccent : Color.DSPrimary_RV)
                 .padding(.bottom)
             
             Text(bodyText)

@@ -1,25 +1,24 @@
 //
 //  Colors.swift
-//  Fitnessential
-//
-//  Created by Leon Kling on 09.11.22.
+//  Fitness App
 //
 
 import Foundation
 import SwiftUI
 
-
 extension Color {
     // Colors
-    static let DS_Accent = Color("Accent")
-    static let DS_SecondAccent = Color("SecondAccent")
+    static let DSAccent = Color("DSAccent")
+    static let DSSecondaryAccent = Color("DSSecondaryAccent")
     
     // Backgrounds
-    static let DS_Background = Color("Background")
-    static let DS_Overlay = Color("Overlay")
+    static let DSOverlay = Color("DSOverlay")
+    static let DSSecondaryOverlay = Color("DSSecondaryOverlay")
+    static let DSBackground = Color("DSBackground")
+    static let DSSecondaryBackground = Color("DSSecondaryBackground")
     
     // Text and Buttons
-    static let DS_Light = Color("Light")
-    static let DS_Primary = Color("Primary")
-    static let DS_Primary_RV = Color("Primary_RV")
+    static let DSLight = Color("DSLight")
+    static let DSPrimary = Color("DSPrimary")
+    static let DSPrimary_RV = Color("DSPrimary_RV")
 }
