@@ -9,16 +9,14 @@ struct PopupView: View {
     var body: some View {
         VStack {
             Image(systemName: "checkmark")
-                .foregroundColor(Color.DS_Accent)
+                .foregroundColor(Color.DSAccent)
                 .font(.system(size: 60))
                 .padding()
-            Text("Workout")
-                .font(.title)
-            Text("saved")
+            Text("Workout saved")
                 .font(.title)
         }
         .padding(50)
-        .background(.ultraThinMaterial)
+        .background(Color.DSOverlay)
         .cornerRadius(10)
     }
 }

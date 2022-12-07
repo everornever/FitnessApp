@@ -30,8 +30,8 @@ struct MainButton: View {
             }
             .frame(maxWidth: .infinity)
             .padding(20)
-            .foregroundColor((tint != nil) ? Color.DS_Primary : Color.DS_Primary_RV)
-            .background((tint != nil) ? tint : Color.DS_Primary)
+            .foregroundColor((tint != nil) ? Color.DSPrimary : Color.DSPrimary_RV)
+            .background((tint != nil) ? tint : Color.DSPrimary)
             .cornerRadius(20)
         }
     }
@@ -57,8 +57,8 @@ struct MainLable: View {
         }
         .frame(maxWidth: .infinity)
         .padding(20)
-        .foregroundColor((tint != nil) ? Color.DS_Primary : Color.DS_Primary_RV)
-        .background((tint != nil) ? tint : Color.DS_Primary)
+        .foregroundColor((tint != nil) ? Color.DSPrimary : Color.DSPrimary_RV)
+        .background((tint != nil) ? tint : Color.DSPrimary)
         .cornerRadius(20)
     }
 }

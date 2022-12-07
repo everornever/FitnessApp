@@ -34,7 +34,6 @@ class PauseTimerFunctions: ObservableObject {
     // MARK: - Functions
     
     // starts Timer and will stop after time runs up
-    ///  Timers are not presice, at a rate of 0.5 seconds we souldn't see any bugs
     func start() {
         self.timer?.cancel() // is this needed ?
         
@@ -71,7 +70,7 @@ class PauseTimerFunctions: ObservableObject {
         // Content
         content.title = "Pause ist vorbei"
         content.subtitle = "zurück an die Arbeit!"
-        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "Bell.mp3"))
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(user.pauseTimerSound).m4r"))
         
         // trigger
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: user.pauseTimer, repeats: false)

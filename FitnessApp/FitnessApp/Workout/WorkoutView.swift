@@ -5,11 +5,10 @@
 
 import SwiftUI
 import UserNotifications
-import AVFoundation
 
 struct WorkoutView: View {
     
-    // Dismissing View after cencel
+    // Dismissing View after cancel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // User Settings
@@ -18,7 +17,7 @@ struct WorkoutView: View {
     // User Defaults Workouts
     @EnvironmentObject var savedWorkouts: SavedWorkouts
     
-    // View toogles
+    // View toggles
     @State private var endWorkoutAlert = false
     @State private var isShowPopup: Bool = false
     
@@ -39,10 +38,7 @@ struct WorkoutView: View {
     // Workout Notes
     @State var showingNotes = false
     
-    // Timer Sound
-    let systemSoundID: SystemSoundID = 1050
-    
-    // Warm Up / Strechning
+    // Warm Up / Stretching
     @State private var warmUp = false
     @State private var stretching = false
     
@@ -62,7 +58,7 @@ struct WorkoutView: View {
                 // MARK: - Exercise List
                 List {
                     
-                    if (user.includeStreching) {
+                    if (user.includeStretching) {
                         Section("Press to Check") {
                             HStack {
                                 Image(systemName: "figure.strengthtraining.functional")
@@ -74,7 +70,7 @@ struct WorkoutView: View {
                                 
                                 if (stretching) {
                                     Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(Color.DS_Accent)
+                                        .foregroundColor(Color.DSAccent)
                                         .font(.title3)
                                 }
                                 else {
@@ -97,7 +93,7 @@ struct WorkoutView: View {
                             HStack {
                                 if(exerciseIndex == index) {
                                     Image(systemName: "arrowtriangle.right.fill")
-                                        .foregroundColor(Color.DS_Accent)
+                                        .foregroundColor(Color.DSAccent)
                                 }
                                 
                                 Text("\(index+1). Exercise")
@@ -108,13 +104,13 @@ struct WorkoutView: View {
                                     ForEach(0..<numberOfSets[index], id: \.self) { _ in
                                         
                                         Image(systemName: "circlebadge.fill")
-                                            .foregroundColor(Color.DS_Accent)
+                                            .foregroundColor(Color.DSAccent)
                                             .font(.title)
                                         
                                     }
                                 } else {
                                     Image(systemName: "\(numberOfSets[index]).circle")
-                                        .foregroundColor(Color.DS_Accent)
+                                        .foregroundColor(Color.DSAccent)
                                         .font(.title)
                                 }
                                 
@@ -135,14 +131,14 @@ struct WorkoutView: View {
                                 Spacer()
                                 
                                 if (warmUp) {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(Color.DS_Accent)
-                                        .font(.title3)
+                                    Image(systemName: "circlebadge.fill")
+                                        .foregroundColor(Color.DSAccent)
+                                        .font(.title)
                                 }
                                 else {
                                     Image(systemName: "circlebadge")
                                         .foregroundColor(Color.primary)
-                                        .font(.title2)
+                                        .font(.title)
                                 }
                             }
                             .listRowBackground(Color.DSBackground)
@@ -172,7 +168,7 @@ struct WorkoutView: View {
                             pauseStopwatch.stop()
                         } label: {
                             Image(systemName: "gobackward")
-                                .tint(Color.DS_Light)
+                                .tint(Color.DSLight)
                         }
                     }
                     
@@ -191,7 +187,7 @@ struct WorkoutView: View {
                         } label: {
                             Image(systemName: "backward.end.fill")
                                 .font(.title)
-                                .foregroundStyle(Color.DS_Primary)
+                                .foregroundStyle(Color.DSPrimary)
                         }
                         
                         
@@ -204,7 +200,7 @@ struct WorkoutView: View {
                                 .foregroundColor(.black)
                                 .padding(30)
                         }
-                        .tint(Color.DS_Accent)
+                        .tint(Color.DSAccent)
                         .buttonStyle(.borderedProminent)
                         
                         // Next exercise
@@ -217,7 +213,7 @@ struct WorkoutView: View {
                         } label: {
                             Image(systemName: "forward.end.fill")
                                 .font(.title)
-                                .foregroundStyle(Color.DS_Primary)
+                                .foregroundStyle(Color.DSPrimary)
                         }
                     }
                 }
@@ -240,11 +236,11 @@ struct WorkoutView: View {
                                     Button {
                 endWorkoutAlert = true
             } label: {
-                XLable(tint: Color.red, back: Color.DSOverlay)
+                RoundButton(tint: Color.red, back: Color.DSOverlay, cancel: true)
             }
                 .alert("Quit Workout", isPresented: $endWorkoutAlert) {
                     Button("Resume", role: .cancel) {}
-                        .tint(Color.DS_Accent)
+                        .tint(Color.DSAccent)
                     Button("Quit", role: .destructive) {
                         pauseStopwatch.stop()
                         workoutStopwatch.isRunning.toggle()
@@ -257,8 +253,7 @@ struct WorkoutView: View {
                                     Button {
                 saveWorkout()
             } label: {
-                Text("Done")
-                    .bold()
+                RoundButton(tint: Color.DSPrimary, back: Color.DSOverlay, cancel: false)
             })
             
             // PopupView
@@ -279,7 +274,7 @@ struct WorkoutView: View {
     func pauseButtonAction() {
         
         // Play Sound for activation
-        AudioServicesPlaySystemSound(systemSoundID)
+        AudioPlayer.playSound(soundFile: "NewSet")
         
         // Stop Pause Timer, reset and start again
         pauseStopwatch.stop()
@@ -305,7 +300,7 @@ struct WorkoutView: View {
             isShowPopup = true
         }
         
-        // dissmiss View after a few seconds
+        // dismiss View after a few seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
             presentationMode.wrappedValue.dismiss()
         }

@@ -15,8 +15,9 @@ class User: ObservableObject {
     
     // Workout Settings
     @AppStorage("pauseTimer") var pauseTimer = 90.0
+    @AppStorage("pauseTimerSound") var pauseTimerSound = "Bell-One"
     @AppStorage("includeWarmup") var includeWarmup = true
-    @AppStorage("includeStreching") var includeStreching = false
+    @AppStorage("includeStretching") var includeStretching = false
     
     // Streak
     @AppStorage("target") var target = 0

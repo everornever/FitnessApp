@@ -14,7 +14,7 @@ struct FourthView: View {
 
     var body: some View {
         ZStack {
-            Color.DS_Accent
+            Color.DSAccent
                 .ignoresSafeArea()
             
             VStack(alignment: .leading) {

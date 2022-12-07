@@ -8,7 +8,7 @@ import SwiftUI
 struct SettingsView: View {
     
     // User info
-    @StateObject var user = User()
+    @ObservedObject var user = User()
     
     // Pause Timer
     @State private var allowNotification = false
@@ -33,20 +33,20 @@ struct SettingsView: View {
                     }
                     
                     Toggle("Include warm up", isOn: $user.includeWarmup)
-                        .tint(Color.DS_Accent)
+                        .tint(Color.DSAccent)
                     
-                    Toggle("Include stretching", isOn: $user.includeStreching)
-                        .tint(Color.DS_Accent)
+                    Toggle("Include stretching", isOn: $user.includeStretching)
+                        .tint(Color.DSAccent)
 
                 }
-                .listRowBackground(Color.DSOverlay)
+                .listRowBackground(Color.DSSecondaryOverlay)
                 
                 Section("Notification") {
                     NavigationLink(destination: SoundListView()) {
-                        Text("Pause timer sounds")
+                        Text("Pause timer sound")
                     }
                 }
-                .listRowBackground(Color.DSOverlay)
+                .listRowBackground(Color.DSSecondaryOverlay)
                 
                 Section("About us") {
                     VStack(alignment: .leading, spacing: 5) {
@@ -56,9 +56,9 @@ struct SettingsView: View {
                             .font(.footnote)
                     }.padding(.vertical, 5)
                 }
-                .listRowBackground(Color.DSOverlay)
+                .listRowBackground(Color.DSSecondaryOverlay)
             }
-            .background(Color.DSBackground)
+            .background(Color.DSSecondaryBackground)
             .scrollContentBackground(.hidden)
             .navigationBarTitle("Settings", displayMode: .inline)
         }

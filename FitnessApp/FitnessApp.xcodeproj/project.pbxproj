@@ -14,8 +14,6 @@
 		3503743C2937FFE800DF4306 /* CardViewScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3503743B2937FFE800DF4306 /* CardViewScore.swift */; };
 		350B03AE28CE52E900738A7E /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B03AD28CE52E900738A7E /* PopupView.swift */; };
 		35143A3E293E3527001004D7 /* Attention.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 35143A3D293E3527001004D7 /* Attention.m4r */; };
-		35143A42293E3A78001004D7 /* Whistle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 35143A40293E3A78001004D7 /* Whistle.mp3 */; };
-		35143A43293E3A78001004D7 /* Bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 35143A41293E3A78001004D7 /* Bell.mp3 */; };
 		35143A45293E59A5001004D7 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35143A44293E59A5001004D7 /* AudioPlayer.swift */; };
 		3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3520CB7928DDACA300F85F62 /* CurrentWeek.swift */; };
 		352137E128CA13750045A453 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352137E028CA13750045A453 /* WeekView.swift */; };
@@ -26,6 +24,8 @@
 		3538982728DC83C900983E1A /* StopwatchFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538982628DC83C900983E1A /* StopwatchFunctions.swift */; };
 		3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3539485428C74AD600EDF0E2 /* WorkoutView.swift */; };
 		353C0F502901BB2D00A12930 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C0F4F2901BB2D00A12930 /* Exercise.swift */; };
+		3567C96D2940A208002FB477 /* Bell-One.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 3567C96B2940A208002FB477 /* Bell-One.m4r */; };
+		3567C96E2940A208002FB477 /* NewSet.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 3567C96C2940A208002FB477 /* NewSet.m4r */; };
 		356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AA81E28BA363000F9ABC2 /* ProgressView.swift */; };
 		357A6D8D291BE7A800EB6E53 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D8C291BE7A800EB6E53 /* Colors.swift */; };
 		357A6D90291C0C6E00EB6E53 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D8F291C0C6E00EB6E53 /* FirstView.swift */; };
@@ -34,7 +34,7 @@
 		357A6D96291C16CE00EB6E53 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D95291C16CE00EB6E53 /* MainButton.swift */; };
 		3583A7162915440500743013 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A7152915440500743013 /* Onboarding.swift */; };
 		3583A718291544F200743013 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A717291544F200743013 /* UpdateView.swift */; };
-		35859CE4293E1819000D502B /* XLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35859CE3293E1819000D502B /* XLable.swift */; };
+		35859CE4293E1819000D502B /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35859CE3293E1819000D502B /* RoundButton.swift */; };
 		35C1575128EEEF1F00C7B641 /* PauseTimerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */; };
 		35C22BFC2938F9DE0096BC38 /* SoundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C22BFB2938F9DE0096BC38 /* SoundListView.swift */; };
 		35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D13D0628CB71F50033D155 /* CurrentStatsView.swift */; };
@@ -56,8 +56,6 @@
 		3503743B2937FFE800DF4306 /* CardViewScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewScore.swift; sourceTree = "<group>"; };
 		350B03AD28CE52E900738A7E /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		35143A3D293E3527001004D7 /* Attention.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = Attention.m4r; sourceTree = "<group>"; };
-		35143A40293E3A78001004D7 /* Whistle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Whistle.mp3; sourceTree = "<group>"; };
-		35143A41293E3A78001004D7 /* Bell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bell.mp3; sourceTree = "<group>"; };
 		35143A44293E59A5001004D7 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		3520CB7928DDACA300F85F62 /* CurrentWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeek.swift; sourceTree = "<group>"; };
 		352137E028CA13750045A453 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
@@ -68,6 +66,8 @@
 		3538982628DC83C900983E1A /* StopwatchFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchFunctions.swift; sourceTree = "<group>"; };
 		3539485428C74AD600EDF0E2 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		353C0F4F2901BB2D00A12930 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		3567C96B2940A208002FB477 /* Bell-One.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bell-One.m4r"; sourceTree = "<group>"; };
+		3567C96C2940A208002FB477 /* NewSet.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewSet.m4r; sourceTree = "<group>"; };
 		356AA81E28BA363000F9ABC2 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		357A6D8C291BE7A800EB6E53 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		357A6D8F291C0C6E00EB6E53 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 		357A6D95291C16CE00EB6E53 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		3583A7152915440500743013 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		3583A717291544F200743013 /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
-		35859CE3293E1819000D502B /* XLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLable.swift; sourceTree = "<group>"; };
+		35859CE3293E1819000D502B /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTimerFunctions.swift; sourceTree = "<group>"; };
 		35C22BFB2938F9DE0096BC38 /* SoundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundListView.swift; sourceTree = "<group>"; };
 		35D13D0628CB71F50033D155 /* CurrentStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStatsView.swift; sourceTree = "<group>"; };
@@ -127,6 +127,7 @@
 		350B03AA28CE4E0200738A7E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				35143A44293E59A5001004D7 /* AudioPlayer.swift */,
 				3502947B28D4832B00C37C92 /* User.swift */,
 				35FE2A5828BE156200291982 /* Workout.swift */,
 				353C0F4F2901BB2D00A12930 /* Exercise.swift */,
@@ -141,8 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				35143A3D293E3527001004D7 /* Attention.m4r */,
-				35143A41293E3A78001004D7 /* Bell.mp3 */,
-				35143A40293E3A78001004D7 /* Whistle.mp3 */,
+				3567C96B2940A208002FB477 /* Bell-One.m4r */,
+				3567C96C2940A208002FB477 /* NewSet.m4r */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -185,7 +186,7 @@
 				357A6D8C291BE7A800EB6E53 /* Colors.swift */,
 				357A6D95291C16CE00EB6E53 /* MainButton.swift */,
 				3521AEF7291E93C6005A1B47 /* TextView.swift */,
-				35859CE3293E1819000D502B /* XLable.swift */,
+				35859CE3293E1819000D502B /* RoundButton.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -195,7 +196,6 @@
 			children = (
 				35D7B68C28B785BB000AFDC1 /* SettingsView.swift */,
 				35C22BFB2938F9DE0096BC38 /* SoundListView.swift */,
-				35143A44293E59A5001004D7 /* AudioPlayer.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -311,10 +311,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				35D7B68628B78590000AFDC1 /* Preview Assets.xcassets in Resources */,
-				35143A42293E3A78001004D7 /* Whistle.mp3 in Resources */,
-				35143A43293E3A78001004D7 /* Bell.mp3 in Resources */,
 				35D7B68328B78590000AFDC1 /* Assets.xcassets in Resources */,
 				35143A3E293E3527001004D7 /* Attention.m4r in Resources */,
+				3567C96E2940A208002FB477 /* NewSet.m4r in Resources */,
+				3567C96D2940A208002FB477 /* Bell-One.m4r in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +335,7 @@
 				350374382937F0CB00DF4306 /* CardViewTarget.swift in Sources */,
 				3535B1A229016F6900BF16EE /* ExerciseListView.swift in Sources */,
 				3583A7162915440500743013 /* Onboarding.swift in Sources */,
-				35859CE4293E1819000D502B /* XLable.swift in Sources */,
+				35859CE4293E1819000D502B /* RoundButton.swift in Sources */,
 				3503743C2937FFE800DF4306 /* CardViewScore.swift in Sources */,
 				352137E128CA13750045A453 /* WeekView.swift in Sources */,
 				3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */,
@@ -486,7 +486,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0.0.5;
+				CURRENT_PROJECT_VERSION = 0.0.6;
 				DEVELOPMENT_ASSET_PATHS = "\"FitnessApp/Preview Content\"";
 				DEVELOPMENT_TEAM = B6ULY2T7X7;
 				ENABLE_PREVIEWS = YES;
@@ -505,7 +505,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.0.5;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "BETA-CODE.Fitnessential";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -524,7 +524,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0.0.5;
+				CURRENT_PROJECT_VERSION = 0.0.6;
 				DEVELOPMENT_ASSET_PATHS = "\"FitnessApp/Preview Content\"";
 				DEVELOPMENT_TEAM = B6ULY2T7X7;
 				ENABLE_PREVIEWS = YES;
@@ -543,7 +543,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 0.0.5;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "BETA-CODE.Fitnessential";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

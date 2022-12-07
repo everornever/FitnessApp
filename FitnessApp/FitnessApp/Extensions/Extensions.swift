@@ -26,9 +26,21 @@ extension Double {
 extension Date {
     
     func getWeekNumber() -> Int {
-        let calender = Calendar.current
-        let weekNumber = calender.component(.weekOfYear, from: Date(primitivePlottable: self)!)
+        let calendar = Calendar.current
+        let weekNumber = calendar.component(.weekOfYear, from: Date(primitivePlottable: self)!)
         return weekNumber
+    }
+}
+
+extension Binding {
+    func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
+        Binding(
+            get: { self.wrappedValue },
+            set: { newValue in
+                self.wrappedValue = newValue
+                handler(newValue)
+            }
+        )
     }
 }
 

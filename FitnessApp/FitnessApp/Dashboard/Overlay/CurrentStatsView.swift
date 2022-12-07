@@ -35,13 +35,13 @@ struct CurrentStatsView: View {
                 Spacer(minLength: 20)
                 
                 CardViewTarget()
-                    .onTapGesture {
-                        isShowingTargetView.toggle()
-                    }
-                    .sheet(isPresented: $isShowingTargetView) {
-                        TargetView()
-                            .background(Color.DSOverlay)
-                    }
+//                    .onTapGesture {
+//                        isShowingTargetView.toggle()
+//                    }
+//                    .sheet(isPresented: $isShowingTargetView) {
+//                        TargetView()
+//                            .background(Color.DSOverlay)
+//                    }
                 
             }
             
