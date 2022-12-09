@@ -18,7 +18,6 @@ struct UpdateView: View {
                 Text("in Fitness App")
             }
             .font(.largeTitle.weight(.bold))
-            .padding(.top)
             
             
             VStack(alignment: .leading) {
@@ -75,6 +74,6 @@ struct FeatureRow: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
-        .padding(10)
+        .padding()
     }
 }
