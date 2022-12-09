@@ -13,6 +13,7 @@ struct RoundButton: View {
     
     var body: some View {
         Image(systemName: cancel ? "xmark" : "checkmark")
+            .font(.subheadline)
             .padding(10)
             .bold()
             .foregroundColor(tint)

@@ -41,21 +41,22 @@ class SavedWorkouts: ObservableObject {
     }
     
     // MARK: - Functions:
-    // TODO: What is for Workouts next year same weeknumber?
-    func sortedAfterWeeks() -> Array<WeekNumber> {
-        var weeks = [WeekNumber]()
+    
+    // Get last 6 week Numbers as Strings
+    func getLastSixWeeks() -> Array<Int> {
+        var weeks = [Int]()
+        let currentWeek = Date.now.getWeekNumber()
         
-        for index in workoutArray {
-            if (weeks.contains { $0.weekNumber == index.date.getWeekNumber() } ) {
-                // ignore
-            } else {
-                weeks.append(WeekNumber(weekNumber: index.date.getWeekNumber(), workouts: giveBackArray(number: index.date.getWeekNumber())))
-            }
+        for index in 0...5 {
+            weeks.append(currentWeek - index)
         }
-        return weeks
+        
+        return weeks.reversed()
     }
     
-    private func giveBackArray(number: Int) -> Array<Workout> {
+    // returns amount of every workout done on the given week number
+    // TODO: two workouts on same day are counted ??
+    func getWorkoutAmount(number: Int) -> Int {
         var tempArray = [Workout]()
         
         for index in workoutArray {
@@ -63,7 +64,8 @@ class SavedWorkouts: ObservableObject {
                 tempArray.append(index)
             }
         }
-        return tempArray
+        
+        return tempArray.count
     }
     
 }

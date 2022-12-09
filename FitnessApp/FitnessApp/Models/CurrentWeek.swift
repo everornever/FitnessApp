@@ -27,10 +27,24 @@ class CurrentWeek {
         var week = [Day]()
         
         for index in 0..<7 {
-            week.append(Day(date: getDate(atIndex: index),stringDate: getStringDate(atIndex: index), dayName: getName(atIndex: index), workoutDone: getworkout(atIndex: index)))
+            week.append(Day(date: getDate(atIndex: index),stringDate: getStringDate(atIndex: index), dayName: getName(atIndex: index), workoutDone: getWorkout(atIndex: index)))
         }
         
         return week
+    }
+    
+    // get current target amount
+    func getWorkoutsDoneAmount() -> Int {
+        
+        let week = getCurrentWeek()
+        var amount = 0
+        
+        for index in week {
+            if (index.workoutDone == true) {
+                amount += 1
+            }
+        }
+        return amount
     }
     
     private func getDate(atIndex: Int) -> Date {
@@ -70,7 +84,7 @@ class CurrentWeek {
         return dateFormatter.string(from: date)
     }
     
-    private func getworkout(atIndex: Int) -> Bool {
+    private func getWorkout(atIndex: Int) -> Bool {
      
         let lastWorkouts = savedWorkouts.workoutArray
         
