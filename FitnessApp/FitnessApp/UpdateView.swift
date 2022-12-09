@@ -9,37 +9,43 @@ struct UpdateView: View {
     
     @Binding var isPresented: Bool
     
+    // User Info
+    @ObservedObject var user = User()
+    
+    // App Version
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "No version"
+    
     var body: some View {
         VStack{
-            Spacer()
             
             VStack {
                 Text("Whats new")
                 Text("in Fitness App")
             }
             .font(.largeTitle.weight(.bold))
+            .padding(.top, 40)
             
+            Text("Version \(appVersion)")
+                .foregroundColor(Color.DSLight)
+            
+            Spacer()
             
             VStack(alignment: .leading) {
-                FeatureRow(image: "photo.circle.fill", title: "New App Icon", text: "A new App icon was added")
         
-                FeatureRow(image: "list.bullet.circle", title: "Progress View", text: "The progress view was updated to show more info")
-        
-                FeatureRow(image: "bell.badge.circle", title: "New Sounds", text: "You can now change the pause timer sound")
+                FeatureRow(image: "list.bullet.circle", title: "New Target View V1", text: "Get details over your last workouts and see how you performed")
                 
-                FeatureRow(image: "gearshape.circle", title: "Workout Settings", text: "More settings ware added, like include stretching or warmup")
-                
-                FeatureRow(image: "ant.circle", title: "Lots of Bug fixes", text: "Most notable are notification fixes and design changes")
+                FeatureRow(image: "ant.circle", title: "Bug fixes", text: "Fixed notification sound bug, Update View")
                 
             }
+            
             Spacer()
             
             MainButton(text: "OK") {
                 isPresented = false
+                user.lastVersion = appVersion
             }
             .padding()
             
-            Spacer()
         }
     }
 }
@@ -74,6 +80,6 @@ struct FeatureRow: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
-        .padding()
+        .padding(10)
     }
 }
