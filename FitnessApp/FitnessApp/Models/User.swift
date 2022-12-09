@@ -25,4 +25,5 @@ class User: ObservableObject {
     // App Version
     @AppStorage("firstStart") var firstStart = true
     @AppStorage("lastVersion") var lastVersion = "0.0.6"
+
 }
