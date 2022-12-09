@@ -14,14 +14,13 @@ struct TargetView: View {
     // Saved Workouts
     @EnvironmentObject var savedWorkouts: SavedWorkouts
     
-    // Current Week Workouts
-    let week = CurrentWeek().getCurrentWeek()
-    
     // Dismiss Button
     @Environment(\.dismiss) var dismiss
     
-    // Calender
+    // Calendar
     let calendar = Calendar.current
+    
+    // MARK: - Body
     
     var body: some View {
         VStack {
@@ -31,21 +30,26 @@ struct TargetView: View {
                     .bold()
                 Spacer()
                 Button { dismiss() } label: {
-                    RoundButton(tint: Color.DSPrimary, back: Color.DSBackground, cancel: true)
+                    RoundButton(tint: Color.DSPrimary, back: Color.DSSecondaryOverlay, cancel: true)
                 }
             }
             .padding(.top)
             
+            // MARK: - Chart
             VStack(alignment: .leading) {
-                Text("Your workouts in the last 6 Weeks")
-                    .font(.caption2)
-                    .foregroundColor(Color.DSLight)
-                    .padding(.top)
-                
-                Chart(savedWorkouts.workoutArray) { shape in
+                HStack {
+                    Text("Your workouts in the last 6 Weeks")
+                        .font(.caption2)
+                        .foregroundColor(Color.DSLight)
                     
-                    // x = last 6 weeks number
-                    // check if workout for weeknumber was done ? if yes .count else 0
+                    Spacer()
+                    
+                    Text("Current Week: \(Date.now.getWeekNumber())")
+                        .font(.caption2)
+                        .foregroundColor(Color.DSLight)
+                }
+                
+                Chart() {
                     
                     RuleMark(y: .value("Goal", user.target))
                         .foregroundStyle(Color.DSSecondaryAccent)
@@ -56,30 +60,25 @@ struct TargetView: View {
                                 .foregroundColor(Color.DSLight)
                         }
                     
-                    BarMark(
-                        x: .value("Calender Week", shape.date, unit: .weekOfYear),
-                        y: .value("Amount of Workouts", shape.exercises)
-                    )
-                    .foregroundStyle(Color.DSAccent)
+                    ForEach(savedWorkouts.getLastSixWeeks(), id: \.self) { week in
+                        BarMark(
+                            x: .value("Calendar Week", "\(week)"),
+                            y: .value("Amount of Workouts", savedWorkouts.getWorkoutAmount(number: week))
+                        )
+                        .foregroundStyle((savedWorkouts.getWorkoutAmount(number: week) > user.target) ? Color.DSAccent : Color.DSLight.opacity(0.3) )
+                    }
                     
                 }
-                .chartXAxisLabel() {
-                    Text("Calender Week")
-                }
-//                .chartXScale(domain: getWeekNumberValues().lastSixWeeks...getWeekNumberValues().currentWeek)
-//                .chartXAxis {
-//                    AxisMarks(values: getWeekNumberValues().lastArray) { _ in
-//                        AxisGridLine()
-//                        AxisValueLabel(centered: true)
-//                    }
-//                }
-
                 .frame(height: 300)
+                .chartXAxisLabel() {
+                    Text("Calendar Week")
+                }
             }
             .padding()
-            .background(Color.DSBackground)
+            .background(Color.DSSecondaryOverlay)
             .cornerRadius(20)
             
+            // MARK: - Cards
             HStack { // Weekly Target
                 VStack(alignment: .leading) {
                     Text("Weekly Target")
@@ -91,7 +90,7 @@ struct TargetView: View {
                 }
                 Spacer()
                 HStack {
-                    Button("-") { subtracTarget() }
+                    Button("-") { subtractTarget() }
                         .buttonStyle(.borderedProminent)
                         .tint(Color.DSPrimary)
                         .foregroundColor(Color.DSPrimary_RV)
@@ -102,7 +101,7 @@ struct TargetView: View {
                 }
             }
             .padding()
-            .background(Color.DSBackground)
+            .background(Color.DSSecondaryOverlay)
             .cornerRadius(10)
             
             HStack {
@@ -118,7 +117,7 @@ struct TargetView: View {
                     Spacer()
                 }
                 .padding()
-                .background(Color.DSBackground)
+                .background(Color.DSSecondaryOverlay)
                 .cornerRadius(10)
                 
                 HStack { // Longest Workout
@@ -133,67 +132,42 @@ struct TargetView: View {
                     Spacer()
                 }
                 .padding()
-                .background(Color.DSBackground)
+                .background(Color.DSSecondaryOverlay)
                 .cornerRadius(10)
             }
-            
             
             Spacer()
         }
         .padding()
-        
-        
+        .background(Color.DSSecondaryBackground)
     }
     
-    func checkCurrentTarget() -> Int {
-        var workoutsDone = 0
-        for ( _ , value) in week.enumerated() {
-            if (value.workoutDone) {
-                workoutsDone += 1
-            }
-        }
-        return workoutsDone
-    }
+    // MARK: - Functions
     
+    // Add / Subtract target value
     func addTarget() {
         if (user.target < 7) {
             user.target += 1
         }
     }
     
-    func subtracTarget() {
+    func subtractTarget() {
         if (user.target > 1) {
             user.target -= 1
         }
     }
     
+    // get longest workout time
     func longestWorkout() -> String {
         let max = savedWorkouts.workoutArray.map { $0.duration }.max()
-        
         return max?.timeString().hours ?? "00:00"
-    }
-    
-    func getWeekNumberValues() -> (lastSixWeeks: Int, currentWeek: Int, lastArray: [Int]) {
-        
-        // Current week number minus 6 weeks
-        let lastSixWeeks = (savedWorkouts.sortedAfterWeeks().last?.weekNumber ?? 7) - 6
-        
-        // Array of last
-        let lastArry = savedWorkouts.sortedAfterWeeks().map { $0.weekNumber }
-        
-        // Current week number + 1 for fornt puffer
-        let currentWeek = (savedWorkouts.sortedAfterWeeks().last?.weekNumber ?? 51) + 1
-        
-        return (lastSixWeeks, currentWeek, lastArry)
     }
 }
 
+// MARK: - Preview
 struct TargetView_Previews: PreviewProvider {
-    
     static let previewObject = SavedWorkouts()
-    
     static var previews: some View {
-        
         TargetView().environmentObject(previewObject)
     }
 }

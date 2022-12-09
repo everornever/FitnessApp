@@ -25,23 +25,24 @@ struct CurrentStatsView: View {
             HStack {
                 
                 CardViewWeight()
-//                    .onTapGesture {
-//                        isShowingWeightView.toggle()
-//                    }
-//                    .sheet(isPresented: $isShowingWeightView) {
-//                        WeightView()
-//                    }
+                //                    .onTapGesture {
+                //                        isShowingWeightView.toggle()
+                //                    }
+                //                    .sheet(isPresented: $isShowingWeightView) {
+                //                        WeightView()
+                //                    }
                 
                 Spacer(minLength: 20)
                 
-                CardViewTarget()
-//                    .onTapGesture {
-//                        isShowingTargetView.toggle()
-//                    }
-//                    .sheet(isPresented: $isShowingTargetView) {
-//                        TargetView()
-//                            .background(Color.DSOverlay)
-//                    }
+                Button {
+                    isShowingTargetView.toggle()
+                } label: {
+                    CardViewTarget()
+                }
+                .sheet(isPresented: $isShowingTargetView) {
+                    TargetView()
+                        .background(Color.DSOverlay)
+                }
                 
             }
             
