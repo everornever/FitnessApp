@@ -10,7 +10,11 @@ struct FourthView: View {
     
     @Binding var showOnboarding: Bool
     
+    // User Info
     @ObservedObject var user = User()
+    
+    // App Version
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "No version"
 
     var body: some View {
         ZStack {
@@ -44,6 +48,9 @@ struct FourthView: View {
                     
                     // dont show onboarding again
                     user.firstStart = false
+                    
+                    // don't show update view
+                    user.lastVersion = appVersion
                 }
             }
             .padding(30)
