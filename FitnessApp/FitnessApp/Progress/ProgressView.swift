@@ -25,7 +25,7 @@ struct ProgressView: View {
                 .listRowBackground(Color.DSOverlay)
             }
             .navigationTitle("Progress")
-            .background(Color.DSBackground)
+            .background(Color.DSSecondaryBackground)
             .scrollContentBackground(.hidden)
             .toolbar {
                 EditButton()
