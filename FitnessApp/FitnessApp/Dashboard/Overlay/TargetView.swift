@@ -65,7 +65,7 @@ struct TargetView: View {
                             x: .value("Calendar Week", "\(week)"),
                             y: .value("Amount of Workouts", savedWorkouts.getWorkoutAmount(number: week))
                         )
-                        .foregroundStyle((savedWorkouts.getWorkoutAmount(number: week) > user.target) ? Color.DSAccent : Color.DSLight.opacity(0.3) )
+                        .foregroundStyle((savedWorkouts.getWorkoutAmount(number: week) > user.target) ? Color.DSAccent : Color.DSPrimary )
                     }
                     
                 }
