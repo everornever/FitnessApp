@@ -46,6 +46,7 @@ struct ProgressRow: View {
                 }
             }
         }
+        .listRowBackground(Color.DSSecondaryOverlay)
     }
 }
 
