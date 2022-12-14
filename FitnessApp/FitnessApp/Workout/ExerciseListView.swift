@@ -33,7 +33,7 @@ struct ExerciseListView: View {
                         }
                         .padding(3)
                     }
-                    .listRowBackground(Color.DSSecondaryBackground)
+                    .listRowBackground(Color.DSSecondaryOverlay)
                 }
                 .onDelete(perform: removeRows)
                 .onMove(perform: move)
@@ -41,17 +41,17 @@ struct ExerciseListView: View {
                 HStack {
                     Image(systemName: "plus.circle.fill")
                         .foregroundColor(.accentColor)
-                    Button("Add exercise") { addExersice() }
+                    Button("Add exercise") { addExercise() }
                 }
-                .listRowBackground(Color.DSSecondaryBackground)
+                .listRowBackground(Color.DSSecondaryOverlay)
                     
             }
             .navigationBarTitle("Notes", displayMode: .inline)
-            .background(Color.DSSecondaryOverlay)
+            .background(Color.DSSecondaryBackground)
             .scrollContentBackground(.hidden)
             .toolbar {
                 Button { isPresented = false } label: {
-                    RoundButton(tint: Color.DSPrimary, back: Color.DSOverlay, cancel: true)
+                    RoundButton(tint: Color.DSPrimary, back: Color.DSSecondaryOverlay, cancel: true)
                 }
             }
         }
@@ -67,7 +67,7 @@ struct ExerciseListView: View {
         exercises.savedExercises.move(fromOffsets: source, toOffset: destination)
     }
     
-    func addExersice() {
+    func addExercise() {
         exercises.savedExercises.append(Exercise(name: "???", kilo: 10.0))
     }
     
