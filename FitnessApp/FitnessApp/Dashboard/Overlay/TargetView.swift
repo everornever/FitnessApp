@@ -30,7 +30,7 @@ struct TargetView: View {
                     .bold()
                 Spacer()
                 Button { dismiss() } label: {
-                    RoundButton(tint: Color.DSPrimary, back: Color.DSSecondaryOverlay, cancel: true)
+                    RoundButton(tint: Color.DSPrimary, back: Color.DSBackground, cancel: true)
                 }
             }
             .padding(.top)
@@ -75,7 +75,7 @@ struct TargetView: View {
                 }
             }
             .padding()
-            .background(Color.DSSecondaryOverlay)
+            .background(Color.DSBackground)
             .cornerRadius(20)
             
             // MARK: - Cards
@@ -101,7 +101,7 @@ struct TargetView: View {
                 }
             }
             .padding()
-            .background(Color.DSSecondaryOverlay)
+            .background(Color.DSBackground)
             .cornerRadius(10)
             
             HStack {
@@ -117,7 +117,7 @@ struct TargetView: View {
                     Spacer()
                 }
                 .padding()
-                .background(Color.DSSecondaryOverlay)
+                .background(Color.DSBackground)
                 .cornerRadius(10)
                 
                 HStack { // Longest Workout
@@ -132,14 +132,14 @@ struct TargetView: View {
                     Spacer()
                 }
                 .padding()
-                .background(Color.DSSecondaryOverlay)
+                .background(Color.DSBackground)
                 .cornerRadius(10)
             }
             
             Spacer()
         }
         .padding()
-        .background(Color.DSSecondaryBackground)
+        .background(Color.DSOverlay)
     }
     
     // MARK: - Functions
