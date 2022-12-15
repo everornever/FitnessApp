@@ -10,6 +10,9 @@ struct CurrentStatsView: View {
     // User info
     @ObservedObject var user = User()
     
+    // Saved Workouts
+    @EnvironmentObject var savedWorkouts: SavedWorkouts
+    
     // Sheet Views
     //@State private var isShowingWeightView = false
     @State private var isShowingTargetView = false
@@ -61,9 +64,11 @@ struct CurrentStatsView: View {
 
 // MARK: - PreView
 struct WeeklyStats_Previews: PreviewProvider {
+    static let previewObject = SavedWorkouts()
     static var previews: some View {
         CurrentStatsView()
             .frame(height: 500)
+            .environmentObject(previewObject)
     }
 }
 
