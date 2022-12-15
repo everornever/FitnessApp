@@ -68,8 +68,8 @@ class PauseTimerFunctions: ObservableObject {
     
     private func createNotification() {
         // Content
-        content.title = "Pause ist vorbei"
-        content.subtitle = "zurück an die Arbeit!"
+        content.title = "Keep it going!"
+        content.subtitle = "Your rest time is over"
         content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(user.pauseTimerSound).m4r"))
         
         // trigger

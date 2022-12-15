@@ -273,9 +273,6 @@ struct WorkoutView: View {
     // MARK: - FUNCTIONS
     func pauseButtonAction() {
         
-        // Play Sound for activation
-        AudioPlayer.playSound(soundFile: "NewSet")
-        
         // Stop Pause Timer, reset and start again
         pauseStopwatch.stop()
         pauseStopwatch.start()
@@ -285,24 +282,29 @@ struct WorkoutView: View {
             numberOfSets[exerciseIndex] += 1
             
         }
+        
+        // Play Sound for activation
+        AudioPlayer.playSound(soundFile: "NewSet")
     }
     
     func saveWorkout() {
-        // stop timers
-        workoutStopwatch.isRunning.toggle()
-        pauseStopwatch.stop()
-        
-        // save workout stats
-        savedWorkouts.workoutArray.append(Workout(exercises: numberOfExercises, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
-        
-        // show popup
-        withAnimation {
-            isShowPopup = true
-        }
-        
-        // dismiss View after a few seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
-            presentationMode.wrappedValue.dismiss()
+        if (numberOfSets[0] != 0) {
+            // stop timers
+            workoutStopwatch.isRunning.toggle()
+            pauseStopwatch.stop()
+            
+            // save workout stats
+            savedWorkouts.workoutArray.append(Workout(exercises: numberOfExercises, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
+            
+            // show popup
+            withAnimation {
+                isShowPopup = true
+            }
+            
+            // dismiss View after a few seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
     }
     
