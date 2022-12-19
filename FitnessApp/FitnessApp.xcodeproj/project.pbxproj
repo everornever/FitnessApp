@@ -27,6 +27,7 @@
 		3567C96D2940A208002FB477 /* Bell-One.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 3567C96B2940A208002FB477 /* Bell-One.m4r */; };
 		3567C96E2940A208002FB477 /* NewSet.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 3567C96C2940A208002FB477 /* NewSet.m4r */; };
 		356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356AA81E28BA363000F9ABC2 /* ProgressView.swift */; };
+		356B2605294C83E70092C5AC /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B2604294C83E70092C5AC /* DebugView.swift */; };
 		357A6D8D291BE7A800EB6E53 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D8C291BE7A800EB6E53 /* Colors.swift */; };
 		357A6D90291C0C6E00EB6E53 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D8F291C0C6E00EB6E53 /* FirstView.swift */; };
 		357A6D92291C0CA700EB6E53 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D91291C0CA700EB6E53 /* SecondView.swift */; };
@@ -69,6 +70,7 @@
 		3567C96B2940A208002FB477 /* Bell-One.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bell-One.m4r"; sourceTree = "<group>"; };
 		3567C96C2940A208002FB477 /* NewSet.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewSet.m4r; sourceTree = "<group>"; };
 		356AA81E28BA363000F9ABC2 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		356B2604294C83E70092C5AC /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		357A6D8C291BE7A800EB6E53 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		357A6D8F291C0C6E00EB6E53 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
 		357A6D91291C0CA700EB6E53 /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			children = (
 				35D7B68C28B785BB000AFDC1 /* SettingsView.swift */,
 				35C22BFB2938F9DE0096BC38 /* SoundListView.swift */,
+				356B2604294C83E70092C5AC /* DebugView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				35FCF61F28FFF9D7001C2281 /* WeightView.swift in Sources */,
 				3583A718291544F200743013 /* UpdateView.swift in Sources */,
 				357A6D92291C0CA700EB6E53 /* SecondView.swift in Sources */,
+				356B2605294C83E70092C5AC /* DebugView.swift in Sources */,
 				3521AEF8291E93C6005A1B47 /* TextView.swift in Sources */,
 				35D7B67F28B7858D000AFDC1 /* FitnessApp.swift in Sources */,
 				353C0F502901BB2D00A12930 /* Exercise.swift in Sources */,

@@ -82,7 +82,7 @@ struct BarView: View {
     }
     
     func checkGreen() -> Bool{
-        if (amount > target) {
+        if (amount >= target) {
             return true
         } else {
             return false

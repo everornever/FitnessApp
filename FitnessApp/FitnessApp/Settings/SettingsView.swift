@@ -48,6 +48,15 @@ struct SettingsView: View {
                 }
                 .listRowBackground(Color.DSSecondaryOverlay)
                 
+                Section("For testing only") {
+                    NavigationLink(destination: DebugView()) {
+                        Text("Add Workouts")
+                            .foregroundColor(Color.DSPrimary)
+                    }
+                }
+                .foregroundColor(.red)
+                .listRowBackground(Color.DSSecondaryOverlay)
+                
                 Section("About us") {
                     VStack(alignment: .leading, spacing: 5) {
                         Text("Fitness App \(appVersion)")
