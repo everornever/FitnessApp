@@ -32,6 +32,7 @@ struct Onboarding: View {
     }
 }
 
+// MARK: - Preview
 struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
         Onboarding(showOnboarding: .constant(true))

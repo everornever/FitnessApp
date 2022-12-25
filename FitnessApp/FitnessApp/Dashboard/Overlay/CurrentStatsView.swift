@@ -7,14 +7,14 @@ import SwiftUI
 
 struct CurrentStatsView: View {
     
-    // User info
-    @ObservedObject var user = User()
+    // User Info
+    @EnvironmentObject var user: UserObject
     
     // Saved Workouts
-    @EnvironmentObject var savedWorkouts: SavedWorkouts
+    @EnvironmentObject var workouts: WorkoutObject
     
     // Sheet Views
-    //@State private var isShowingWeightView = false
+    @State private var isShowingWeightView = false
     @State private var isShowingTargetView = false
     
     var body: some View {
@@ -27,16 +27,19 @@ struct CurrentStatsView: View {
             
             HStack {
                 
-                CardViewWeight()
-                //                    .onTapGesture {
-                //                        isShowingWeightView.toggle()
-                //                    }
-                //                    .sheet(isPresented: $isShowingWeightView) {
-                //                        WeightView()
-                //                    }
+                // Target Card
+                Button {
+                    isShowingWeightView.toggle()
+                } label: {
+                    CardViewWeight()
+                }
+                .sheet(isPresented: $isShowingWeightView) {
+                    WeightView()
+                }
                 
                 Spacer(minLength: 20)
                 
+                // Target Card
                 Button {
                     isShowingTargetView.toggle()
                 } label: {
@@ -44,7 +47,6 @@ struct CurrentStatsView: View {
                 }
                 .sheet(isPresented: $isShowingTargetView) {
                     TargetView()
-                        .background(Color.DSOverlay)
                 }
                 
             }
@@ -64,11 +66,12 @@ struct CurrentStatsView: View {
 
 // MARK: - PreView
 struct WeeklyStats_Previews: PreviewProvider {
-    static let previewObject = SavedWorkouts()
     static var previews: some View {
         CurrentStatsView()
             .frame(height: 500)
-            .environmentObject(previewObject)
+            .environmentObject(UserObject())
+            .environmentObject(WorkoutObject())
+        
     }
 }
 

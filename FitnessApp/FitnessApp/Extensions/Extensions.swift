@@ -1,8 +1,6 @@
 //
 //  TimeExtension.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 16.10.22.
+//  Fitness App
 //
 
 import Foundation
@@ -20,6 +18,11 @@ extension Double {
         return (String(format:"%02i:%02i:%02i", hours, minutes, seconds),
                 String(format:"%02i:%02i", hours, minutes),
                 String(format:"%02i:%02i", minutes, seconds))
+    }
+    
+    func dezimalString() -> String {
+        let two = Double(self)
+        return String(format: "%0.1.2f", two)
     }
 }
 

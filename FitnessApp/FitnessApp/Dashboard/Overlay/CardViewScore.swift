@@ -20,6 +20,7 @@ struct CardViewScore: View {
     }
 }
 
+// MARK: - Preview
 struct CardViewScore_Previews: PreviewProvider {
     static var previews: some View {
         CardViewScore()

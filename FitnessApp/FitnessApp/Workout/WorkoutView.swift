@@ -11,11 +11,11 @@ struct WorkoutView: View {
     // Dismissing View after cancel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    // User Settings
-    @ObservedObject var user = User()
+    // User Info
+    @EnvironmentObject var user: UserObject
     
     // User Defaults Workouts
-    @EnvironmentObject var savedWorkouts: SavedWorkouts
+    @EnvironmentObject var savedWorkouts: WorkoutObject
     
     // View toggles
     @State private var endWorkoutAlert = false
@@ -270,7 +270,7 @@ struct WorkoutView: View {
         }
     }
     
-    // MARK: - FUNCTIONS
+    // MARK: - Functions
     func pauseButtonAction() {
         
         // Stop Pause Timer, reset and start again
@@ -294,7 +294,7 @@ struct WorkoutView: View {
             pauseStopwatch.stop()
             
             // save workout stats
-            savedWorkouts.workoutArray.append(Workout(exercises: numberOfExercises, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
+            savedWorkouts.savedWorkouts.append(Workout(exercises: numberOfExercises, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
             
             // show popup
             withAnimation {
@@ -314,6 +314,8 @@ struct WorkoutView: View {
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutView()
+            .environmentObject(UserObject())
+            .environmentObject(WorkoutObject())
     }
 }
 

@@ -50,6 +50,7 @@ struct ProgressRow: View {
     }
 }
 
+// MARK: - Preview
 struct ProgressRow_Previews: PreviewProvider {
     static var previews: some View {
         ProgressRow(date: "10. Nov 2022", exercises: 6, time: "00:10", day: Date.now.formatted(.dateTime.weekday(.short)))

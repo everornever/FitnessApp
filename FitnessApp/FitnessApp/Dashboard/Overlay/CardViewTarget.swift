@@ -8,14 +8,14 @@ import Charts
 
 struct CardViewTarget: View {
     
-    // User info
-    @ObservedObject var user = User()
+    // User Info
+    @EnvironmentObject var user: UserObject
+    
+    // Saved Workouts
+    @EnvironmentObject var savedWorkouts: WorkoutObject
     
     // current week data
     let week = CurrentWeek()
-    
-    // Saved Workouts
-    @EnvironmentObject var savedWorkouts: SavedWorkouts
     
     // MARK: - Card
     var body: some View {
@@ -48,14 +48,6 @@ struct CardViewTarget: View {
         .padding()
         .background(Color.DSOverlay)
         .cornerRadius(20)
-    }
-    
-    // MARK: - PreView
-    struct CardViewTarget_Previews: PreviewProvider {
-        static let previewObject = SavedWorkouts()
-        static var previews: some View {
-            CardViewTarget().environmentObject(previewObject)
-        }
     }
 }
 
@@ -90,10 +82,23 @@ struct BarView: View {
     }
     
     func calculateHight() -> Double {
-        if (amount <= target) {
+        if (target == 0)  {
+            return 0
+        }
+        else if (amount <= target) {
             return Double(amount) / Double(target)
-        } else {
+        }
+        else {
             return 1
         }
+    }
+}
+
+// MARK: - PreView
+struct CardViewTarget_Previews: PreviewProvider {
+    static var previews: some View {
+        CardViewTarget()
+            .environmentObject(UserObject())
+            .environmentObject(WorkoutObject())
     }
 }

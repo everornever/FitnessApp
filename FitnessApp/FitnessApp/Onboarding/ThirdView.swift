@@ -1,6 +1,6 @@
 //
 //  ThirdView.swift
-//  Fitnessential
+//  Fitness App
 //
 
 import SwiftUI
@@ -11,7 +11,10 @@ struct ThirdView: View {
     @Binding var currentView: Int
 
     // User Info
-    @ObservedObject var user = User()
+    @EnvironmentObject var user: UserObject
+    
+    // Weight Object
+    @ObservedObject var weightObject = WeightObject()
     
     // Keyboard Focus
     @FocusState private var focusedField: Field?
@@ -29,16 +32,6 @@ struct ThirdView: View {
     @State private var weight: Double = 0
     @State private var target: Int = 3
     
-    // Double Formatter for user input
-    let weightFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 2
-        formatter.maximumFractionDigits = 2
-        formatter.zeroSymbol  = ""
-        return formatter
-    }()
-    
     // Int Formatter for user input
     let ageFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -53,6 +46,16 @@ struct ThirdView: View {
         let formatter = NumberFormatter()
         formatter.numberStyle = .none
         formatter.maximumIntegerDigits = 3
+        formatter.zeroSymbol  = ""
+        return formatter
+    }()
+    
+    // Double Formatter for Textfields
+    let weightFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
         formatter.zeroSymbol  = ""
         return formatter
     }()
@@ -73,7 +76,7 @@ struct ThirdView: View {
                 
                 // MARK: - List
                 VStack(spacing: 25) {
-                    // Age
+                    // MARK: - Age
                     HStack {
                         Text("Age")
                         Spacer()
@@ -113,7 +116,7 @@ struct ThirdView: View {
                             .stroke(.white, lineWidth: 3)
                     )
                     
-                    // Height
+                    // MARK: - Hight
                     HStack {
                         Text("Height")
                         Spacer()
@@ -131,7 +134,7 @@ struct ThirdView: View {
                             .stroke(.white, lineWidth: 3)
                     )
                     
-                    // Weight
+                    // MARK: - Weight
                     HStack {
                         Text("Weight")
                         Spacer()
@@ -148,14 +151,14 @@ struct ThirdView: View {
                             .stroke(.white, lineWidth: 3)
                     )
                     
-                    // Target
+                    // MARK: - Target
                     HStack {
                         Text("Weekly Target")
                         Spacer()
                         Text("\(target)")
                             .font(.title3.bold())
                         Spacer()
-                        Button("-") { subtracTarget() }
+                        Button("-") { subtractTarget() }
                             .buttonStyle(.borderedProminent)
                             .tint(Color.DSPrimary)
                             .foregroundColor(Color.DSPrimary_RV)
@@ -180,6 +183,7 @@ struct ThirdView: View {
                 
                 Spacer()
                 
+                // MARK: - Bottom
                 TextView(titel: "Your Stats", bodyText: "Give us some information about yourself to make it easier for you to get started.", color: true)
                 
                 MainButton(text: "Save", icon: "arrow.right") {
@@ -190,8 +194,8 @@ struct ThirdView: View {
                         // Save user Data
                         user.age = age
                         user.height = height
-                        user.weight = weight
                         user.target = target
+                        weightObject.saveEntry(value: weight)
                         
                     }
                     else {
@@ -208,13 +212,14 @@ struct ThirdView: View {
         }
     }
     
+    // MARK: - Functions
     private func addTarget() {
         if (target < 7) {
             target += 1
         }
     }
     
-    private func subtracTarget() {
+    private func subtractTarget() {
         if (target > 1) {
             target -= 1
         }
@@ -230,9 +235,11 @@ struct ThirdView: View {
     }
 }
 
+// MARK: - Preview
 struct ThirdView_Previews: PreviewProvider {
     static var previews: some View {
         ThirdView(currentView: .constant(3))
+            .environmentObject(UserObject())
     }
 }
 

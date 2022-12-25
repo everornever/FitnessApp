@@ -1,8 +1,6 @@
 //
 //  StopwatchFunctions.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 22.09.22.
+//  Fitness App
 //
 
 import Combine
@@ -13,10 +11,9 @@ class StopwatchFunctions: ObservableObject {
     private var startTime: Date?
     private var timer: Cancellable?
     
-    /// the final value to puplish the paased time to a UI interface
+    // MARK: - Publisher
     @Published private(set) var elapsedTime: TimeInterval = 0
     
-    /// no need to call functions. we start and stop the stopwatch by manipulating isRunning. functions are private
     @Published var isRunning = false {
         didSet {
             if self.isRunning {
@@ -27,8 +24,9 @@ class StopwatchFunctions: ObservableObject {
         }
     }
     
-    /// first cancelling any existing timer, to create a new one. Timers are not presice, at a rate of 0.5 seconds we don't see any bugs. then the startTime will be set
-    /// - Returns: when the timer fires, we call "getElapsedTime" and write passed time to "elapsedTime" to be used in UI
+    // MARK: - Functions
+    
+    // start timer
     private func start() -> Void {
         self.timer?.cancel()
         self.timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect().sink { _ in
@@ -38,7 +36,7 @@ class StopwatchFunctions: ObservableObject {
     }
     
     
-    /// will cancel any existing timer
+    // will cancel any existing timer
     private func stop() -> Void {
         self.timer?.cancel()
         self.timer = nil
@@ -46,7 +44,7 @@ class StopwatchFunctions: ObservableObject {
     }
     
     
-    /// will set everything to zero. can be called outside of class
+    // will set everything to zero. can be called outside of class
     func reset() -> Void {
         self.elapsedTime = 0
         self.startTime = nil

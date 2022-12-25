@@ -9,10 +9,10 @@ import Charts
 struct TargetView: View {
     
     // User Info
-    @ObservedObject var user = User()
+    @EnvironmentObject var user: UserObject
     
     // Saved Workouts
-    @EnvironmentObject var savedWorkouts: SavedWorkouts
+    @EnvironmentObject var savedWorkouts: WorkoutObject
     
     // Dismiss Button
     @Environment(\.dismiss) var dismiss
@@ -24,7 +24,8 @@ struct TargetView: View {
     
     var body: some View {
         VStack {
-            HStack { // Top
+            // MARK: - Top
+            HStack {
                 Text("Weekly Target")
                     .font(.title)
                     .bold()
@@ -110,7 +111,7 @@ struct TargetView: View {
                         Text("Total workouts")
                             .font(.subheadline)
                             .foregroundColor(.DSLight)
-                        Text("\(savedWorkouts.workoutArray.count)")
+                        Text("\(savedWorkouts.savedWorkouts.count)")
                             .font(.title2)
                             .bold()
                     }
@@ -159,16 +160,17 @@ struct TargetView: View {
     
     // get longest workout time
     func longestWorkout() -> String {
-        let max = savedWorkouts.workoutArray.map { $0.duration }.max()
+        let max = savedWorkouts.savedWorkouts.map { $0.duration }.max()
         return max?.timeString().hours ?? "00:00"
     }
 }
 
 // MARK: - Preview
 struct TargetView_Previews: PreviewProvider {
-    static let previewObject = SavedWorkouts()
     static var previews: some View {
-        TargetView().environmentObject(previewObject)
+        TargetView()
+            .environmentObject(UserObject())
+            .environmentObject(WorkoutObject())
     }
 }
 

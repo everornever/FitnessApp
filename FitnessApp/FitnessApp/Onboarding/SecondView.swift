@@ -43,7 +43,7 @@ struct SecondView: View {
                             self.currentView = 2
                         } else if let error = error {
                             print(error.localizedDescription)
-                            // Needs to be dealed with
+                            // Needs to be deled with
                         }
                     }
                 }
@@ -54,7 +54,7 @@ struct SecondView: View {
     }
 }
 
-
+// MARK: - Preview
 struct SecondView_Previews: PreviewProvider {
     static var previews: some View {
         SecondView(currentView: .constant(2))

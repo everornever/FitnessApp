@@ -1,8 +1,6 @@
 //
 //  PauseFunctions.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 06.10.22.
+//  Fitness App
 //
 
 import Foundation
@@ -14,8 +12,8 @@ class PauseTimerFunctions: ObservableObject {
     
     // MARK: - Values
     
-    // User Settings
-    @ObservedObject var user = User()
+    // User Info
+    @EnvironmentObject var user: UserObject
     
     // Notification
     private let id = UUID().uuidString
@@ -27,8 +25,8 @@ class PauseTimerFunctions: ObservableObject {
     private var accumulatedTime: TimeInterval = 0
     private var timer: Cancellable?
     
-    /// value to be read for UI
-    @Published private(set) var timeLeft: TimeInterval = User().pauseTimer
+    // value to be read for UI
+    @Published private(set) var timeLeft: TimeInterval = UserObject().pauseTimer
     
     
     // MARK: - Functions
@@ -61,7 +59,7 @@ class PauseTimerFunctions: ObservableObject {
         cancelPendingNotification()
     }
     
-    /// the start time is in the past, there is a negative time span “since” then and now.
+    // the start time is in the past, there is a negative time span “since” then and now.
     private func getElapsedTime() -> TimeInterval {
         return self.startTime?.timeIntervalSinceNow ?? 0
     }

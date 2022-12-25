@@ -7,14 +7,17 @@ import SwiftUI
 
 struct ContentView: View {
     
-    // Important: StateObject = First creation of Object!
-    @StateObject var savedWorkouts = SavedWorkouts()
-    @StateObject var user = User()
+    // Saved Workouts
+    @EnvironmentObject var workouts: WorkoutObject
+    
+    // User Info
+    @EnvironmentObject var user: UserObject
     
     // Views
     @State private var isShowingWorkoutView = false
     @State private var isShowingUpdateView = false
     
+    // App Version
     let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
     
     var body: some View {
@@ -78,7 +81,7 @@ struct ContentView: View {
             }.ignoresSafeArea(.all, edges: .bottom)
         }
         .onAppear(perform: checkForUpdates)
-        .environmentObject(savedWorkouts)
+        .environmentObject(workouts)
         .fullScreenCover(isPresented: $user.firstStart, content: { Onboarding(showOnboarding: $user.firstStart) })
         .sheet(isPresented: $isShowingUpdateView) { UpdateView(isPresented: $isShowingUpdateView) }
     }
@@ -97,5 +100,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(UserObject())
+            .environmentObject(WorkoutObject())
     }
 }

@@ -8,17 +8,17 @@ import SwiftUI
 struct ProgressView: View {
     
     // Saved Workouts
-    @EnvironmentObject var savedWorkouts: SavedWorkouts
+    @EnvironmentObject var workouts: WorkoutObject
     
     // MARK: - Body
     var body: some View {
         
-        if(savedWorkouts.workoutArray.isEmpty) {
+        if(workouts.savedWorkouts.isEmpty) {
             EmptyListView()
                 .navigationTitle("Progress")
         } else {
             List {
-                ForEach(savedWorkouts.workoutArray) { entry in
+                ForEach(workouts.savedWorkouts) { entry in
                     ProgressRow(date: entry.date.formatted(date: .abbreviated, time: .omitted), exercises: entry.exercises, time: entry.duration.timeString().minutes, day: entry.date.formatted(.dateTime.weekday(.short)))
                 }
                 .onDelete(perform: removeRows)
@@ -36,7 +36,7 @@ struct ProgressView: View {
     // MARK: - Functions
     
     func removeRows(at offsets: IndexSet) {
-        savedWorkouts.workoutArray.remove(atOffsets: offsets)
+        workouts.savedWorkouts.remove(atOffsets: offsets)
     }
         
 }
@@ -60,11 +60,8 @@ struct EmptyListView: View {
 
 // MARK: - Preview
 struct ProgressView_Previews: PreviewProvider {
-    
-    static let previewObject = SavedWorkouts()
-    
     static var previews: some View {
         ProgressView()
-            .environmentObject(previewObject)
+            .environmentObject(WorkoutObject())
     }
 }

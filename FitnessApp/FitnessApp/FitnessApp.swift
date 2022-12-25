@@ -28,9 +28,15 @@ struct FitnessApp: App {
     // Show Notifications in foreground
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
+    // Create Environment Objects
+    @StateObject var user = UserObject()
+    @StateObject var savedWorkouts = WorkoutObject()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(user)
+                .environmentObject(savedWorkouts)
         }
     }
 }

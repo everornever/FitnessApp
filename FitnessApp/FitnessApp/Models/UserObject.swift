@@ -6,11 +6,12 @@
 import Foundation
 import SwiftUI
 
-class User: ObservableObject {
+class UserObject: ObservableObject {
     
-    // User Metric
-    @AppStorage("weight") var weight = 0.0
+    // Height in CM
     @AppStorage("height") var height = 0
+    
+    // Age in ?
     @AppStorage("age") var age = 0
     
     // Workout Settings
@@ -27,3 +28,12 @@ class User: ObservableObject {
     @AppStorage("lastVersion") var lastVersion = "0.0.6"
 
 }
+
+/*
+ Is a Environment Object. It should be called like this:
+ 
+ // User Info
+ @EnvironmentObject var user: UserObject
+ 
+ Don't make a new instance of it
+ */
