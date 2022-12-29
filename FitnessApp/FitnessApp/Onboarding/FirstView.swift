@@ -42,6 +42,7 @@ struct FirstView: View {
     }
 }
 
+// MARK: - Preview
 struct FirstView_Previews: PreviewProvider {
     static var previews: some View {
         FirstView(currentView: .constant(1))

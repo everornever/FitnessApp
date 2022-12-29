@@ -7,17 +7,17 @@ import SwiftUI
 
 struct UpdateView: View {
     
-    @Binding var isPresented: Bool
-    
     // User Info
-    @ObservedObject var user = User()
+    @EnvironmentObject var user: UserObject
     
     // App Version
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "No version"
     
+    // Binding for View close
+    @Binding var isPresented: Bool
+    
     var body: some View {
         VStack{
-            
             VStack {
                 Text("Whats new")
                 Text("in Fitness App")
@@ -50,12 +50,7 @@ struct UpdateView: View {
     }
 }
 
-struct UpdateView_Previews: PreviewProvider {
-    static var previews: some View {
-        UpdateView(isPresented: .constant(true))
-    }
-}
-
+// MARK: - Feature Row
 struct FeatureRow: View {
     
     let image: String
@@ -81,5 +76,13 @@ struct FeatureRow: View {
             }
         }
         .padding(10)
+    }
+}
+
+// MARK: - Preview
+struct UpdateView_Previews: PreviewProvider {
+    static var previews: some View {
+        UpdateView(isPresented: .constant(true))
+            .environmentObject(UserObject())
     }
 }

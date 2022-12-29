@@ -5,7 +5,6 @@
 
 import Foundation
 
-// Codable for the JASON encoder, Identifiable for the UUID Property
 struct Workout: Identifiable, Codable {
     var id = UUID()
     let exercises: Int
@@ -20,11 +19,11 @@ struct WeekNumber: Identifiable {
     let workouts: [Workout]
 }
 
-// Saved Workouts makes an array of Workouts with a UserDefault Get/Set attached
-class SavedWorkouts: ObservableObject {
-    @Published var workoutArray = [Workout]() {
+
+class WorkoutObject: ObservableObject {
+    @Published var savedWorkouts = [Workout]() {
         didSet {
-            if let encoded = try? JSONEncoder().encode(workoutArray) {
+            if let encoded = try? JSONEncoder().encode(savedWorkouts) {
                 UserDefaults.standard.set(encoded, forKey: "SavedWorkouts")
             }
         }
@@ -33,11 +32,11 @@ class SavedWorkouts: ObservableObject {
     init() {
         if let savedItems = UserDefaults.standard.data(forKey: "SavedWorkouts") {
             if let decodedItems = try? JSONDecoder().decode([Workout].self, from: savedItems) {
-                workoutArray = decodedItems
+                savedWorkouts = decodedItems
                 return
             }
         }
-        workoutArray = []
+        savedWorkouts = []
     }
     
     // MARK: - Functions:
@@ -59,7 +58,7 @@ class SavedWorkouts: ObservableObject {
     func getWorkoutAmount(number: Int) -> Int {
         var tempArray = [Workout]()
         
-        for index in workoutArray {
+        for index in savedWorkouts {
             if (index.date.getWeekNumber() == number) {
                 tempArray.append(index)
             }
@@ -69,3 +68,12 @@ class SavedWorkouts: ObservableObject {
     }
     
 }
+
+/*
+ Is a Environment Object. It should be called like this:
+ 
+ // Saved Workouts
+ @EnvironmentObject var workouts: SavedWorkouts
+ 
+ Don't make a new instance of it
+ */

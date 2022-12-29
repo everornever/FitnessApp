@@ -11,7 +11,7 @@ struct FourthView: View {
     @Binding var showOnboarding: Bool
     
     // User Info
-    @ObservedObject var user = User()
+    @EnvironmentObject var user: UserObject
     
     // App Version
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "No version"
@@ -59,8 +59,10 @@ struct FourthView: View {
     }
 }
 
+// MARK: - Preview
 struct FourthView_Previews: PreviewProvider {
     static var previews: some View {
         FourthView(showOnboarding: .constant(true))
+            .environmentObject(UserObject())
     }
 }

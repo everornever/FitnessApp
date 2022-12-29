@@ -1,8 +1,6 @@
 //
 //  MainButton.swift
-//  Fitnessential
-//
-//  Created by Leon Kling on 09.11.22.
+//  Fitness App
 //
 
 import SwiftUI

@@ -7,7 +7,7 @@ import SwiftUI
 
 struct ExerciseListView: View {
     
-    @StateObject private var exercises = SavedExercises()
+    @ObservedObject var exercises = ExerciseObject()
     
     @Binding var isPresented: Bool
     

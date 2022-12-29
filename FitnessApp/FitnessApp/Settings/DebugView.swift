@@ -2,15 +2,13 @@
 //  DebugView.swift
 //  Fitness App
 //
-//  Created by Leon Kling on 16.12.22.
-//
 
 import SwiftUI
 
 struct DebugView: View {
     
     // Saved Workouts
-    @EnvironmentObject var savedWorkouts: SavedWorkouts
+    @EnvironmentObject var workouts: WorkoutObject
     
     // Date picker
     @State private var date = Date()
@@ -44,7 +42,7 @@ struct DebugView: View {
             
             Button("Save Workout") {
                 // Save
-                savedWorkouts.workoutArray.append(Workout(exercises: value, date: date, duration: TimeInterval(selection)))
+                workouts.savedWorkouts.append(Workout(exercises: value, date: date, duration: TimeInterval(selection)))
             }
                 .tint(.blue)
             

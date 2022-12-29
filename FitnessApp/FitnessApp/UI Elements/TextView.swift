@@ -1,8 +1,6 @@
 //
 //  TextView.swift
-//  Fitnessential
-//
-//  Created by Leon Kling on 11.11.22.
+//  Fitness App
 //
 
 import SwiftUI

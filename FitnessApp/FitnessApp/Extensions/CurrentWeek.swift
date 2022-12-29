@@ -18,8 +18,8 @@ class CurrentWeek {
     // This should automatically take the right calendar for the user's locale
     private var calendar = Calendar.current
     
-    // User Defaults Workouts
-    @ObservedObject var savedWorkouts = SavedWorkouts()
+    // Saved Workouts
+    @ObservedObject var workouts = WorkoutObject()
     
     // MARK: - Main Function
     func getCurrentWeek() -> [Day] {
@@ -80,17 +80,17 @@ class CurrentWeek {
         // formats dates to double diget format (03,04,..)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd"
-
+        
         return dateFormatter.string(from: date)
     }
     
     private func getWorkout(atIndex: Int) -> Bool {
-     
-        let lastWorkouts = savedWorkouts.workoutArray
-        
-        let currentDate = getDate(atIndex: atIndex)
         
         var done = false
+        
+        let lastWorkouts = workouts.savedWorkouts
+        
+        let currentDate = getDate(atIndex: atIndex)
         
         for ( _ , value) in lastWorkouts.enumerated() {
             if (value.date.formatted(date: .abbreviated, time: .omitted) == currentDate.formatted(date: .abbreviated, time: .omitted)) {

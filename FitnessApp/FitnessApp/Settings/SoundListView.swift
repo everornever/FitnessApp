@@ -9,7 +9,7 @@ import AVFoundation
 struct SoundListView: View {
     
     // User Info
-    @ObservedObject var user = User()
+    @EnvironmentObject var user: UserObject
     
     let sounds = ["Attention", "Bell-One"]
     
@@ -44,8 +44,10 @@ struct SoundListView: View {
     
 }
 
+// MARK: - Preview
 struct SoundListView_Previews: PreviewProvider {
     static var previews: some View {
         SoundListView()
+            .environmentObject(UserObject())
     }
 }

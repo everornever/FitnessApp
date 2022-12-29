@@ -7,8 +7,8 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    // User info
-    @ObservedObject var user = User()
+    // User Info
+    @EnvironmentObject var user: UserObject
     
     // Pause Timer
     @State private var allowNotification = false
@@ -21,6 +21,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
+                // MARK: - Workout
                 Section("Workout") {
                     VStack(alignment: .leading) {
                         Text("Pause timer length in minutes")
@@ -41,6 +42,7 @@ struct SettingsView: View {
                 }
                 .listRowBackground(Color.DSSecondaryOverlay)
                 
+                // MARK: - Notification
                 Section("Notification") {
                     NavigationLink(destination: SoundListView()) {
                         Text("Pause timer sound")
@@ -48,6 +50,7 @@ struct SettingsView: View {
                 }
                 .listRowBackground(Color.DSSecondaryOverlay)
                 
+                // MARK: - Testing
                 Section("For testing only") {
                     NavigationLink(destination: DebugView()) {
                         Text("Add Workouts")
@@ -57,6 +60,7 @@ struct SettingsView: View {
                 .foregroundColor(.red)
                 .listRowBackground(Color.DSSecondaryOverlay)
                 
+                // MARK: - About
                 Section("About us") {
                     VStack(alignment: .leading, spacing: 5) {
                         Text("Fitness App \(appVersion)")
@@ -80,5 +84,6 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .environmentObject(UserObject())
     }
 }

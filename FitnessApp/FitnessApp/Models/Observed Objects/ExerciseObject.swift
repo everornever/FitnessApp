@@ -1,8 +1,6 @@
 //
 //  Exercise.swift
-//  GetMoving
-//
-//  Created by Leon Kling on 20.10.22.
+//  Fitness App
 //
 
 import Foundation
@@ -13,7 +11,7 @@ struct Exercise: Identifiable, Codable {
     var kilo: Double
 }
 
-class SavedExercises: ObservableObject {
+class ExerciseObject: ObservableObject {
     @Published var savedExercises = [Exercise]() {
         didSet {
             if let encoded = try? JSONEncoder().encode(savedExercises) {
@@ -32,3 +30,11 @@ class SavedExercises: ObservableObject {
         savedExercises = [Exercise(name: "Bench Press", kilo: 20.0),Exercise(name: "Deadlift", kilo: 20.0), Exercise(name: "Squats", kilo: 20.0)]
     }
 }
+
+/*
+ This is NO Environment Object! It should be called like this:
+ 
+ // Exercise Object
+ @ObservedObject var exerciseObject = ExerciseObject()
+ 
+ */
