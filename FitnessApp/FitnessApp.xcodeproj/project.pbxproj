@@ -21,7 +21,7 @@
 		3526DD2F291D3C3300B76DD3 /* FourthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3526DD2E291D3C3300B76DD3 /* FourthView.swift */; };
 		352C47C828FC5781001EC887 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C47C728FC5781001EC887 /* Extensions.swift */; };
 		3535B1A229016F6900BF16EE /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3535B1A129016F6900BF16EE /* ExerciseListView.swift */; };
-		3538982728DC83C900983E1A /* StopwatchFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538982628DC83C900983E1A /* StopwatchFunctions.swift */; };
+		3538982728DC83C900983E1A /* DurationTimerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538982628DC83C900983E1A /* DurationTimerObject.swift */; };
 		3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3539485428C74AD600EDF0E2 /* WorkoutView.swift */; };
 		353C0F502901BB2D00A12930 /* ExerciseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C0F4F2901BB2D00A12930 /* ExerciseObject.swift */; };
 		35556F83295D9E030081B538 /* WeightListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35556F82295D9E030081B538 /* WeightListView.swift */; };
@@ -38,7 +38,7 @@
 		3583A7162915440500743013 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A7152915440500743013 /* Onboarding.swift */; };
 		3583A718291544F200743013 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A717291544F200743013 /* UpdateView.swift */; };
 		35859CE4293E1819000D502B /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35859CE3293E1819000D502B /* RoundButton.swift */; };
-		35C1575128EEEF1F00C7B641 /* PauseTimerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */; };
+		35C1575128EEEF1F00C7B641 /* RestTimerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1575028EEEF1F00C7B641 /* RestTimerObject.swift */; };
 		35C22BFC2938F9DE0096BC38 /* SoundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C22BFB2938F9DE0096BC38 /* SoundListView.swift */; };
 		35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D13D0628CB71F50033D155 /* CurrentStatsView.swift */; };
 		35D7B67F28B7858D000AFDC1 /* FitnessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D7B67E28B7858D000AFDC1 /* FitnessApp.swift */; };
@@ -66,7 +66,7 @@
 		3526DD2E291D3C3300B76DD3 /* FourthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthView.swift; sourceTree = "<group>"; };
 		352C47C728FC5781001EC887 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3535B1A129016F6900BF16EE /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
-		3538982628DC83C900983E1A /* StopwatchFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchFunctions.swift; sourceTree = "<group>"; };
+		3538982628DC83C900983E1A /* DurationTimerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationTimerObject.swift; sourceTree = "<group>"; };
 		3539485428C74AD600EDF0E2 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		353C0F4F2901BB2D00A12930 /* ExerciseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseObject.swift; sourceTree = "<group>"; };
 		35556F82295D9E030081B538 /* WeightListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightListView.swift; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 		3583A7152915440500743013 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		3583A717291544F200743013 /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
 		35859CE3293E1819000D502B /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
-		35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTimerFunctions.swift; sourceTree = "<group>"; };
+		35C1575028EEEF1F00C7B641 /* RestTimerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTimerObject.swift; sourceTree = "<group>"; };
 		35C22BFB2938F9DE0096BC38 /* SoundListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundListView.swift; sourceTree = "<group>"; };
 		35D13D0628CB71F50033D155 /* CurrentStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStatsView.swift; sourceTree = "<group>"; };
 		35D7B67B28B7858D000AFDC1 /* Fitness App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fitness App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,8 +153,8 @@
 			children = (
 				358185EC295724CF00358F38 /* WeightObject.swift */,
 				353C0F4F2901BB2D00A12930 /* ExerciseObject.swift */,
-				3538982628DC83C900983E1A /* StopwatchFunctions.swift */,
-				35C1575028EEEF1F00C7B641 /* PauseTimerFunctions.swift */,
+				3538982628DC83C900983E1A /* DurationTimerObject.swift */,
+				35C1575028EEEF1F00C7B641 /* RestTimerObject.swift */,
 			);
 			path = "Observed Objects";
 			sourceTree = "<group>";
@@ -367,7 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35556F83295D9E030081B538 /* WeightListView.swift in Sources */,
-				3538982728DC83C900983E1A /* StopwatchFunctions.swift in Sources */,
+				3538982728DC83C900983E1A /* DurationTimerObject.swift in Sources */,
 				350B03AE28CE52E900738A7E /* PopupView.swift in Sources */,
 				35D7B68D28B785BB000AFDC1 /* SettingsView.swift in Sources */,
 				356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */,
@@ -390,7 +390,7 @@
 				35FE2A5928BE156200291982 /* WorkoutObject.swift in Sources */,
 				352C47C828FC5781001EC887 /* Extensions.swift in Sources */,
 				350374352937B11B00DF4306 /* ProgressRow.swift in Sources */,
-				35C1575128EEEF1F00C7B641 /* PauseTimerFunctions.swift in Sources */,
+				35C1575128EEEF1F00C7B641 /* RestTimerObject.swift in Sources */,
 				357A6D94291C0CBF00EB6E53 /* ThirdView.swift in Sources */,
 				3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */,
 				3502947C28D4832B00C37C92 /* UserObject.swift in Sources */,

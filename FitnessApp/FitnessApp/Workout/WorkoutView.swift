@@ -21,11 +21,11 @@ struct WorkoutView: View {
     @State private var endWorkoutAlert = false
     @State private var isShowPopup: Bool = false
     
-    // Workout Timer
-    @StateObject var workoutStopwatch = StopwatchFunctions()
+    // Workout Duration Timer
+    @StateObject var durationTimer = DurationTimerObject()
     
-    // Pause Timer
-    @StateObject var pauseStopwatch = PauseTimerFunctions()
+    // Rest Timer
+    @StateObject var restTimer = RestTimerObject()
     
     // Dates
     let currentDate = Date()
@@ -50,7 +50,7 @@ struct WorkoutView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Text(workoutStopwatch.elapsedTime.timeString().hours)
+                Text(durationTimer.elapsedTime.timeString().hours)
                     .monospacedDigit()
                     .font(.title2)
                     .fontWeight(.bold)
@@ -159,13 +159,13 @@ struct WorkoutView: View {
                 // MARK: - Pause Button
                 VStack {
                     HStack {
-                        Text(pauseStopwatch.timeLeft.timeString().seconds)
+                        Text(restTimer.timeLeft.timeString().seconds)
                             .font(.title)
                             .fontWeight(.semibold)
                             .monospacedDigit()
                         
                         Button {
-                            pauseStopwatch.stop()
+                            restTimer.stop()
                         } label: {
                             Image(systemName: "gobackward")
                                 .tint(Color.DSLight)
@@ -221,7 +221,7 @@ struct WorkoutView: View {
                 
                 Spacer()
                 
-                // MARK: - Notizen
+                // MARK: - Notes
                 MainButton(text: "", icon: "list.bullet.clipboard", tint: Color.DSOverlay) { showingNotes = true }
                     .padding([.leading, .trailing], 20)
                     .sheet(isPresented: $showingNotes) {
@@ -242,8 +242,8 @@ struct WorkoutView: View {
                     Button("Resume", role: .cancel) {}
                         .tint(Color.DSAccent)
                     Button("Quit", role: .destructive) {
-                        pauseStopwatch.stop()
-                        workoutStopwatch.isRunning.toggle()
+                        restTimer.stop()
+                        durationTimer.stop()
                         presentationMode.wrappedValue.dismiss()
                     }
                 } message: {
@@ -266,7 +266,7 @@ struct WorkoutView: View {
             }
         }
         .onAppear {
-            workoutStopwatch.isRunning.toggle()
+            durationTimer.start()
         }
     }
     
@@ -274,8 +274,8 @@ struct WorkoutView: View {
     func pauseButtonAction() {
         
         // Stop Pause Timer, reset and start again
-        pauseStopwatch.stop()
-        pauseStopwatch.start()
+        restTimer.stop()
+        restTimer.start()
         
         // Add Set
         if numberOfSets[exerciseIndex]<8 {
@@ -290,11 +290,11 @@ struct WorkoutView: View {
     func saveWorkout() {
         if (numberOfSets[0] != 0) {
             // stop timers
-            workoutStopwatch.isRunning.toggle()
-            pauseStopwatch.stop()
+            durationTimer.stop()
+            restTimer.stop()
             
             // save workout stats
-            savedWorkouts.savedWorkouts.append(Workout(exercises: numberOfExercises, date: currentDate, duration: self.workoutStopwatch.elapsedTime))
+            savedWorkouts.savedWorkouts.append(Workout(exercises: numberOfExercises, date: currentDate, duration: self.durationTimer.elapsedTime))
             
             // show popup
             withAnimation {
