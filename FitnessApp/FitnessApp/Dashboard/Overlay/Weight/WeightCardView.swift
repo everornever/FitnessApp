@@ -6,7 +6,7 @@
 import SwiftUI
 import Charts
 
-struct CardViewWeight: View {
+struct WeightCardView: View {
     
     // Weight Object
     @ObservedObject var weightObject = WeightObject()
@@ -42,8 +42,8 @@ struct CardViewWeight: View {
 }
 
 // MARK: - Preview
-struct CardViewWeight_Previews: PreviewProvider {
+struct WeightCardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardViewWeight()
+        WeightCardView()
     }
 }

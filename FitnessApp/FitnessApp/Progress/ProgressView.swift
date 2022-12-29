@@ -19,7 +19,7 @@ struct ProgressView: View {
         } else {
             List {
                 ForEach(workouts.savedWorkouts) { entry in
-                    ProgressRow(date: entry.date.formatted(date: .abbreviated, time: .omitted), exercises: entry.exercises, time: entry.duration.timeString().minutes, day: entry.date.formatted(.dateTime.weekday(.short)))
+                    ProgressRow(date: entry.date.formatted(date: .abbreviated, time: .omitted), exercises: entry.exercises, time: entry.duration.timeString().minutes, day: entry.date.formatted(.dateTime.weekday(.short)), weeknumber: String(entry.date.getWeekNumber()))
                 }
                 .onDelete(perform: removeRows)
                 .listRowBackground(Color.DSOverlay)

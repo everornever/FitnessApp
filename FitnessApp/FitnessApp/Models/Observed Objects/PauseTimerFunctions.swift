@@ -13,7 +13,7 @@ class PauseTimerFunctions: ObservableObject {
     // MARK: - Values
     
     // User Info
-    @EnvironmentObject var user: UserObject
+    @ObservedObject var user = UserObject()
     
     // Notification
     private let id = UUID().uuidString

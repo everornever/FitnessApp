@@ -31,7 +31,7 @@ struct CurrentStatsView: View {
                 Button {
                     isShowingWeightView.toggle()
                 } label: {
-                    CardViewWeight()
+                    WeightCardView()
                 }
                 .sheet(isPresented: $isShowingWeightView) {
                     WeightView()
