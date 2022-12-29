@@ -23,8 +23,20 @@ struct SettingsView: View {
             Form {
                 // MARK: - Workout
                 Section("Workout") {
+                    
+                    Toggle(isOn: $user.includeWarmup) {
+                        Label("Include warm up", systemImage: "figure.run")
+                    }
+                        .tint(Color.DSAccent)
+                    
+                    Toggle(isOn: $user.includeStretching) {
+                        Label("Include stretching", systemImage: "figure.cooldown")
+                    }
+                        .tint(Color.DSAccent)
+                    
                     VStack(alignment: .leading) {
-                        Text("Pause timer length in minutes")
+                        Label("Pause timer length in minutes", systemImage: "hourglass")
+                        Text("")
                         Picker("Pause Timer Length", selection: $user.pauseTimer) {
                             ForEach(timers, id: \.self) {
                                 Text(($0 / 60.0).formatted())
@@ -32,12 +44,6 @@ struct SettingsView: View {
                         }
                         .pickerStyle(.segmented)
                     }
-                    
-                    Toggle("Include warm up", isOn: $user.includeWarmup)
-                        .tint(Color.DSAccent)
-                    
-                    Toggle("Include stretching", isOn: $user.includeStretching)
-                        .tint(Color.DSAccent)
 
                 }
                 .listRowBackground(Color.DSSecondaryOverlay)
@@ -45,7 +51,7 @@ struct SettingsView: View {
                 // MARK: - Notification
                 Section("Notification") {
                     NavigationLink(destination: SoundListView()) {
-                        Text("Pause timer sound")
+                        Label("Pause timer sound", systemImage: "speaker.wave.2")
                     }
                 }
                 .listRowBackground(Color.DSSecondaryOverlay)
@@ -53,7 +59,7 @@ struct SettingsView: View {
                 // MARK: - Testing
                 Section("For testing only") {
                     NavigationLink(destination: DebugView()) {
-                        Text("Add Workouts")
+                        Label("Add Workouts", systemImage: "ant")
                             .foregroundColor(Color.DSPrimary)
                     }
                 }

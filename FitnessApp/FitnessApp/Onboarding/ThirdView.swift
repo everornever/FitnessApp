@@ -36,7 +36,9 @@ struct ThirdView: View {
     let ageFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .none
-        formatter.maximumIntegerDigits = 2
+        formatter.maximumIntegerDigits = 4
+        formatter.maximum = 2022
+        formatter.minimum = 1940
         formatter.zeroSymbol  = ""
         return formatter
     }()
@@ -80,7 +82,7 @@ struct ThirdView: View {
                     HStack {
                         Text("Age")
                         Spacer()
-                        TextField("90", value: $age, formatter: ageFormatter)
+                        TextField("1996", value: $age, formatter: ageFormatter)
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
                             .font(.title3.bold())
