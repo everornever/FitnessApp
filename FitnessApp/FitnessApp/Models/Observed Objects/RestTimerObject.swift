@@ -8,9 +8,7 @@ import Combine
 import SwiftUI
 import UserNotifications
 
-class PauseTimerFunctions: ObservableObject {
-    
-    // MARK: - Values
+class RestTimerObject: ObservableObject {
     
     // User Info
     @ObservedObject var user = UserObject()
