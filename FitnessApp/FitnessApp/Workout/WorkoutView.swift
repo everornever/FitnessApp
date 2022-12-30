@@ -156,7 +156,7 @@ struct WorkoutView: View {
                 .cornerRadius(30)
                 .padding([.leading, .trailing], 20)
 
-                // MARK: - Pause Button
+                // MARK: - Rest Button
                 VStack {
                     HStack {
                         Text(restTimer.timeLeft.timeString().seconds)
@@ -191,7 +191,7 @@ struct WorkoutView: View {
                         }
                         
                         
-                        // Pause Button
+                        // Rest Button
                         Button {
                             pauseButtonAction()
                         }  label: {

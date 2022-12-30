@@ -35,9 +35,9 @@ struct SettingsView: View {
                         .tint(Color.DSAccent)
                     
                     VStack(alignment: .leading) {
-                        Label("Pause timer length in minutes", systemImage: "hourglass")
+                        Label("Rest timer length in minutes", systemImage: "hourglass")
                         Text("")
-                        Picker("Pause Timer Length", selection: $user.pauseTimer) {
+                        Picker("Rest Timer Length", selection: $user.pauseTimer) {
                             ForEach(timers, id: \.self) {
                                 Text(($0 / 60.0).formatted())
                             }
@@ -51,7 +51,7 @@ struct SettingsView: View {
                 // MARK: - Notification
                 Section("Notification") {
                     NavigationLink(destination: SoundListView()) {
-                        Label("Pause timer sound", systemImage: "speaker.wave.2")
+                        Label("Rest timer sound", systemImage: "speaker.wave.2")
                     }
                 }
                 .listRowBackground(Color.DSSecondaryOverlay)
