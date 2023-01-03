@@ -30,7 +30,8 @@ extension Date {
     
     func getWeekNumber() -> Int {
         let calendar = Calendar.current
-        let weekNumber = calendar.component(.weekOfYear, from: Date(primitivePlottable: self)!)
+        let date = Date(primitivePlottable: self)!
+        let weekNumber = calendar.component(.weekOfYear, from: date)
         return weekNumber
     }
 }

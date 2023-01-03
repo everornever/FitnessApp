@@ -4,33 +4,23 @@
 //
 
 import Foundation
-
-struct Workout: Identifiable, Codable {
-    var id = UUID()
-    let exercises: Int
-    let date: Date
-    let duration: TimeInterval
-    
-}
-
-struct WeekNumber: Identifiable {
-    var id = UUID()
-    let weekNumber: Int
-    let workouts: [Workout]
-}
-
+import WidgetKit
 
 class WorkoutObject: ObservableObject {
     @Published var savedWorkouts = [Workout]() {
         didSet {
             if let encoded = try? JSONEncoder().encode(savedWorkouts) {
-                UserDefaults.standard.set(encoded, forKey: "SavedWorkouts")
+                // Make sure to use your "App Group" container suite name when saving and retrieving the object from UserDefaults
+                UserDefaults(suiteName: "group.BETA-CODE.FitnessApp")!.set(encoded, forKey: "SavedWorkouts")
+                
+                // Used to get the widget extension to reload the timeline
+                WidgetCenter.shared.reloadAllTimelines()
             }
         }
     }
     
     init() {
-        if let savedItems = UserDefaults.standard.data(forKey: "SavedWorkouts") {
+        if let savedItems = UserDefaults(suiteName: "group.BETA-CODE.FitnessApp")!.data(forKey: "SavedWorkouts") {
             if let decodedItems = try? JSONDecoder().decode([Workout].self, from: savedItems) {
                 savedWorkouts = decodedItems
                 return

@@ -6,13 +6,6 @@
 import Foundation
 import SwiftUI
 
-struct Day {
-    let date: Date
-    let stringDate: String
-    let dayName: String
-    let workoutDone: Bool
-}
-
 class CurrentWeek {
     
     // This should automatically take the right calendar for the user's locale

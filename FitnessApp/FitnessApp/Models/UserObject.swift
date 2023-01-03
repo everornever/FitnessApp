@@ -10,7 +10,7 @@ class UserObject: ObservableObject {
     
     // Height in CM
     @AppStorage("height") var height = 0
-    
+
     // Age in year
     @AppStorage("age") var age = 1996
     
