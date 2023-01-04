@@ -58,7 +58,7 @@ struct MainWidgetView : View {
     // read user defaults
     private func readData() -> [Workout] {
         var savedWorkouts: [Workout]
-        if let savedItems = UserDefaults(suiteName: "group.BETA-CODE.FitnessApp")!.data(forKey: "SavedWorkouts") {
+        if let savedItems = UserDefaults.appGroup.data(forKey: UserDefaults.Keys.SavedWorkouts.rawValue) {
             if let decodedItems = try? JSONDecoder().decode([Workout].self, from: savedItems) {
                 savedWorkouts = decodedItems
                 return savedWorkouts

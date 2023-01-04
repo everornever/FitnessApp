@@ -48,3 +48,16 @@ extension Binding {
     }
 }
 
+typealias Key = UserDefaults.Keys
+
+extension UserDefaults {
+    static let appGroup = UserDefaults(suiteName: "group.BETA-CODE.FitnessApp")!
+}
+
+extension UserDefaults {
+    enum Keys: String {
+        case SavedWorkouts
+        case SavedUser
+    }
+}
+

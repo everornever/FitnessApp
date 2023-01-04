@@ -47,7 +47,7 @@ struct CurrentWeekView: View {
                             .background(getCurrentWeek()[index].workoutDone ? Color.DSAccent : Color.DSPrimary_RV)
                             .cornerRadius(40)
                             
-                            if ((calendar.component(.weekday, from: Date.now) - 1) == index) {
+                            if ((calendar.component(.weekday, from: Date.now) - 2) == index) {
                                 Circle().frame(width: 8, height: 8)
                             }
                         }

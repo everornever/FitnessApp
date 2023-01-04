@@ -43,6 +43,7 @@
 		35AA081129649100009E753B /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AA081029649100009E753B /* DayModel.swift */; };
 		35AA081329649113009E753B /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AA081029649100009E753B /* DayModel.swift */; };
 		35BACFC6296441BA0069911D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35D7B68228B78590000AFDC1 /* Assets.xcassets */; };
+		35BB1E4D2965A38700CD06B0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352C47C728FC5781001EC887 /* Extensions.swift */; };
 		35C1575128EEEF1F00C7B641 /* RestTimerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1575028EEEF1F00C7B641 /* RestTimerObject.swift */; };
 		35C22BFC2938F9DE0096BC38 /* SoundListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C22BFB2938F9DE0096BC38 /* SoundListView.swift */; };
 		35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D13D0628CB71F50033D155 /* CurrentStatsView.swift */; };
@@ -544,6 +545,7 @@
 				35EDC1292961BCA300DF6E2A /* Fitness_WidgetLiveActivity.swift in Sources */,
 				35F55F6B296371E100ED0A71 /* CurrentWeekView.swift in Sources */,
 				35AA081329649113009E753B /* DayModel.swift in Sources */,
+				35BB1E4D2965A38700CD06B0 /* Extensions.swift in Sources */,
 				35AA080D29648088009E753B /* WorkoutModel.swift in Sources */,
 				35F55F69296359F200ED0A71 /* Colors.swift in Sources */,
 				35EDC1272961BCA300DF6E2A /* Fitness_WidgetBundle.swift in Sources */,

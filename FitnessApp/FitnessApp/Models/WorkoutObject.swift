@@ -11,7 +11,7 @@ class WorkoutObject: ObservableObject {
         didSet {
             if let encoded = try? JSONEncoder().encode(savedWorkouts) {
                 // Make sure to use your "App Group" container suite name when saving and retrieving the object from UserDefaults
-                UserDefaults(suiteName: "group.BETA-CODE.FitnessApp")!.set(encoded, forKey: "SavedWorkouts")
+                UserDefaults.appGroup.set(encoded, forKey: UserDefaults.Keys.SavedWorkouts.rawValue)
                 
                 // Used to get the widget extension to reload the timeline
                 WidgetCenter.shared.reloadAllTimelines()
@@ -20,7 +20,7 @@ class WorkoutObject: ObservableObject {
     }
     
     init() {
-        if let savedItems = UserDefaults(suiteName: "group.BETA-CODE.FitnessApp")!.data(forKey: "SavedWorkouts") {
+        if let savedItems = UserDefaults.appGroup.data(forKey: UserDefaults.Keys.SavedWorkouts.rawValue) {
             if let decodedItems = try? JSONDecoder().decode([Workout].self, from: savedItems) {
                 savedWorkouts = decodedItems
                 return
