@@ -29,14 +29,12 @@ struct FitnessApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     // Create Environment Objects
-    @StateObject var user = UserObject()
-    @StateObject var savedWorkouts = WorkoutObject()
+    @StateObject var userObject = UserObject()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(user)
-                .environmentObject(savedWorkouts)
+                .environmentObject(userObject)
         }
     }
 }

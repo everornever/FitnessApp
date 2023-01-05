@@ -9,12 +9,12 @@ import SwiftUI
 
 struct WeightList: View {
     
-    // Weight Object
-    @ObservedObject var weightObject = WeightObject()
+    // User Info
+    @EnvironmentObject var userObject: UserObject
     
     var body: some View {
         List {
-            ForEach(weightObject.savedEntries) { entry in
+            ForEach(userObject.props.weightEntries) { entry in
                 HStack {
                     Image(systemName: "scalemass")
                     Text(entry.weight.dezimalString())
@@ -33,12 +33,13 @@ struct WeightList: View {
     }
     
     func removeRows(at offsets: IndexSet) {
-        weightObject.savedEntries.remove(atOffsets: offsets)
+        userObject.props.weightEntries.remove(atOffsets: offsets)
     }
 }
 
 struct WeightList_Previews: PreviewProvider {
     static var previews: some View {
         WeightList()
+            .environmentObject(UserObject())
     }
 }

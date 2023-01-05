@@ -8,10 +8,7 @@ import SwiftUI
 struct CurrentStatsView: View {
     
     // User Info
-    @EnvironmentObject var user: UserObject
-    
-    // Saved Workouts
-    @EnvironmentObject var workouts: WorkoutObject
+    @EnvironmentObject var userObject: UserObject
     
     // Sheet Views
     @State private var isShowingWeightView = false
@@ -70,7 +67,6 @@ struct WeeklyStats_Previews: PreviewProvider {
         CurrentStatsView()
             .frame(height: 500)
             .environmentObject(UserObject())
-            .environmentObject(WorkoutObject())
         
     }
 }

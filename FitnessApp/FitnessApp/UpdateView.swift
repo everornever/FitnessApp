@@ -8,7 +8,7 @@ import SwiftUI
 struct UpdateView: View {
     
     // User Info
-    @EnvironmentObject var user: UserObject
+    @EnvironmentObject var userObject: UserObject
     
     // App Version
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "No version"
@@ -42,7 +42,7 @@ struct UpdateView: View {
             
             MainButton(text: "OK") {
                 isPresented = false
-                user.lastVersion = appVersion
+                userObject.props.lastVersion = appVersion
             }
             .padding()
             

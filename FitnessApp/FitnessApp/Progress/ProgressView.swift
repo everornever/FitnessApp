@@ -8,18 +8,24 @@ import SwiftUI
 struct ProgressView: View {
     
     // Saved Workouts
-    @EnvironmentObject var workouts: WorkoutObject
+    @EnvironmentObject var userObject: UserObject
     
     // MARK: - Body
     var body: some View {
         
-        if(workouts.savedWorkouts.isEmpty) {
+        if(userObject.props.workouts.isEmpty) {
             EmptyListView()
                 .navigationTitle("Progress")
         } else {
             List {
-                ForEach(workouts.savedWorkouts) { entry in
-                    ProgressRow(date: entry.date.formatted(date: .abbreviated, time: .omitted), exercises: entry.exercises, time: entry.duration.timeString().minutes, day: entry.date.formatted(.dateTime.weekday(.short)), weeknumber: String(entry.date.getWeekNumber()))
+                ForEach(userObject.props.workouts) { entry in
+                    ProgressRow(
+                        date: entry.date.formatted(date: .abbreviated, time: .omitted),
+                        exercises: entry.exercises,
+                        time: entry.duration.timeString().minutes,
+                        day: entry.date.formatted(.dateTime.weekday(.short)),
+                        weekNumber: String(Calendar.current.component(.yearForWeekOfYear, from: entry.date))
+                    )
                 }
                 .onDelete(perform: removeRows)
                 .listRowBackground(Color.DSOverlay)
@@ -36,7 +42,7 @@ struct ProgressView: View {
     // MARK: - Functions
     
     func removeRows(at offsets: IndexSet) {
-        workouts.savedWorkouts.remove(atOffsets: offsets)
+        userObject.props.workouts.remove(atOffsets: offsets)
     }
         
 }
@@ -62,6 +68,6 @@ struct EmptyListView: View {
 struct ProgressView_Previews: PreviewProvider {
     static var previews: some View {
         ProgressView()
-            .environmentObject(WorkoutObject())
+            .environmentObject(UserObject())
     }
 }

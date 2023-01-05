@@ -50,22 +50,22 @@ struct MainWidgetView : View {
         // switch case for different widget sizes but same information
         switch family {
             //case .systemSmall: GoalWidget(entry: entry)
-            case .systemMedium: CurrentWeekView(workouts: readData())
-            default: CurrentWeekView(workouts: readData()) // show empty view in future ?
+            case .systemMedium: CurrentWeekView(userObject: readUserDefaults())
+            default: CurrentWeekView(userObject: readUserDefaults()) // show empty view in future ?
         }
     }
     
     // read user defaults
-    private func readData() -> [Workout] {
-        var savedWorkouts: [Workout]
-        if let savedItems = UserDefaults.appGroup.data(forKey: UserDefaults.Keys.SavedWorkouts.rawValue) {
-            if let decodedItems = try? JSONDecoder().decode([Workout].self, from: savedItems) {
-                savedWorkouts = decodedItems
-                return savedWorkouts
+    private func readUserDefaults() -> User {
+        var userObject: User
+        if let savedItems = UserDefaults.appGroup.data(forKey: UserDefaults.Keys.SavedUser.rawValue) {
+            if let decodedItems = try? JSONDecoder().decode(User.self, from: savedItems) {
+                userObject = decodedItems
+                return userObject
             }
         }
-        savedWorkouts = []
-        return savedWorkouts
+        userObject = User()
+        return userObject
     }
 }
 

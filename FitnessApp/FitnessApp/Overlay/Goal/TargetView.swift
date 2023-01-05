@@ -9,10 +9,7 @@ import Charts
 struct TargetView: View {
     
     // User Info
-    @EnvironmentObject var user: UserObject
-    
-    // Saved Workouts
-    @EnvironmentObject var savedWorkouts: WorkoutObject
+    @EnvironmentObject var userObject: UserObject
     
     // Dismiss Button
     @Environment(\.dismiss) var dismiss
@@ -45,14 +42,14 @@ struct TargetView: View {
                     
                     Spacer()
                     
-                    Text("Current Week: \(Date.now.getWeekNumber())")
+                    Text("Current Week: \(calendar.component(.weekOfYear, from: Date.now))")
                         .font(.caption2)
                         .foregroundColor(Color.DSLight)
                 }
                 
                 Chart() {
                     
-                    RuleMark(y: .value("Goal", user.target))
+                    RuleMark(y: .value("Goal", userObject.props.weeklyGoal))
                         .foregroundStyle(Color.DSSecondaryAccent)
                         .lineStyle(StrokeStyle(lineWidth: 4, dash: [8]))
                         .annotation(alignment: .leading) {
@@ -61,12 +58,12 @@ struct TargetView: View {
                                 .foregroundColor(Color.DSLight)
                         }
                     
-                    ForEach(savedWorkouts.getLastSixWeeks(), id: \.self) { week in
+                    ForEach(Date.now.getLastSixWeeks(), id: \.self) { week in
                         BarMark(
                             x: .value("Calendar Week", "\(week)"),
-                            y: .value("Amount of Workouts", savedWorkouts.getWorkoutAmount(number: week))
+                            y: .value("Amount of Workouts", userObject.getCurrentWorkoutAmount(weekNumber: week))
                         )
-                        .foregroundStyle((savedWorkouts.getWorkoutAmount(number: week) >= user.target) ? Color.DSAccent : Color.DSPrimary )
+                        .foregroundStyle((userObject.getCurrentWorkoutAmount(weekNumber: week) >= userObject.props.weeklyGoal) ? Color.DSAccent : Color.DSPrimary )
                     }
                     
                 }
@@ -85,7 +82,7 @@ struct TargetView: View {
                     Text("Weekly Target")
                         .font(.subheadline)
                         .foregroundColor(.DSLight)
-                    Text("\(user.target)")
+                    Text("\(userObject.props.weeklyGoal)")
                         .font(.title2)
                         .bold()
                 }
@@ -111,7 +108,7 @@ struct TargetView: View {
                         Text("Total workouts")
                             .font(.subheadline)
                             .foregroundColor(.DSLight)
-                        Text("\(savedWorkouts.savedWorkouts.count)")
+                        Text("\(userObject.props.workouts.count)")
                             .font(.title2)
                             .bold()
                     }
@@ -147,20 +144,20 @@ struct TargetView: View {
     
     // Add / Subtract target value
     func addTarget() {
-        if (user.target < 7) {
-            user.target += 1
+        if (userObject.props.weeklyGoal < 7) {
+            userObject.props.weeklyGoal += 1
         }
     }
     
     func subtractTarget() {
-        if (user.target > 1) {
-            user.target -= 1
+        if (userObject.props.weeklyGoal > 1) {
+            userObject.props.weeklyGoal -= 1
         }
     }
     
     // get longest workout time
     func longestWorkout() -> String {
-        let max = savedWorkouts.savedWorkouts.map { $0.duration }.max()
+        let max = userObject.props.workouts.map { $0.duration }.max()
         return max?.timeString().hours ?? "00:00"
     }
 }
@@ -170,7 +167,6 @@ struct TargetView_Previews: PreviewProvider {
     static var previews: some View {
         TargetView()
             .environmentObject(UserObject())
-            .environmentObject(WorkoutObject())
     }
 }
 

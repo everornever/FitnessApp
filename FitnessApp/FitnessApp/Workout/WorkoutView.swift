@@ -12,10 +12,7 @@ struct WorkoutView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // User Info
-    @EnvironmentObject var user: UserObject
-    
-    // User Defaults Workouts
-    @EnvironmentObject var savedWorkouts: WorkoutObject
+    @EnvironmentObject var userObject: UserObject
     
     // View toggles
     @State private var endWorkoutAlert = false
@@ -58,7 +55,7 @@ struct WorkoutView: View {
                 // MARK: - Exercise List
                 List {
                     
-                    if (user.includeStretching) {
+                    if (userObject.props.includeStretching) {
                         Section("Press to Check") {
                             HStack {
                                 Image(systemName: "figure.strengthtraining.functional")
@@ -120,7 +117,7 @@ struct WorkoutView: View {
                         }
                     }
                     
-                    if (user.includeWarmup) {
+                    if (userObject.props.includeWarmup) {
                         Section("Press to Check") {
                             HStack {
                                 Image(systemName: "figure.run")
@@ -294,7 +291,7 @@ struct WorkoutView: View {
             restTimer.stop()
             
             // save workout stats
-            savedWorkouts.savedWorkouts.append(Workout(exercises: numberOfExercises, date: currentDate, duration: self.durationTimer.elapsedTime))
+            userObject.props.workouts.append(Workout(exercises: numberOfExercises, date: currentDate, duration: self.durationTimer.elapsedTime))
             
             // show popup
             withAnimation {
@@ -315,7 +312,6 @@ struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutView()
             .environmentObject(UserObject())
-            .environmentObject(WorkoutObject())
     }
 }
 

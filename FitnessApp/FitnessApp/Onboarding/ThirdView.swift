@@ -11,10 +11,7 @@ struct ThirdView: View {
     @Binding var currentView: Int
 
     // User Info
-    @EnvironmentObject var user: UserObject
-    
-    // Weight Object
-    @ObservedObject var weightObject = WeightObject()
+    @EnvironmentObject var userObject: UserObject
     
     // Keyboard Focus
     @FocusState private var focusedField: Field?
@@ -194,10 +191,10 @@ struct ThirdView: View {
                         self.currentView = 3
                         
                         // Save user Data
-                        user.age = age
-                        user.height = height
-                        user.target = target
-                        weightObject.saveEntry(value: weight)
+                        userObject.props.age = age
+                        userObject.props.height = height
+                        userObject.props.weeklyGoal = target
+                        userObject.saveWeightEntry(value: weight)
                         
                     }
                     else {

@@ -7,8 +7,8 @@ import SwiftUI
 
 struct WeekView: View {
     
-    // Saved Workouts
-    @EnvironmentObject var workouts: WorkoutObject
+    // User Info
+    @EnvironmentObject var userObject: UserObject
     
     let week = CurrentWeek().getCurrentWeek()
     
@@ -52,6 +52,6 @@ struct WeekView: View {
 struct WeekView_Previews: PreviewProvider {
     static var previews: some View {
         WeekView()
-            .environmentObject(WorkoutObject())
+            .environmentObject(UserObject())
     }
 }

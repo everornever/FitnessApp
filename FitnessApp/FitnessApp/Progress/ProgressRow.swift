@@ -11,7 +11,7 @@ struct ProgressRow: View {
     let exercises: Int
     let time: String
     let day: String
-    let weeknumber: String
+    let weekNumber: String
     
     var body: some View {
         HStack {
@@ -35,7 +35,7 @@ struct ProgressRow: View {
                         .foregroundColor(Color.DSLight)
                         .font(.callout)
                     
-                    Text("W\(weeknumber)")
+                    Text("W\(weekNumber)")
                         .foregroundColor(Color.DSSecondaryAccent)
                         .font(.callout)
                 }
@@ -61,6 +61,6 @@ struct ProgressRow: View {
 // MARK: - Preview
 struct ProgressRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressRow(date: "10. Nov 2022", exercises: 6, time: "00:10", day: Date.now.formatted(.dateTime.weekday(.short)), weeknumber: "52")
+        ProgressRow(date: "10. Nov 2022", exercises: 6, time: "00:10", day: Date.now.formatted(.dateTime.weekday(.short)), weekNumber: "52")
     }
 }

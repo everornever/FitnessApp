@@ -10,7 +10,7 @@ struct CurrentWeekView: View {
     
     let calendar = Calendar.current
     
-    let workouts: [Workout]
+    let userObject: User
     
     var body: some View {
         ZStack {
@@ -22,13 +22,12 @@ struct CurrentWeekView: View {
                 HStack {
                     Text("Weekly Goal")
                     Spacer()
-                    Text("\(getWorkoutsDoneAmount()) / 4")
+                    Text("\(getWorkoutsDoneAmount()) / \(userObject.weeklyGoal)")
                     
                 }
                 .font(.subheadline)
                 .bold()
                 .padding(.bottom, 10)
-        
                 
                 HStack(alignment: .top) {
                     ForEach(0..<7, id: \.self) { index in
@@ -47,7 +46,7 @@ struct CurrentWeekView: View {
                             .background(getCurrentWeek()[index].workoutDone ? Color.DSAccent : Color.DSPrimary_RV)
                             .cornerRadius(40)
                             
-                            if ((calendar.component(.weekday, from: Date.now) - 2) == index) {
+                            if (Calendar.current.isDateInToday(getCurrentWeek()[index].date)) {
                                 Circle().frame(width: 8, height: 8)
                             }
                         }
@@ -126,7 +125,7 @@ struct CurrentWeekView: View {
         
         let currentDate = getDate(atIndex: atIndex)
         
-        for ( _ , value) in workouts.enumerated() {
+        for ( _ , value) in userObject.workouts.enumerated() {
             if (value.date.formatted(date: .abbreviated, time: .omitted) == currentDate.formatted(date: .abbreviated, time: .omitted)) {
                 done = true
                 break
@@ -139,7 +138,7 @@ struct CurrentWeekView: View {
 
 struct CurrentWeekView_Previews: PreviewProvider {
     static var previews: some View {
-        CurrentWeekView(workouts: [Workout(exercises: 6, date: Date.now, duration: 100)])
+        CurrentWeekView(userObject: User())
             .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
