@@ -43,7 +43,7 @@ struct WorkoutView: View {
     var body: some View {
         ZStack {
             
-            Color.DSBackground
+            Color.Layer1
                 .ignoresSafeArea()
             
             VStack {
@@ -67,7 +67,7 @@ struct WorkoutView: View {
                                 
                                 if (stretching) {
                                     Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(Color.DSAccent)
+                                        .foregroundColor(Color.SingleAccent)
                                         .font(.title3)
                                 }
                                 else {
@@ -76,7 +76,7 @@ struct WorkoutView: View {
                                         .font(.title2)
                                 }
                             }
-                            .listRowBackground(Color.DSBackground)
+                            .listRowBackground(Color.Layer3)
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 stretching.toggle()
@@ -90,7 +90,7 @@ struct WorkoutView: View {
                             HStack {
                                 if(exerciseIndex == index) {
                                     Image(systemName: "arrowtriangle.right.fill")
-                                        .foregroundColor(Color.DSAccent)
+                                        .foregroundColor(Color.SingleAccent)
                                 }
                                 
                                 Text("\(index+1). Exercise")
@@ -101,18 +101,18 @@ struct WorkoutView: View {
                                     ForEach(0..<numberOfSets[index], id: \.self) { _ in
                                         
                                         Image(systemName: "circlebadge.fill")
-                                            .foregroundColor(Color.DSAccent)
+                                            .foregroundColor(Color.SingleAccent)
                                             .font(.title)
                                         
                                     }
                                 } else {
                                     Image(systemName: "\(numberOfSets[index]).circle")
-                                        .foregroundColor(Color.DSAccent)
+                                        .foregroundColor(Color.SingleAccent)
                                         .font(.title)
                                 }
                                 
                             }
-                            .listRowBackground(Color.DSBackground)
+                            .listRowBackground(Color.Layer3)
                             
                         }
                     }
@@ -129,7 +129,7 @@ struct WorkoutView: View {
                                 
                                 if (warmUp) {
                                     Image(systemName: "circlebadge.fill")
-                                        .foregroundColor(Color.DSAccent)
+                                        .foregroundColor(Color.SingleAccent)
                                         .font(.title)
                                 }
                                 else {
@@ -138,7 +138,7 @@ struct WorkoutView: View {
                                         .font(.title)
                                 }
                             }
-                            .listRowBackground(Color.DSBackground)
+                            .listRowBackground(Color.Layer3)
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 warmUp.toggle()
@@ -147,11 +147,12 @@ struct WorkoutView: View {
                     }
                     
                 }
-                .background(Color.DSOverlay)
+                .background(Color.Layer2)
                 .scrollContentBackground(.hidden)
                 .scrollIndicators(.hidden)
                 .cornerRadius(30)
                 .padding([.leading, .trailing], 20)
+                .shadow(color: Color.gray.opacity(0.1), radius: 10, x: 0, y: 0)
 
                 // MARK: - Rest Button
                 VStack {
@@ -165,7 +166,7 @@ struct WorkoutView: View {
                             restTimer.stop()
                         } label: {
                             Image(systemName: "gobackward")
-                                .tint(Color.DSLight)
+                                .tint(Color.SingleLight)
                         }
                     }
                     
@@ -184,7 +185,7 @@ struct WorkoutView: View {
                         } label: {
                             Image(systemName: "backward.end.fill")
                                 .font(.title)
-                                .foregroundStyle(Color.DSPrimary)
+                                .foregroundStyle(Color.primary)
                         }
                         
                         
@@ -197,7 +198,7 @@ struct WorkoutView: View {
                                 .foregroundColor(.black)
                                 .padding(30)
                         }
-                        .tint(Color.DSAccent)
+                        .tint(Color.SingleAccent)
                         .buttonStyle(.borderedProminent)
                         
                         // Next exercise
@@ -210,7 +211,7 @@ struct WorkoutView: View {
                         } label: {
                             Image(systemName: "forward.end.fill")
                                 .font(.title)
-                                .foregroundStyle(Color.DSPrimary)
+                                .foregroundStyle(Color.primary)
                         }
                     }
                 }
@@ -219,7 +220,7 @@ struct WorkoutView: View {
                 Spacer()
                 
                 // MARK: - Notes
-                MainButton(text: "", icon: "list.bullet.clipboard", tint: Color.DSOverlay) { showingNotes = true }
+                BigButton(text: "", icon: "list.bullet.clipboard", tint: Color.Layer2) { showingNotes = true }
                     .padding([.leading, .trailing], 20)
                     .sheet(isPresented: $showingNotes) {
                         ExerciseListView(isPresented: $showingNotes)
@@ -229,29 +230,19 @@ struct WorkoutView: View {
             // MARK: - Navigation Bar
             .navigationBarTitle("Workout", displayMode: .inline)
             .navigationBarBackButtonHidden(true)
-            .navigationBarItems( leading:
-                                    Button {
-                endWorkoutAlert = true
-            } label: {
-                RoundButton(tint: Color.red, back: Color.DSOverlay, cancel: true)
+            .navigationBarItems(leading: CancelButton() { endWorkoutAlert = true } )
+            .navigationBarItems(trailing: CheckButton() { saveWorkout() } )
+            .alert("Quit Workout", isPresented: $endWorkoutAlert) {
+                Button("Resume", role: .cancel) {}
+                    .tint(Color.SingleAccent)
+                Button("Quit", role: .destructive) {
+                    restTimer.stop()
+                    durationTimer.stop()
+                    presentationMode.wrappedValue.dismiss()
+                }
+            } message: {
+                Text("Are you sure you want to quit your current workout?")
             }
-                .alert("Quit Workout", isPresented: $endWorkoutAlert) {
-                    Button("Resume", role: .cancel) {}
-                        .tint(Color.DSAccent)
-                    Button("Quit", role: .destructive) {
-                        restTimer.stop()
-                        durationTimer.stop()
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                } message: {
-                    Text("Are you sure you want to quit your current workout?")
-                })
-            .navigationBarItems( trailing:
-                                    Button {
-                saveWorkout()
-            } label: {
-                RoundButton(tint: Color.DSPrimary, back: Color.DSOverlay, cancel: false)
-            })
             
             // PopupView
             if isShowPopup {

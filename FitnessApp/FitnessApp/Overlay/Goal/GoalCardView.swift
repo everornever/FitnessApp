@@ -19,11 +19,10 @@ struct GoalCardView: View {
             VStack{
                 Text("\(week.getWorkoutsDoneAmount()) / \(userObject.props.weeklyGoal)")
                     .font(.headline)
-                    .foregroundColor(.DSPrimary)
                 
                 Text("Weekly Target")
                     .font(.caption)
-                    .foregroundColor(Color.DSLight)
+                    .foregroundColor(Color.SingleLight)
             }
                 
             HStack(spacing: 8) {
@@ -35,14 +34,14 @@ struct GoalCardView: View {
                         Text("\(Date.now.getLastSixWeeks()[index])")
                             .monospacedDigit()
                             .font(.caption2)
-                            .foregroundColor(Color.DSLight)
+                            .foregroundColor(Color.SingleLight)
                     }
                 }
             }
         }
         .frame(maxWidth: .infinity ,maxHeight: .infinity)
         .padding()
-        .background(Color.DSOverlay)
+        .background(Color.Layer3)
         .cornerRadius(20)
     }
 }
@@ -59,11 +58,11 @@ struct BarView: View {
                 
                 RoundedRectangle(cornerRadius: 3)
                 .frame(width: 8)
-                .foregroundColor(Color.DSLight.opacity(0.2))
+                .foregroundColor(Color.SingleLight.opacity(0.2))
                 
                 RoundedRectangle(cornerRadius: 3)
                     .frame(width: 8, height: geometry.size.height * calculateHight())
-                    .foregroundColor(checkGreen() ? Color.DSAccent : Color.DSPrimary)
+                    .foregroundColor(checkGreen() ? Color.SingleAccent : Color.primary)
             }
             .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
         }

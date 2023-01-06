@@ -12,7 +12,7 @@ struct SecondView: View {
     
     var body: some View {
         ZStack {
-            Color.DSAccent
+            Color.SingleAccent
                 .ignoresSafeArea()
             
             VStack(alignment: .leading) {
@@ -35,7 +35,7 @@ struct SecondView: View {
                 
                 TextView(titel: "Notifications", bodyText: "Allow us to send you notifications. These are important for your break timer or other features. We do not send messages that you do not want.", color: false)
                 
-                MainButton(text: "Allow", icon: "arrow.right") {
+                BigButton(text: "Allow", icon: "arrow.right") {
                     
                     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
                         if success {

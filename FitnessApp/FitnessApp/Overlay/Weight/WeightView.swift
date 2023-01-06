@@ -28,8 +28,8 @@ struct WeightView: View {
                         .font(.title)
                         .bold()
                     Spacer()
-                    Button { dismiss() } label: {
-                        RoundButton(tint: Color.DSPrimary, back: Color.DSBackground, cancel: true)
+                    CancelButton() {
+                        dismiss()
                     }
                 }
                 .padding(.top)
@@ -45,13 +45,11 @@ struct WeightView: View {
                         .lineStyle(StrokeStyle(lineWidth: 4))
                         .symbol(Circle().strokeBorder(lineWidth: 2))
                         .interpolationMethod(.cardinal)
-                        .foregroundStyle(Gradient(colors: [Color.DSSecondaryAccent, Color.clear]))
+                        .foregroundStyle(Gradient(colors: [Color.SingleAccentTwo, Color.clear]))
                     }
                     .frame(height: 300)
                 }
                 .padding()
-                .background(Color.DSBackground)
-                .cornerRadius(20)
                 
                 // MARK: - Saved Weight
                 NavigationLink(destination: WeightList()) {
@@ -61,14 +59,12 @@ struct WeightView: View {
                         Image(systemName: "chevron.right")
                     }
                     .padding()
-                    .background(Color.DSBackground)
-                    .cornerRadius(10)
                 }
                 
                 Spacer()
             }
             .padding()
-        .background(Color.DSOverlay)
+        .background(Color.Layer2)
         }
     }
     
