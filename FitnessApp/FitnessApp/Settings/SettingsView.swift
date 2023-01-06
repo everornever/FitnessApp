@@ -44,7 +44,14 @@ struct SettingsView: View {
                         }
                         .pickerStyle(.segmented)
                     }
-
+                    Toggle(isOn: $userObject.props.disabledSleep) {
+                        Label("Keep screen awake", systemImage: "lock.iphone")
+                    }
+                    .tint(.SingleAccent)
+                    .onChange(of: userObject.props.disabledSleep) { _isOn in
+                        UIApplication.shared.isIdleTimerDisabled.toggle()
+                        print("Sleep mode toggel")
+                    }
                 }
                 .listRowBackground(Color.Layer3)
                 
