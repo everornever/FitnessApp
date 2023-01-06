@@ -6,7 +6,7 @@
 import SwiftUI
 import Charts
 
-struct TargetView: View {
+struct GoalView: View {
     
     // User Info
     @EnvironmentObject var userObject: UserObject
@@ -165,7 +165,7 @@ struct TargetView: View {
 // MARK: - Preview
 struct TargetView_Previews: PreviewProvider {
     static var previews: some View {
-        TargetView()
+        GoalView()
             .environmentObject(UserObject())
     }
 }

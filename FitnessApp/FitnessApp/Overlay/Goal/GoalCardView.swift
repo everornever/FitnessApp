@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct CardViewTarget: View {
+struct GoalCardView: View {
     
     // User Info
     @EnvironmentObject var userObject: UserObject
@@ -93,7 +93,7 @@ struct BarView: View {
 // MARK: - PreView
 struct CardViewTarget_Previews: PreviewProvider {
     static var previews: some View {
-        CardViewTarget()
+        GoalCardView()
             .environmentObject(UserObject())
     }
 }

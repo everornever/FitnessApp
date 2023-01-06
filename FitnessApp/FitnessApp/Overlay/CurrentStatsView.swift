@@ -40,10 +40,10 @@ struct CurrentStatsView: View {
                 Button {
                     isShowingTargetView.toggle()
                 } label: {
-                    CardViewTarget()
+                    GoalCardView()
                 }
                 .sheet(isPresented: $isShowingTargetView) {
-                    TargetView()
+                    GoalView()
                 }
                 
             }

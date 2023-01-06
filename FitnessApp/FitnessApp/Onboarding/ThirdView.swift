@@ -152,7 +152,7 @@ struct ThirdView: View {
                     
                     // MARK: - Target
                     HStack {
-                        Text("Weekly Target")
+                        Text("Weekly Goal")
                         Spacer()
                         Text("\(target)")
                             .font(.title3.bold())

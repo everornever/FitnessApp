@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3502947C28D4832B00C37C92 /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3502947B28D4832B00C37C92 /* UserObject.swift */; };
 		350374352937B11B00DF4306 /* ProgressRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350374342937B11B00DF4306 /* ProgressRow.swift */; };
-		350374382937F0CB00DF4306 /* CardViewTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350374372937F0CB00DF4306 /* CardViewTarget.swift */; };
+		350374382937F0CB00DF4306 /* GoalCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350374372937F0CB00DF4306 /* GoalCardView.swift */; };
 		3503743A2937F11100DF4306 /* WeightCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350374392937F11100DF4306 /* WeightCardView.swift */; };
 		3503743C2937FFE800DF4306 /* CardViewScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3503743B2937FFE800DF4306 /* CardViewScore.swift */; };
 		350B03AE28CE52E900738A7E /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B03AD28CE52E900738A7E /* PopupView.swift */; };
@@ -60,7 +60,7 @@
 		35F55F69296359F200ED0A71 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D8C291BE7A800EB6E53 /* Colors.swift */; };
 		35F55F6B296371E100ED0A71 /* CurrentWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F55F6A296371E100ED0A71 /* CurrentWeekView.swift */; };
 		35FCF61F28FFF9D7001C2281 /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FCF61E28FFF9D7001C2281 /* WeightView.swift */; };
-		35FCF62129000888001C2281 /* TargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FCF62029000888001C2281 /* TargetView.swift */; };
+		35FCF62129000888001C2281 /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FCF62029000888001C2281 /* GoalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +90,7 @@
 /* Begin PBXFileReference section */
 		3502947B28D4832B00C37C92 /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		350374342937B11B00DF4306 /* ProgressRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRow.swift; sourceTree = "<group>"; };
-		350374372937F0CB00DF4306 /* CardViewTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewTarget.swift; sourceTree = "<group>"; };
+		350374372937F0CB00DF4306 /* GoalCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCardView.swift; sourceTree = "<group>"; };
 		350374392937F11100DF4306 /* WeightCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCardView.swift; sourceTree = "<group>"; };
 		3503743B2937FFE800DF4306 /* CardViewScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewScore.swift; sourceTree = "<group>"; };
 		350B03AD28CE52E900738A7E /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 		35EDC12E2961BCA400DF6E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F55F6A296371E100ED0A71 /* CurrentWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeekView.swift; sourceTree = "<group>"; };
 		35FCF61E28FFF9D7001C2281 /* WeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
-		35FCF62029000888001C2281 /* TargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetView.swift; sourceTree = "<group>"; };
+		35FCF62029000888001C2281 /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,8 +243,8 @@
 		35556F80295D9CC20081B538 /* Goal */ = {
 			isa = PBXGroup;
 			children = (
-				350374372937F0CB00DF4306 /* CardViewTarget.swift */,
-				35FCF62029000888001C2281 /* TargetView.swift */,
+				350374372937F0CB00DF4306 /* GoalCardView.swift */,
+				35FCF62029000888001C2281 /* GoalView.swift */,
 			);
 			path = Goal;
 			sourceTree = "<group>";
@@ -496,7 +496,7 @@
 				357A6D96291C16CE00EB6E53 /* MainButton.swift in Sources */,
 				35D7B68128B7858D000AFDC1 /* ContentView.swift in Sources */,
 				35AA081129649100009E753B /* DayModel.swift in Sources */,
-				350374382937F0CB00DF4306 /* CardViewTarget.swift in Sources */,
+				350374382937F0CB00DF4306 /* GoalCardView.swift in Sources */,
 				3535B1A229016F6900BF16EE /* ExerciseListView.swift in Sources */,
 				3583A7162915440500743013 /* Onboarding.swift in Sources */,
 				35859CE4293E1819000D502B /* RoundButton.swift in Sources */,
@@ -508,7 +508,7 @@
 				35D13D0728CB71F50033D155 /* CurrentStatsView.swift in Sources */,
 				35C22BFC2938F9DE0096BC38 /* SoundListView.swift in Sources */,
 				357A6D8D291BE7A800EB6E53 /* Colors.swift in Sources */,
-				35FCF62129000888001C2281 /* TargetView.swift in Sources */,
+				35FCF62129000888001C2281 /* GoalView.swift in Sources */,
 				3526DD2F291D3C3300B76DD3 /* FourthView.swift in Sources */,
 				352C47C828FC5781001EC887 /* Extensions.swift in Sources */,
 				350374352937B11B00DF4306 /* ProgressRow.swift in Sources */,

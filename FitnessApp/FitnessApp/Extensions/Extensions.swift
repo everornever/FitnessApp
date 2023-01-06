@@ -42,10 +42,10 @@ extension Date {
     // Get last 6 week Numbers as Strings
     func getLastSixWeeks() -> Array<Int> {
         var weeks = [Int]()
-        let currentWeek = Calendar.current.component(.weekOfYear, from: self)
         
         for index in 0...5 {
-            weeks.append((currentWeek > 1) ? currentWeek - index : 52 - index)
+            let temp = Calendar.current.component(.weekOfYear, from: Calendar.current.date(byAdding: .weekOfYear, value: -index, to: self)!)
+            weeks.append(temp)
         }
         
         return weeks.reversed()
