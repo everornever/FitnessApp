@@ -14,7 +14,7 @@ struct CardViewScore: View {
             
         }
         .frame(maxWidth: .infinity ,maxHeight: .infinity)
-        .background(Color.DSOverlay)
+        .background(Color.Layer3)
         .cornerRadius(20)
         
     }

@@ -26,7 +26,7 @@ struct UpdateView: View {
             .padding(.top, 40)
             
             Text("Version \(appVersion)")
-                .foregroundColor(Color.DSLight)
+                .foregroundColor(Color.SingleLight)
             
             Spacer()
             
@@ -40,7 +40,7 @@ struct UpdateView: View {
             
             Spacer()
             
-            MainButton(text: "OK") {
+            BigButton(text: "OK") {
                 isPresented = false
                 userObject.props.lastVersion = appVersion
             }
@@ -71,7 +71,7 @@ struct FeatureRow: View {
                 
                 Text(text)
                     .font(.body)
-                    .foregroundColor(Color.DSLight)
+                    .foregroundColor(Color.SingleLight)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }

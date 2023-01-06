@@ -20,7 +20,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.DSOverlay
+                Color.Layer1
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) { // Main VStack
@@ -36,7 +36,7 @@ struct ContentView: View {
                         NavigationLink(destination: SettingsView()) {
                             Image(systemName: "gear")
                                 .font(.title)
-                                .tint(Color.DSPrimary)
+                                .tint(Color.primary)
                         }
                     }
                     .padding()
@@ -51,7 +51,7 @@ struct ContentView: View {
                             Spacer()
                             
                             NavigationLink("See all", destination: ProgressView())
-                                .tint(Color.DSLight)
+                                .tint(Color.SingleLight)
                         }
                         WeekView()
                     }
@@ -62,7 +62,7 @@ struct ContentView: View {
                         CurrentStatsView()
                         
                         NavigationLink(destination: WorkoutView()) {
-                            MainLable(text: "Start Workout",icon: "arrow.right")
+                            MainLabel(text: "Start Workout", icon: "arrow.right")
                         }
                         .padding()
                         
@@ -70,8 +70,9 @@ struct ContentView: View {
                         
                     }
                     .frame(maxWidth: .infinity)
-                    .background(Color.DSBackground)
+                    .background(Color.Layer2)
                     .cornerRadius(40)
+                    .shadow(color: Color.gray.opacity(0.1), radius: 10, x: 0, y: -3)
                     
                     
                 } // End Main VStack
@@ -98,5 +99,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(UserObject())
+        
     }
 }

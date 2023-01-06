@@ -15,7 +15,7 @@ struct CurrentWeekView: View {
     var body: some View {
         ZStack {
             
-            ContainerRelativeShape().fill(Color.DSOverlay)
+            ContainerRelativeShape().fill(Color.Layer1)
             
             VStack {
                 
@@ -42,8 +42,8 @@ struct CurrentWeekView: View {
                             }
                             .monospacedDigit()
                             .frame(width: 35, height: 75)
-                            .foregroundColor(getCurrentWeek()[index].workoutDone ? Color.black : Color.DSPrimary)
-                            .background(getCurrentWeek()[index].workoutDone ? Color.DSAccent : Color.DSPrimary_RV)
+                            .foregroundColor(getCurrentWeek()[index].workoutDone ? Color.black : Color.primary)
+                            .background(getCurrentWeek()[index].workoutDone ? Color.SingleAccent : Color.Layer2)
                             .cornerRadius(40)
                             
                             if (Calendar.current.isDateInToday(getCurrentWeek()[index].date)) {

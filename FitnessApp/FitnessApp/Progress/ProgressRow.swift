@@ -19,7 +19,7 @@ struct ProgressRow: View {
                 .font(.title3)
                 .bold()
                 .frame(width: 50, height: 50)
-                .background(Color.DSLight.opacity(0.2))
+                .background(Color.SingleLight.opacity(0.2))
                 .cornerRadius(40)
             
             VStack(alignment: .leading, spacing: 5) {
@@ -32,12 +32,12 @@ struct ProgressRow: View {
                 }
                 HStack {
                     Text("\(date) |")
-                        .foregroundColor(Color.DSLight)
+                        .foregroundColor(Color.SingleLight)
                         .font(.callout)
                     
                     Text("W\(weekNumber)")
-                        .foregroundColor(Color.DSSecondaryAccent)
-                        .font(.callout)
+                        .foregroundColor(Color.SingleAccentTwo)
+                        .font(.headline)
                 }
             }
             .padding(.leading)
@@ -50,11 +50,11 @@ struct ProgressRow: View {
                         .font(.title2)
                         .bold()
                     Text("min")
-                        .foregroundColor(Color.DSLight)
+                        .foregroundColor(Color.SingleLight)
                 }
             }
         }
-        .listRowBackground(Color.DSSecondaryOverlay)
+        .listRowBackground(Color.Layer3)
     }
 }
 

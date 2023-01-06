@@ -24,18 +24,15 @@ struct ProgressView: View {
                         exercises: entry.exercises,
                         time: entry.duration.timeString().minutes,
                         day: entry.date.formatted(.dateTime.weekday(.short)),
-                        weekNumber: String(Calendar.current.component(.yearForWeekOfYear, from: entry.date))
+                        weekNumber: String(Calendar.current.component(.weekOfYear, from: entry.date))
                     )
                 }
                 .onDelete(perform: removeRows)
-                .listRowBackground(Color.DSOverlay)
+                .listRowBackground(Color.Layer3)
             }
             .navigationTitle("Progress")
-            .background(Color.DSSecondaryBackground)
+            .background(Color.Layer1)
             .scrollContentBackground(.hidden)
-            .toolbar {
-                EditButton()
-            }
 
         }
     }
@@ -52,11 +49,11 @@ struct EmptyListView: View {
     var body: some View {
         VStack {
             Image(systemName: "eyes")
-                .foregroundColor(Color.DSLight)
+                .foregroundColor(Color.SingleLight)
                 .font(.title)
             Text("No workouts yet")
                 .padding()
-                .foregroundColor(Color.DSLight)
+                .foregroundColor(Color.SingleLight)
                 .font(.title2)
         }
     }

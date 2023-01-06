@@ -62,7 +62,7 @@ struct ThirdView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            Color.DSPrimary_RV
+            Color.PrimaryReversed
                 .ignoresSafeArea(.keyboard)
             
             VStack(alignment: .leading) {
@@ -159,12 +159,12 @@ struct ThirdView: View {
                         Spacer()
                         Button("-") { subtractTarget() }
                             .buttonStyle(.borderedProminent)
-                            .tint(Color.DSPrimary)
-                            .foregroundColor(Color.DSPrimary_RV)
+                            .tint(Color.primary)
+                            .foregroundColor(Color.PrimaryReversed)
                         Button("+") { addTarget() }
                             .buttonStyle(.borderedProminent)
-                            .tint(Color.DSPrimary)
-                            .foregroundColor(Color.DSPrimary_RV)
+                            .tint(Color.primary)
+                            .foregroundColor(Color.PrimaryReversed)
                         
                     }
                     .padding()
@@ -175,7 +175,7 @@ struct ThirdView: View {
                     
                     Text("How many times a week do you want to go to the Gym?")
                         .font(.caption2)
-                        .foregroundStyle(Color.DSLight)
+                        .foregroundStyle(Color.SingleLight)
                         .padding(.top, -10)
                 }
 
@@ -185,7 +185,7 @@ struct ThirdView: View {
                 // MARK: - Bottom
                 TextView(titel: "Your Stats", bodyText: "Give us some information about yourself to make it easier for you to get started.", color: true)
                 
-                MainButton(text: "Save", icon: "arrow.right") {
+                BigButton(text: "Save", icon: "arrow.right") {
                     if ( isValidReply() ) {
                         
                         self.currentView = 3

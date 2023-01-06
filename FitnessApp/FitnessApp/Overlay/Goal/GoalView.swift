@@ -26,36 +26,38 @@ struct GoalView: View {
                 Text("Weekly Target")
                     .font(.title)
                     .bold()
+                
                 Spacer()
-                Button { dismiss() } label: {
-                    RoundButton(tint: Color.DSPrimary, back: Color.DSBackground, cancel: true)
+                
+                CancelButton() {
+                    dismiss()
                 }
             }
-            .padding(.top)
+            .padding(.horizontal)
             
             // MARK: - Chart
             VStack(alignment: .leading) {
                 HStack {
                     Text("Your workouts in the last 6 Weeks")
                         .font(.caption2)
-                        .foregroundColor(Color.DSLight)
+                        .foregroundColor(Color.SingleLight)
                     
                     Spacer()
                     
                     Text("Current Week: \(calendar.component(.weekOfYear, from: Date.now))")
                         .font(.caption2)
-                        .foregroundColor(Color.DSLight)
+                        .foregroundColor(Color.SingleLight)
                 }
                 
                 Chart() {
                     
                     RuleMark(y: .value("Goal", userObject.props.weeklyGoal))
-                        .foregroundStyle(Color.DSSecondaryAccent)
+                        .foregroundStyle(Color.SingleAccentTwo)
                         .lineStyle(StrokeStyle(lineWidth: 4, dash: [8]))
                         .annotation(alignment: .leading) {
                             Text("Target")
                                 .font(.caption2)
-                                .foregroundColor(Color.DSLight)
+                                .foregroundColor(Color.SingleLight)
                         }
                     
                     ForEach(Date.now.getLastSixWeeks(), id: \.self) { week in
@@ -63,7 +65,7 @@ struct GoalView: View {
                             x: .value("Calendar Week", "\(week)"),
                             y: .value("Amount of Workouts", userObject.getCurrentWorkoutAmount(weekNumber: week))
                         )
-                        .foregroundStyle((userObject.getCurrentWorkoutAmount(weekNumber: week) >= userObject.props.weeklyGoal) ? Color.DSAccent : Color.DSPrimary )
+                        .foregroundStyle((userObject.getCurrentWorkoutAmount(weekNumber: week) >= userObject.props.weeklyGoal) ? Color.SingleAccent : Color.primary )
                     }
                     
                 }
@@ -73,15 +75,13 @@ struct GoalView: View {
                 }
             }
             .padding()
-            .background(Color.DSBackground)
-            .cornerRadius(20)
             
             // MARK: - Cards
             HStack { // Weekly Target
                 VStack(alignment: .leading) {
                     Text("Weekly Target")
                         .font(.subheadline)
-                        .foregroundColor(.DSLight)
+                        .foregroundColor(.SingleLight)
                     Text("\(userObject.props.weeklyGoal)")
                         .font(.title2)
                         .bold()
@@ -90,24 +90,24 @@ struct GoalView: View {
                 HStack {
                     Button("-") { subtractTarget() }
                         .buttonStyle(.borderedProminent)
-                        .tint(Color.DSPrimary)
-                        .foregroundColor(Color.DSPrimary_RV)
+                        .tint(Color.primary)
+                        .foregroundColor(Color.PrimaryReversed)
                     Button("+") { addTarget() }
                         .buttonStyle(.borderedProminent)
-                        .tint(Color.DSPrimary)
-                        .foregroundColor(Color.DSPrimary_RV)
+                        .tint(.primary)
+                        .foregroundColor(Color.PrimaryReversed)
                 }
             }
             .padding()
-            .background(Color.DSBackground)
-            .cornerRadius(10)
+            .background(Color.Layer3)
+            .cornerRadius(20)
             
             HStack {
                 HStack { // Total Workouts
                     VStack(alignment: .leading) {
                         Text("Total workouts")
                             .font(.subheadline)
-                            .foregroundColor(.DSLight)
+                            .foregroundColor(.SingleLight)
                         Text("\(userObject.props.workouts.count)")
                             .font(.title2)
                             .bold()
@@ -115,14 +115,14 @@ struct GoalView: View {
                     Spacer()
                 }
                 .padding()
-                .background(Color.DSBackground)
-                .cornerRadius(10)
+                .background(Color.Layer3)
+                .cornerRadius(20)
                 
                 HStack { // Longest Workout
                     VStack(alignment: .leading) {
                         Text("Longest Workout")
                             .font(.subheadline)
-                            .foregroundColor(.DSLight)
+                            .foregroundColor(.SingleLight)
                         Text(longestWorkout())
                             .font(.title2)
                             .bold()
@@ -130,14 +130,15 @@ struct GoalView: View {
                     Spacer()
                 }
                 .padding()
-                .background(Color.DSBackground)
-                .cornerRadius(10)
+                .background(Color.Layer3)
+                .cornerRadius(20)
             }
+
             
             Spacer()
         }
         .padding()
-        .background(Color.DSOverlay)
+        .background(Color.Layer2)
     }
     
     // MARK: - Functions

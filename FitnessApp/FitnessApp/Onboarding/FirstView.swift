@@ -32,7 +32,7 @@ struct FirstView: View {
                 
                 Spacer()
                 
-                MainButton(text: "Let’s Begin", icon: "arrow.right") {
+                BigButton(text: "Let’s Begin", icon: "arrow.right") {
                     self.currentView = 1
                 }
             }

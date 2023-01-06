@@ -16,11 +16,10 @@ struct WeightCardView: View {
             VStack{
                 Text("\(userObject.props.weightEntries.last?.weight.dezimalString() ?? 00.00.dezimalString())")
                     .font(.headline)
-                    .foregroundColor(.DSPrimary)
                 
                 Text("KG")
                     .font(.caption)
-                    .foregroundColor(Color.DSLight)
+                    .foregroundColor(Color.SingleLight)
             }
             .padding()
             
@@ -30,13 +29,13 @@ struct WeightCardView: View {
                 .lineStyle(StrokeStyle(lineWidth: 4))
                 .symbol(Circle().strokeBorder(lineWidth: 2))
                 .interpolationMethod(.cardinal)
-                .foregroundStyle(Gradient(colors: [Color.DSSecondaryAccent, Color.clear]))
+                .foregroundStyle(Gradient(colors: [Color.SingleAccentTwo, Color.clear]))
             }
             .chartYAxis(.hidden)
             .chartXAxis(.hidden)
         }
         .frame(maxWidth: .infinity ,maxHeight: .infinity)
-        .background(Color.DSOverlay)
+        .background(Color.Layer3)
         .cornerRadius(20)
     }
 }

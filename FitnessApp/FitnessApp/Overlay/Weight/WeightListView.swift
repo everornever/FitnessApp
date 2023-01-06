@@ -23,9 +23,9 @@ struct WeightList: View {
                 }
             }
             .onDelete(perform: removeRows)
-            .listRowBackground(Color.DSSecondaryOverlay)
+            .listRowBackground(Color.Layer3)
         }
-        .background(Color.DSSecondaryBackground)
+        .background(Color.Layer2)
         .scrollContentBackground(.hidden)
         .toolbar {
             EditButton()

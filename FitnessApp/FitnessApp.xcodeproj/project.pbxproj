@@ -32,10 +32,9 @@
 		357A6D90291C0C6E00EB6E53 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D8F291C0C6E00EB6E53 /* FirstView.swift */; };
 		357A6D92291C0CA700EB6E53 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D91291C0CA700EB6E53 /* SecondView.swift */; };
 		357A6D94291C0CBF00EB6E53 /* ThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D93291C0CBF00EB6E53 /* ThirdView.swift */; };
-		357A6D96291C16CE00EB6E53 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A6D95291C16CE00EB6E53 /* MainButton.swift */; };
 		3583A7162915440500743013 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A7152915440500743013 /* Onboarding.swift */; };
 		3583A718291544F200743013 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3583A717291544F200743013 /* UpdateView.swift */; };
-		35859CE4293E1819000D502B /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35859CE3293E1819000D502B /* RoundButton.swift */; };
+		35859CE4293E1819000D502B /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35859CE3293E1819000D502B /* Buttons.swift */; };
 		35AA081129649100009E753B /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AA081029649100009E753B /* DayModel.swift */; };
 		35AA081329649113009E753B /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AA081029649100009E753B /* DayModel.swift */; };
 		35B3BF6E296720B300AB211F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3BF6D296720B300AB211F /* UserModel.swift */; };
@@ -113,10 +112,9 @@
 		357A6D8F291C0C6E00EB6E53 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
 		357A6D91291C0CA700EB6E53 /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
 		357A6D93291C0CBF00EB6E53 /* ThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdView.swift; sourceTree = "<group>"; };
-		357A6D95291C16CE00EB6E53 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		3583A7152915440500743013 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		3583A717291544F200743013 /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
-		35859CE3293E1819000D502B /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		35859CE3293E1819000D502B /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		35AA081029649100009E753B /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
 		35B3BF6D296720B300AB211F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		35BACFC829646BF00069911D /* Fitness WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness WidgetExtension.entitlements"; sourceTree = "<group>"; };
@@ -273,9 +271,8 @@
 			isa = PBXGroup;
 			children = (
 				357A6D8C291BE7A800EB6E53 /* Colors.swift */,
-				357A6D95291C16CE00EB6E53 /* MainButton.swift */,
 				3521AEF7291E93C6005A1B47 /* TextView.swift */,
-				35859CE3293E1819000D502B /* RoundButton.swift */,
+				35859CE3293E1819000D502B /* Buttons.swift */,
 			);
 			path = "UI Elements";
 			sourceTree = "<group>";
@@ -493,13 +490,12 @@
 				35D7B68D28B785BB000AFDC1 /* SettingsView.swift in Sources */,
 				356AA81F28BA363000F9ABC2 /* ProgressView.swift in Sources */,
 				3503743A2937F11100DF4306 /* WeightCardView.swift in Sources */,
-				357A6D96291C16CE00EB6E53 /* MainButton.swift in Sources */,
 				35D7B68128B7858D000AFDC1 /* ContentView.swift in Sources */,
 				35AA081129649100009E753B /* DayModel.swift in Sources */,
 				350374382937F0CB00DF4306 /* GoalCardView.swift in Sources */,
 				3535B1A229016F6900BF16EE /* ExerciseListView.swift in Sources */,
 				3583A7162915440500743013 /* Onboarding.swift in Sources */,
-				35859CE4293E1819000D502B /* RoundButton.swift in Sources */,
+				35859CE4293E1819000D502B /* Buttons.swift in Sources */,
 				3503743C2937FFE800DF4306 /* CardViewScore.swift in Sources */,
 				352137E128CA13750045A453 /* WeekView.swift in Sources */,
 				3520CB7A28DDACA300F85F62 /* CurrentWeek.swift in Sources */,

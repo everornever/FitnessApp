@@ -27,12 +27,12 @@ struct SettingsView: View {
                     Toggle(isOn: $userObject.props.includeWarmup) {
                         Label("Include warm up", systemImage: "figure.run")
                     }
-                        .tint(Color.DSAccent)
+                    .tint(.SingleAccent)
                     
                     Toggle(isOn: $userObject.props.includeStretching) {
                         Label("Include stretching", systemImage: "figure.cooldown")
                     }
-                        .tint(Color.DSAccent)
+                    .tint(.SingleAccent)
                     
                     VStack(alignment: .leading) {
                         Label("Rest timer length in minutes", systemImage: "hourglass")
@@ -46,25 +46,26 @@ struct SettingsView: View {
                     }
 
                 }
-                .listRowBackground(Color.DSSecondaryOverlay)
+                .listRowBackground(Color.Layer3)
                 
                 // MARK: - Notification
                 Section("Notification") {
                     NavigationLink(destination: SoundListView()) {
                         Label("Rest timer sound", systemImage: "speaker.wave.2")
+                            .tint(.SingleAccent)
                     }
                 }
-                .listRowBackground(Color.DSSecondaryOverlay)
+                .listRowBackground(Color.Layer3)
                 
                 // MARK: - Testing
                 Section("For testing only") {
                     NavigationLink(destination: DebugView()) {
                         Label("Add Workouts", systemImage: "ant")
-                            .foregroundColor(Color.DSPrimary)
+                            .tint(.SingleAccent)
                     }
                 }
                 .foregroundColor(.red)
-                .listRowBackground(Color.DSSecondaryOverlay)
+                .listRowBackground(Color.Layer3)
                 
                 // MARK: - About
                 Section("About us") {
@@ -75,9 +76,9 @@ struct SettingsView: View {
                             .font(.footnote)
                     }.padding(.vertical, 5)
                 }
-                .listRowBackground(Color.DSSecondaryOverlay)
+                .listRowBackground(Color.Layer3)
             }
-            .background(Color.DSSecondaryBackground)
+            .background(Color.Layer1)
             .scrollContentBackground(.hidden)
             .navigationBarTitle("Settings", displayMode: .inline)
         }

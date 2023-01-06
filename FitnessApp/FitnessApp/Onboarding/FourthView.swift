@@ -18,7 +18,7 @@ struct FourthView: View {
 
     var body: some View {
         ZStack {
-            Color.DSAccent
+            Color.SingleAccent
                 .ignoresSafeArea()
             
             VStack(alignment: .leading) {
@@ -41,7 +41,7 @@ struct FourthView: View {
                 
                 TextView(titel: "Thank you!", bodyText: "Thank you for trying the Fitness App. We hope that you like it. This app is still under development. We will be happy if you give us feedback.", color: false)
                 
-                MainButton(text: "OK, Got it!") {
+                BigButton(text: "OK, Got it!") {
                     
                     // hide onboarding
                     showOnboarding.toggle()

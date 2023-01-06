@@ -55,7 +55,7 @@ struct CurrentStatsView: View {
             CardViewScore()
         }
         .padding(20)
-        .background(Color.DSBackground)
+        .background(Color.Layer2)
         .cornerRadius(10)
         
     }

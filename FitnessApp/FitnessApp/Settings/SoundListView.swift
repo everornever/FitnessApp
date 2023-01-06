@@ -29,9 +29,9 @@ struct SoundListView: View {
             .onChange(of: selection) { newValue in
                 selection(value: newValue!)
             }
-            .listRowBackground(Color.DSSecondaryOverlay)
+            .listRowBackground(Color.Layer3)
         }
-        .background(Color.DSSecondaryBackground)
+        .background(Color.Layer1)
         .scrollContentBackground(.hidden)
         .navigationTitle("Sounds")
         
