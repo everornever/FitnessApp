@@ -6,20 +6,12 @@
 import Foundation
 import SwiftUI
 
-struct Day {
-    let date: Date
-    let stringDate: String
-    let dayName: String
-    let workoutDone: Bool
-}
-
 class CurrentWeek {
     
-    // This should automatically take the right calendar for the user's locale
-    private var calendar = Calendar.current
+    // User Info
+    @ObservedObject var userObject = UserObject()
     
-    // Saved Workouts
-    @ObservedObject var workouts = WorkoutObject()
+    let calendar = Calendar.current
     
     // MARK: - Main Function
     func getCurrentWeek() -> [Day] {
@@ -88,7 +80,7 @@ class CurrentWeek {
         
         var done = false
         
-        let lastWorkouts = workouts.savedWorkouts
+        let lastWorkouts = userObject.props.workouts
         
         let currentDate = getDate(atIndex: atIndex)
         

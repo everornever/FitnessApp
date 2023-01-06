@@ -4,15 +4,11 @@
 //
 
 import SwiftUI
-import Charts
 
-struct CardViewTarget: View {
+struct GoalCardView: View {
     
     // User Info
-    @EnvironmentObject var user: UserObject
-    
-    // Saved Workouts
-    @EnvironmentObject var savedWorkouts: WorkoutObject
+    @EnvironmentObject var userObject: UserObject
     
     // current week data
     let week = CurrentWeek()
@@ -21,7 +17,7 @@ struct CardViewTarget: View {
     var body: some View {
         VStack {
             VStack{
-                Text("\(week.getWorkoutsDoneAmount()) / \(user.target)")
+                Text("\(week.getWorkoutsDoneAmount()) / \(userObject.props.weeklyGoal)")
                     .font(.headline)
                     .foregroundColor(.DSPrimary)
                 
@@ -34,9 +30,9 @@ struct CardViewTarget: View {
                 ForEach(0..<6) { index in
                     VStack(alignment: .center) {
                         
-                        BarView(amount: savedWorkouts.getWorkoutAmount(number: savedWorkouts.getLastSixWeeks()[index]), target: user.target)
+                        BarView(amount: userObject.getCurrentWorkoutAmount(weekNumber: Date.now.getLastSixWeeks()[index]), target: userObject.props.weeklyGoal)
                         
-                        Text("\(savedWorkouts.getLastSixWeeks()[index])")
+                        Text("\(Date.now.getLastSixWeeks()[index])")
                             .monospacedDigit()
                             .font(.caption2)
                             .foregroundColor(Color.DSLight)
@@ -97,8 +93,7 @@ struct BarView: View {
 // MARK: - PreView
 struct CardViewTarget_Previews: PreviewProvider {
     static var previews: some View {
-        CardViewTarget()
+        GoalCardView()
             .environmentObject(UserObject())
-            .environmentObject(WorkoutObject())
     }
 }

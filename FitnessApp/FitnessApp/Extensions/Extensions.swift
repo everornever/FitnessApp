@@ -26,15 +26,6 @@ extension Double {
     }
 }
 
-extension Date {
-    
-    func getWeekNumber() -> Int {
-        let calendar = Calendar.current
-        let weekNumber = calendar.component(.weekOfYear, from: Date(primitivePlottable: self)!)
-        return weekNumber
-    }
-}
-
 extension Binding {
     func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
         Binding(
@@ -44,6 +35,31 @@ extension Binding {
                 handler(newValue)
             }
         )
+    }
+}
+
+extension Date {
+    // Get last 6 week Numbers as Strings
+    func getLastSixWeeks() -> Array<Int> {
+        var weeks = [Int]()
+        
+        for index in 0...5 {
+            let temp = Calendar.current.component(.weekOfYear, from: Calendar.current.date(byAdding: .weekOfYear, value: -index, to: self)!)
+            weeks.append(temp)
+        }
+        
+        return weeks.reversed()
+    }
+}
+
+typealias Key = UserDefaults.Keys
+
+extension UserDefaults {
+    static let appGroup = UserDefaults(suiteName: "group.BETA-CODE.FitnessApp")!
+    
+    enum Keys: String {
+        case SavedWorkouts
+        case SavedUser
     }
 }
 

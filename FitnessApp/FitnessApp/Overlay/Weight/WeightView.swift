@@ -11,15 +11,7 @@ import Charts
 struct WeightView: View {
     
     // User Info
-    @EnvironmentObject var user: UserObject
-    
-    // Weight Object
-    @ObservedObject var weightObject = WeightObject()
-    
-    // Add Weight
-    @State private var stepper = WeightObject().savedEntries.last?.weight ?? 60.00
-    let step = 00.01
-    let disable = false
+    @EnvironmentObject var userObject: UserObject
     
     // Dismiss Button
     @Environment(\.dismiss) var dismiss
@@ -44,7 +36,7 @@ struct WeightView: View {
                 
                 // MARK: - Chart
                 VStack(alignment: .leading) {
-                    Chart(weightObject.savedEntries) {
+                    Chart(userObject.props.weightEntries) {
                         
                         AreaMark(
                             x: .value("Date", $0.date),
@@ -61,41 +53,7 @@ struct WeightView: View {
                 .background(Color.DSBackground)
                 .cornerRadius(20)
                 
-                // MARK: - Save Weight
-                VStack(alignment: .leading) {
-                    
-                    Text("Add your current weight and save it")
-                        .font(.subheadline)
-                        .foregroundColor(.DSLight)
-                    
-                    HStack {
-                        
-                        Text("\(stepper.dezimalString())")
-                            .font(.title2)
-                            .bold()
-                        
-                        Stepper("", value: $stepper, step: step)
-                    }
-                    .padding(.bottom)
-                    
-                    VStack {
-                        MainButton(text: "Save") {
-                            weightObject.saveEntry(value: stepper)
-                        }
-                        .disabled(calendar.isDateInToday(weightObject.savedEntries.last!.date) ? true : false)
-                        
-                        if(calendar.isDateInToday(weightObject.savedEntries.last!.date)) {
-                            Text("You can only save your weight once per day")
-                                .font(.subheadline)
-                                .foregroundColor(.DSLight)
-                        }
-                    }
-                }
-                .padding()
-                .background(Color.DSBackground)
-                .cornerRadius(10)
-                
-                // MARK: - Save Weight
+                // MARK: - Saved Weight
                 NavigationLink(destination: WeightList()) {
                     HStack {
                         Text("Progress")
@@ -115,8 +73,8 @@ struct WeightView: View {
     }
     
     func maxMinValues() -> (Max: Double, Min: Double) {
-        let max = weightObject.savedEntries.map { $0.weight}.max() ?? 00.00
-        let min = weightObject.savedEntries.map { $0.weight}.min() ?? 00.00
+        let max = userObject.props.weightEntries.map { $0.weight}.max() ?? 00.00
+        let min = userObject.props.weightEntries.map { $0.weight}.min() ?? 00.00
         return (Max: max, Min: min)
     }
     

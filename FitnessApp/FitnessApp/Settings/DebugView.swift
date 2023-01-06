@@ -8,7 +8,7 @@ import SwiftUI
 struct DebugView: View {
     
     // Saved Workouts
-    @EnvironmentObject var workouts: WorkoutObject
+    @EnvironmentObject var userObject: UserObject
     
     // Date picker
     @State private var date = Date()
@@ -42,7 +42,7 @@ struct DebugView: View {
             
             Button("Save Workout") {
                 // Save
-                workouts.savedWorkouts.append(Workout(exercises: value, date: date, duration: TimeInterval(selection)))
+                userObject.props.workouts.append(Workout(exercises: value, date: date, duration: TimeInterval(selection)))
             }
                 .tint(.blue)
             

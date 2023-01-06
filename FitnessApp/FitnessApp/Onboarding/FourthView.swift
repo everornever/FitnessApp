@@ -11,7 +11,7 @@ struct FourthView: View {
     @Binding var showOnboarding: Bool
     
     // User Info
-    @EnvironmentObject var user: UserObject
+    @EnvironmentObject var userObject: UserObject
     
     // App Version
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "No version"
@@ -47,10 +47,10 @@ struct FourthView: View {
                     showOnboarding.toggle()
                     
                     // dont show onboarding again
-                    user.firstStart = false
+                    userObject.props.firstStart = false
                     
                     // don't show update view
-                    user.lastVersion = appVersion
+                    userObject.props.lastVersion = appVersion
                 }
             }
             .padding(30)

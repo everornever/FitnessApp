@@ -8,7 +8,7 @@ import SwiftUI
 struct SettingsView: View {
     
     // User Info
-    @EnvironmentObject var user: UserObject
+    @EnvironmentObject var userObject: UserObject
     
     // Pause Timer
     @State private var allowNotification = false
@@ -24,12 +24,12 @@ struct SettingsView: View {
                 // MARK: - Workout
                 Section("Workout") {
                     
-                    Toggle(isOn: $user.includeWarmup) {
+                    Toggle(isOn: $userObject.props.includeWarmup) {
                         Label("Include warm up", systemImage: "figure.run")
                     }
                         .tint(Color.DSAccent)
                     
-                    Toggle(isOn: $user.includeStretching) {
+                    Toggle(isOn: $userObject.props.includeStretching) {
                         Label("Include stretching", systemImage: "figure.cooldown")
                     }
                         .tint(Color.DSAccent)
@@ -37,7 +37,7 @@ struct SettingsView: View {
                     VStack(alignment: .leading) {
                         Label("Rest timer length in minutes", systemImage: "hourglass")
                         Text("")
-                        Picker("Rest Timer Length", selection: $user.pauseTimer) {
+                        Picker("Rest Timer Length", selection: $userObject.props.restTimer) {
                             ForEach(timers, id: \.self) {
                                 Text(($0 / 60.0).formatted())
                             }

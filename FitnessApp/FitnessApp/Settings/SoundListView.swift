@@ -9,7 +9,7 @@ import AVFoundation
 struct SoundListView: View {
     
     // User Info
-    @EnvironmentObject var user: UserObject
+    @EnvironmentObject var userObject: UserObject
     
     let sounds = ["Attention", "Bell-One"]
     
@@ -39,7 +39,7 @@ struct SoundListView: View {
     
     func selection(value: String) {
         AudioPlayer.playSound(soundFile: value)
-        user.pauseTimerSound = value
+        userObject.props.restTimerSound = value
     }
     
 }

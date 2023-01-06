@@ -8,13 +8,13 @@ import Charts
 
 struct WeightCardView: View {
     
-    // Weight Object
-    @ObservedObject var weightObject = WeightObject()
+    // User Info
+    @EnvironmentObject var userObject: UserObject
     
     var body: some View {
         VStack {
             VStack{
-                Text("\(weightObject.savedEntries.last?.weight.dezimalString() ?? 00.00.dezimalString())")
+                Text("\(userObject.props.weightEntries.last?.weight.dezimalString() ?? 00.00.dezimalString())")
                     .font(.headline)
                     .foregroundColor(.DSPrimary)
                 
@@ -24,7 +24,7 @@ struct WeightCardView: View {
             }
             .padding()
             
-            Chart(weightObject.savedEntries.suffix(28)) {
+            Chart(userObject.props.weightEntries.suffix(28)) {
                 AreaMark(x: .value("Date", $0.date),
                          y: .value("Weight", $0.weight))
                 .lineStyle(StrokeStyle(lineWidth: 4))
@@ -45,5 +45,6 @@ struct WeightCardView: View {
 struct WeightCardView_Previews: PreviewProvider {
     static var previews: some View {
         WeightCardView()
+            .environmentObject(UserObject())
     }
 }

@@ -7,7 +7,8 @@ import SwiftUI
 
 struct ExerciseListView: View {
     
-    @ObservedObject var exercises = ExerciseObject()
+    // User Info
+    @EnvironmentObject var userObject: UserObject
     
     @Binding var isPresented: Bool
     
@@ -15,13 +16,13 @@ struct ExerciseListView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(exercises.savedExercises.indices, id: \.self) { index in
+                ForEach(userObject.props.exerciseNotes.indices, id: \.self) { index in
                     Section {
                         HStack {
-                            TextField("Name", text: $exercises.savedExercises[index].name)
+                            TextField("Name", text: $userObject.props.exerciseNotes[index].name)
                                 .lineLimit(1)
                             Spacer()
-                            Text("\(exercises.savedExercises[index].kilo.formatted()) KG")
+                            Text("\(userObject.props.exerciseNotes[index].kilos.formatted()) KG")
                                 .fontWeight(.bold)
                                 .padding(.trailing)
                             Button("+") { addWeight(index: index) }
@@ -60,26 +61,26 @@ struct ExerciseListView: View {
     // MARK: - Functions
     
     func removeRows(at offsets: IndexSet) {
-        exercises.savedExercises.remove(atOffsets: offsets)
+        userObject.props.exerciseNotes.remove(atOffsets: offsets)
     }
     
     func move(from source: IndexSet, to destination: Int) {
-        exercises.savedExercises.move(fromOffsets: source, toOffset: destination)
+        userObject.props.exerciseNotes.move(fromOffsets: source, toOffset: destination)
     }
     
     func addExercise() {
-        exercises.savedExercises.append(Exercise(name: "???", kilo: 10.0))
+        userObject.props.exerciseNotes.append(ExerciseNote(name: "???", kilos: 10.0))
     }
     
     func addWeight(index: Int) {
-        if (exercises.savedExercises[index].kilo < 500) {
-            exercises.savedExercises[index].kilo += 2.5
+        if (userObject.props.exerciseNotes[index].kilos < 500) {
+            userObject.props.exerciseNotes[index].kilos += 2.5
         }
     }
     
     func subtractWeight(index: Int) {
-        if (exercises.savedExercises[index].kilo > 0) {
-            exercises.savedExercises[index].kilo -= 2.5
+        if (userObject.props.exerciseNotes[index].kilos > 0) {
+            userObject.props.exerciseNotes[index].kilos -= 2.5
         }
     }
     
@@ -89,5 +90,6 @@ struct ExerciseListView: View {
 struct ExerciseListView_Previews: PreviewProvider {
     static var previews: some View {
         ExerciseListView(isPresented: .constant(true))
+            .environmentObject(UserObject())
     }
 }

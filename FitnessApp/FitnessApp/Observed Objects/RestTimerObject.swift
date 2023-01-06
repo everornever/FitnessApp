@@ -11,7 +11,7 @@ import UserNotifications
 class RestTimerObject: ObservableObject {
     
     // User Info
-    @ObservedObject var user = UserObject()
+    @ObservedObject var userObject = UserObject()
     
     // Notification
     private let id = UUID().uuidString
@@ -24,7 +24,7 @@ class RestTimerObject: ObservableObject {
     private var timer: Cancellable?
     
     // value to be read for UI
-    @Published private(set) var timeLeft: TimeInterval = UserObject().pauseTimer
+    @Published private(set) var timeLeft: TimeInterval = UserObject().props.restTimer
     
     
     // MARK: - Functions
@@ -37,7 +37,7 @@ class RestTimerObject: ObservableObject {
         
         self.timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect().sink { _ in
             if (self.timeLeft > 0) {
-                self.timeLeft = self.user.pauseTimer + self.getElapsedTime()
+                self.timeLeft = self.userObject.props.restTimer + self.getElapsedTime()
             }
             else {
                 self.stop()
@@ -53,7 +53,7 @@ class RestTimerObject: ObservableObject {
         self.timer = nil
         self.startTime = nil
         self.accumulatedTime = 0
-        self.timeLeft = user.pauseTimer
+        self.timeLeft = userObject.props.restTimer
         cancelPendingNotification()
     }
     
@@ -66,10 +66,10 @@ class RestTimerObject: ObservableObject {
         // Content
         content.title = "Keep it going!"
         content.subtitle = "Your rest time is over"
-        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(user.pauseTimerSound).m4r"))
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(userObject.props.restTimerSound).m4r"))
         
         // trigger
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: user.pauseTimer, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: userObject.props.restTimer, repeats: false)
         
         // request
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
