@@ -12,8 +12,7 @@ struct SettingsView: View {
     
     // Pause Timer
     @State private var allowNotification = false
-    let timers = [ 60.0, 90.0, 120.0, 150.0, 180.0]
-    
+
     // App Version
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "No version"
     
@@ -24,34 +23,7 @@ struct SettingsView: View {
                 // MARK: - Workout
                 Section("Workout") {
                     
-                    Toggle(isOn: $userObject.props.includeWarmup) {
-                        Label("Include warm up", systemImage: "figure.run")
-                    }
-                    .tint(.SingleAccent)
-                    
-                    Toggle(isOn: $userObject.props.includeStretching) {
-                        Label("Include stretching", systemImage: "figure.cooldown")
-                    }
-                    .tint(.SingleAccent)
-                    
-                    VStack(alignment: .leading) {
-                        Label("Rest timer length in minutes", systemImage: "hourglass")
-                        Text("")
-                        Picker("Rest Timer Length", selection: $userObject.props.restTimer) {
-                            ForEach(timers, id: \.self) {
-                                Text(($0 / 60.0).formatted())
-                            }
-                        }
-                        .pickerStyle(.segmented)
-                    }
-                    Toggle(isOn: $userObject.props.disabledSleep) {
-                        Label("Keep screen awake", systemImage: "lock.iphone")
-                    }
-                    .tint(.SingleAccent)
-                    .onChange(of: userObject.props.disabledSleep) { _isOn in
-                        UIApplication.shared.isIdleTimerDisabled.toggle()
-                        print("Sleep mode toggel")
-                    }
+
                 }
                 .listRowBackground(Color.Layer3)
                 
