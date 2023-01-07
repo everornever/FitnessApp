@@ -18,6 +18,7 @@ struct User: Identifiable, Codable {
     var restTimerSound: String = "Bell-One"
     var includeWarmup: Bool = true
     var includeStretching: Bool = false
+    var disabledSleep: Bool = false
     
     // Goal
     var weeklyGoal: Int = 0
