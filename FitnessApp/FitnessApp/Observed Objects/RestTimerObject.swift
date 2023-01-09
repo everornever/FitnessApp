@@ -24,7 +24,11 @@ class RestTimerObject: ObservableObject {
     private var timer: Cancellable?
     
     // value to be read for UI
-    @Published private(set) var timeLeft: TimeInterval = UserObject().props.restTimer
+    @Published var timeLeft: TimeInterval = 0
+    
+    init() {
+        self.timeLeft = self.userObject.props.restTimer
+    }
     
     
     // MARK: - Functions

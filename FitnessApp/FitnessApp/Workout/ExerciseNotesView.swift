@@ -1,11 +1,11 @@
 //
-//  ExerciseListView.swift
+//  ExerciseNotesView.swift
 //  Fitness App
 //
 
 import SwiftUI
 
-struct ExerciseListView: View {
+struct ExerciseNotesView: View {
     
     // User Info
     @EnvironmentObject var userObject: UserObject
@@ -14,48 +14,64 @@ struct ExerciseListView: View {
     
     // MARK: - Body
     var body: some View {
-        NavigationView {
-            List {
+        VStack {
+            // MARK: - Top
+            HStack {
+                Text("Exercise Notes")
+                    .font(.title)
+                    .bold()
+                
+                Spacer()
+                
+                CancelButton() {
+                    isPresented.toggle()
+                }
+            }
+            .padding(.horizontal, 20)
+            .padding(.top, 20)
+            
+            Form {
                 ForEach(userObject.props.exerciseNotes.indices, id: \.self) { index in
-                    Section {
-                        HStack {
-                            TextField("Name", text: $userObject.props.exerciseNotes[index].name)
-                                .lineLimit(1)
-                            Spacer()
+                    
+                    VStack {
+                        
+                        TextField("Name", text: $userObject.props.exerciseNotes[index].name, prompt: Text("Name"))
+                            .lineLimit(1)
+                            .fontWeight(.bold)
+
+
+                        HStack() {
                             Text("\(userObject.props.exerciseNotes[index].kilos.formatted()) KG")
-                                .fontWeight(.bold)
                                 .padding(.trailing)
+                            
+                            Spacer()
+
                             Button("+") { addWeight(index: index) }
                                 .buttonStyle(.borderedProminent)
                                 .foregroundColor(Color.PrimaryReversed)
+
                             Button("-") { subtractWeight(index: index) }
                                 .buttonStyle(.borderedProminent)
                                 .foregroundColor(Color.PrimaryReversed)
+                            
                         }
-                        .padding(3)
+                        
                     }
                     .listRowBackground(Color.Layer3)
                 }
                 .onDelete(perform: removeRows)
                 .onMove(perform: move)
-                
-                HStack {
-                    Image(systemName: "plus.circle.fill")
-                        .foregroundColor(.accentColor)
-                    Button("Add exercise") { addExercise() }
+
+                Section {
+                    Button() { addExercise() } label: {
+                        Label("Add exercise", systemImage: "plus.circle.fill")
+                    }
                 }
                 .listRowBackground(Color.Layer3)
-                    
             }
-            .navigationBarTitle("Notes", displayMode: .inline)
-            .background(Color.Layer2)
             .scrollContentBackground(.hidden)
-            .toolbar {
-                CancelButton() {
-                    isPresented = false 
-                }
-            }
         }
+        .background(Color.Layer2)
     }
     
     // MARK: - Functions
@@ -69,7 +85,7 @@ struct ExerciseListView: View {
     }
     
     func addExercise() {
-        userObject.props.exerciseNotes.append(ExerciseNote(name: "???", kilos: 10.0))
+        userObject.props.exerciseNotes.append(ExerciseNote(name: "", kilos: 10.0))
     }
     
     func addWeight(index: Int) {
@@ -89,7 +105,7 @@ struct ExerciseListView: View {
 // MARK: - Preview
 struct ExerciseListView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseListView(isPresented: .constant(true))
+        ExerciseNotesView(isPresented: .constant(true))
             .environmentObject(UserObject())
     }
 }

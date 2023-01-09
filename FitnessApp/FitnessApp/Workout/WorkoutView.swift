@@ -4,7 +4,6 @@
 //
 
 import SwiftUI
-import UserNotifications
 
 struct WorkoutView: View {
     
@@ -16,28 +15,32 @@ struct WorkoutView: View {
     
     // View toggles
     @State private var endWorkoutAlert = false
+    @State private var saveWorkoutAlert = false
     @State private var isShowPopup: Bool = false
     
     // Workout Duration Timer
     @StateObject var durationTimer = DurationTimerObject()
     
     // Rest Timer
-    @StateObject var restTimer = RestTimerObject()
+    @ObservedObject var restTimer = RestTimerObject()
     
     // Dates
     let currentDate = Date()
     
     // Workout status
-    @State var numberOfExercises = 1
-    @State var exerciseIndex = 0
-    @State var numberOfSets = [0]
-    
-    // Workout Notes
-    @State var showingNotes = false
+    @State private var numberOfExercises = 1
+    @State private var exerciseIndex = 0
+    @State private var numberOfSets = [0]
     
     // Warm Up / Stretching
     @State private var warmUp = false
     @State private var stretching = false
+    
+    // Workout Notes
+    @State private var showingNotes = false
+    
+    // Settings
+    @State private var showingSettings = false
     
     //MARK: - BODY
     var body: some View {
@@ -58,10 +61,7 @@ struct WorkoutView: View {
                     if (userObject.props.includeStretching) {
                         Section("Press to Check") {
                             HStack {
-                                Image(systemName: "figure.strengthtraining.functional")
-                                    .font(.title3)
-                                
-                                Text("Stretching")
+                                Label("Stretching", systemImage: "figure.strengthtraining.functional")
                                 
                                 Spacer()
                                 
@@ -92,8 +92,8 @@ struct WorkoutView: View {
                                     Image(systemName: "arrowtriangle.right.fill")
                                         .foregroundColor(Color.SingleAccent)
                                 }
-                                
-                                Text("\(index+1). Exercise")
+
+                                Label("Exercise", systemImage: "\(index+1).circle")
                                 
                                 Spacer()
                                 
@@ -120,10 +120,8 @@ struct WorkoutView: View {
                     if (userObject.props.includeWarmup) {
                         Section("Press to Check") {
                             HStack {
-                                Image(systemName: "figure.run")
-                                    .font(.title3)
                                 
-                                Text("Warm Up")
+                                Label("Warm Up", systemImage: "figure.run")
                                 
                                 Spacer()
                                 
@@ -217,21 +215,28 @@ struct WorkoutView: View {
                 }
                 .padding(.bottom)
                 
-                Spacer()
-                
-                // MARK: - Notes
-                BigButton(text: "", icon: "list.bullet.clipboard", tint: Color.Layer2) { showingNotes = true }
-                    .padding([.leading, .trailing], 20)
-                    .sheet(isPresented: $showingNotes) {
-                        ExerciseListView(isPresented: $showingNotes)
-                    }
-            
+                // MARK: - Bottom Buttons
+                HStack(spacing: 20) {
+                    BigButton(text: "", icon: "list.bullet.clipboard", tint: Color.Layer2) { showingNotes = true }
+                        .sheet(isPresented: $showingNotes) {
+                            ExerciseNotesView(isPresented: $showingNotes)
+                        }
+                    
+                    BigButton(text: "", icon: "gear", tint: Color.Layer2) { showingSettings.toggle() }
+                        .sheet(isPresented: $showingSettings) {
+                            WorkoutSettingsView()
+                                .presentationDetents([.fraction(0.34)])
+                                .presentationDragIndicator(.visible)
+                        }
+                }
+                .padding(.horizontal, 20)
+
             }
             // MARK: - Navigation Bar
             .navigationBarTitle("Workout", displayMode: .inline)
             .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: CancelButton() { endWorkoutAlert = true } )
-            .navigationBarItems(trailing: CheckButton() { saveWorkout() } )
+            .navigationBarItems(leading: CancelButton() { endWorkoutAlert.toggle() } )
+            .navigationBarItems(trailing: CheckButton() { saveWorkoutAlert.toggle() } )
             .alert("Quit Workout", isPresented: $endWorkoutAlert) {
                 Button("Resume", role: .cancel) {}
                     .tint(Color.SingleAccent)
@@ -242,6 +247,15 @@ struct WorkoutView: View {
                 }
             } message: {
                 Text("Are you sure you want to quit your current workout?")
+            }
+            .alert("Save Workout", isPresented: $saveWorkoutAlert) {
+                Button("Resume", role: .cancel) { }
+                Button("Save") {
+                    saveWorkout()
+                }
+                .tint(Color.SingleAccent)
+            } message: {
+                Text("Are you finished with your workout?")
             }
             
             // PopupView
@@ -282,7 +296,7 @@ struct WorkoutView: View {
             restTimer.stop()
             
             // save workout stats
-            userObject.props.workouts.append(Workout(exercises: numberOfExercises, date: currentDate, duration: self.durationTimer.elapsedTime))
+            userObject.saveWorkout(exercises: numberOfExercises, date: currentDate, duration: self.durationTimer.elapsedTime, stretchingDone: stretching, warmupDone: warmUp)
             
             // show popup
             withAnimation {

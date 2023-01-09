@@ -42,9 +42,9 @@ struct DebugView: View {
             
             Button("Save Workout") {
                 // Save
-                userObject.props.workouts.append(Workout(exercises: value, date: date, duration: TimeInterval(selection)))
+                userObject.saveWorkout(exercises: value, date: date, duration: TimeInterval(selection), stretchingDone: true, warmupDone: true)
             }
-                .tint(.blue)
+            .tint(.blue)
             
         }
     }
