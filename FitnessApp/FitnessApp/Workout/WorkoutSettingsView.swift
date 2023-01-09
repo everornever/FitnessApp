@@ -2,8 +2,6 @@
 //  WorkoutSettingsView.swift
 //  Fitness App
 //
-//  Created by Leon Kling on 07.01.23.
-//
 
 import SwiftUI
 
@@ -11,7 +9,7 @@ struct WorkoutSettingsView: View {
     
     // User Info
     @EnvironmentObject var userObject: UserObject
-    
+      
     let timers = [ 60.0, 90.0, 120.0, 150.0, 180.0]
     
     var body: some View {

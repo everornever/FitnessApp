@@ -4,8 +4,6 @@
 //
 
 import SwiftUI
-import UserNotifications
-import WidgetKit
 
 struct WorkoutView: View {
     
@@ -24,7 +22,7 @@ struct WorkoutView: View {
     @StateObject var durationTimer = DurationTimerObject()
     
     // Rest Timer
-    @StateObject var restTimer = RestTimerObject()
+    @ObservedObject var restTimer = RestTimerObject()
     
     // Dates
     let currentDate = Date()
@@ -34,15 +32,15 @@ struct WorkoutView: View {
     @State private var exerciseIndex = 0
     @State private var numberOfSets = [0]
     
+    // Warm Up / Stretching
+    @State private var warmUp = false
+    @State private var stretching = false
+    
     // Workout Notes
     @State private var showingNotes = false
     
     // Settings
     @State private var showingSettings = false
-    
-    // Warm Up / Stretching
-    @State private var warmUp = false
-    @State private var stretching = false
     
     //MARK: - BODY
     var body: some View {
@@ -227,7 +225,7 @@ struct WorkoutView: View {
                     BigButton(text: "", icon: "gear", tint: Color.Layer2) { showingSettings.toggle() }
                         .sheet(isPresented: $showingSettings) {
                             WorkoutSettingsView()
-                                .presentationDetents([.fraction(0.40)])
+                                .presentationDetents([.fraction(0.34)])
                                 .presentationDragIndicator(.visible)
                         }
                 }
@@ -298,10 +296,7 @@ struct WorkoutView: View {
             restTimer.stop()
             
             // save workout stats
-            userObject.props.workouts.append(Workout(exercises: numberOfExercises, date: currentDate, duration: self.durationTimer.elapsedTime))
-            
-            // Reload Widgets
-            WidgetCenter.shared.reloadAllTimelines()
+            userObject.saveWorkout(exercises: numberOfExercises, date: currentDate, duration: self.durationTimer.elapsedTime, stretchingDone: stretching, warmupDone: warmUp)
             
             // show popup
             withAnimation {

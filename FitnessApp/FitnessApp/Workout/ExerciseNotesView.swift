@@ -17,7 +17,7 @@ struct ExerciseNotesView: View {
         VStack {
             // MARK: - Top
             HStack {
-                Text("Weekly Target")
+                Text("Exercise Notes")
                     .font(.title)
                     .bold()
                 
@@ -28,28 +28,33 @@ struct ExerciseNotesView: View {
                 }
             }
             .padding(.horizontal, 20)
+            .padding(.top, 20)
             
             Form {
                 ForEach(userObject.props.exerciseNotes.indices, id: \.self) { index in
                     
-                    HStack {
+                    VStack {
                         
-                        TextField("Name", text: $userObject.props.exerciseNotes[index].name)
+                        TextField("Name", text: $userObject.props.exerciseNotes[index].name, prompt: Text("Name"))
                             .lineLimit(1)
-                        
-                        Spacer()
-                        
-                        Text("\(userObject.props.exerciseNotes[index].kilos.formatted()) KG")
                             .fontWeight(.bold)
-                            .padding(.trailing)
-                        
-                        Button("+") { addWeight(index: index) }
-                            .buttonStyle(.borderedProminent)
-                            .foregroundColor(Color.PrimaryReversed)
-                        
-                        Button("-") { subtractWeight(index: index) }
-                            .buttonStyle(.borderedProminent)
-                            .foregroundColor(Color.PrimaryReversed)
+
+
+                        HStack() {
+                            Text("\(userObject.props.exerciseNotes[index].kilos.formatted()) KG")
+                                .padding(.trailing)
+                            
+                            Spacer()
+
+                            Button("+") { addWeight(index: index) }
+                                .buttonStyle(.borderedProminent)
+                                .foregroundColor(Color.PrimaryReversed)
+
+                            Button("-") { subtractWeight(index: index) }
+                                .buttonStyle(.borderedProminent)
+                                .foregroundColor(Color.PrimaryReversed)
+                            
+                        }
                         
                     }
                     .listRowBackground(Color.Layer3)
@@ -80,7 +85,7 @@ struct ExerciseNotesView: View {
     }
     
     func addExercise() {
-        userObject.props.exerciseNotes.append(ExerciseNote(name: "???", kilos: 10.0))
+        userObject.props.exerciseNotes.append(ExerciseNote(name: "", kilos: 10.0))
     }
     
     func addWeight(index: Int) {

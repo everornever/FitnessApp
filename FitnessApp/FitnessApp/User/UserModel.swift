@@ -43,6 +43,8 @@ struct Workout: Identifiable, Codable {
     let exercises: Int
     let date: Date
     let duration: TimeInterval
+    let stretchingDone: Bool
+    let warmupDone: Bool
 }
 
 struct WeightEntry: Identifiable, Codable {

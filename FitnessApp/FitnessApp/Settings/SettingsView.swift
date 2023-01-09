@@ -20,12 +20,6 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
-                // MARK: - Workout
-                Section("Workout") {
-                    
-
-                }
-                .listRowBackground(Color.Layer3)
                 
                 // MARK: - Notification
                 Section("Notification") {

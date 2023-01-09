@@ -18,13 +18,15 @@ struct ProgressView: View {
                 .navigationTitle("Progress")
         } else {
             List {
-                ForEach(userObject.props.workouts) { entry in
+                ForEach(userObject.props.workouts.reversed()) { entry in
                     ProgressRow(
                         date: entry.date.formatted(date: .abbreviated, time: .omitted),
                         exercises: entry.exercises,
                         time: entry.duration.timeString().minutes,
                         day: entry.date.formatted(.dateTime.weekday(.short)),
-                        weekNumber: String(Calendar.current.component(.weekOfYear, from: entry.date))
+                        weekNumber: String(Calendar.current.component(.weekOfYear, from: entry.date)),
+                        warmup: entry.warmupDone,
+                        stretching: entry.stretchingDone
                     )
                 }
                 .onDelete(perform: removeRows)
@@ -33,7 +35,7 @@ struct ProgressView: View {
             .navigationTitle("Progress")
             .background(Color.Layer1)
             .scrollContentBackground(.hidden)
-
+            
         }
     }
     // MARK: - Functions
@@ -41,7 +43,7 @@ struct ProgressView: View {
     func removeRows(at offsets: IndexSet) {
         userObject.props.workouts.remove(atOffsets: offsets)
     }
-        
+    
 }
 
 // MARK: - Empty List View

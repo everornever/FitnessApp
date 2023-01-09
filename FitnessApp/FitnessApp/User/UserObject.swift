@@ -5,6 +5,7 @@
 
 import Foundation
 import SwiftUI
+import WidgetKit
 
 class UserObject: ObservableObject {
     
@@ -12,6 +13,9 @@ class UserObject: ObservableObject {
         didSet {
             if let encoded = try? JSONEncoder().encode(props) {
                 UserDefaults.appGroup.set(encoded, forKey: UserDefaults.Keys.SavedUser.rawValue)
+                
+                // Reload Widgets after saving
+                WidgetCenter.shared.reloadAllTimelines()
             }
         }
     }
@@ -44,6 +48,10 @@ class UserObject: ObservableObject {
         props.weightEntries.append(WeightEntry(weight: value, date: Date.now))
     }
     
+    // save workout
+    func saveWorkout(exercises: Int, date: Date, duration: TimeInterval, stretchingDone: Bool, warmupDone: Bool) {
+        props.workouts.append(Workout(exercises: exercises, date: date, duration: duration, stretchingDone: stretchingDone, warmupDone: warmupDone))
+    }
     
     
     

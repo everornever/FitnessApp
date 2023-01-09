@@ -12,8 +12,8 @@ struct CancelButton: View {
             Image(systemName: "xmark.circle.fill")
                 .font(.title)
                 .imageScale(.large)
-                .foregroundColor(.SingleLight)
-                .symbolRenderingMode(.hierarchical)
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(Color.primary, Color.Layer3)
         }
     }
 }
@@ -98,6 +98,7 @@ struct Button_Previews: PreviewProvider {
             CheckButton() { }
             BigButton(text: "Test", icon: "arrow.forward", tint: .primary) { }
         }
+        .background(Color.Layer2)
     }
 }
 
