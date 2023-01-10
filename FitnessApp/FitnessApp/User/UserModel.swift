@@ -33,6 +33,19 @@ struct User: Identifiable, Codable {
     //Saved Weight
     var weightEntries: [WeightEntry] = []
     
+    // Muscle Tags
+    var tags: [Tag] = [Tag(name: "Chest", icon: "questionmark.circle.fill"),
+                       Tag(name: "Legs", icon: "questionmark.circle.fill"),
+                       Tag(name: "Arms", icon: "questionmark.circle.fill"),
+                       Tag(name: "Bicep", icon: "questionmark.circle.fill"),
+                       Tag(name: "Tricep", icon: "questionmark.circle.fill"),
+                       Tag(name: "Shoulders", icon: "questionmark.circle.fill"),
+                       Tag(name: "Back", icon: "questionmark.circle.fill"),
+                       Tag(name: "Gluts", icon: "questionmark.circle.fill"),
+                       Tag(name: "Core", icon: "questionmark.circle.fill"),
+                       Tag(name: "Push", icon: "questionmark.circle.fill"),
+                       Tag(name: "Pull", icon: "questionmark.circle.fill"),]
+    
     // Saved Exercises
     var exerciseNotes: [ExerciseNote] = [ExerciseNote(name: "Bench Press", kilos: 20.0),ExerciseNote(name: "Deadlift", kilos: 20.0), ExerciseNote(name: "Squats", kilos: 20.0)]
     
@@ -45,6 +58,13 @@ struct Workout: Identifiable, Codable {
     let duration: TimeInterval
     let stretchingDone: Bool
     let warmupDone: Bool
+    var tags: [Tag] = []
+}
+
+struct Tag: Identifiable, Codable {
+    var id = UUID()
+    let name: String
+    let icon: String
 }
 
 struct WeightEntry: Identifiable, Codable {

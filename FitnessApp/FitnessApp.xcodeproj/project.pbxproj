@@ -24,6 +24,7 @@
 		3535B1A229016F6900BF16EE /* ExerciseNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3535B1A129016F6900BF16EE /* ExerciseNotesView.swift */; };
 		3538982728DC83C900983E1A /* DurationTimerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538982628DC83C900983E1A /* DurationTimerObject.swift */; };
 		3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3539485428C74AD600EDF0E2 /* WorkoutView.swift */; };
+		35432B28296C757B004C6205 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35432B26296C755E004C6205 /* SummaryView.swift */; };
 		35556F83295D9E030081B538 /* WeightListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35556F82295D9E030081B538 /* WeightListView.swift */; };
 		3567C96D2940A208002FB477 /* Bell-One.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 3567C96B2940A208002FB477 /* Bell-One.m4r */; };
 		3567C96E2940A208002FB477 /* NewSet.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 3567C96C2940A208002FB477 /* NewSet.m4r */; };
@@ -105,6 +106,7 @@
 		3535B1A129016F6900BF16EE /* ExerciseNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseNotesView.swift; sourceTree = "<group>"; };
 		3538982628DC83C900983E1A /* DurationTimerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationTimerObject.swift; sourceTree = "<group>"; };
 		3539485428C74AD600EDF0E2 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		35432B26296C755E004C6205 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		35556F82295D9E030081B538 /* WeightListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightListView.swift; sourceTree = "<group>"; };
 		3567C96B2940A208002FB477 /* Bell-One.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bell-One.m4r"; sourceTree = "<group>"; };
 		3567C96C2940A208002FB477 /* NewSet.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewSet.m4r; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				3539485428C74AD600EDF0E2 /* WorkoutView.swift */,
 				35087A0F29697FB600662124 /* WorkoutSettingsView.swift */,
 				3535B1A129016F6900BF16EE /* ExerciseNotesView.swift */,
+				35432B26296C755E004C6205 /* SummaryView.swift */,
 				350B03AD28CE52E900738A7E /* PopupView.swift */,
 			);
 			path = Workout;
@@ -514,6 +517,7 @@
 				350374352937B11B00DF4306 /* ProgressRow.swift in Sources */,
 				35C1575128EEEF1F00C7B641 /* RestTimerObject.swift in Sources */,
 				357A6D94291C0CBF00EB6E53 /* ThirdView.swift in Sources */,
+				35432B28296C757B004C6205 /* SummaryView.swift in Sources */,
 				3539485528C74AD600EDF0E2 /* WorkoutView.swift in Sources */,
 				3502947C28D4832B00C37C92 /* UserObject.swift in Sources */,
 				35143A45293E59A5001004D7 /* AudioPlayer.swift in Sources */,
